@@ -1,0 +1,148 @@
+@use './shortcuts.scss' as sc;
+@use 'sass:color';
+
+@mixin _sidebar-titlebar {
+     &__titlebar {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          background: #272525;
+          padding: 8px 10px;
+     }
+
+     &__titlebar-title {
+          font-size: 1rem;
+          font-weight: 600;
+          color: color.adjust(white, $lightness: -30%);
+     }
+
+     &__titlebar-controls {
+          display: flex;
+          flex-direction: row;
+          column-gap: 3px;
+     }
+
+     &__titlebar-controls-btn {
+          border-radius: 3px;
+          width: 10px;
+          height: 10px;
+
+          &--close {
+               background-color: #ef6a5f;
+          }
+
+          &--min {
+               background-color: #f8c552;
+          }
+
+          &--max {
+               background-color: #5fc555;
+          }
+     }
+}
+
+@mixin sidebar {
+     .navigation {
+          --navigation-primary-color: #4f4eff;
+          --navigation-list-style: italic;
+
+          @include sc.box-shadow(#15c487, 5px 5px, 0px, 0px);
+          @include _sidebar-titlebar;
+
+          &__body {
+               background-color: color.adjust(#272525, $lightness: -5%);
+               padding: 18px 20px;
+          }
+
+          &__header {
+               font-family: 'Archivo', sc.$standard-font;
+               font-size: 1.35rem;
+               font-weight: 900;
+               font-stretch: expanded;
+               letter-spacing: 1px;
+               margin-bottom: 15px;
+          }
+
+          &__list {
+               display: flex;
+               flex-direction: column;
+               gap: 5px;
+          }
+
+          &__list-link {
+               font-family: 'Lexend', sc.$standard-font;
+               font-size: 0.95rem;
+               text-decoration: none;
+               color: currentColor;
+
+               &--flavory {
+                    --navigation-primary-color: #{color.adjust(color.invert(#4f4eff), $hue: 30deg)};
+               }
+
+               &--currently {
+                    --navigation-list-style: none;
+
+                    cursor: not-allowed;
+                    background-color: var(--navigation-primary-color);
+               }
+
+               &--not-supported {
+                    --navigation-list-style: none;
+
+                    cursor: not-allowed;
+                    text-decoration: line-through;
+                    text-decoration-thickness: 3px;
+                    text-decoration-color: color.adjust(white, $lightness: -5%);
+               }
+
+               &:hover {
+                    font-style: var(--navigation-list-style);
+               }
+
+               &:focus-within {
+                    outline: none;
+                    background-color: var(--navigation-primary-color);
+               }
+          }
+
+          &__list-item {
+               display: flex;
+               flex-direction: row;
+               gap: 5px;
+          }
+
+          &__item-block {
+               background-color: var(--navigation-primary-color);
+               width: 8px;
+               height: max;
+          }
+
+          &__item-text {
+               padding: 3px 8px;
+               width: 100%;
+
+               &:hover {
+                    background-color: var(--navigation-primary-color);
+               }
+          }
+     }
+
+     .updatelogs {
+          @include sc.box-shadow(color.adjust(color.invert(#4f4eff), $hue: 30deg), 5px 5px, 0px, 0px);
+          @include _sidebar-titlebar;
+
+          &__body {
+               background-color: color.adjust(#272525, $lightness: -5%);
+               padding: 18px 20px;
+          }
+
+          &__console {
+               overflow-y: auto;
+               background-color: color.adjust(#272525, $lightness: -10%);
+               border-radius: 5px;
+               height: 7cm;
+               padding: 10px 15px;
+          }
+     }
+}

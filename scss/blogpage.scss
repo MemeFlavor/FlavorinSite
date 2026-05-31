@@ -1,0 +1,107 @@
+@use './modules/sidebar.scss' as *;
+@use './modules/bloglists.scss' as *;
+@use './modules/shortcuts.scss' as sc;
+@use 'sass:color';
+
+@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
+@include sc.font-face-var('Lexend', normal, normal, 100 900);
+
+body {
+     display: flex;
+     justify-content: center;
+     font-family: sc.$standard-font;
+     background-image: url(../images/backgrounds/locker_room.avif);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-color: #312e3d;
+     background-blend-mode: color-burn;
+
+     #flavory-content {
+          display: grid;
+          grid-template-columns: 300px 900px;
+          grid-template-rows: 1fr;
+          grid-template-areas:
+               "flavory-sidebar flavory-post"
+          ;
+          gap: 20px;
+          margin-block: 0.5cm;
+     }
+
+     .sidebar {
+          display: flex;
+          flex-direction: column;
+          grid-area: flavory-sidebar;
+          gap: 20px;
+          @include sidebar;
+     }
+
+     .post {
+          grid-area: flavory-post;
+          background-color: color.adjust(#272525, $lightness: -5%);
+          padding: 20px;
+          @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
+
+          &__header-title {
+               grid-area: header-title;
+               font-family: "Archivo", sc.$standard-font;
+               font-size: 1.6rem;
+               font-weight: 900;
+               font-stretch: expanded;
+               background-color: color.adjust(#272525, $lightness: -10%);
+               border-radius: 5px;
+               padding: 10px 15px;
+               width: 100%;
+          }
+
+          p, blockquote, li {
+               font-family: sc.$fancy-font;
+               font-size: 1rem;
+               text-wrap: pretty;
+               text-align: start;
+               text-rendering: optimizeSpeed;
+               line-height: 1.5rem;
+               padding-inline: 10px;
+               margin-block: 10px;
+          }
+
+          code {
+               font-family: "Fira Code", sc.$standard-code-font;
+               font-size: 0.85rem;
+               background-color: #272525;
+               border-radius: 5px;
+               padding: 3px 5px;
+          }
+
+          blockquote {
+               font-style: italic;
+               text-indent: 50px;
+               margin-block: 25px;
+          }
+
+          a {
+               text-decoration: none;
+               color: cornflowerblue;
+
+               &:hover {
+                    text-decoration: underline;
+               }
+          }
+
+          :is(ol, ul) {
+               padding-left: 50px;
+
+               li {
+                    line-height: 0.8rem;
+               }
+          }
+
+          ol li {
+               list-style-type: decimal;
+          }
+
+          ul li {
+               list-style-type: disc;
+          }
+     }
+}

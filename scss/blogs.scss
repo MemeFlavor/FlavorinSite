@@ -1,0 +1,100 @@
+@use './modules/sidebar.scss' as *;
+@use './modules/bloglists.scss' as *;
+@use './modules/shortcuts.scss' as sc;
+@use 'sass:color';
+
+@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
+@include sc.font-face-var('Lexend', normal, normal, 100 900);
+
+body {
+     display: flex;
+     justify-content: center;
+     font-family: sc.$standard-font;
+     background-image: url(../images/backgrounds/locker_room.avif);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-color: #312e3d;
+     background-blend-mode: color-burn;
+
+     #flavory-content {
+          display: grid;
+          grid-template-columns: 300px 900px;
+          grid-template-rows: 1fr;
+          grid-template-areas:
+               "flavory-sidebar flavory-bloglists"
+          ;
+          gap: 20px;
+          height: 100vh;
+          margin-block: 0.5cm;
+     }
+
+     .sidebar {
+          display: flex;
+          flex-direction: column;
+          grid-area: flavory-sidebar;
+          gap: 20px;
+          @include sidebar;
+     }
+
+     .bloglists {
+          grid-area: flavory-bloglists;
+          background-color: color.adjust(#272525, $lightness: -5%);
+          padding: 20px;
+          @include bloglists;
+          @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
+
+          &__navigation {
+               margin-bottom: 10px;
+          }
+     
+          &__navigation-list {
+               display: flex;
+               flex-direction: row;
+               border: 1px solid black;
+               width: 100%;
+               @include sc.gradient(165deg, rgb(85, 85, 85) 0%, rgb(39, 39, 39) 95%);
+          }
+     
+          --nailss1: hsl(0, 0%, 43%);
+          --nailss2: hsl(0, 0%, 25%);
+          &__navigation-item {
+               cursor: pointer;
+               border-right: 1px solid black;
+               padding: 8px 10px;
+     
+               &--selected {
+                    --dingus: not-allowed;
+                    --nailss1: rgb(85, 125, 201);
+                    --nailss2: rgb(39, 57, 91);
+                    cursor: not-allowed;
+                    @include sc.gradient(165deg, rgb(85, 125, 201) 0%, rgb(39, 57, 91) 95%);
+               }
+     
+               &:hover {
+                    @include sc.gradient(165deg, var(--nailss1) 0%, var(--nailss2) 95%);
+               }
+          }
+     
+          &__navigation-item-btn {
+               cursor: inherit;
+               font-family: sc.$fancy-font;
+               font-size: 1rem;
+               font-weight: 600;
+               text-decoration: none;
+               background: none;
+               border: none;
+               color: currentColor;
+     
+               &:disabled {
+                    color: inherit;
+               }
+     
+               &:focus-within {
+                    background-color: cornflowerblue;
+                    outline: none;
+                    color: black;
+               }
+          }
+     }
+}

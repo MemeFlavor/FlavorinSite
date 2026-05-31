@@ -1,0 +1,230 @@
+@use './modules/sidebar.scss' as *;
+@use './modules/shortcuts.scss' as sc;
+@use 'sass:color';
+
+@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
+@include sc.font-face-var('Fira Code', normal, normal, 300 700);
+@include sc.font-face-var('Lexend', normal, normal, 100 900);
+
+body {
+     display: flex;
+     justify-content: center;
+     font-family: sc.$standard-font;
+     background-image: url(../images/backgrounds/beach.avif);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-color: #312e3d;
+     background-blend-mode: color-burn;
+
+     #flavory-content {
+          display: grid;
+          grid-template-columns: 300px 900px;
+          grid-template-rows: 1fr;
+          grid-template-areas:
+               "flavory-sidebar flavory-autobiography"
+          ;
+          gap: 20px;
+          margin-block: 0.5cm;
+     }
+
+     .sidebar {
+          display: flex;
+          flex-direction: column;
+          grid-area: flavory-sidebar;
+          gap: 20px;
+          @include sidebar;
+     }
+
+     .autobiography {
+          grid-area: flavory-autobiography;
+          background-color: color.adjust(#272525, $lightness: -5%);
+          padding: 20px;
+          @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
+
+          &__main {
+               display: flex;
+               flex-direction: row;
+               justify-content: space-between;
+               gap: 15px;
+               margin-bottom: 10px;
+          }
+
+          &__description {
+               width: 100%;
+          }
+
+          &__header {
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               justify-content: space-around;
+               gap: 5px;
+          }
+
+          &__header-title, &__header-block {
+               font-family: "Archivo", sc.$standard-font;
+               font-weight: 900;
+               font-stretch: expanded;
+          }
+
+          &__header-title {
+               font-family: "Archivo", sc.$standard-font;
+               font-size: 1.6rem;
+               font-weight: 900;
+               font-stretch: expanded;
+               background-color: color.adjust(#272525, $lightness: -10%);
+               border-radius: 5px;
+               padding: 10px 15px;
+               width: 100%;
+
+               @keyframes blinker {
+                    0%, 100% { color: #ffb52b; }
+                    50%      { color: currentColor; }
+               }
+
+               &--blinker {
+                    animation: blinker 3s step-start infinite;
+               }
+          }
+
+          &__header-block {
+               display: grid;
+               grid-template-columns: 1fr 1fr;
+               grid-template-rows: 1fr 1fr;
+               font-size: 0.95rem;
+          }
+
+          &__header-block-nums {
+               padding: 1px 3px;
+               @include sc.unselectable;
+
+               &--highlight {
+                    background-color: color.adjust(color.invert(#4f4eff), $hue: 30deg, $lightness: 10%);
+                    color: black;
+               }
+          }
+
+          &__body {
+               display: block;
+          }
+
+          &__text {
+               font-family: sc.$fancy-font;
+               font-size: 1rem;
+               text-wrap: pretty;
+               text-align: justify;
+               text-rendering: optimizeSpeed;
+               line-height: 1.35rem;
+               padding-inline: 10px;
+               margin-block: 10px;
+
+               &::before {
+                    content: '> ';
+               }
+          }
+
+          &__info {
+               display: flex;
+               flex-direction: column;
+               width: 200px;
+          }
+
+          &__info-title {
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               justify-content: center;
+               font-family: "Archivo", sc.$standard-font;
+               font-size: 1.5rem;
+               font-weight: 900;
+               font-stretch: 100%;
+               background-color: #4f4eff;
+               color: black;
+               height: 45px;
+          }
+
+          &__info-quote {
+               font-size: 0.95rem;
+               text-align: center;
+               margin-block: 10px 15px;
+          }
+
+          &__info-data {
+               display: flex;
+               flex-direction: column;
+               gap: 8px;
+          }
+
+          &__info-metadata {
+               display: flex;
+               flex-direction: row;
+               align-items: end;
+               justify-content: space-between;
+          }
+
+          &__info-metadata-key {
+               font-weight: bolder;
+               font-size: 0.95rem;
+          }
+
+          &__info-metadata-value {
+               font-size: 0.85rem;
+               font-style: italic;
+               color: #9e9e9e;
+          }
+
+          &__trivia {
+               display: flex;
+               flex-direction: row;
+               justify-content: flex-start;
+               margin-inline: 10px;
+               margin-top: 15px;
+          }
+
+          &__trivia-container {
+               display: flex;
+               flex-flow: row wrap;
+               gap: 20px;
+          }
+
+          &__trivia-cards {
+               background-color: #101010;
+               border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+               padding-top: 10px;
+               min-width: 180px;
+          } 
+
+          &__trivia-cards-title {
+               font-family: "Archivo", sc.$standard-font;
+               font-size: 1.2rem;
+               font-weight: 900;
+               font-stretch: 85%;
+               border-top: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+               border-bottom: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+               padding: 3px 8px;
+               width: 100%;
+               @include sc.gradient(180deg, #272525 0%, color.adjust(#272525, $lightness: -10%) 100%);
+
+               abbr {
+                    text-decoration: none;
+               }
+          }
+
+          &__trivia-cards-list {
+               display: flex;
+               flex-direction: column;
+               gap: 3px;
+               padding: 10px;
+          }
+
+          &__trivia-cards-item {
+               font-family: sc.$fancy-font;
+               font-size: 0.9rem;
+
+               &::before {
+                    content: '> ';
+               }
+          }
+     }
+}

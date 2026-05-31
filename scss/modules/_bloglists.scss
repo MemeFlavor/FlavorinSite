@@ -1,0 +1,115 @@
+@use './shortcuts.scss' as sc;
+@use 'sass:color';
+
+@mixin bloglists {
+     th, td {
+          border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+     }
+
+     &__body {
+          table-layout: fixed;
+          border-collapse: collapse;
+          width: 100%;
+     }
+
+     &__header {
+          @include sc.gradient(to right, rgb(54, 81, 130) 0%, rgb(19, 29, 45) 100%);
+     }
+
+     &__header-text {
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-align: left;
+          color: #ffffff;
+          padding: 3px 10px;
+
+          &--blogs {
+               width: auto;
+          }
+
+          &--time {
+               width: 100px;
+          }
+     }
+
+     &__section {
+          @include sc.gradient(180deg, #272525 0%, color.adjust(#272525, $lightness: -10%) 100%);
+     }
+
+     &__section-text {
+          font-family: "Archivo", sc.$standard-font;
+          font-size: 1rem;
+          font-weight: 900;
+          font-stretch: expanded;
+          text-align: start;
+          letter-spacing: 1px;
+          width: 100%;
+          padding: calc((5px + 8px) / 2) 10px;
+     }
+
+     &__content-group {
+          overflow-wrap: break-word;
+          background-color: #101010;
+          padding: 10px;
+     }
+
+     &__content-title {
+          font-family: "Archivo", sc.$standard-font;
+          font-size: 1rem;
+          font-weight: 900;
+          font-stretch: 100%;
+          letter-spacing: 1px;
+          width: 100%;
+     }
+
+     &__content-link {
+          text-decoration: none;
+          color: cornflowerblue;
+          padding-inline: 3px;
+
+          &:hover {
+               text-decoration: underline;
+               text-decoration-thickness: 2px;
+          }
+
+          &:focus-within {
+               outline: none;
+               background-color: cornflowerblue;
+               color: black;
+          }
+     }
+
+     &__content-type {
+          font-size: 0.75rem;
+          font-style: italic;
+          color: color.adjust(#101010, $lightness: 50%);
+          margin-bottom: 10px;
+
+          &::before {
+               content: '*';
+          }
+     }
+
+     &__content-description {
+          font-family: sc.$fancy-font;
+          text-align: justify;
+          text-wrap: pretty;
+          line-height: 1.1rem;
+     }
+
+     &__content-date {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.85rem;
+     }
+
+     &__content-time {
+          font-family: "Fira Code", sc.$standard-code-font;
+          font-size: 0.65rem;
+          background-color: #272525;
+          border-radius: 5px;
+          padding: 3px 5px;
+     }
+}

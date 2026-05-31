@@ -1,0 +1,314 @@
+
+@use './modules/sidebar.scss' as *;
+@use './modules/bloglists.scss' as *;
+@use './modules/shortcuts.scss' as sc;
+@use 'sass:color';
+
+@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
+@include sc.font-face-var('Fira Code', normal, normal, 300 700);
+@include sc.font-face-var('Lexend', normal, normal, 100 900);
+@include sc.font-face('Kimberley', 'Kimberley-', normal, "Black");
+
+body {
+     display: flex;
+     justify-content: center;
+     font-family: sc.$standard-font;
+     background-image: url(../images/backgrounds/grasslands.avif);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-color: #312e3d;
+     background-blend-mode: color-burn;
+
+     #flavory-content {
+          display: grid;
+          grid-template-columns: 300px 900px;
+          grid-template-rows: auto-fit 1fr 1fr;
+          grid-template-areas:
+               "flavory-header flavory-header"
+               "flavory-sidebar flavory-main"
+               "flavory-sidebar flavory-footer"
+          ;
+          gap: 20px;
+          margin-block: 0.5cm;
+     }
+
+     .sidebar {
+          display: flex;
+          flex-direction: column;
+          grid-area: flavory-sidebar;
+          gap: 20px;
+          @include sidebar;
+     }
+
+     .header {
+          display: grid;
+          justify-content: space-between;
+          grid-template-columns: repeat(2, auto);
+          grid-template-rows: repeat(2, auto);
+          grid-template-areas: 
+               "header-banner header-profile"
+               "header-badges header-my-badge"
+          ;
+          grid-area: flavory-header;
+          gap: 20px 0;
+
+          &__banner {
+               image-rendering: pixelated;
+               grid-area: header-banner;
+          }
+
+          &__profile {
+               grid-area: header-profile;
+               border-radius: 5px;
+          }
+
+          &__badges {
+               display: flex;
+               flex-direction: column;
+               grid-area: header-badges;
+               gap: 3px;
+          }
+
+          &__badges-rows {
+               display: flex;
+               flex-direction: row;
+               justify-content: space-between;
+          }
+
+          &__badges-img {
+               image-rendering: pixelated;
+          }
+
+          &__my-badge {
+               grid-area: header-my-badge;
+          }
+     }
+
+     .main {
+          grid-area: flavory-main;
+          background-color: color.adjust(#272525, $lightness: -5%);
+          height: fit-content;
+          padding: 20px;
+          @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
+
+          &__header {
+               font-family: "Archivo", sc.$standard-font;
+               font-size: 1.6rem;
+               font-weight: 900;
+               font-stretch: expanded;
+               background-color: color.adjust(#272525, $lightness: -10%);
+               border-radius: 5px;
+               padding: 10px 15px;
+               width: 100%;
+          }
+
+          &__description {
+               margin-bottom: 30px; // lol
+          }
+
+          &__para {
+               font-family: sc.$fancy-font;
+               font-size: 0.95rem;
+               text-wrap: pretty;
+               text-align: justify;
+               text-rendering: optimizeSpeed;
+               line-height: 1.5rem;
+               padding-inline: 10px;
+               margin-block: 10px;
+
+               &::before {
+                    content: '> ';
+               }
+          }
+
+          &__goodies {
+               display: grid;
+               grid-template-columns: auto 1fr;
+               grid-template-rows: 1fr auto;
+               grid-template-areas: 
+                    "goodies-music goodies-blogs"
+                    "goodies-projects goodies-projects"
+               ;
+               gap: 10px;
+               margin-block: 10px;
+
+               .music, .bloglists, .projects {
+                    border: 1px solid #6b6b6b;
+
+                    &__titlebar-title {
+                         font-family: "Archivo", sc.$standard-font;
+                         font-size: 1.2rem;
+                         font-weight: 900;
+                         font-stretch: expanded;
+                         background-color: color.adjust(#272525, $lightness: -10%);
+                         padding: 10px 15px;
+                         width: 100%;
+                    }
+               }
+               
+               .music {
+                    background-image: url(../images/backgrounds/music.avif);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-blend-mode: hard-light;
+                    background-color: #272525;
+                    image-rendering: pixelated;
+                    grid-area: goodies-music;
+
+                    &__body {
+                         display: flex;
+                         flex-direction: column;
+                         padding: 10px 40px;
+                    }
+
+                    &__album {
+                         display: flex;
+                         flex-direction: column;
+                         gap: 20px;
+                    }
+
+                    &__album-link {
+                         display: flex;
+                         justify-content: center;
+                    }
+
+                    &__album-cover {
+                         image-rendering: auto !important;
+                         border-radius: 5px;
+                    }
+
+                    &__album-info {
+                         display: flex;
+                         flex-direction: column;
+                    }
+
+                    &__album-title, &__album-artists {
+                         font-family: "Archivo", sc.$standard-font;
+                         font-weight: 900;
+                    }
+
+                    &__album-title {
+                         font-size: 1.8rem;
+                         font-stretch: expanded;
+                         text-shadow: 5px 5px 0px black;
+                         max-width: 250px;
+                         padding-bottom: 5px;
+
+                         &--overflowing {
+                              overflow: hidden;
+                              white-space: nowrap;
+                              box-sizing: border-box;
+
+                              @keyframes scroll {
+                                   0%   { transform: translate(0, 0); }
+                                   100% { transform: translate(-100%, 0); }
+                              }
+                         
+                              span {
+                                   display: inline-block;
+                                   padding-left: 100%;
+                                   animation: scroll 8s linear infinite;
+                              }
+                         }
+                    }
+
+                    &__album-artists {
+                         font-size: 0.85rem;
+                         font-stretch: 100%;
+                         text-shadow: 3px 3px 0px black;
+                    }
+
+                    &__playback-progress {
+                         --progress-background: 0%;
+                         --progress-color: #ff0000;
+                    
+                         $progress-gradient-start: var(--progress-color) var(--progress-background);
+                         $progress-gradient-end: #000000 var(--progress-background);
+                         $progress-gradient: linear-gradient(to right, $progress-gradient-start, $progress-gradient-end);
+                         cursor: pointer;
+                         appearance: none;
+                         background: $progress-gradient;
+                         border-radius: 30px;
+                         width: stretch;
+                         height: 5px;
+                         margin-block: 20px 10px;
+                    
+                         &:focus {
+                              outline: none;
+                              
+                              &::-webkit-slider-thumb {
+                                   width: 18px;
+                                   height: 18px;
+                              }
+                         }
+                    
+                         &::-webkit-slider-thumb {
+                              appearance: none;
+                              background: var(--progress-color);
+                              border: 0;
+                              border-radius: 180px;
+                              width: 15px;
+                              height: 15px;
+                         }
+                    
+                         &::-webkit-slider-runnable-track {
+                              appearance: none;
+                              border-radius: 30px;
+                         }
+                    }
+
+                    &__playback-timeformat {
+                         display: flex;
+                         flex-direction: row;
+                         align-items: center;
+                         justify-content: space-between;
+                         width: 100%;
+                    }
+
+                    &__playback-time {
+                         font-family: "Kimberley", sc.$standard-font;
+                         font-size: 1rem;
+                         color: grey;
+                    }
+
+                    &__playback-controls {
+                         display: flex;
+                         flex-direction: row;
+                         justify-content: center;
+                         gap: 5px;
+                         margin-block: 10px;
+                    }
+
+                    &__playback-controls-btn {
+                         cursor: pointer;
+                         display: flex;
+                         flex-direction: row;
+                         align-items: center;
+                         background: none;
+                         border: none;
+                         padding: 1px;
+
+                         &:hover {
+                              background-color: rgb(0, 0, 0);
+                              border-radius: 3px;
+                         }
+                    }
+               }
+
+               .bloglists {
+                    $border-thingy: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+                    grid-area: goodies-blogs;
+                    @include bloglists;
+               }
+
+               .projects {
+                    grid-area: goodies-projects;
+               }
+          }
+     }
+
+     .footer {
+          grid-area: flavory-footer;
+     }
+}

@@ -129,7 +129,7 @@ body {
           }
 
           .navigation, .updatelogs {
-               margin-block: 10px;
+               margin-block: 15px;
 
                &__headbar {
                     z-index: 2;
@@ -147,6 +147,27 @@ body {
                     padding: 5px 8px;
                     margin-left: 10px;
                     @include sc.gradient(165deg, rgb(85, 125, 201) 0%, rgb(39, 57, 91) 95%);
+               }
+          }
+
+          .navigation {
+               ul {
+                    padding-left: 15px;
+               }
+               
+               span {
+                    position: relative;
+                    background: green;
+                    height: fit-content;
+               }
+
+               span::before {
+                    content: " ";
+                    position: absolute;
+                    left: 0;
+                    background-color: yellow;
+                    width: 8px;
+                    height: 1rem;
                }
           }
      }

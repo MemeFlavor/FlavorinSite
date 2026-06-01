@@ -151,23 +151,37 @@ body {
           }
 
           .navigation {
-               ul {
-                    padding-left: 15px;
-               }
-               
-               span {
-                    position: relative;
-                    background: green;
-                    height: fit-content;
+               border-bottom: 3px solid black;
+
+               &__list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    padding: 10px;
                }
 
-               span::before {
-                    content: " ";
-                    position: absolute;
-                    left: 0;
-                    background-color: yellow;
-                    width: 8px;
-                    height: 1rem;
+               &__link {
+                    font-family: 'Lexend', sc.$standard-font;
+                    font-size: 0.95rem;
+                    text-decoration: none;
+                    color: currentColor;
+               }
+
+               &__item {
+                    background: green;
+                    position: relative;
+                    height: fit-content;
+                    padding: 3px 8px;
+
+                    &::before {
+                         content: " ";
+                         position: absolute;
+                         left: 0;
+                         background-color: yellow;
+                         width: 8px;
+                         height: calc(1rem + 3px);
+                    }
+
                }
           }
      }

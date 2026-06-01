@@ -38,7 +38,7 @@ body {
           background-color: rgb(40, 40, 40);
           border: 2.5px solid transparent;
           border-image: linear-gradient(180deg, hsl(238, 64%, 60%), hsl(239, 53%, 43%)) 1;
-          width: 250px;
+          width: 260px;
           height: fit-content;
           
           &__headbar {
@@ -52,7 +52,7 @@ body {
                height: auto;
                gap: 8px;
                padding-block: 8px 10px;
-               @include sc.gradient(180deg, #3837b9 0%, #1e1e68 85%);
+               @include sc.gradient(180deg, #3837b9 0%, #1e1e68 85%);               
                @include sc.unselectable;
 
                // Stolen Code @see https://aleclownes.com/2017/02/01/crt-display.html
@@ -164,6 +164,10 @@ body {
                     font-size: 0.75rem;
                     @include sc.unselectable;
                }
+
+               &:last-of-type {
+                    margin-bottom: 0;
+               }
           }
 
           .navigation {
@@ -237,6 +241,23 @@ body {
                          width: 8px;
                          height: calc(1rem + 9px);
                     }
+               }
+          }
+
+          .updatelogs {
+               &__body {
+                    background-color: color.adjust(#272525, $lightness: -5%);
+                    padding: 15px;
+               }
+
+               &__terminal {
+                    font-family: sc.$standard-code-font;
+                    font-size: 0.65rem;
+                    overflow-y: auto;
+                    background-color: color.adjust(#272525, $lightness: -10%);
+                    border-radius: 3px;
+                    height: 7cm;
+                    padding: 8px;
                }
           }
      }

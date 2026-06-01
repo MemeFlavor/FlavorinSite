@@ -8,7 +8,7 @@ async function getData() {
           }
 
           const data = await new Response(response.body).text();
-          document.querySelector('.updatelogs__console').textContent = data
+          document.querySelector('.updatelogs__terminal').setHTML(data)
      } catch (error) {
           console.error('Error fetching data:', error);
      }

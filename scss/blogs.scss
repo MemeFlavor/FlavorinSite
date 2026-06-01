@@ -154,34 +154,43 @@ body {
                border-bottom: 3px solid black;
 
                &__list {
+                    cursor: pointer;
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
                     padding: 10px;
                }
 
+               --navigation-primary-color: hsl(240, 100%, 65%);
+               --navigation-secondary-color: hsl(240, 65%, 38%);
                &__link {
                     font-family: 'Lexend', sc.$standard-font;
                     font-size: 0.95rem;
                     text-decoration: none;
                     color: currentColor;
+
+                    &--flavory {
+                         --navigation-primary-color: hsl(90, 100%, 35%);
+                         --navigation-secondary-color: hsl(91, 68%, 25%);
+                    }
                }
 
                &__item {
-                    background: green;
+                    outline: 1px solid black;
                     position: relative;
-                    height: fit-content;
                     padding: 3px 8px;
+                    margin-left: 15px;
+                    @include sc.gradient(45deg, var(--navigation-primary-color) 0%, var(--navigation-secondary-color) 100%);
 
-                    &::before {
-                         content: " ";
+                    &::after {
+                         content: "";
+                         background-color: var(--navigation-primary-color);
+                         outline: 1px solid black;
                          position: absolute;
-                         left: 0;
-                         background-color: yellow;
+                         left: -15px; top: 0;
                          width: 8px;
-                         height: calc(1rem + 3px);
+                         height: calc(1rem + 9px);
                     }
-
                }
           }
      }

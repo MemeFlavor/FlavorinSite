@@ -35,7 +35,7 @@ body {
 
      .sidebar {
           grid-area: flavory-sidebar;
-          background-color: rgb(44, 44, 44);
+          background-color: rgb(40, 40, 40);
           border: 2.5px solid transparent;
           border-image: linear-gradient(180deg, hsl(238, 64%, 60%), hsl(239, 53%, 43%)) 1;
           width: 250px;
@@ -53,6 +53,7 @@ body {
                gap: 8px;
                padding-block: 8px 10px;
                @include sc.gradient(180deg, #3837b9 0%, #1e1e68 85%);
+               @include sc.unselectable;
 
                // Stolen Code @see https://aleclownes.com/2017/02/01/crt-display.html
                &::before {
@@ -134,8 +135,16 @@ body {
 
                &__headbar {
                     z-index: 2;
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr;
+                    align-items: center;
                     border-block: 1px solid black;
                     @include sc.gradient(165deg, rgb(85, 85, 85) 0%, rgb(39, 39, 39) 95%);
+
+                    & > * {
+                         grid-area: 1 / 1;
+                    }
                }
 
                &__headbar-title {
@@ -149,6 +158,12 @@ body {
                     margin-left: 10px;
                     @include sc.gradient(165deg, rgb(85, 125, 201) 0%, rgb(39, 57, 91) 95%);
                }
+
+               &__headbar-marquee {
+                    font-family: sc.$fancy-font;
+                    font-size: 0.75rem;
+                    @include sc.unselectable;
+               }
           }
 
           .navigation {
@@ -159,10 +174,9 @@ body {
                --navigation-primary-hover-color: hsl(240, 100%, 70%);
                --navigation-secondary-hover-color: hsl(240, 65%, 43%);
 
-               --navigation-text-color: white;
-               --navigation-text-style: italic;
+               --navigation-text-hover-color: black;
+               --navigation-text-hover-style: italic;
                &__list {
-                    cursor: pointer;
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
@@ -170,6 +184,7 @@ body {
                }
 
                &__link {
+                    cursor: pointer;
                     font-family: 'Lexend', sc.$standard-font;
                     font-size: 0.95rem;
                     text-decoration: none;
@@ -183,13 +198,14 @@ body {
                     }
 
                     &--not-supported {
-                         --navigation-text-color: currentColor;
-                         --navigation-text-style: none;
+                         --navigation-text-hover-color: currentColor;
+                         --navigation-text-hover-style: none;
 
                          // BIG BRAIN MOVES BITCHES
                          --navigation-primary-hover-color: var(--navigation-primary-color);
                          --navigation-secondary-hover-color: var(--navigation-secondary-color);
 
+                         cursor: not-allowed;
                          text-decoration: line-through;
                          text-decoration-thickness: 3px;
                     }
@@ -203,8 +219,8 @@ body {
                     @include sc.gradient(45deg, var(--navigation-primary-color) 0%, var(--navigation-secondary-color) 100%);
 
                     &:hover {
-                         font-style: var(--navigation-text-style);
-                         color: var(--navigation-text-color);
+                         font-style: var(--navigation-text-hover-style);
+                         color: var(--navigation-text-hover-color);
                          @include sc.gradient(45deg, var(--navigation-primary-hover-color) 0%, var(--navigation-secondary-hover-color) 100%);
 
                          &::after {

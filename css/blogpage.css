@@ -1,1 +1,17 @@
-@font-face{font-family:"Archivo";src:url("../fonts/Archivo/Archivo.woff2") format("woff2");font-weight:100 900;font-stretch:normal;font-style:62% 125%;font-display:swap}@font-face{font-family:"Lexend";src:url("../fonts/Lexend/Lexend.woff2") format("woff2");font-weight:100 900;font-stretch:normal;font-style:normal;font-display:swap}body{display:flex;justify-content:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;background-image:url(../images/backgrounds/locker_room.avif);background-repeat:no-repeat;background-size:cover;background-attachment:fixed;background-color:#312e3d;background-blend-mode:color-burn}body #flavory-content{display:grid;grid-template-columns:auto 900px;grid-template-rows:1fr;grid-template-areas:"flavory-sidebar flavory-post";gap:20px;margin-block:.5cm}body .sidebar{grid-area:flavory-sidebar}body .post{grid-area:flavory-post;background-color:hsl(0,2.6315789474%,9.9019607843%);padding:20px;box-shadow:5px 5px 0px 0px #4f4eff;-webkit-box-shadow:5px 5px 0px 0px #4f4eff;-moz-box-shadow:5px 5px 0px 0px #4f4eff}body .post__header-title{grid-area:header-title;font-family:"Archivo",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;font-size:1.6rem;font-weight:900;font-stretch:expanded;background-color:hsl(0,2.6315789474%,4.9019607843%);border-radius:5px;padding:10px 15px;width:100%}body .post p,body .post blockquote,body .post li{font-family:"Trebuchet MS","Lucida Sans Unicode","Lucida Grande","Lucida Sans",Arial,sans-serif;font-size:1rem;text-wrap:pretty;text-align:start;text-rendering:optimizeSpeed;line-height:1.5rem;padding-inline:10px;margin-block:10px}body .post code{font-family:"Fira Code",Menlo,"Lucida Console","Monaco","monospace";font-size:.85rem;background-color:#272525;border-radius:5px;padding:3px 5px}body .post blockquote{font-style:italic;text-indent:50px;margin-block:25px}body .post a{text-decoration:none;color:#6495ed}body .post a:hover{text-decoration:underline}body .post :is(ol,ul){padding-left:50px}body .post :is(ol,ul) li{line-height:.8rem}body .post ol li{list-style-type:decimal}body .post ul li{list-style-type:disc}/*# sourceMappingURL=blogpage.css.map */
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 1 | @use './modules/sidebar.scss' as *;
+ *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   scss/blogpage.scss 1:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @use './modules/sidebar.scss' as *;\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   scss/blogpage.scss 1:1  root stylesheet";
+}

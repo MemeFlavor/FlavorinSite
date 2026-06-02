@@ -1,0 +1,156 @@
+#doodoo {
+     .music {
+               background-image: url(../images/backgrounds/music.avif);
+               background-size: cover;
+               background-repeat: no-repeat;
+               background-blend-mode: hard-light;
+               background-color: #272525;
+               image-rendering: pixelated;
+               grid-area: goodies-music;
+     
+               &__body {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px 40px;
+               }
+     
+               &__album {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+               }
+     
+               &__album-link {
+                    display: flex;
+                    justify-content: center;
+               }
+     
+               &__album-cover {
+                    image-rendering: auto !important;
+                    border-radius: 5px;
+               }
+     
+               &__album-info {
+                    display: flex;
+                    flex-direction: column;
+               }
+     
+               &__album-title,
+               &__album-artists {
+                    font-family: "Archivo", sc.$standard-font;
+                    font-weight: 900;
+               }
+     
+               &__album-title {
+                    font-size: 1.8rem;
+                    font-stretch: expanded;
+                    text-shadow: 5px 5px 0px black;
+                    max-width: 250px;
+                    padding-bottom: 5px;
+     
+                    &--overflowing {
+                         overflow: hidden;
+                         white-space: nowrap;
+                         box-sizing: border-box;
+     
+                         @keyframes scroll {
+                              0% {
+                                   transform: translate(0, 0);
+                              }
+     
+                              100% {
+                                   transform: translate(-100%, 0);
+                              }
+                         }
+     
+                         span {
+                              display: inline-block;
+                              padding-left: 100%;
+                              animation: scroll 8s linear infinite;
+                         }
+                    }
+               }
+     
+               &__album-artists {
+                    font-size: 0.85rem;
+                    font-stretch: 100%;
+                    text-shadow: 3px 3px 0px black;
+               }
+     
+               &__playback-progress {
+                    --progress-background: 0%;
+                    --progress-color: #ff0000;
+     
+                    $progress-gradient-start: var(--progress-color) var(--progress-background);
+                    $progress-gradient-end: #000000 var(--progress-background);
+                    $progress-gradient: linear-gradient(to right, $progress-gradient-start, $progress-gradient-end);
+                    cursor: pointer;
+                    appearance: none;
+                    background: $progress-gradient;
+                    border-radius: 30px;
+                    width: stretch;
+                    height: 5px;
+                    margin-block: 20px 10px;
+     
+                    &:focus {
+                         outline: none;
+     
+                         &::-webkit-slider-thumb {
+                              width: 18px;
+                              height: 18px;
+                         }
+                    }
+     
+                    &::-webkit-slider-thumb {
+                         appearance: none;
+                         background: var(--progress-color);
+                         border: 0;
+                         border-radius: 180px;
+                         width: 15px;
+                         height: 15px;
+                    }
+     
+                    &::-webkit-slider-runnable-track {
+                         appearance: none;
+                         border-radius: 30px;
+                    }
+               }
+     
+               &__playback-timeformat {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+               }
+     
+               &__playback-time {
+                    font-family: "Kimberley", sc.$standard-font;
+                    font-size: 1rem;
+                    color: grey;
+               }
+     
+               &__playback-controls {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 5px;
+                    margin-block: 10px;
+               }
+     
+               &__playback-controls-btn {
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    background: none;
+                    border: none;
+                    padding: 1px;
+     
+                    &:hover {
+                         background-color: rgb(0, 0, 0);
+                         border-radius: 3px;
+                    }
+               }
+          }
+}

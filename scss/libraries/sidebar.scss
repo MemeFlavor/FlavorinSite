@@ -44,7 +44,7 @@ body .sidebar {
                inset: 0;
           }
      
-          // This code is made by me, SCSS never dissapoints
+          // This code is made by me, SCSS is so GOATED!!!
           $flicker-vars: ();
           $flicker-proximate: 100000;
           @keyframes flicker {
@@ -117,7 +117,7 @@ body .sidebar {
                border-block: 1px solid black;
                @include sc.gradient(165deg, rgb(85, 85, 85) 0%, rgb(39, 39, 39) 95%);
      
-               &>* {
+               & > * {
                     grid-area: 1 / 1;
                }
           }

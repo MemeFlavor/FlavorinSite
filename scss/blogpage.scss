@@ -19,7 +19,7 @@ body {
 
      #flavory-content {
           display: grid;
-          grid-template-columns: 300px 900px;
+          grid-template-columns: auto 900px;
           grid-template-rows: 1fr;
           grid-template-areas:
                "flavory-sidebar flavory-post"
@@ -29,11 +29,7 @@ body {
      }
 
      .sidebar {
-          display: flex;
-          flex-direction: column;
           grid-area: flavory-sidebar;
-          gap: 20px;
-          @include sidebar;
      }
 
      .post {

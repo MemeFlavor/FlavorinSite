@@ -1,0 +1,258 @@
+@use '../modules/shortcuts.scss' as sc;
+@use "sass:string";
+@use "sass:list";
+@use "sass:math";
+@use "sass:color";
+
+@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
+@include sc.font-face-var('Lexend', normal, normal, 100 900);
+
+body .sidebar {
+     background-color: rgb(40, 40, 40);
+     border: 2.5px solid transparent;
+     border-image: linear-gradient(180deg, hsl(238, 64%, 60%), hsl(239, 53%, 43%)) 1;
+     width: 260px;
+     height: fit-content;
+     
+     &__headbar {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          overflow: hidden;
+          border-bottom: 2.5px solid hsl(238, 64%, 60%);
+          position: relative;
+          height: auto;
+          gap: 8px;
+          padding-block: 8px 10px;
+          @include sc.gradient(180deg, #3837b9 0%, #1e1e68 85%);
+          @include sc.unselectable;
+     
+          // Stolen Code @see https://aleclownes.com/2017/02/01/crt-display.html
+          &::before {
+               content: " ";
+               z-index: 2;
+               pointer-events: none;
+               display: block;
+               background:
+                    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+               background-size: 100% 2px, 3px 100%;
+               animation: flicker 0.15s infinite;
+               position: absolute;
+               inset: 0;
+          }
+     
+          // This code is made by me, SCSS never dissapoints
+          $flicker-vars: ();
+          $flicker-proximate: 100000;
+          @keyframes flicker {
+               @for $flicker-index from 0 through 20 {
+                    $flicker-vals: calc(math.round(math.random() * $flicker-proximate) / $flicker-proximate);
+                    $flicker-vars: list.append($flicker-vars, $flicker-vals);
+     
+                    #{math.percentage(math.div(5 * $flicker-index, 100))} {
+                         opacity: list.nth($flicker-vars, $flicker-index + 1);
+                    }
+               }
+          }
+     }
+     
+     &__headbar-title {
+          font-family: "Archivo";
+          font-size: 1.05rem;
+          font-weight: 800;
+          font-stretch: 105%;
+          border-right: 3px solid #104206;
+          width: fit-content;
+          padding-block: 5px;
+          padding-inline: 10px;
+          @include sc.gradient(180deg, #39b11f 0%, #247812 100%);
+     
+          @supports (font-width: 105%) {
+               font-width: 105%;
+          }
+     }
+     
+     &__headbar-slogan {
+          display: flex;
+          flex-direction: column;
+          font-size: 0.75rem;
+          font-weight: 900;
+          font-stretch: expanded;
+          text-align: right;
+          padding-right: 5px;
+     
+          @supports (font-width: expanded) {
+               font-width: expanded;
+          }
+     }
+     
+     &__headbar-slogan-text {
+          padding-inline: 3px;
+     
+          &--second {
+               animation: hardBlink 3s step-start infinite;
+               width: fit-content;
+               margin-left: auto;
+          }
+     
+          @keyframes hardBlink {
+               50% {
+                    background-color: red;
+               }
+          }
+     }
+     
+     .navigation, .updatelogs {
+          margin-block: 15px;
+     
+          &__headbar {
+               z-index: 2;
+               display: grid;
+               grid-template-columns: 1fr;
+               grid-template-rows: 1fr;
+               align-items: center;
+               border-block: 1px solid black;
+               @include sc.gradient(165deg, rgb(85, 85, 85) 0%, rgb(39, 39, 39) 95%);
+     
+               &>* {
+                    grid-area: 1 / 1;
+               }
+          }
+     
+          &__headbar-title {
+               z-index: 1;
+               font-family: sc.$fancy-font;
+               font-size: 0.85rem;
+               font-weight: 700;
+               border-inline: 1px solid black;
+               width: fit-content;
+               padding: 5px 8px;
+               margin-left: 10px;
+               //@include sc.gradient(165deg, hsl(38, 77%, 56%) 0%, hsl(38, 77%, 25%) 95%);
+               @include sc.gradient(165deg, hsl(219, 52%, 56%) 0%, hsl(219, 40%, 25%) 95%);
+          }
+     
+          &__headbar-marquee {
+               font-family: sc.$fancy-font;
+               font-size: 0.75rem;
+               @include sc.unselectable;
+          }
+     
+          &:last-of-type {
+               margin-bottom: 0;
+          }
+     }
+     
+     .navigation {
+          border-bottom: 3px solid black;
+     
+          --navigation-primary-color: hsl(240, 100%, 65%);
+          --navigation-secondary-color: hsl(240, 65%, 38%);
+          --navigation-primary-hover-color: hsl(240, 100%, 70%);
+          --navigation-secondary-hover-color: hsl(240, 65%, 43%);
+     
+          --navigation-text-hover-color: black;
+          --navigation-text-hover-style: italic;
+
+          --navigation-current-margin-left: 15px;
+          --navigation-current-sideblock-visibility: auto;
+          --fart: 15px;
+     
+          &__list {
+               display: flex;
+               flex-direction: column;
+               gap: 5px;
+               padding: 10px;
+          }
+     
+          &__link {
+               cursor: pointer;
+               font-family: 'Lexend', sc.$standard-font;
+               font-size: 0.95rem;
+               text-decoration: none;
+               color: currentColor;
+     
+               &--flavory {
+                    --navigation-primary-color: hsl(90, 100%, 35%);
+                    --navigation-secondary-color: hsl(91, 68%, 25%);
+                    --navigation-primary-hover-color: hsl(90, 100%, 40%);
+                    --navigation-secondary-hover-color: hsl(91, 68%, 30%);
+               }
+     
+               &--not-supported {
+                    --navigation-text-hover-color: currentColor;
+                    --navigation-text-hover-style: none;
+     
+                    // BIG BRAIN MOVES BITCHES
+                    --navigation-primary-hover-color: var(--navigation-primary-color);
+                    --navigation-secondary-hover-color: var(--navigation-secondary-color);
+     
+                    cursor: not-allowed;
+                    text-decoration: line-through;
+                    text-decoration-thickness: 3px;
+               }
+
+               &--current, &:focus-within {
+                    --navigation-text-hover-color: currentColor;
+                    --navigation-text-hover-style: none;
+                    
+                    // BIG BRAIN MOVES BITCHES
+                    --navigation-primary-hover-color: var(--navigation-primary-color);
+                    --navigation-secondary-hover-color: var(--navigation-secondary-color);
+
+                    --navigation-current-margin-left: 0px;
+                    --navigation-current-sideblock-visibility: none;
+                    cursor: not-allowed;
+               }
+          }
+     
+          &__item {
+               outline: 1px solid black;
+               position: relative;
+               padding: 3px 8px;
+               margin-left: var(--navigation-current-margin-left);
+               @include sc.gradient(45deg, var(--navigation-primary-color) 0%, var(--navigation-secondary-color) 100%);
+     
+               &:hover {
+                    font-style: var(--navigation-text-hover-style);
+                    color: var(--navigation-text-hover-color);
+                    @include sc.gradient(45deg, var(--navigation-primary-hover-color) 0%, var(--navigation-secondary-hover-color) 100%);
+     
+                    &::after {
+                         background-color: var(--navigation-primary-hover-color);
+                    }
+               }
+     
+               &::after {
+                    content: "";
+                    display: var(--navigation-current-sideblock-visibility);
+                    background-color: var(--navigation-primary-color);
+                    outline: 1px solid black;
+                    position: absolute;
+                    left: -15px;
+                    top: 0;
+                    width: 8px;
+                    height: calc(1rem + 9px);
+               }
+          }
+     }
+     
+     .updatelogs {
+          &__body {
+               background-color: color.adjust(#272525, $lightness: -5%);
+               padding: 15px;
+          }
+     
+          &__terminal {
+               font-family: sc.$standard-code-font;
+               font-size: 0.65rem;
+               overflow-y: auto;
+               background-color: color.adjust(#272525, $lightness: -10%);
+               border-radius: 3px;
+               height: 7cm;
+               padding: 8px;
+          }
+     }
+}

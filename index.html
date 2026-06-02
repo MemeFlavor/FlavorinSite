@@ -12,6 +12,7 @@
      <meta name="robots" content="noindex">
      <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
      <link rel="stylesheet" type="text/css" href="css/reset.css">
+     <link rel="stylesheet" type="text/css" href="css/libraries/sidebar.css">
      <link rel="stylesheet" type="text/css" href="css/home.css">
      <link rel="preload" href="images/Profile.png" as="image" fetchpriority="high" decoding="async">
      <link rel="preload" href="images/Banner.png" as="image" fetchpriority="high" decoding="async">
@@ -54,78 +55,52 @@
                </div>
           </header>
           <aside class="sidebar">
+               <hgroup class="sidebar__headbar">
+                    <h1 class="sidebar__headbar-title"> FlavorBar </h1>
+                    <p class="sidebar__headbar-slogan">
+                         <span class="sidebar__headbar-slogan-text sidebar__headbar-slogan-text--first">Awesome</span>
+                         <span class="sidebar__headbar-slogan-text sidebar__headbar-slogan-text--second">Edition</span>
+                    </p>
+               </hgroup>
                <aside class="navigation">
-                    <section class="navigation__titlebar">
-                         <h1 class="navigation__titlebar-title">Navigation</h1>
-                         <div class="navigation__titlebar-controls">
-                              <div class="navigation__titlebar-controls-btn navigation__titlebar-controls-btn--close"></div>
-                              <div class="navigation__titlebar-controls-btn navigation__titlebar-controls-btn--min"></div>
-                              <div class="navigation__titlebar-controls-btn navigation__titlebar-controls-btn--max"></div>
-                         </div>
-                    </section>
+                    <hgroup class="navigation__headbar">
+                         <h3 class="navigation__headbar-title">Navigation</h3>
+                         <marquee class="navigation__headbar-marquee">Explore! • Explore! • Explore!</marquee>
+                    </hgroup>
                     <nav class="navigation__body">
-                         <h1 class="navigation__header">Explore!!!</h1>
                          <ul class="navigation__list">
-                              <a class="navigation__list-link navigation__list-link--currently">
-                                   <li class="navigation__list-item">
-                                        <div class="navigation__item-block"></div>
-                                        <span class="navigation__item-text">Home</span>
-                                   </li>
+                              <a class="navigation__link navigation__link--current">
+                                   <li class="navigation__item">Home</li>
                               </a>
-                              <a href="./pages/about.html" class="navigation__list-link">
-                                   <li class="navigation__list-item">
-                                        <div class="navigation__item-block"></div>
-                                        <span class="navigation__item-text">About</span>
-                                   </li>
+                              <a href="pages/about.html" class="navigation__link">
+                                   <li class="navigation__item">About</li>
                               </a>
-                              <a href="./pages/blogs.html" class="navigation__list-link">
-                                   <li class="navigation__list-item">
-                                        <div class="navigation__item-block"></div>
-                                        <span class="navigation__item-text">Blogs</span>
-                                   </li>
+                              <a href="pages/blogs.html" class="navigation__link">
+                                   <li class="navigation__item">Blogs</li>
                               </a>
-                              <a class="navigation__list-link navigation__list-link--not-supported">
-                                   <li class="navigation__list-item">
-                                        <div class="navigation__item-block"></div>
-                                        <span class="navigation__item-text">Projects</span>
-                                   </li>
+                              <a class="navigation__link navigation__link--not-supported">
+                                   <li class="navigation__item">Projects</li>
                               </a>
-                              <a class="navigation__list-link navigation__list-link--not-supported">
-                                   <li class="navigation__list-item">
-                                        <div class="navigation__item-block"></div>
-                                        <span class="navigation__item-text">Music</span>
-                                   </li>
+                              <a class="navigation__link navigation__link--not-supported">
+                                   <li class="navigation__item">Music</li>
                               </a>
-                              <a class="navigation__list-link navigation__list-link--flavory navigation__list-link--not-supported">
-                                   <li class="navigation__list-item">
-                                        <div class="navigation__item-block"></div>
-                                        <span class="navigation__item-text">Flavory Profile</span>
-                                   </li>
+                              <a class="navigation__link navigation__link--flavory navigation__link--not-supported">
+                                   <li class="navigation__item">Flavory Profile</li>
                               </a>
-                              <a class="navigation__list-link navigation__list-link--flavory navigation__list-link--not-supported">
-                                   <li class="navigation__list-item">
-                                        <div class="navigation__item-block"></div>
-                                        <span class="navigation__item-text">Flavorant Guestbook</span>
-                                   </li>
+                              <a class="navigation__link navigation__link--flavory navigation__link--not-supported">
+                                   <li class="navigation__item">Flavorant Guestbook</li>
                               </a>
-                              <a class="navigation__list-link navigation__list-link--flavory navigation__list-link--not-supported">
-                                   <li class="navigation__list-item">
-                                        <div class="navigation__item-block"></div>
-                                        <span class="navigation__item-text">Flavorlicious Resources</span>
-                                   </li>
+                              <a class="navigation__link navigation__link--flavory navigation__link--not-supported">
+                                   <li class="navigation__item">Flavorlicious Resources</li>
                               </a>
                          </ul>
                     </nav>
                </aside>
                <aside class="updatelogs">
-                    <section class="updatelogs__titlebar">
-                         <h1 class="updatelogs__titlebar-title">Update Logs</h1>
-                         <div class="updatelogs__titlebar-controls">
-                              <div class="updatelogs__titlebar-controls-btn updatelogs__titlebar-controls-btn--close"></div>
-                              <div class="updatelogs__titlebar-controls-btn updatelogs__titlebar-controls-btn--min"></div>
-                              <div class="updatelogs__titlebar-controls-btn updatelogs__titlebar-controls-btn--max"></div>
-                         </div>
-                    </section>
+                    <hgroup class="updatelogs__headbar">
+                         <h3 class="updatelogs__headbar-title">Updatelogs</h3>
+                         <marquee class="navigation__headbar-marquee">Git Pushing Until I Make It!</marquee>
+                    </hgroup>
                     <section class="updatelogs__body">
                          <pre class="updatelogs__terminal"></pre>
                     </section>

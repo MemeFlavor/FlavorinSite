@@ -1,5 +1,3 @@
-
-@use './modules/sidebar.scss' as *;
 @use './modules/bloglists.scss' as *;
 @use './modules/shortcuts.scss' as sc;
 @use 'sass:color';
@@ -22,7 +20,7 @@ body {
 
      #flavory-content {
           display: grid;
-          grid-template-columns: 300px 900px;
+          grid-template-columns: auto 900px;
           grid-template-rows: auto-fit 1fr 1fr;
           grid-template-areas:
                "flavory-header flavory-header"
@@ -34,11 +32,7 @@ body {
      }
 
      .sidebar {
-          display: flex;
-          flex-direction: column;
           grid-area: flavory-sidebar;
-          gap: 20px;
-          @include sidebar;
      }
 
      .header {

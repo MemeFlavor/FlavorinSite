@@ -14,9 +14,6 @@
      <link rel="stylesheet" type="text/css" href="css/reset.css">
      <link rel="stylesheet" type="text/css" href="css/libraries/sidebar.css">
      <link rel="stylesheet" type="text/css" href="css/home.css">
-     <link rel="preload" href="images/Profile.png" as="image" fetchpriority="high" decoding="async">
-     <link rel="preload" href="images/Banner.png" as="image" fetchpriority="high" decoding="async">
-     <script type="module" defer src="javascript/musicplayer.js"></script>
      <script type="module" defer async src="javascript/update_logs.js"></script>
 </head>
 <body>
@@ -27,7 +24,7 @@
                     <img class="header__characters-profile header__characters-profile--sonic" src="images/header/sonic.png" alt="Sonic">
                     <img class="header__characters-profile header__characters-profile--amy" src="images/header/amy.png" alt="Amy">
                </div>
-               <img src="images/header/banner.png" alt="">
+               <img class="header__banner" src="images/header/banner.png" alt="Awesome Banner">
           </header>
           <aside class="sidebar">
                <hgroup class="sidebar__headbar">
@@ -82,19 +79,44 @@
                </aside>
           </aside>
           <main class="main">
-               <h1 class="main__header"> Flavory About! </h1>
+               <hgroup class="main__header">
+                    <h1 class="main__header-title"> Flavory About! </h1>
+               </hgroup>
                <article class="main__description">
-                    <p class="main__para">
+                    <p>
                          Welcome to my Flavorous Site! This is my little tiny corner of the internet where I can basically talk whatever I want.
                          Sharing my weird little interests, creativity, and creations to all of you random people on the internet. I know social
                          media exist and all that shit, but it kinda sucks fucking ass. For like a multitude of reasons that I'm way too lazy to
                          mention in this about section.
                     </p>
-                    <p class="main__para">
+                    <p>
                          Anyways I hope you enjoyed exploring this site, I have spent way too much free time building this site. Coding and designing
                          this site than putting effort on my school works. This site is still in under construction so expect some new pages, redesign 
                          changes, and other stuff idk. But I'll try to do my best, if I even feel like it lmao.
                     </p>
+               </article>
+               <hgroup class="main__header">
+                    <h1 class="main__header-title"> Flavorlicious Goodies! </h1>
+               </hgroup>
+               <article class="main__goodies">
+                    <article class="main__music">
+                         <hgroup class="main__music-headbar">
+                              <h1 class="main__music-headbar-title"> Music </h1>
+                         </hgroup>
+                         <div class="main__music-body">1</div>
+                    </article>
+                    <article class="main__blogs">
+                         <hgroup class="main__music-headbar">
+                              <h1 class="main__music-headbar-title"> Blogs </h1>
+                         </hgroup>
+                         <div class="main__blogs-body">2</div>
+                    </article>
+                    <article class="main__projects">
+                         <hgroup class="main__music-headbar">
+                              <h1 class="main__music-headbar-title"> Projects </h1>
+                         </hgroup>
+                         <div class="main__projects-body">3</div>
+                    </article>
                </article>
           </main>
      </article>

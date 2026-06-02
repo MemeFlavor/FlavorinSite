@@ -1,6 +1,7 @@
 @use './modules/bloglists.scss' as *;
 @use './modules/shortcuts.scss' as sc;
 @use 'sass:color';
+@use 'sass:list';
 
 @include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
 @include sc.font-face-var('Fira Code', normal, normal, 300 700);
@@ -53,11 +54,14 @@ body {
                     @include sc.box-shadow(#ce5592, 5px 5px, 0px, 0px);
                }
           }
+
+          &__banner {
+               @include sc.box-shadow(#39b11f, 5px 5px, 0px, 0px);
+          }
      }
 
      .sidebar {
           grid-area: flavory-sidebar;
-          justify-self: flex-end;
      }
 
      .main {
@@ -68,21 +72,24 @@ body {
           @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
 
           &__header {
-               font-family: "Archivo", sc.$standard-font;
-               font-size: 1.6rem;
-               font-weight: 900;
-               font-stretch: expanded;
                background-color: color.adjust(#272525, $lightness: -10%);
                border-radius: 5px;
                padding: 10px 15px;
                width: 100%;
           }
 
-          &__description {
-               margin-bottom: 30px; // lol
+          &__header-title {
+               font-family: "Archivo", sc.$standard-font;
+               font-size: 1.6rem;
+               font-weight: 900;
+               font-stretch: expanded;
+
+               @supports (font-width: expanded) {
+                    font-width: expanded
+               }
           }
 
-          &__para {
+          &__description p {
                font-family: sc.$fancy-font;
                font-size: 0.95rem;
                text-wrap: pretty;
@@ -91,10 +98,61 @@ body {
                line-height: 1.5rem;
                padding-inline: 10px;
                margin-block: 10px;
-
+          
                &::before {
                     content: '> ';
                }
+          }
+
+          &__goodies {
+               display: grid;
+               grid-template-columns: 1fr 1fr;
+               grid-template-rows: 1fr auto-fit;
+               grid-template-areas: 
+                    "goodies-music goodies-blogs"
+                    "goodies-projects goodies-projects"
+               ;
+               gap: 10px;
+               margin-block: 10px;
+          }
+
+          // Please don't ask, just don't
+          $goodies: ('music', 'blogs', 'prrojects');
+          @for $goodies-index from 1 through list.length($goodies) {
+               $goodies-element: list.nth($goodies, $goodies-index);
+
+               &__#{$goodies-element}-headbar {
+                    background-color: color.adjust(#272525, $lightness: -10%);
+                    border-bottom: 1px solid #6b6b6b;
+                    padding: 7px 15px;
+                    width: 100%;
+               }
+
+               &__#{$goodies-element}-headbar-title {
+                    font-family: "Archivo", sc.$standard-font;
+                    font-size: 1.2rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+               }
+          }
+
+          &__music {
+               grid-area: goodies-music;
+               border: 1px solid #6b6b6b;
+          }
+
+          &__music-body {
+               
+          }
+
+          &__blogs {
+               grid-area: goodies-blogs;
+               border: 1px solid #6b6b6b;
+          }
+
+          &__projects {
+               grid-area: goodies-projects;
+               border: 1px solid #6b6b6b;
           }
      }
 }

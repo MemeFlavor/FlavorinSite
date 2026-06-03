@@ -150,11 +150,18 @@ body {
                     font-size: 1.45rem;
                     margin-bottom: 10px;
                }
-               
+
                &__album {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
+                    background-color: #212121;
+                    box-shadow: 
+                         15px 5px 0px 0px #212121,
+                         15px -5px 0px 0px #212121,
+                         -15px 5px 0px 0px #212121,
+                         -15px -5px 0px 0px #212121
+                    ;
                     gap: 10px;
                }
                
@@ -236,7 +243,7 @@ body {
                }
 
                &__albumlist-header {
-                    @include sc.gradient(to right, rgb(130, 54, 54) 0%, rgb(45, 19, 19) 100%);
+                    @include sc.gradient(to right, hsl(255, 41%, 36%) 0%, hsl(255, 41%, 13%) 100%);
                }
 
                &__albumlist-header-grp, &__albumlist-content-grp {
@@ -288,10 +295,125 @@ body {
           .blogs {
                grid-area: goodies-blogs;
                border: 1px solid #6b6b6b;
-          }
 
-          .blogs-body {
-               padding: 15px;
+               &__body {
+                    padding: 15px;
+               }
+
+               &__bloglist {
+                    table-layout: fixed;
+                    border-collapse: collapse;
+                    width: 100%;
+               }
+
+               &__bloglist-header-grp, &__bloglist-section-grp, &__bloglist-content-grp {
+                    border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+               }
+
+               &__bloglist-header {
+                    @include sc.gradient(to right, rgb(54, 81, 130) 0%, rgb(19, 29, 45) 100%);
+               }
+
+               &__bloglist-header-grp {
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    text-align: left;
+                    color: #ffffff;
+                    padding: 3px 10px;
+               }
+
+               &__bloglist-section {
+                    @include sc.gradient(180deg, #272525 0%, color.adjust(#272525, $lightness: -10%) 100%);
+               }
+
+               &__bloglist-section-grp {
+                    font-family: "Archivo", sc.$standard-font;
+                    font-size: 0.95rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    text-align: start;
+                    letter-spacing: 1px;
+                    width: 100%;
+                    padding: calc((5px + 8px) / 2) 10px;
+
+                    @supports (font-width: expanded) {
+                         font-width: expanded;
+                    }
+               }
+
+               &__bloglist-content {
+                    background-color: #101010;
+               }
+
+               &__bloglist-content-grp {
+                    overflow-wrap: break-word;
+                    padding: 10px;
+               }
+
+               --dingus: transparent;
+               &__bloglist-link {
+                    text-decoration: none;
+                    color: cornflowerblue;
+                    width: 100%;
+
+                    &:hover {
+                         text-decoration: underline;
+                         text-decoration-thickness: 2px;
+                    }
+               
+                    &:focus-within {
+                         --dingus: cornflowerblue;
+                         outline: none;
+                         color: black;
+                    }
+               }
+
+               &__bloglist-title {
+                    font-family: "Archivo", sc.$standard-font;
+                    font-size: 1rem;
+                    font-weight: 900;
+                    font-stretch: 100%;
+                    letter-spacing: 1px;
+                    background-color: var(--dingus);
+                    width: fit-content;
+                    
+                    @supports (font-width: 100%) {
+                         font-width: 100%;
+                    }
+               }
+
+               &__bloglist-type {
+                    font-size: 0.75rem;
+                    font-style: italic;
+                    color: color.adjust(#101010, $lightness: 50%);
+                    margin-bottom: 10px;
+                    
+                    &::before {
+                         content: '*';
+                    }
+               }
+
+               &__bloglist-description {
+                    font-family: sc.$fancy-font;
+                    text-align: justify;
+                    text-wrap: pretty;
+                    line-height: 1.1rem;
+               }
+
+               &__bloglist-wrapper-time {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+               }
+
+               &__bloglist-time {
+                    font-family: "Fira Code", sc.$standard-code-font;
+                    font-size: 0.65rem;
+                    background-color: #272525;
+                    border-radius: 5px;
+                    padding: 3px 5px;
+               }
           }
 
           .projects {

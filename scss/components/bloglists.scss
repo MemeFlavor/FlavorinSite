@@ -1,71 +1,65 @@
-@use './shortcuts.scss' as sc;
+@use '../modules/shortcuts.scss' as sc;
 @use 'sass:color';
 
-@mixin bloglists {
-     th, td {
-          border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
-     }
+@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900, '../..');
+@include sc.font-face-var('Lexend', normal, normal, 100 900, '../..');
 
-     &__body {
+body .blogs {
+     &__bloglist {
           table-layout: fixed;
           border-collapse: collapse;
           width: 100%;
      }
 
-     &__header {
+     &__bloglist-header-grp, &__bloglist-section-grp, &__bloglist-content-grp {
+          border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+     }
+
+     &__bloglist-header {
           @include sc.gradient(to right, rgb(54, 81, 130) 0%, rgb(19, 29, 45) 100%);
      }
 
-     &__header-text {
+     &__bloglist-header-grp {
           font-size: 0.85rem;
           font-weight: 600;
           text-align: left;
           color: #ffffff;
           padding: 3px 10px;
-
-          &--blogs {
-               width: auto;
-          }
-
-          &--time {
-               width: 100px;
-          }
      }
 
-     &__section {
+     &__bloglist-section {
           @include sc.gradient(180deg, #272525 0%, color.adjust(#272525, $lightness: -10%) 100%);
      }
 
-     &__section-text {
+     &__bloglist-section-grp {
           font-family: "Archivo", sc.$standard-font;
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-weight: 900;
           font-stretch: expanded;
           text-align: start;
           letter-spacing: 1px;
           width: 100%;
           padding: calc((5px + 8px) / 2) 10px;
+
+          @supports (font-width: expanded) {
+               font-width: expanded;
+          }
      }
 
-     &__content-group {
-          overflow-wrap: break-word;
+     &__bloglist-content {
           background-color: #101010;
+     }
+
+     &__bloglist-content-grp {
+          overflow-wrap: break-word;
           padding: 10px;
      }
 
-     &__content-title {
-          font-family: "Archivo", sc.$standard-font;
-          font-size: 1rem;
-          font-weight: 900;
-          font-stretch: 100%;
-          letter-spacing: 1px;
-          width: 100%;
-     }
-
-     &__content-link {
+     --title-background-color: transparent;
+     &__bloglist-link {
           text-decoration: none;
           color: cornflowerblue;
-          padding-inline: 3px;
+          width: 100%;
 
           &:hover {
                text-decoration: underline;
@@ -73,13 +67,27 @@
           }
 
           &:focus-within {
+               --title-background-color: cornflowerblue;
                outline: none;
-               background-color: cornflowerblue;
                color: black;
           }
      }
 
-     &__content-type {
+     &__bloglist-title {
+          font-family: "Archivo", sc.$standard-font;
+          font-size: 1rem;
+          font-weight: 900;
+          font-stretch: 100%;
+          letter-spacing: 1px;
+          background-color: var(--title-background-color);
+          width: fit-content;
+
+          @supports (font-width: 100%) {
+               font-width: 100%;
+          }
+     }
+
+     &__bloglist-type {
           font-size: 0.75rem;
           font-style: italic;
           color: color.adjust(#101010, $lightness: 50%);
@@ -90,22 +98,21 @@
           }
      }
 
-     &__content-description {
+     &__bloglist-description {
           font-family: sc.$fancy-font;
           text-align: justify;
           text-wrap: pretty;
           line-height: 1.1rem;
      }
 
-     &__content-date {
+     &__bloglist-wrapper-time {
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: center;
-          font-size: 0.85rem;
      }
 
-     &__content-time {
+     &__bloglist-time {
           font-family: "Fira Code", sc.$standard-code-font;
           font-size: 0.65rem;
           background-color: #272525;

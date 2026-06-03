@@ -1,9 +1,5 @@
-@use './modules/bloglists.scss' as *;
 @use './modules/shortcuts.scss' as sc;
 @use 'sass:color';
-
-@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
-@include sc.font-face-var('Lexend', normal, normal, 100 900);
 
 body {
      display: flex;
@@ -21,7 +17,7 @@ body {
           grid-template-columns: auto 900px;
           grid-template-rows: 1fr;
           grid-template-areas:
-               "flavory-sidebar flavory-bloglists"
+               "flavory-sidebar flavory-blogs"
           ;
           gap: 5px;
           height: 100vh;
@@ -32,11 +28,10 @@ body {
           grid-area: flavory-sidebar;
      }
 
-     .bloglists {
-          grid-area: flavory-bloglists;
+     .blogs {
+          grid-area: flavory-blogs;
           background-color: color.adjust(#272525, $lightness: -5%);
           padding: 20px;
-          @include bloglists;
           @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
 
           &__navigation {

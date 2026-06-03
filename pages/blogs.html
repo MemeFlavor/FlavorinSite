@@ -13,9 +13,10 @@
      <meta name="robots" content="noindex">
      <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
      <link rel="stylesheet" type="text/css" href="css/reset.css">
-     <link rel="stylesheet" type="text/css" href="css/libraries/sidebar.css">
      <link rel="stylesheet" type="text/css" href="css/blogs.css">
-     <script type="module" defer src="javascript/blogs.js"></script>
+     <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
+     <link rel="stylesheet" type="text/css" href="css/components/bloglists.css">
+     <script type="module" defer src="javascript/bloglists.js"></script>
      <script type="module" defer src="javascript/update_logs.js"></script>
 </head>
 <body>
@@ -72,69 +73,69 @@
                     </section>
                </aside>
           </aside>
-          <main class="bloglists">
-               <nav class="bloglists__navigation">
-                    <ul class="bloglists__navigation-list">
-                         <li class="bloglists__navigation-item bloglists__navigation-item--selected">
-                              <a class="bloglists__navigation-item-btn">Featured</a>
+          <main class="blogs">
+               <nav class="blogs__navigation">
+                    <ul class="blogs__navigation-list">
+                         <li class="blogs__navigation-item blogs__navigation-item--selected">
+                              <button class="blogs__navigation-item-btn">Featured</button>
                          </li>
-                         <li class="bloglists__navigation-item">
-                              <a href="pages/blogs/announcements.html" class="bloglists__navigation-item-btn">Announcements</a>
+                         <li class="blogs__navigation-item">
+                              <button href="pages/blogs/announcements.html" class="blogs__navigation-item-btn">Announcements</button>
                          </li>
-                         <li class="bloglists__navigation-item">
-                              <a href="pages/blogs/weblogs.html" class="bloglists__navigation-item-btn">Weblogs</a>
+                         <li class="blogs__navigation-item">
+                              <button href="pages/blogs/weblogs.html" class="blogs__navigation-item-btn">Weblogs</button>
                          </li>
-                         <li class="bloglists__navigation-item">
-                              <a href="pages/blogs/microblogs.html" class="bloglists__navigation-item-btn">Microblogs</a>
+                         <li class="blogs__navigation-item">
+                              <button href="pages/blogs/microblogs.html" class="blogs__navigation-item-btn">Microblogs</button>
                          </li>
                     </ul>
                </nav>
-               <table class="bloglists__body">
-                    <tr class="bloglists__header">
-                         <th class="bloglists__header-text bloglists__header-text--blogs">Blogs</th>
-                         <th class="bloglists__header-text bloglists__header-text--time">Time</th>
-                    </tr>
+               <table class="blogs__bloglist">
+                    <thead>
+                         <tr class="blogs__bloglist-header">
+                              <th class="blogs__bloglist-header-grp" style="width: auto; text-align: left">Blogs</th>
+                              <th class="blogs__bloglist-header-grp" style="width: 95px; text-align: left">Date</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <tr class="blogs__bloglist-section">
+                              <td class="blogs__bloglist-section-grp" colspan="2"> [SECTION] </td>
+                         </tr>
+                         <tr class="blogs__bloglist-content">
+                              <td class="blogs__bloglist-content-grp">
+                                   <a href="" class="blogs__bloglist-link">
+                                        <h1 class="blogs__bloglist-title"> [TITLE] </h1>
+                                   </a>
+                                   <p class="blogs__bloglist-type"> [TYPE] </p>
+                                   <p class="blogs__bloglist-description"> [DESCRIPTION] </p>
+                              </td>
+                              <td class="blogs__bloglist-content-grp">
+                                   <div class="blogs__bloglist-wrapper-time">
+                                        <time class="blogs__bloglist-time" datetime=""> [TIME] </time>
+                                   </div>
+                              </td>
+                         </tr>
+                    </tbody>
                </table>
-               <template class="bloglists__object-section">
-                    <tr class="bloglists__section">
-                         <td class="bloglists__section-text" colspan="2"> [SECTION] </td>
-                    </tr>
-               </template>
-               <template class="bloglists__object-content">
-                    <tr class="bloglists__content">
-                         <td class="bloglists__content-group">
-                              <h1 class="bloglists__content-title">
-                                   <a href="" class="bloglists__content-link"> [TITLE] </a>
-                              </h1>
-                              <p class="bloglists__content-type"> [TYPE] </p>
-                              <p class="bloglists__content-description"> [DESCRIPTION] </p>
-                         </td>
-                         <td class="bloglists__content-group">
-                              <div class="bloglists__content-date">
-                                   <time class="bloglists__content-time" datetime="2026-06-10"> [TIME] </time>
-                              </div>
-                         </td>
-                    </tr>
-               </template>
           </main>
      </article>
 <script>
 /* const currentUrl = new URL(window.location.href);
 
-const navItems = document.querySelectorAll('.bloglists__navigation-item');
-const navItemBtn = document.querySelectorAll('.bloglists__navigation-item-btn');
+const navItems = document.querySelectorAll('.blogs__navigation-item');
+const navItemBtn = document.querySelectorAll('.blogs__navigation-item-btn');
 navItems.forEach((item, index) => {
      item.addEventListener('click', () => {
           navItems.forEach((item, index) => {
-               item.classList.remove('bloglists__navigation-item--selected')
+               item.classList.remove('blogs__navigation-item--selected')
                navItemBtn[index].removeAttribute('disabled')
           });
-          item.classList.add('bloglists__navigation-item--selected');
+          item.classList.add('blogs__navigation-item--selected');
           navItemBtn[index].setAttribute('disabled', '')
                
           if (index == 0) {
                currentUrl.searchParams.delete('view')
-               } else {
+          } else {
                currentUrl.searchParams.set('view', item.textContent.trim().toLowerCase());
           }
           window.history.pushState({}, '', currentUrl);

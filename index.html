@@ -99,45 +99,80 @@
                     <h1 class="main__header-title"> Flavorlicious Goodies! </h1>
                </hgroup>
                <article class="main__goodies">
-                    <article class="main__music">
-                         <hgroup class="main__music-headbar">
-                              <h1 class="main__music-headbar-title"> Music </h1>
+                    <article class="music">
+                         <hgroup class="music__headbar">
+                              <h1 class="music__headbar-title"> Music </h1>
                          </hgroup>
-                         <div class="main__music-body">
-                              <marquee class="main__music-awesome" scrollamount="10"> Featured Awesome Music!!! </marquee>
-                              <section class="main__music-album">
-                                   <img class="main__music-album-cover" src="images/album covers/placeholder.avif" alt="" width="150" height="150">
-                                   <div class="main__music-album-container">
-                                        <section class="main__music-album-info">
-                                             <h1 class="main__music-album-title"><span> St. Solis </span></h1>
-                                             <p class="main__music-album-artists"> Sinister Minds </p>
+                         <div class="music__body">
+                              <h1 class="music__header" scrollamount="10"> Featured Awesome Music!!! </h1>
+                              <div class="music__album">
+                                   <img class="music__album-cover" src="images/album covers/st solis.avif" alt="" width="150" height="150">
+                                   <div class="music__album-container">
+                                        <section class="music__album-info">
+                                             <h1 class="music__album-title"><span> St. Solis </span></h1>
+                                             <p class="music__album-artists"> Sinister Minds </p>
                                         </section>
-                                        <section class="main__music-album-visualizer">
-                                             <img class="main__music-album-amy" src="images/header/damy.gif" alt="" style="image-rendering: pixelated" width="67" height="75">
+                                        <section class="music__album-visualizer">
+                                             <img class="music__album-amy" src="images/header/damy.gif" alt="" width="67" height="75">
                                         </section>
                                    </div>
-                              </section>
-                              <table>
-                                   <tr>
-                                        <th>h</th>
-                                        <th>h</th>
+                              </div>
+                              <table class="music__albumlist">
+                                   <tr class="music__albumlist-header">
+                                        <th class="music__albumlist-header-grp" style="width: 65px; text-align: center;">Album</th>
+                                        <th class="music__albumlist-header-grp" style="width: auto; text-align: left;">Title</th>
                                    </tr>
-                                   <tr>
-                                        <td>h</td>
-                                        <td>h</td>
+                                   <tr class="music__albumlist-content">
+                                        <td class="music__albumlist-content-grp">
+                                             <div class="music__albumlist-wrapper-img">
+                                                  <img src="images/album covers/sonic cd.avif" alt="" width="50" height="50">
+                                             </div>
+                                        </td>
+                                        <td class="music__albumlist-content-grp">
+                                             <div class="music__albumlist-wrapper-info">
+                                                  <span class="music__albumlist-title">Wacky Workbench (P-Mix)</span>
+                                                  <span class="music__albumlist-artists">Sonic CD OST</span>
+                                             </div>
+                                        </td>
+                                   </tr>
+                                   <tr class="music__albumlist-content">
+                                        <td class="music__albumlist-content-grp">
+                                             <div class="music__albumlist-wrapper-img">
+                                                  <img src="images/album covers/sonic cd.avif" alt="" width="50" height="50">
+                                             </div>
+                                        </td>
+                                        <td class="music__albumlist-content-grp">
+                                             <div class="music__albumlist-wrapper-info">
+                                                  <span class="music__albumlist-title">Stardust Speedway</span>
+                                                  <span class="music__albumlist-artists">Sonic CD OST</span>
+                                             </div>
+                                        </td>
+                                   </tr>
+                                   <tr class="music__albumlist-content">
+                                        <td class="music__albumlist-content-grp">
+                                             <div class="music__albumlist-wrapper-img">
+                                                  <img src="images/album covers/pareidolia.avif" alt="" width="50" height="50">
+                                             </div>
+                                        </td>
+                                        <td class="music__albumlist-content-grp">
+                                             <div class="music__albumlist-wrapper-info">
+                                                  <span class="music__albumlist-title">Pareidolia</span>
+                                                  <span class="music__albumlist-artists">SpringlessEcho</span>
+                                             </div>
+                                        </td>
                                    </tr>
                               </table>
                          </div>
                     </article>
-                    <article class="main__blogs">
-                         <hgroup class="main__music-headbar">
-                              <h1 class="main__music-headbar-title"> Blogs </h1>
+                    <article class="blogs">
+                         <hgroup class="music__headbar">
+                              <h1 class="music__headbar-title"> Blogs </h1>
                          </hgroup>
                          <div class="main__blogs-body">2</div>
                     </article>
-                    <article class="main__projects">
-                         <hgroup class="main__music-headbar">
-                              <h1 class="main__music-headbar-title"> Projects </h1>
+                    <article class="projects">
+                         <hgroup class="music__headbar">
+                              <h1 class="music__headbar-title"> Projects </h1>
                          </hgroup>
                          <div class="main__projects-body">3</div>
                     </article>
@@ -148,7 +183,7 @@
 </body>
 <script>
 
-     const damy = document.querySelector('.main__music-album-amy')
+     const damy = document.querySelector('.music__album-amy')
 
      function getRandomInt(min, max) {
           return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -159,15 +194,15 @@
           let doodoo = getRandomInt(-1, 1)
 
           if (doodoo != 0) {
-               position += doodoo * 5
+               position += doodoo * 10
           }
           
-          if (position >= -50 && position <= 60) {
+          if (position >= -60 && position <= 60) {
                damy.style.transform = `translateX(${position}px)`
-               console.log(position)
+          } else if (position <= -60 || position >= 60) {
+               position -= doodoo * 10
           }
-
-     }, 1000);
+     }, 2500);
 
 </script>
 </html>

@@ -117,19 +117,15 @@ body {
                margin-block: 10px;
           }
 
-          // Please don't ask, just don't
-          $goodies: ('music', 'blogs', 'prrojects');
-          @for $goodies-index from 1 through list.length($goodies) {
-               $goodies-element: list.nth($goodies, $goodies-index);
-
-               &__#{$goodies-element}-headbar {
+          .music, .blogs, .projects { // Better
+               &__headbar {
                     background-color: color.adjust(#272525, $lightness: -10%);
                     border-bottom: 1px solid #6b6b6b;
                     padding: 7px 15px;
                     width: 100%;
                }
 
-               &__#{$goodies-element}-headbar-title {
+               &__headbar-title {
                     font-family: "Archivo", sc.$standard-font;
                     font-size: 1.2rem;
                     font-weight: 900;
@@ -141,118 +137,169 @@ body {
                }
           }
 
-          &__music {
+          .music {
                grid-area: goodies-music;
                border: 1px solid #6b6b6b;
-          }
 
-          &__music-body {
-               padding: 15px;
-          }
-
-          &__music-awesome {
-               font-family: "Archivo", sc.$standard-font;
-               font-size: 1.45rem;
-               font-weight: 900;
-               font-stretch: 100%;
-               margin-bottom: 10px;
-
-               @supports (font-width: 100%) {
-                    font-width: 100%;
+               &__body {
+                    padding: 15px;
                }
-          }
 
-          &__music-album {
-               display: flex;
-               flex-direction: row;
-               justify-content: space-between;
-               gap: 20px;
-          }
-
-          &__music-album-cover {
-               border-radius: 5px;
-          }
-
-          &__music-album-container {
-               display: flex;
-               flex-direction: column;
-               align-items: auto;
-               width: 100%;
-          }
-
-          &__music-album-info {
-               width: 100%;
-          }
-
-          &__music-album-title {
-               font-family: "Archivo", sc.$standard-font;
-               font-weight: 900;
-               font-size: 1.5rem;
-               font-stretch: expanded;
-               text-shadow: 5px 5px 0px black;
-               max-width: 250px;
-               padding-bottom: 5px;
-
-               &--overflowing {
-                    overflow: hidden;
-                    white-space: nowrap;
-                    box-sizing: border-box;
-          
-                    span {
-                         display: inline-block;
-                         padding-left: 100%;
-                         animation: scroll 8s linear infinite;
+               &__header {
+                    font-family: "Kimberley", sc.$standard-font;
+                    font-size: 1.45rem;
+                    margin-bottom: 10px;
+               }
+               
+               &__album {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    gap: 10px;
+               }
+               
+               &__album-cover {
+                    border-radius: 5px;
+               }
+               
+               &__album-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: auto;
+                    width: 100%;
+               }
+               
+               &__album-info {
+                    width: 100%;
+               }
+               
+               &__album-title {
+                    font-family: "Archivo", sc.$standard-font;
+                    font-weight: 900;
+                    font-size: 1.5rem;
+                    font-stretch: expanded;
+                    text-shadow: 5px 5px 0px black;
+                    max-width: 250px;
+                    padding-bottom: 5px;
+               
+                    &--overflowing {
+                         overflow: hidden;
+                         white-space: nowrap;
+                         box-sizing: border-box;
+               
+                         span {
+                              display: inline-block;
+                              padding-left: 100%;
+                              animation: scroll 8s linear infinite;
+                         }
+               
+                         @keyframes scroll {
+                              from { transform: translate(0, 0); }
+                              to   { transform: translate(-100%, 0); }
+                         }
                     }
-
-                    @keyframes scroll {
-                         0%   { transform: translate(0, 0); }
-                         100% { transform: translate(-100%, 0); }
+               
+                    @supports (font-width: expanded) {
+                         font-width: expanded
                     }
                }
+               
+               &__album-artists {
+                    font-family: "Archivo", sc.$standard-font;
+                    font-weight: 900;
+                    font-size: 0.85rem;
+                    font-stretch: 100%;
+                    text-shadow: 3px 3px 0px black;
+                    color: silver;
+               
+                    @supports (font-width: 100%) {
+                         font-width: 100%
+                    }
+               }
+               
+               &__album-visualizer {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: auto;
+               }
+               
+               &__album-amy {
+                    image-rendering: pixelated;
+                    transform: translateX(0px);
+               }
 
-               @supports (font-width: expanded) {
-                    font-width: expanded
+               &__albumlist {
+                    table-layout: fixed;
+                    border-collapse: collapse;
+                    width: 100%;
+                    margin-top: 20px;
+               }
+
+               &__albumlist-header {
+                    @include sc.gradient(to right, rgb(130, 54, 54) 0%, rgb(45, 19, 19) 100%);
+               }
+
+               &__albumlist-header-grp, &__albumlist-content-grp {
+                    border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+               }
+
+               &__albumlist-header-grp {
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    text-align: left;
+                    color: #ffffff;
+                    padding: 3px 10px;
+               }
+
+               &__albumlist-content-grp {
+                    background-color: #101010;
+               }
+
+               &__albumlist-wrapper-img {
+                    display: flex;
+                    justify-content: center;
+                    padding-block: 5px;
+               }
+
+               &__albumlist-wrapper-info {
+                    display: flex;
+                    flex-direction: column;
+                    padding-inline: 10px;
+               }
+
+               &__albumlist-title {
+                    font-family: "Archivo", sc.$standard-font;
+                    font-size: 0.95rem;
+                    font-weight: 900;
+                    font-stretch: 105%;
+
+                    @supports (font-width: 105%) {
+                         font-width: 105%;
+                    }
+               }
+
+               &__albumlist-artists {
+                    font-family: "Lexend";
+                    font-size: 0.85rem;
+                    color: silver;
                }
           }
 
-          &__music-album-artists {
-               font-family: "Archivo", sc.$standard-font;
-               font-weight: 900;
-               font-size: 0.85rem;
-               font-stretch: 100%;
-               text-shadow: 3px 3px 0px black;
-               color: silver;
-
-               @supports (font-width: 100%) {
-                    font-width: 100%
-               }
-          }
-
-          &__music-album-visualizer {
-               display: flex;
-               justify-content: center;
-               margin-top: auto;
-          }
-
-          &__music-album-amy {
-               transform: translateX(0px);
-          }
-
-          &__blogs {
+          .blogs {
                grid-area: goodies-blogs;
                border: 1px solid #6b6b6b;
           }
 
-          &__blogs-body {
+          .blogs-body {
                padding: 15px;
           }
 
-          &__projects {
+          .projects {
                grid-area: goodies-projects;
                border: 1px solid #6b6b6b;
           }
 
-          &__projects-body {
+          .projects-body {
                padding: 15px;
           }
      }

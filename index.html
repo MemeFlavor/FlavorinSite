@@ -113,7 +113,11 @@
                                              <p class="music__album-artists"> Sinister Minds </p>
                                         </section>
                                         <section class="music__album-visualizer">
-                                             <img class="music__album-amy" src="images/header/damy.gif" alt="" width="67" height="75">
+                                             <div class="poop">
+                                                  <img class="music__album-amy" src="images/header/damy.gif" alt="" width="67" height="75">
+                                             </div>
+                                             <img class="music__album-dialogue" src="images/header/damy_dialogue.png" alt="" width="83" height="75">
+                                             
                                         </section>
                                    </div>
                               </div>
@@ -204,7 +208,6 @@
                          </hgroup>
                          <div class="projects-body"> Hahaha Work in Progress ROFL </div>
                     </article>
-                    <p id="status"></p>
                </article>
           </main>
      </article>
@@ -250,18 +253,22 @@ for (const [key, value] of Object.entries(featured)) {
           return Math.floor(Math.random() * (max - min + 1)) + min;
      }
 
+     const LIMIT    = 60
+     const MULTIPLY = 10
+
      let position = 0
      const intervalId = setInterval(() => {
           let doodoo = getRandomInt(-1, 1)
 
           if (doodoo != 0) {
-               position += doodoo * 10
+               position += doodoo * MULTIPLY
           }
           
-          if (position >= -60 && position <= 60) {
+          
+          if (position >= -LIMIT && position <= LIMIT) {
                damy.style.transform = `translateX(${position}px)`
-          } else if (position <= -60 || position >= 60) {
-               position -= doodoo * 10
+          } else if (position <= -LIMIT || position >= LIMIT) {
+               position -= doodoo * MULTIPLY
           }
      }, 2500);
 </script>

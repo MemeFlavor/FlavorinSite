@@ -9,16 +9,5 @@
                "description": "Guy finally talks about the website finally having content after months of it being blank.",
                "time": "2026-06-01"
           }
-     ],
-     "weblogs": [
-          {
-               "title": {
-                    "content": "TEST MODE!",
-                    "link": "./pages/blogs/announcements/wow_you_exist.html"
-               },
-               "type": "Blog",
-               "description": "Eaten 47 burgers",
-               "time": "2026-05-31"
-          }
      ]
 }

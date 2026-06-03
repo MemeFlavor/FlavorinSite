@@ -57,8 +57,8 @@ $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
 /// @param {Number} $font-weights [100 900] - The weight of the font.
 /// @param {String} $font-type ["woff2"] - The file format of the font.
 /// @output Self-explanatory.
-@mixin font-face-var($font-name, $font-style: normal, $font-widths: normal, $font-weights: 100 900, $font-type: "woff2") {
-     $font-weight-path: '../fonts/#{$font-name}/#{$font-name}.#{$font-type}';
+@mixin font-face-var($font-name, $font-style: normal, $font-widths: normal, $font-weights: 100 900, $font-path: "..", $font-type: "woff2") {
+     $font-weight-path: '#{$font-path}/fonts/#{$font-name}/#{$font-name}.#{$font-type}';
 
      @font-face {
           font-family: $font-name;

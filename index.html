@@ -12,8 +12,8 @@
      <meta name="robots" content="noindex">
      <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
      <link rel="stylesheet" type="text/css" href="css/reset.css">
-     <link rel="stylesheet" type="text/css" href="css/libraries/sidebar.css">
      <link rel="stylesheet" type="text/css" href="css/home.css">
+     <link rel="stylesheet" type="text/css" href="css/libraries/sidebar.css">
      <script type="module" defer async src="javascript/update_logs.js"></script>
 </head>
 <body>
@@ -103,7 +103,31 @@
                          <hgroup class="main__music-headbar">
                               <h1 class="main__music-headbar-title"> Music </h1>
                          </hgroup>
-                         <div class="main__music-body">1</div>
+                         <div class="main__music-body">
+                              <marquee class="main__music-awesome" scrollamount="10"> Featured Awesome Music!!! </marquee>
+                              <section class="main__music-album">
+                                   <img class="main__music-album-cover" src="images/album covers/placeholder.avif" alt="" width="150" height="150">
+                                   <div class="main__music-album-container">
+                                        <section class="main__music-album-info">
+                                             <h1 class="main__music-album-title"><span> St. Solis </span></h1>
+                                             <p class="main__music-album-artists"> Sinister Minds </p>
+                                        </section>
+                                        <section class="main__music-album-visualizer">
+                                             <img class="main__music-album-amy" src="images/header/damy.gif" alt="" style="image-rendering: pixelated" width="67" height="75">
+                                        </section>
+                                   </div>
+                              </section>
+                              <table>
+                                   <tr>
+                                        <th>h</th>
+                                        <th>h</th>
+                                   </tr>
+                                   <tr>
+                                        <td>h</td>
+                                        <td>h</td>
+                                   </tr>
+                              </table>
+                         </div>
                     </article>
                     <article class="main__blogs">
                          <hgroup class="main__music-headbar">
@@ -117,8 +141,33 @@
                          </hgroup>
                          <div class="main__projects-body">3</div>
                     </article>
+                    <p id="status"></p>
                </article>
           </main>
      </article>
 </body>
+<script>
+
+     const damy = document.querySelector('.main__music-album-amy')
+
+     function getRandomInt(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+     }
+
+     let position = 0
+     const intervalId = setInterval(() => {
+          let doodoo = getRandomInt(-1, 1)
+
+          if (doodoo != 0) {
+               position += doodoo * 5
+          }
+          
+          if (position >= -50 && position <= 60) {
+               damy.style.transform = `translateX(${position}px)`
+               console.log(position)
+          }
+
+     }, 1000);
+
+</script>
 </html>

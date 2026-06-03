@@ -4,8 +4,8 @@
 @use "sass:math";
 @use "sass:color";
 
-@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
-@include sc.font-face-var('Lexend', normal, normal, 100 900);
+@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900, "../..");
+@include sc.font-face-var('Lexend', normal, normal, 100 900, "../..");
 
 body .sidebar {
      background-color: rgb(40, 40, 40);

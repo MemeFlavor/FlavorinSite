@@ -135,7 +135,7 @@
                                              </div>
                                         </td>
                                    </tr>
-                                   <tr class="music__albumlist-content">
+                                   <!-- <tr class="music__albumlist-content">
                                         <td class="music__albumlist-content-grp">
                                              <div class="music__albumlist-wrapper-img">
                                                   <img src="images/album covers/sonic cd.avif" alt="" width="50" height="50">
@@ -160,7 +160,7 @@
                                                   <span class="music__albumlist-artists">SpringlessEcho</span>
                                              </div>
                                         </td>
-                                   </tr>
+                                   </tr> -->
                               </table>
                          </div>
                     </article>
@@ -170,27 +170,31 @@
                          </hgroup>
                          <div class="blogs__body">
                               <table class="blogs__bloglist">
-                                   <tr class="blogs__bloglist-header">
-                                        <th class="blogs__bloglist-header-grp" style="width: auto; text-align: left">Blogs</th>
-                                        <th class="blogs__bloglist-header-grp" style="width: 95px; text-align: left">Date</th>
-                                   </tr>
-                                   <tr class="blogs__bloglist-section">
-                                        <td class="blogs__bloglist-section-grp" colspan="2">Announcements</td>
-                                   </tr>
-                                   <tr class="blogs__bloglist-content">
-                                        <td class="blogs__bloglist-content-grp">
-                                             <a href="" class="blogs__bloglist-link">
-                                                  <h1 class="blogs__bloglist-title"> [TITLE] </h1>
-                                             </a>
-                                             <p class="blogs__bloglist-type"> [TYPE] </p>
-                                             <p class="blogs__bloglist-description"> [DESCRIPTION] </p>
-                                        </td>
-                                        <td class="blogs__bloglist-content-grp">
-                                             <div class="blogs__bloglist-wrapper-time">
-                                                  <time class="blogs__bloglist-time" datetime=""> [TIME] </time>
-                                             </div>
-                                        </td>
-                                   </tr>
+                                   <thead>
+                                        <tr class="blogs__bloglist-header">
+                                             <th class="blogs__bloglist-header-grp" style="width: auto; text-align: left">Blogs</th>
+                                             <th class="blogs__bloglist-header-grp" style="width: 95px; text-align: left">Date</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr class="blogs__bloglist-section">
+                                             <td class="blogs__bloglist-section-grp" colspan="2"> [SECTION] </td>
+                                        </tr>
+                                        <tr class="blogs__bloglist-content">
+                                             <td class="blogs__bloglist-content-grp">
+                                                  <a href="" class="blogs__bloglist-link">
+                                                       <h1 class="blogs__bloglist-title"> [TITLE] </h1>
+                                                  </a>
+                                                  <p class="blogs__bloglist-type"> [TYPE] </p>
+                                                  <p class="blogs__bloglist-description"> [DESCRIPTION] </p>
+                                             </td>
+                                             <td class="blogs__bloglist-content-grp">
+                                                  <div class="blogs__bloglist-wrapper-time">
+                                                       <time class="blogs__bloglist-time" datetime=""> [TIME] </time>
+                                                  </div>
+                                             </td>
+                                        </tr>
+                                   </tbody>
                               </table>
                          </div>
                     </article>
@@ -205,8 +209,41 @@
           </main>
      </article>
 </body>
-<script>
+<script type="module">
+import featured from './pages/blogs/json/featured.json' with { type: 'json' };
 
+function toUpperFirstCase(str) {
+     return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+const albumlistBody = document.querySelector('.blogs__bloglist tbody')
+const albumlistSection = document.querySelector('.blogs__bloglist-section');
+const albumlistContent = document.querySelector('.blogs__bloglist-content');
+albumlistSection.remove();
+albumlistContent.remove();
+
+for (const [key, value] of Object.entries(featured)) {
+     if (Object.keys(value).length === 0) break; // No empty content, there's nothing special here
+
+     const albumlistSectionClone = albumlistSection.cloneNode(true);
+     albumlistSectionClone.querySelector('.blogs__bloglist-section-grp').textContent = toUpperFirstCase(key)
+     albumlistBody.appendChild(albumlistSectionClone)
+
+     for (const element of Object.values(value)) {
+          const albumlistContentClone = albumlistContent.cloneNode(true);
+
+          albumlistContentClone.querySelector('.blogs__bloglist-link').setAttribute('href', element.title.link);
+          albumlistContentClone.querySelector('.blogs__bloglist-title').textContent = element.title.content;
+
+          albumlistContentClone.querySelector('.blogs__bloglist-type').textContent = element.type;
+          albumlistContentClone.querySelector('.blogs__bloglist-description').textContent = element.description;
+          albumlistContentClone.querySelector('.blogs__bloglist-time').textContent = element.time;
+          albumlistContentClone.querySelector('.blogs__bloglist-time').setAttribute('datetime', element.time)
+          albumlistBody.appendChild(albumlistContentClone);
+     }
+}
+</script>
+<script>
      const damy = document.querySelector('.music__album-amy')
 
      function getRandomInt(min, max) {
@@ -227,6 +264,5 @@
                position -= doodoo * 10
           }
      }, 2500);
-
 </script>
 </html>

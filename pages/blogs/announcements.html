@@ -141,47 +141,62 @@
 <script type="module">
 import announcements from '../../json/blogs/announcements.json' with { type: 'json' };
 
-const dingus = []
-let ijnd = -1
-for (let index = 0; index < announcements.length; index++) {
-     const element = announcements[index];
-     if (index % 10 == 0) {
-          ijnd += 1
-          dingus[ijnd] = []
-     }
-     dingus[ijnd][index % 10] = element
-}
-
 function toUpperFirstCase(str) {
      return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-const albumlistBody = document.querySelector('.blogs__bloglist tbody')
-const albumlistSection = document.querySelector('.blogs__bloglist-section');
-const albumlistContent = document.querySelector('.blogs__bloglist-content');
-albumlistSection.remove();
-albumlistContent.remove();
+function chunkSeparationData() {
+     const SEPARATE = 10 
 
-const albumlistSectionClone = albumlistSection.cloneNode(true);
-albumlistSectionClone.querySelector('.blogs__bloglist-section-grp').textContent = toUpperFirstCase('Announcements')
-albumlistBody.appendChild(albumlistSectionClone)
-
-for (const element of Object.values(dingus[0])) {
-     const albumlistContentClone = albumlistContent.cloneNode(true);
-          
-     albumlistContentClone.querySelector('.blogs__bloglist-link').setAttribute('href', element.title.link);
-     albumlistContentClone.querySelector('.blogs__bloglist-title').textContent = element.title.content;
-
-     albumlistContentClone.querySelector('.blogs__bloglist-type').textContent = element.type;
-     albumlistContentClone.querySelector('.blogs__bloglist-description').textContent = element.description;
-     albumlistContentClone.querySelector('.blogs__bloglist-time').textContent = element.time;
-     albumlistContentClone.querySelector('.blogs__bloglist-time').setAttribute('datetime', element.time)
-     albumlistBody.appendChild(albumlistContentClone);
+     let chunksIndex = -1
+     const chunks = []
+     for (let index = 0; index < announcements.length; index++) {
+          if (index % SEPARATE == 0) {
+               chunksIndex += 1
+               chunks[chunksIndex] = []
+          }
+          chunks[chunksIndex][index % SEPARATE] = announcements[index]
+     }
+     return chunks
 }
 
-console.log(dingus[0])
+const bloglistData = chunkSeparationData()
 
+const bloglistBody = document.querySelector('.blogs__bloglist tbody')
+const bloglistSection = document.querySelector('.blogs__bloglist-section');
+const bloglistContent = document.querySelector('.blogs__bloglist-content');
+function ergy(bloglistSectionName, bloglistPage) {
+     document.querySelectorAll('.blogs__bloglist-section').forEach(element => element.remove())
+     document.querySelectorAll('.blogs__bloglist-content').forEach(element => element.remove())
 
+     const bloglistSectionClone = bloglistSection.cloneNode(true);
+     bloglistSectionClone.querySelector('.blogs__bloglist-section-grp').textContent = toUpperFirstCase(bloglistSectionName)
+     bloglistBody.appendChild(bloglistSectionClone)
+
+     for (const element of Object.values(bloglistData[bloglistPage])) {
+          const bloglistContentClone = bloglistContent.cloneNode(true);
+
+          bloglistContentClone.querySelector('.blogs__bloglist-link').setAttribute('href', element.title.link);
+          bloglistContentClone.querySelector('.blogs__bloglist-title').textContent = element.title.content;
+
+          bloglistContentClone.querySelector('.blogs__bloglist-type').textContent = element.type;
+          bloglistContentClone.querySelector('.blogs__bloglist-description').textContent = element.description;
+          bloglistContentClone.querySelector('.blogs__bloglist-time').textContent = element.time;
+          bloglistContentClone.querySelector('.blogs__bloglist-time').setAttribute('datetime', element.time)
+          bloglistBody.appendChild(bloglistContentClone);
+     }
+}
+
+ergy('announcements', 0)
+
+document.addEventListener('keydown', (event) => {
+     if (event.key === 'a' || event.key === 'A') {
+          ergy('announcements', 1)
+     }
+     if (event.key === 's' || event.key === 'S') {
+          ergy('announcements', 0)
+     }
+});
 
 </script>
 </body>

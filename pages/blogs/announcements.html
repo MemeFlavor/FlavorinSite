@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
      <title> MemeFlavor - Blog Bumfuzzle </title>
-     <base href="../">
+     <base href="../../">
      <meta charset="UTF-8">
      <meta name="description" content="The flavorous site to exist! I think, maybe" />
      <meta name="keywords" content="delicious, flavor, gaming, coding, programming, sonic, asexual" />
@@ -16,7 +16,6 @@
      <link rel="stylesheet" type="text/css" href="css/blogs.css">
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
      <link rel="stylesheet" type="text/css" href="css/components/bloglists.css">
-     <!-- <script type="module" defer src="javascript/bloglists.js"></script> -->
      <script type="module" defer src="javascript/update_logs.js"></script>
 </head>
 <body>
@@ -77,16 +76,13 @@
                <nav class="blogs__navigation">
                     <ul class="blogs__navigation-list">
                          <li class="blogs__navigation-item blogs__navigation-item--selected">
-                              <button class="blogs__navigation-item-btn" disabled>Featured</button>
+                              <a class="blogs__navigation-item-btn">Announcements</a>
                          </li>
                          <li class="blogs__navigation-item">
-                              <button href="pages/blogs/announcements.html" class="blogs__navigation-item-btn">Announcements</button>
+                              <a href="pages/blogs/weblogs.html" class="blogs__navigation-item-btn">Weblogs</a>
                          </li>
                          <li class="blogs__navigation-item">
-                              <button href="pages/blogs/weblogs.html" class="blogs__navigation-item-btn">Weblogs</button>
-                         </li>
-                         <li class="blogs__navigation-item">
-                              <button href="pages/blogs/microblogs.html" class="blogs__navigation-item-btn">Microblogs</button>
+                              <a href="pages/blogs/microblogs.html" class="blogs__navigation-item-btn">Microblogs</a>
                          </li>
                     </ul>
                </nav>
@@ -117,122 +113,12 @@
                          </tr>
                     </tbody>
                </table>
+               <div style="margin-top: auto">
+                    <button>23</button>
+                    <button>23</button>
+                    <button>23</button>
+               </div>
           </main>
      </article>
-<script type="module">
-import announcements from '../json/blogs/announcements.json' with { type: 'json' };
-import weblogs from '../json/blogs/weblogs.json' with { type: 'json' };
-
-const start = performance.now();
-
-function toUpperFirstCase(str) {
-     return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-const bloglist = {announcements: [...announcements], weblogs: [...weblogs]}
-const featured = {announcements: [], weblogs: []}
-announcements.forEach((elements, index) => {
-     if (index == 3) return; featured.announcements[index] = elements
-})
-weblogs.forEach((elements, index) => {
-     if (index == 3) return; featured.weblogs[index] = elements
-})
-
-const bloglistBody = document.querySelector('.blogs__bloglist tbody')
-const bloglistSection = document.querySelector('.blogs__bloglist-section');
-const bloglistContent = document.querySelector('.blogs__bloglist-content');
-
-function generateBloglist(blogmetadata) {
-     for (const element of Object.values(blogmetadata)) {
-          const bloglistContentClone = bloglistContent.cloneNode(true);
-
-          bloglistContentClone.querySelector('.blogs__bloglist-link').setAttribute('href', element.title.link);
-          bloglistContentClone.querySelector('.blogs__bloglist-title').textContent = element.title.content;
-
-          bloglistContentClone.querySelector('.blogs__bloglist-type').textContent = element.type;
-          bloglistContentClone.querySelector('.blogs__bloglist-description').textContent = element.description;
-          bloglistContentClone.querySelector('.blogs__bloglist-time').textContent = element.time;
-          bloglistContentClone.querySelector('.blogs__bloglist-time').setAttribute('datetime', element.time)
-          bloglistBody.appendChild(bloglistContentClone);
-     }
-}
-
-function generateFeaturedBloglist(blogdata) {
-     document.querySelectorAll('.blogs__bloglist-section').forEach(element => element.remove());
-     document.querySelectorAll('.blogs__bloglist-content').forEach(element => element.remove());
-
-     for (const [name, data] of Object.entries(blogdata)) {
-          if (Object.keys(data).length === 0) break; // No empty content, there's nothing special here
-
-          const bloglistSectionClone = bloglistSection.cloneNode(true);
-          bloglistSectionClone.querySelector('.blogs__bloglist-section-grp').textContent = toUpperFirstCase(name)
-          bloglistBody.appendChild(bloglistSectionClone)
-          generateBloglist(data)
-     }
-}
-
-function generateSpecificBloglist(blogdata, blogname) {
-     document.querySelectorAll('.blogs__bloglist-section').forEach(element => element.remove());
-     document.querySelectorAll('.blogs__bloglist-content').forEach(element => element.remove());
-
-     const bloglistSectionClone = bloglistSection.cloneNode(true);
-     bloglistSectionClone.querySelector('.blogs__bloglist-section-grp').textContent = toUpperFirstCase(blogname)
-     bloglistBody.appendChild(bloglistSectionClone)
-     generateBloglist(blogdata)
-}
-
-// Button Stuff
-
-const currentUrl = new URL(window.location.href);
-const searchParams = new URLSearchParams(window.location.search);
-
-const navigationItem    = document.querySelectorAll('.blogs__navigation-item');
-const navigationItemBtn = document.querySelectorAll('.blogs__navigation-item-btn');
-
-const deselectItem = (navItem, navIndex) => {
-     navItem.classList.remove('blogs__navigation-item--selected')
-     navigationItemBtn[navIndex].removeAttribute('disabled')
-}
-const selectItem = (navItem, navIndex) => {
-     navItem.classList.add('blogs__navigation-item--selected')
-     navigationItemBtn[navIndex].setAttribute('disabled', '')
-}
-
-navigationItem.forEach((item, index) => {
-     item.addEventListener('click', () => {
-          navigationItem.forEach((item, index) => deselectItem(item, index));
-          selectItem(item, index)
-          
-          if (index == 0) {
-               currentUrl.searchParams.delete('view')
-               generateFeaturedBloglist(featured)
-          } else {
-               const erty = item.textContent.trim().toLowerCase()
-               currentUrl.searchParams.set('view', erty);
-               
-               generateSpecificBloglist(bloglist[erty], erty)
-          }
-          window.history.pushState({}, '', currentUrl);
-     });
-
-     // Saves the current selected view
-     const name = navigationItemBtn[index].textContent.toLowerCase()
-     if (searchParams.get('view') === name) {
-          generateSpecificBloglist(bloglist[name], name)
-          selectItem(item, index)
-     } else {
-          deselectItem(item, index)
-     }
-
-     // Default to featured, if no value
-     if (searchParams.get('view') === null && index == 0) {
-          selectItem(item, index)
-          generateFeaturedBloglist(featured)
-     }
-});
-
-const end = performance.now();
-console.log(`Execution time: ${end - start} milliseconds`);
-</script>
 </body>
 </html>

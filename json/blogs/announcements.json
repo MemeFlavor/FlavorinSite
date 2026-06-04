@@ -7,32 +7,5 @@
           "type": "Blog",
           "description": "Guy finally talks about the website finally having content after months of it being blank.",
           "time": "2026-06-01"
-     },
-     {
-          "title": {
-               "content": "WOW YOU! EXIST!",
-               "link": "./pages/blogs/announcements/wow_you_exist.html"
-          },
-          "type": "Blog",
-          "description": "Guy finally talks about the website finally having content after months of it being blank.",
-          "time": "2026-06-01"
-     },
-     {
-          "title": {
-               "content": "DIE DIE DIE",
-               "link": "./pages/blogs/announcements/wow_you_exist.html"
-          },
-          "type": "Blog",
-          "description": "Guy finally talks about the website finally having content after months of it being blank.",
-          "time": "2026-06-01"
-     },
-     {
-          "title": {
-               "content": "WOW YOU! EXIST!",
-               "link": "./pages/blogs/announcements/wow_you_exist.html"
-          },
-          "type": "Blog",
-          "description": "Guy finally talks about the website finally having content after months of it being blank.",
-          "time": "2026-06-01"
      }
 ]

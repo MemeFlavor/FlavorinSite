@@ -17,9 +17,11 @@ for (const [key, value] of Object.entries(featured)) {
      albumlistSectionClone.querySelector('.blogs__bloglist-section-grp').textContent = toUpperFirstCase(key)
      albumlistBody.appendChild(albumlistSectionClone)
 
+     let elementIndices = 0;
      for (const element of Object.values(value)) {
+          elementIndices += 1; if (elementIndices > 3) break;
           const albumlistContentClone = albumlistContent.cloneNode(true);
-
+          
           albumlistContentClone.querySelector('.blogs__bloglist-link').setAttribute('href', element.title.link);
           albumlistContentClone.querySelector('.blogs__bloglist-title').textContent = element.title.content;
 

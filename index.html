@@ -16,6 +16,7 @@
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
      <link rel="stylesheet" type="text/css" href="css/components/bloglists.css">
      <script type="module" defer src="javascript/bloglists.js"></script>
+     <script type="module" defer src="javascript/amy.js"></script>
      <script type="module" defer async src="javascript/update_logs.js"></script>
 </head>
 <body>
@@ -26,7 +27,7 @@
                     <img class="header__characters-profile header__characters-profile--sonic" src="images/header/sonic.avif" alt="Sonic" width="130" height="150">
                     <img class="header__characters-profile header__characters-profile--amy" src="images/header/amy.avif" alt="Amy" width="130" height="150">
                </div>
-               <img class="header__banner" src="images/header/banner.png" alt="Awesome Banner" width="650" height="150">
+               <img class="header__banner" src="images/header/banner.avif" alt="Awesome Banner" width="650" height="150">
           </header>
           <aside class="sidebar">
                <hgroup class="sidebar__headbar">
@@ -116,10 +117,9 @@
                                         </section>
                                         <section class="music__album-visualizer">
                                              <div class="poop">
-                                                  <img class="music__album-amy" src="images/header/damy.gif" alt="" width="67" height="75">
+                                                  <img class="music__album-amy" src="images/header/damy.gif" alt="Amy" width="67" height="75">
                                              </div>
-                                             <img class="music__album-dialogue" src="images/header/damy_dialogue.png" alt="" width="83" height="75">
-                                             
+                                             <img class="music__album-dialogue" src="images/header/damy_dialogue.png" alt="Amy Dialogue" width="83" height="75">
                                         </section>
                                    </div>
                               </div>
@@ -214,30 +214,4 @@
           </main>
      </article>
 </body>
-<script>
-     const damy = document.querySelector('.music__album-amy')
-
-     function getRandomInt(min, max) {
-          return Math.floor(Math.random() * (max - min + 1)) + min;
-     }
-
-     const LIMIT    = 60
-     const MULTIPLY = 10
-
-     let position = 0
-     const intervalId = setInterval(() => {
-          let doodoo = getRandomInt(-1, 1)
-
-          if (doodoo != 0) {
-               position += doodoo * MULTIPLY
-          }
-          
-          
-          if (position >= -LIMIT && position <= LIMIT) {
-               damy.style.transform = `translateX(${position}px)`
-          } else if (position <= -LIMIT || position >= LIMIT) {
-               position -= doodoo * MULTIPLY
-          }
-     }, 2500);
-</script>
 </html>

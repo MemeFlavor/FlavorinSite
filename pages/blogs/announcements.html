@@ -130,10 +130,59 @@
                          </ul>
                     </section>
                     <section class="blogs__pagination-next">
-                         <span class="blogs__pagination-next-title"><button class="blogs__pagination-next-btn">Next</button></span>
+                         <span class="blogs__pagination-next-title">
+                              <button class="blogs__pagination-next-btn blogs__pagination-prev-btn--nil">Next</button>
+                         </span>
                     </section>
                </div>
           </main>
      </article>
+
+<script type="module">
+import announcements from '../../json/blogs/announcements.json' with { type: 'json' };
+
+const dingus = []
+let ijnd = -1
+for (let index = 0; index < announcements.length; index++) {
+     const element = announcements[index];
+     if (index % 10 == 0) {
+          ijnd += 1
+          dingus[ijnd] = []
+     }
+     dingus[ijnd][index % 10] = element
+}
+
+function toUpperFirstCase(str) {
+     return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+const albumlistBody = document.querySelector('.blogs__bloglist tbody')
+const albumlistSection = document.querySelector('.blogs__bloglist-section');
+const albumlistContent = document.querySelector('.blogs__bloglist-content');
+albumlistSection.remove();
+albumlistContent.remove();
+
+const albumlistSectionClone = albumlistSection.cloneNode(true);
+albumlistSectionClone.querySelector('.blogs__bloglist-section-grp').textContent = toUpperFirstCase('Announcements')
+albumlistBody.appendChild(albumlistSectionClone)
+
+for (const element of Object.values(dingus[0])) {
+     const albumlistContentClone = albumlistContent.cloneNode(true);
+          
+     albumlistContentClone.querySelector('.blogs__bloglist-link').setAttribute('href', element.title.link);
+     albumlistContentClone.querySelector('.blogs__bloglist-title').textContent = element.title.content;
+
+     albumlistContentClone.querySelector('.blogs__bloglist-type').textContent = element.type;
+     albumlistContentClone.querySelector('.blogs__bloglist-description').textContent = element.description;
+     albumlistContentClone.querySelector('.blogs__bloglist-time').textContent = element.time;
+     albumlistContentClone.querySelector('.blogs__bloglist-time').setAttribute('datetime', element.time)
+     albumlistBody.appendChild(albumlistContentClone);
+}
+
+console.log(dingus[0])
+
+
+
+</script>
 </body>
 </html>

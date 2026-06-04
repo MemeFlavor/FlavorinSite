@@ -33,7 +33,7 @@ body {
           grid-area: flavory-blogs;
           background-color: color.adjust(#272525, $lightness: -5%);
           padding: 20px;
-          height: 100vh;
+          height: 110vh;
           @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
 
           &__navigation {
@@ -118,13 +118,10 @@ body {
           }
 
           &__pagination-prev-btn, &__pagination-next-btn {
+               text-decoration: underline;
                background: none;
                border: none;
-          }
-
-          &__pagination-prev-btn {
                color: cornflowerblue;
-               text-decoration: underline;
 
                &--current {
                     color: currentColor;

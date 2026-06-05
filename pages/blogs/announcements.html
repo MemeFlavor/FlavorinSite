@@ -121,17 +121,17 @@
                                    <button class="blogs__pagination-prev-btn blogs__pagination-prev-btn--current">1</button>
                               </li>
                               <li class="blogs__pagination-prev-item">
-                                   <button class="blogs__pagination-prev-btn blogs__pagination-prev-btn--nil">2</button>
+                                   <button class="blogs__pagination-prev-btn">2</button>
                               </li>
                               <li class="blogs__pagination-prev-item">
-                                   <button class="blogs__pagination-prev-btn blogs__pagination-prev-btn--nil">3</button>
+                                   <button class="blogs__pagination-prev-btn">3</button>
                               </li>
                               <li class="blogs__pagination-prev-ellipses">...</li>
                          </ul>
                     </section>
                     <section class="blogs__pagination-next">
                          <span class="blogs__pagination-next-title">
-                              <button class="blogs__pagination-next-btn blogs__pagination-prev-btn--nil">Next</button>
+                              <button class="blogs__pagination-next-btn">Next</button>
                          </span>
                     </section>
                </div>
@@ -140,6 +140,8 @@
 
 <script type="module">
 import announcements from '../../json/blogs/announcements.json' with { type: 'json' };
+
+const start = performance.now();
 
 function toUpperFirstCase(str) {
      return str.charAt(0).toUpperCase() + str.slice(1);
@@ -165,7 +167,7 @@ const bloglistData = chunkSeparationData()
 const bloglistBody = document.querySelector('.blogs__bloglist tbody')
 const bloglistSection = document.querySelector('.blogs__bloglist-section');
 const bloglistContent = document.querySelector('.blogs__bloglist-content');
-function ergy(bloglistSectionName, bloglistPage) {
+function bloglistGenerateForum(bloglistSectionName, bloglistPage) {
      document.querySelectorAll('.blogs__bloglist-section').forEach(element => element.remove())
      document.querySelectorAll('.blogs__bloglist-content').forEach(element => element.remove())
 
@@ -187,17 +189,45 @@ function ergy(bloglistSectionName, bloglistPage) {
      }
 }
 
-ergy('announcements', 0)
+const dre = document.querySelectorAll('.blogs__pagination-prev-btn')
 
-document.addEventListener('keydown', (event) => {
-     if (event.key === 'a' || event.key === 'A') {
-          ergy('announcements', 1)
-     }
-     if (event.key === 's' || event.key === 'S') {
-          ergy('announcements', 0)
-     }
-});
+let er = 1
+dre.forEach((element, index) => {
+     element.addEventListener('click', () => {
+          er = element.textContent
+     })
+})
 
+let iop = 1
+dre[dre.length-1].addEventListener('click', () => {
+     if (dre[dre.length-1].textContent == 4) return;
+
+     iop += 1
+     for (let index = 0; index < dre.length; index++) {
+          dre[index].textContent = (index % 3) + iop
+     }
+})
+dre[0].addEventListener('click', () => {
+     if (dre[0].textContent == 1) return;
+
+     iop -= 1
+     for (let index = 0; index < dre.length; index++) {
+          dre[index].textContent = (index % 3) + iop
+     }
+})
+
+dre.forEach((element, index) => {
+     element.addEventListener('click', () => {
+          dre.forEach((element, index) => {
+               if (element.textContent == er) {
+                    element.classList.add('blogs__pagination-prev-btn--current')
+                    bloglistGenerateForum('announcements', element.textContent-1)
+               } else {
+                    element.classList.remove('blogs__pagination-prev-btn--current')
+               }
+          })
+     })
+})
 </script>
 </body>
 </html>

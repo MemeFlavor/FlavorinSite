@@ -118,17 +118,20 @@ body {
           }
 
           &__pagination-prev-btn, &__pagination-next-btn {
+               cursor: pointer;
                text-decoration: underline;
                background: none;
                border: none;
                color: cornflowerblue;
 
                &--current {
+                    cursor: auto;
                     color: currentColor;
                     text-decoration: none;
                     font-weight: bolder;
                }
                &--nil {
+                    cursor: not-allowed;
                     color: grey;
                     text-decoration: none;
                }

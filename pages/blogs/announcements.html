@@ -114,24 +114,27 @@
                     </tbody>
                </table>
                <div class="blogs__pagination">
-                    <section class="blogs__pagination-prev">
-                         <span class="blogs__pagination-prev-title">Pages:</span>
-                         <ul class="blogs__pagination-prev-list">
-                              <li class="blogs__pagination-prev-item">
-                                   <button class="blogs__pagination-prev-btn blogs__pagination-prev-btn--current">1</button>
+                    <section class="blogs__pagination-pages">
+                         <span class="blogs__pagination-pages-title">Pages:</span>
+                         <ul class="blogs__pagination-pages-list">
+                              <li class="blogs__pagination-pages-item">
+                                   <button class="blogs__pagination-pages-btn blogs__pagination-pages-btn--current">1</button>
                               </li>
-                              <li class="blogs__pagination-prev-item">
-                                   <button class="blogs__pagination-prev-btn">2</button>
+                              <li class="blogs__pagination-pages-item">
+                                   <button class="blogs__pagination-pages-btn">2</button>
                               </li>
-                              <li class="blogs__pagination-prev-item">
-                                   <button class="blogs__pagination-prev-btn">3</button>
+                              <li class="blogs__pagination-pages-item">
+                                   <button class="blogs__pagination-pages-btn">3</button>
                               </li>
-                              <li class="blogs__pagination-prev-ellipses">...</li>
+                              <li class="blogs__pagination-pages-ellipses">...</li>
                          </ul>
                     </section>
-                    <section class="blogs__pagination-next">
-                         <span class="blogs__pagination-next-title">
-                              <button class="blogs__pagination-next-btn">Next</button>
+                    <section class="blogs__pagination-nav">
+                         <span class="blogs__pagination-nav-title">
+                              <button class="blogs__pagination-nav-btn blogs__pagination-last-btn blogs__pagination-nav-btn--nil">Last</button>
+                         </span>
+                         <span class="blogs__pagination-nav-title">
+                              <button class="blogs__pagination-nav-btn blogs__pagination-next-btn">Next</button>
                          </span>
                     </section>
                </div>
@@ -141,14 +144,12 @@
 <script type="module">
 import announcements from '../../json/blogs/announcements.json' with { type: 'json' };
 
-const start = performance.now();
-
 function toUpperFirstCase(str) {
      return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function chunkSeparationData() {
-     const SEPARATE = 10 
+const bloglistData = (() => {
+     const SEPARATE = 10
 
      let chunksIndex = -1
      const chunks = []
@@ -160,9 +161,7 @@ function chunkSeparationData() {
           chunks[chunksIndex][index % SEPARATE] = announcements[index]
      }
      return chunks
-}
-
-const bloglistData = chunkSeparationData()
+})()
 
 const bloglistBody = document.querySelector('.blogs__bloglist tbody')
 const bloglistSection = document.querySelector('.blogs__bloglist-section');
@@ -189,45 +188,94 @@ function bloglistGenerateForum(bloglistSectionName, bloglistPage) {
      }
 }
 
-const dre = document.querySelectorAll('.blogs__pagination-prev-btn')
+// Page Navigation type stuff //
 
-let er = 1
-dre.forEach((element, index) => {
-     element.addEventListener('click', () => {
-          er = element.textContent
-     })
+const bloglistPagesBtn = document.querySelectorAll('.blogs__pagination-pages-btn')
+
+// Gets the current page number clicked, before it gets updated to the next page
+let pageNumber = 1
+for (let pagesBtnIndex = 0; pagesBtnIndex < bloglistPagesBtn.length; pagesBtnIndex++) {
+     const pagesBtnElement = bloglistPagesBtn[pagesBtnIndex];
+     pagesBtnElement.addEventListener('click', () => pageNumber = Number(pagesBtnElement.textContent))
+}
+
+// Page Switching Stuff
+let pageIndex = 1
+function nextPage() {
+     pageIndex += 1
+     for (let pagesBtnIndex = 0; pagesBtnIndex < bloglistPagesBtn.length; pagesBtnIndex++) {
+          bloglistPagesBtn[pagesBtnIndex].textContent = (pagesBtnIndex % 3) + pageIndex
+     }
+}
+function prevPage() {
+     pageIndex -= 1
+     for (let pagesBtnIndex = 0; pagesBtnIndex < bloglistPagesBtn.length; pagesBtnIndex++) {
+          bloglistPagesBtn[pagesBtnIndex].textContent = (pagesBtnIndex % 3) + pageIndex
+     }
+}
+function resetPage() {
+     pageIndex = 1
+     for (let pagesBtnIndex = 0; pagesBtnIndex < bloglistPagesBtn.length; pagesBtnIndex++) {
+          bloglistPagesBtn[pagesBtnIndex].textContent = (pagesBtnIndex % 3) + pageIndex
+     }
+}
+
+const LAST_PAGEBTN = bloglistPagesBtn.length - 1
+const FIRST_PAGEBTN = 0
+bloglistPagesBtn[LAST_PAGEBTN].addEventListener('click', () => {
+     if (bloglistPagesBtn[LAST_PAGEBTN].textContent == bloglistData.length) return;
+     nextPage()
 })
 
-let iop = 1
-dre[dre.length-1].addEventListener('click', () => {
-     if (dre[dre.length-1].textContent == 4) return;
+bloglistPagesBtn[FIRST_PAGEBTN].addEventListener('click', () => {
+     if (bloglistPagesBtn[FIRST_PAGEBTN].textContent == 1) return;
+     prevPage()
+})
 
-     iop += 1
-     for (let index = 0; index < dre.length; index++) {
-          dre[index].textContent = (index % 3) + iop
+// Page generation and stuff
+function bloglistGeneratePage() {
+     bloglistPagesBtn.forEach(pagesBtnElement => {
+          if (pagesBtnElement.textContent == pageNumber) {
+               pagesBtnElement.classList.add('blogs__pagination-pages-btn--current')
+               pagesBtnElement.setAttribute('disabled', '')
+               bloglistGenerateForum('announcements', pagesBtnElement.textContent - 1)
+          } else {
+               pagesBtnElement.classList.remove('blogs__pagination-pages-btn--current')
+               pagesBtnElement.removeAttribute('disabled')
+          }
+     })
+}
+
+const bloglistPaginationNextBtn = document.querySelector('.blogs__pagination-next-btn')
+const bloglistPaginationLastBtn = document.querySelector('.blogs__pagination-last-btn')
+bloglistGeneratePage()
+
+bloglistPaginationNextBtn.addEventListener('click', () => {
+     if (bloglistPagesBtn[LAST_PAGEBTN].textContent == pageNumber) return;
+     pageNumber += 1
+     if (pageNumber % 3 == 0) nextPage();
+     bloglistGeneratePage()
+
+     bloglistPaginationLastBtn.classList.remove('blogs__pagination-nav-btn--nil')
+     bloglistPaginationNextBtn.classList.remove('blogs__pagination-nav-btn--nil')
+     if (bloglistPagesBtn[LAST_PAGEBTN].classList.contains('blogs__pagination-pages-btn--current')) {
+          bloglistPaginationNextBtn.classList.add('blogs__pagination-nav-btn--nil')
      }
 })
-dre[0].addEventListener('click', () => {
-     if (dre[0].textContent == 1) return;
 
-     iop -= 1
-     for (let index = 0; index < dre.length; index++) {
-          dre[index].textContent = (index % 3) + iop
-     }
+bloglistPaginationLastBtn.addEventListener('click', () => {
+     pageNumber = 1
+     resetPage()
+     bloglistGeneratePage()
+
+     bloglistPaginationLastBtn.classList.add('blogs__pagination-nav-btn--nil')
+     bloglistPaginationNextBtn.classList.remove('blogs__pagination-nav-btn--nil')
 })
 
-dre.forEach((element, index) => {
-     element.addEventListener('click', () => {
-          dre.forEach((element, index) => {
-               if (element.textContent == er) {
-                    element.classList.add('blogs__pagination-prev-btn--current')
-                    bloglistGenerateForum('announcements', element.textContent-1)
-               } else {
-                    element.classList.remove('blogs__pagination-prev-btn--current')
-               }
-          })
-     })
-})
+for (let pagesBtnIndex = 0; pagesBtnIndex < bloglistPagesBtn.length; pagesBtnIndex++) {
+     const pagesBtnElement = bloglistPagesBtn[pagesBtnIndex];
+     pagesBtnElement.addEventListener('click', bloglistGeneratePage)
+}
 </script>
 </body>
 </html>

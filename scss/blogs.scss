@@ -99,25 +99,25 @@ body {
                margin-top: auto
           }
 
-          &__pagination-prev {
+          &__pagination-pages {
                display: inline-flex;
           }
 
-          &__pagination-prev-title, &__pagination-next-title {
+          &__pagination-pages-title, &__pagination-nav-title {
                font-weight: bolder;
           }
 
-          &__pagination-prev-title {
+          &__pagination-pages-title {
                margin-right: 10px;
           }
 
-          &__pagination-prev-list {
+          &__pagination-pages-list {
                display: flex;
                flex-direction: row;
                gap: 10px;
           }
 
-          &__pagination-prev-btn, &__pagination-next-btn {
+          &__pagination-pages-btn, &__pagination-nav-btn {
                cursor: pointer;
                text-decoration: underline;
                background: none;
@@ -135,6 +135,12 @@ body {
                     color: grey;
                     text-decoration: none;
                }
+          }
+
+          &__pagination-nav {
+               display: flex;
+               flex-direction: row;
+               gap: 10px;
           }
      }
 }

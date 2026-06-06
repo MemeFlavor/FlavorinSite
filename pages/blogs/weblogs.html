@@ -17,6 +17,7 @@
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
      <link rel="stylesheet" type="text/css" href="css/components/bloglists.css">
      <script type="module" defer src="javascript/update_logs.js"></script>
+     <script type="module" defer src="javascript/bloglists/pages.js"></script>
 </head>
 <body>
      <article id="flavory-content">
@@ -114,24 +115,27 @@
                     </tbody>
                </table>
                <div class="blogs__pagination">
-                    <section class="blogs__pagination-prev">
-                         <span class="blogs__pagination-prev-title">Pages:</span>
-                         <ul class="blogs__pagination-prev-list">
-                              <li class="blogs__pagination-prev-item">
-                                   <button class="blogs__pagination-prev-btn blogs__pagination-prev-btn--current">1</button>
+                    <section class="blogs__pagination-pages">
+                         <span class="blogs__pagination-pages-title">Pages:</span>
+                         <ul class="blogs__pagination-pages-list">
+                              <li class="blogs__pagination-pages-item">
+                                   <button class="blogs__pagination-pages-btn blogs__pagination-pages-btn--current">1</button>
                               </li>
-                              <li class="blogs__pagination-prev-item">
-                                   <button class="blogs__pagination-prev-btn blogs__pagination-prev-btn--nil">2</button>
+                              <li class="blogs__pagination-pages-item">
+                                   <button class="blogs__pagination-pages-btn">2</button>
                               </li>
-                              <li class="blogs__pagination-prev-item">
-                                   <button class="blogs__pagination-prev-btn blogs__pagination-prev-btn--nil">3</button>
+                              <li class="blogs__pagination-pages-item">
+                                   <button class="blogs__pagination-pages-btn">3</button>
                               </li>
-                              <li class="blogs__pagination-prev-ellipses">...</li>
+                              <li class="blogs__pagination-pages-ellipses">...</li>
                          </ul>
                     </section>
-                    <section class="blogs__pagination-next">
-                         <span class="blogs__pagination-next-title">
-                              <button class="blogs__pagination-next-btn blogs__pagination-prev-btn--nil">Next</button>
+                    <section class="blogs__pagination-nav">
+                         <span class="blogs__pagination-nav-title">
+                              <button class="blogs__pagination-nav-btn blogs__pagination-start-btn">Start</button>
+                         </span>
+                         <span class="blogs__pagination-nav-title">
+                              <button class="blogs__pagination-nav-btn blogs__pagination-last-btn blogs__pagination-nav-btn--nil">Next</button>
                          </span>
                     </section>
                </div>

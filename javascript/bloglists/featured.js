@@ -1,4 +1,4 @@
-import featured from '../json/featured.json' with { type: 'json' };
+import featured from '../../json/featured.json' with { type: 'json' };
 
 function toUpperFirstCase(str) {
      return str.charAt(0).toUpperCase() + str.slice(1);

@@ -1,4 +1,4 @@
-import featured from '../../json/featured.json' with { type: 'json' };
+import { bloglistData } from "../modules/shortcuts.js"
 import { toUpperFirstCase } from '../modules/shortcuts.js'
 
 const bloglistBody = document.querySelector('.blogs__bloglist tbody')
@@ -7,7 +7,7 @@ const bloglistContent = document.querySelector('.blogs__bloglist-content');
 bloglistSection.remove();
 bloglistContent.remove();
 
-for (const [key, value] of Object.entries(featured)) {
+for (const [key, value] of Object.entries(bloglistData)) {
      if (Object.keys(value).length === 0) break; // No empty content, there's nothing special here
 
      const bloglistSectionClone = bloglistSection.cloneNode(true);

@@ -19,7 +19,7 @@
      <article id="flavory-content">
           <main class="post">
                <dialog class="post__fullscreen">
-                    <button class="post__fullscreen-exit">doodoo</button>
+                    <img src="images/buttons/exit.png" alt="" class="post__fullscreen-exit" width="42" height="42">
                     <img src="" alt="" class="post__fullscreen-image">
                </dialog>
                <hgroup class="post__headbar">
@@ -43,22 +43,39 @@
                          with the designs and movable windows, and daydreaming about the site being "mobile compatible". But thankfully I've
                          decided to fully scrapped it since It genuinely sounds like hell code it. As the great saying goes:
                     </p>
-                    <img src="images/blogs/announcements/wow_you_exist/scrapped_design.avif" alt="" width="280" height="370">
+                    <img src="images/blogs/announcements/wow_you_exist/scrapped_design.avif" alt="" width="280" height="370" data-pixelated>
                     <img src="images/badges/custom/lordX.gif" alt="" width="88" height="31">
                </article>
           </main>
      </article>
      <script>
+          const ttr = document.querySelector('.post__fullscreen-image')
+          
           document.querySelectorAll('.post__body img').forEach((element) => {
                element.addEventListener('click', (self) => {
-                    document.querySelector('.post__fullscreen-image').setAttribute('src', self.srcElement.src)
+                    ttr.style.imageRendering = element.hasAttribute('data-pixelated') == false ? 'pixelated' : 'auto'
+                    ttr.setAttribute('src', self.srcElement.src)
                     document.querySelector('.post__fullscreen').setAttribute('open', '')
+                    document.querySelector('html').style.scrollbarWidth = 'none'
                })
           })
 
-          document.querySelector('.post__fullscreen-exit').addEventListener('click', (self) => {
-               document.querySelector('.post__fullscreen').removeAttribute('open')     
+          document.querySelector('.post__fullscreen-exit').addEventListener('mouseenter', (self) => {
+               document.querySelector('.post__fullscreen-exit').setAttribute('src', 'images/buttons/exit-hover.png')
           })
+          document.querySelector('.post__fullscreen-exit').addEventListener('mouseleave', (self) => {
+               document.querySelector('.post__fullscreen-exit').setAttribute('src', 'images/buttons/exit.png')
+          })
+          document.querySelector('.post__fullscreen-exit').addEventListener('mousedown', (self) => {
+                    document.querySelector('.post__fullscreen-exit').setAttribute('src', 'images/buttons/exit-active.png')
+               })
+
+          document.querySelector('.post__fullscreen-exit').addEventListener('click', (self) => {
+               document.querySelector('.post__fullscreen').removeAttribute('open')
+               document.querySelector('html').style.scrollbarWidth = 'auto' 
+          })
+
+          
      </script>
      <script>
           const g = window.location.pathname.split(/\W+/g)

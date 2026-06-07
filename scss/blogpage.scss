@@ -17,27 +17,46 @@ body {
 
      #flavory-content {
           display: grid;
-          grid-template-columns: auto 900px;
+          grid-template-columns: 900px;
           grid-template-rows: 1fr;
           grid-template-areas:
-               "flavory-sidebar flavory-post"
+               "flavory-post"
           ;
           gap: 5px;
           margin-block: 0.5cm;
-     }
-
-     .sidebar {
-          grid-area: flavory-sidebar;
      }
 
      .post {
           grid-area: flavory-post;
           background-color: color.adjust(#272525, $lightness: -5%);
           padding: 20px;
-          @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
 
-          &__header-title {
-               grid-area: header-title;
+          &__headbar {
+               margin-block: 10px 30px;
+          }
+
+          &__headbar-back {
+               font-family: sc.$fancy-font;
+               padding-inline: 10px;
+          }
+
+          &__headbar-back-link {
+               font-weight: bolder;
+               text-decoration: none;
+               color: cornflowerblue;
+
+               &:hover {
+                    text-decoration: underline;
+               }
+
+               &:focus-within {
+                    background-color: cornflowerblue;
+                    outline: none;
+                    color: black;
+               }
+          }
+
+          &__headbar-title {
                font-family: "Archivo", sc.$standard-font;
                font-size: 1.6rem;
                font-weight: 900;
@@ -46,9 +65,66 @@ body {
                border-radius: 5px;
                padding: 10px 15px;
                width: 100%;
+               margin-block: 10px;
+
+               @supports (font-width: expanded) {
+                    font-width: expanded;
+               }
           }
 
-          p, blockquote, li {
+          &__headbar-breadcrumbs {
+               display: flex;
+               flex-direction: row;
+               font-family: sc.$fancy-font;
+               font-size: 1rem;
+               gap: 10px;
+               padding-inline: 10px;
+          }
+
+          &__headbar-crumbs {
+               font-style: italic;
+
+               &:last-of-type {
+                    font-style: normal;
+                    font-weight: bold;
+               }
+          }
+
+          &__body {
+               padding-inline: 10px;
+               margin-top: 0.5cm;
+
+               h1, h2, h3, h4, h5, h6 {
+                    font-family: "Lexend";
+                    padding-inline: 10px;
+               }
+
+               p, blockquote, li {
+                    font-family: sc.$fancy-font;
+                    font-size: 1rem;
+                    text-wrap: pretty;
+                    text-align: start;
+                    text-rendering: optimizeSpeed;
+               }
+
+               p, blockquote, ul, ol {
+                    padding-inline: 10px;
+                    margin-block: 10px;
+               }
+
+               p, blockquote {
+                    line-height: 1.5rem;
+               }
+
+               blockquote {
+                    border-left: 5px solid rgb(78, 78, 78);
+                    padding-block: 3px;
+                    padding-inline: 20px 10px;
+                    margin-left: 10px;
+               }
+          }
+
+          /* p, blockquote, li {
                font-family: sc.$fancy-font;
                font-size: 1rem;
                text-wrap: pretty;
@@ -96,6 +172,6 @@ body {
 
           ul li {
                list-style-type: disc;
-          }
+          } */
      }
 }

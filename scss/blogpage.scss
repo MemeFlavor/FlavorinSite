@@ -109,7 +109,7 @@ body {
 
                p, blockquote, ul, ol {
                     padding-inline: 10px;
-                    margin-block: 10px;
+                    margin-block: 15px;
                }
 
                p, blockquote {
@@ -122,6 +122,51 @@ body {
                     padding-inline: 20px 10px;
                     margin-left: 10px;
                }
+
+               code {
+                    font-family: "Fira Code", sc.$standard-code-font;
+                    font-size: 0.85rem;
+                    background-color: #272525;
+                    border-radius: 5px;
+                    padding: 3px 8px;
+               }
+
+               ul, ol {
+                    margin-left: 20px;
+                    margin-block: 15px;
+
+                    li {
+                         margin-block: 3px;
+                    }
+               }
+
+               ul li {
+                    list-style-type: disc;
+               }
+
+               ol li {
+                    list-style-type: decimal;
+               }
+          }
+
+          &__fullscreen {
+               border: none;
+               position: fixed;
+               inset: 0;
+               margin: auto;
+          }
+
+          &__fullscreen-exit {
+               position: absolute;
+               top: 0;
+               right: 0;
+          }
+
+          &__fullscreen-image {
+               object-fit: contain;
+               background-color: #2a2a2a;
+               width: 100vw;
+               height: 100vh;
           }
 
           /* p, blockquote, li {

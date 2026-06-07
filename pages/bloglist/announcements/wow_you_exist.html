@@ -18,6 +18,10 @@
 <body>
      <article id="flavory-content">
           <main class="post">
+               <dialog class="post__fullscreen">
+                    <button class="post__fullscreen-exit">doodoo</button>
+                    <img src="" alt="" class="post__fullscreen-image">
+               </dialog>
                <hgroup class="post__headbar">
                     <div class="post__headbar-back">
                          <span class="post__headbar-back-arrows">&lt;&lt;</span>
@@ -28,21 +32,34 @@
                </hgroup>
                <article class="post__body">
                     <p>
-                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio eius minima minus iusto, inventore commodi nam laboriosam dolorem odio sapiente porro excepturi mollitia natus accusantium sit eveniet possimus. Mollitia, officia.
+                         So after 5 months of this site being blank, just slowly rotting away in this site. I've finally decided remembered to
+                         actually make the site because I was so busy due to some important stuff in life, mostly school and personal stuff. And
+                         I think it's really fun making this site, well most of the time encountering some SCSS and Javascript bs along the way.
                     </p>
-                    <blockquote>
-                         "Eat shit and die"
-                    </blockquote>
-                    <ul>
-                         <li>die die die</li>
-                         <li>die die die</li>
-                         <li>die die die</li>
-                         <li>die die die</li>
-                         <li>die die die</li>
-                    </ul>
+                    <p>
+                         But did you know in the first days after creating a Neocities account I've actually done some preplanning the design of
+                         the website. Unfortunately I don't have any archives of early designs of this site. Because it was made in Figma and I
+                         deleted it, for some reason, I think I forgot the reason. But it's mostly a recreation of WindowsXP desktop. Complete
+                         with the designs and movable windows, and daydreaming about the site being "mobile compatible". But thankfully I've
+                         decided to fully scrapped it since It genuinely sounds like hell code it. As the great saying goes:
+                    </p>
+                    <img src="images/blogs/announcements/wow_you_exist/scrapped_design.avif" alt="" width="280" height="370">
+                    <img src="images/badges/custom/lordX.gif" alt="" width="88" height="31">
                </article>
           </main>
      </article>
+     <script>
+          document.querySelectorAll('.post__body img').forEach((element) => {
+               element.addEventListener('click', (self) => {
+                    document.querySelector('.post__fullscreen-image').setAttribute('src', self.srcElement.src)
+                    document.querySelector('.post__fullscreen').setAttribute('open', '')
+               })
+          })
+
+          document.querySelector('.post__fullscreen-exit').addEventListener('click', (self) => {
+               document.querySelector('.post__fullscreen').removeAttribute('open')     
+          })
+     </script>
      <script>
           const g = window.location.pathname.split(/\W+/g)
           const y = window.location.pathname.split(/\w+/g)

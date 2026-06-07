@@ -14,13 +14,14 @@
      <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
      <link rel="stylesheet" type="text/css" href="css/reset.css">
      <link rel="stylesheet" type="text/css" href="css/blogpage.css">
+     <script type="module" defer src="javascript/components/fullscreen.js"></script>
 </head>
 <body>
      <article id="flavory-content">
           <main class="post">
-               <dialog class="post__fullscreen">
-                    <img src="images/buttons/exit.png" alt="" class="post__fullscreen-exit" width="42" height="42">
-                    <img src="" alt="" class="post__fullscreen-image">
+               <dialog class="post__fullscreen"> <!-- Script Needed -->
+                    <img src="images/buttons/exit.png" alt="Exit Button" class="post__fullscreen-exit" width="42" height="42">
+                    <img class="post__fullscreen-image">
                </dialog>
                <hgroup class="post__headbar">
                     <div class="post__headbar-back">
@@ -48,35 +49,6 @@
                </article>
           </main>
      </article>
-     <script>
-          const ttr = document.querySelector('.post__fullscreen-image')
-          
-          document.querySelectorAll('.post__body img').forEach((element) => {
-               element.addEventListener('click', (self) => {
-                    ttr.style.imageRendering = element.hasAttribute('data-pixelated') == false ? 'pixelated' : 'auto'
-                    ttr.setAttribute('src', self.srcElement.src)
-                    document.querySelector('.post__fullscreen').setAttribute('open', '')
-                    document.querySelector('html').style.scrollbarWidth = 'none'
-               })
-          })
-
-          document.querySelector('.post__fullscreen-exit').addEventListener('mouseenter', (self) => {
-               document.querySelector('.post__fullscreen-exit').setAttribute('src', 'images/buttons/exit-hover.png')
-          })
-          document.querySelector('.post__fullscreen-exit').addEventListener('mouseleave', (self) => {
-               document.querySelector('.post__fullscreen-exit').setAttribute('src', 'images/buttons/exit.png')
-          })
-          document.querySelector('.post__fullscreen-exit').addEventListener('mousedown', (self) => {
-                    document.querySelector('.post__fullscreen-exit').setAttribute('src', 'images/buttons/exit-active.png')
-               })
-
-          document.querySelector('.post__fullscreen-exit').addEventListener('click', (self) => {
-               document.querySelector('.post__fullscreen').removeAttribute('open')
-               document.querySelector('html').style.scrollbarWidth = 'auto' 
-          })
-
-          
-     </script>
      <script>
           const g = window.location.pathname.split(/\W+/g)
           const y = window.location.pathname.split(/\w+/g)

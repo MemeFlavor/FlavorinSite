@@ -3,13 +3,7 @@
      * Unoptimize code at the pagination section
      * Slight spaghetti code shenanigans 
 */
-
-import announcements from '../../json/blogs/announcements.json' with { type: 'json' };
-import weblogs from '../../json/blogs/weblogs.json' with { type: 'json' };
-
-function toUpperFirstCase(str) {
-     return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import { bloglistData, toUpperFirstCase } from "../modules/shortcuts.js";
 
 function bloglistGenerateChunks(bloglistData) {
      const SEPARATE = 10
@@ -29,9 +23,9 @@ function bloglistGenerateChunks(bloglistData) {
 let bloglist = null
 let bloglistName = window.location.pathname.match(/\w+\.html$/g)[0].replace('\.html', '')
 if (bloglistName == 'announcements') {
-     bloglist = bloglistGenerateChunks(announcements)
+     bloglist = bloglistGenerateChunks(bloglistData.announcements)
 } else if (bloglistName == 'weblogs') {
-     bloglist = bloglistGenerateChunks(weblogs)
+     bloglist = bloglistGenerateChunks(bloglistData.weblogs)
 }
 
 const bloglistBody = document.querySelector('.blogs__bloglist tbody')
@@ -59,9 +53,6 @@ function bloglistGenerateForum(bloglistSectionName, bloglistPage) {
      }
 }
 
-/** 
- * TODO: Recode this entire area since its unoptimize, also I've gone insaning from coding this shit
-*/
 // Page Navigation type stuff //
 
 const currentUrl = new URL(window.location.href);

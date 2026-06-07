@@ -1,5 +1,3 @@
-"use strict";
-
 async function getData() {
      try {
           const response = await fetch('changelog.txt');

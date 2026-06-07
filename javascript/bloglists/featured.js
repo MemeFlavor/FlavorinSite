@@ -1,8 +1,5 @@
 import featured from '../../json/featured.json' with { type: 'json' };
-
-function toUpperFirstCase(str) {
-     return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import { toUpperFirstCase } from '../modules/shortcuts.js'
 
 const bloglistBody = document.querySelector('.blogs__bloglist tbody')
 const bloglistSection = document.querySelector('.blogs__bloglist-section');
@@ -21,7 +18,7 @@ for (const [key, value] of Object.entries(featured)) {
      for (const element of Object.values(value)) {
           elementIndices += 1; if (elementIndices > 3) break;
           const bloglistContentClone = bloglistContent.cloneNode(true);
-          
+
           bloglistContentClone.querySelector('.blogs__bloglist-link').setAttribute('href', element.title.link);
           bloglistContentClone.querySelector('.blogs__bloglist-title').textContent = element.title.content;
 

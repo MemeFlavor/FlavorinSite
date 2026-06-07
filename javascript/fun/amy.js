@@ -1,11 +1,9 @@
+import { getRandomInt } from "../modules/shortcuts.js";
+
 const amy = document.querySelector('.music__album-amy')
 
 const LIMIT = 60
 const MULTIPLY = 10
-function getRandomInt(min, max) {
-     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 let position = 0
 const intervalId = setInterval(() => {
      let positionRancrement = getRandomInt(-1, 1)

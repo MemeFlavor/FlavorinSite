@@ -1,21 +1,23 @@
-const g = window.location.pathname.split(/\W+/g)
-const y = window.location.pathname.split(/\w+/g)
-g.shift()
-y.shift()
+const headbarTitle = document.querySelector('.post__headbar-title')
+const headbarBreadCrumbs = document.querySelector('.post__headbar-breadcrumbs')
 
-const j = g.slice(1, g.length - 1)
-const k = y.slice(1, g.length - 2)
-j[j.length - 1] = document.querySelector('.post__headbar-title').textContent
-const l = document.querySelector('.post__headbar-breadcrumbs')
-for (let index = 0; index < j.length; index++) {
-     const thing = document.createElement('span')
-     thing.classList.add('post__headbar-crumbs')
-     thing.textContent = j[index]
-     l.appendChild(thing)
+const headbarPathSlash = window.location.pathname.split(/\W+/g)
+const headbarPathTexts = window.location.pathname.split(/\w+/g)
+headbarPathSlash.shift()
+headbarPathTexts.shift()
 
-     if (index < k.length) {
-          const thing1 = document.createElement('span')
-          thing1.textContent = k[index]
-          l.appendChild(thing1)
+const pathSlashGroup = headbarPathSlash.slice(1, headbarPathSlash.length - 1)
+const pathTextGroups = headbarPathTexts.slice(1, headbarPathSlash.length - 2)
+pathSlashGroup[pathSlashGroup.length - 1] = headbarTitle.textContent
+for (let pathSlashIndex = 0; pathSlashIndex < pathSlashGroup.length; pathSlashIndex++) {
+     const headbarCrumbs = document.createElement('span')
+     headbarCrumbs.classList.add('post__headbar-crumbs')
+     headbarCrumbs.textContent = pathSlashGroup[pathSlashIndex]
+     headbarBreadCrumbs.appendChild(headbarCrumbs)
+
+     if (pathSlashIndex < pathTextGroups.length) { // Prevents an extra "slash" character.
+          const headbarBits = document.createElement('span')
+          headbarBits.textContent = pathTextGroups[pathSlashIndex]
+          headbarBreadCrumbs.appendChild(headbarBits)
      }
 }

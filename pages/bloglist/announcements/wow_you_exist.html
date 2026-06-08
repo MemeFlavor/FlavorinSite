@@ -15,6 +15,7 @@
      <link rel="stylesheet" type="text/css" href="css/reset.css">
      <link rel="stylesheet" type="text/css" href="css/blogpage.css">
      <script type="module" defer src="javascript/components/fullscreen.js"></script>
+     <script type="module" defer src="javascript/components/breadcrumbs.js"></script>
 </head>
 <body>
      <article id="flavory-content">
@@ -32,6 +33,7 @@
                     <div class="post__headbar-breadcrumbs"></div>
                </hgroup>
                <article class="post__body">
+                    <h1> Background </h1>
                     <p>
                          So after 5 months of this site being blank, just slowly rotting away in this site. I've finally decided remembered to
                          actually make the site because I was so busy due to some important stuff in life, mostly school and personal stuff. And
@@ -40,37 +42,102 @@
                     <p>
                          But did you know in the first days after creating a Neocities account I've actually done some preplanning the design of
                          the website. Unfortunately I don't have any archives of early designs of this site. Because it was made in Figma and I
-                         deleted it, for some reason, I think I forgot the reason. But it's mostly a recreation of WindowsXP desktop. Complete
-                         with the designs and movable windows, and daydreaming about the site being "mobile compatible". But thankfully I've
-                         decided to fully scrapped it since It genuinely sounds like hell code it. As the great saying goes:
+                         deleted it, for some reason, I think I forgot the reason.
                     </p>
-                    <img src="images/blogs/announcements/wow_you_exist/scrapped_design.avif" alt="" width="280" height="370" data-pixelated>
-                    <img src="images/badges/custom/lordX.gif" alt="" width="88" height="31">
+                    <p>
+                         It's mostly a recreation of WindowsXP desktop. Complete with the designs and movable windows, and daydreaming about the 
+                         site being "mobile compatible". But thankfully I've decided to fully scrapped it since It genuinely sounds like hell code 
+                         it. As the great saying goes: <q>An artist's dream is also a programmer's nightmare.</q> Now that I've actually build this 
+                         website, I got some actual designs I drew on my sketch pad. You can see below the images I provided:
+                    </p>
+                    <div class="post__gallery post__gallery--columns">
+                         <img src="images/blogs/announcements/wow_you_exist/scrapped_design.avif" 
+                              class="post__gallery-img" alt="Scrapped Design" width="280" height="370">
+                    </div>
+                    <blockquote>
+                         1. First design of the website, scrapped cuz I didn't like it
+                    </blockquote>
+                    <div class="post__gallery post__gallery--columns">
+                         <img src="images/blogs/announcements/wow_you_exist/current_design.avif" 
+                              class="post__gallery-img" alt="Current Design" width="280" height="370">
+                    </div>
+                    <blockquote>
+                         2. Second design of the website, that I'm actually contempt with, currently.
+                    </blockquote>
+                    <div class="post__gallery post__gallery--columns">
+                         <img src="images/blogs/announcements/wow_you_exist/scrapped_cards.avif" 
+                              class="post__gallery-img" alt="Scrapped Cards" width="280" height="370" loading="lazy">
+                    </div>
+                    <blockquote>
+                         3. Scrapped designs for the trivia cards on my about section.
+                    </blockquote>
+                    <div class="post__gallery post__gallery--columns">
+                         <img src="images/blogs/announcements/wow_you_exist/sidebar.avif" 
+                              class="post__gallery-img" alt="Sidebar" width="280" height="370" loading="lazy">
+                    </div>
+                    <blockquote>
+                         4. Designs for the sidebar alongside with minor scrapped designs.
+                    </blockquote>
+                    <h1> SCSS and Javascript Shenanigans </h1>
+                    <p>
+                         Pretty awesome right? Anyways, so now I'll be explaining the stuff I build this site from the ground up. One thing you'll notice on
+                         the first paragraph of this blog, I've used a thing called "SCSS" it's basically an extension of CSS that makes coding in
+                         CSS more "bearable" for me personally. It has nesting and variables (already supported natively but acts differently),
+                         mixins, modularity, and some advanced stuff.
+                    </p>
+                    <p>
+                         If you're interested in learning this, considered some key consideration. If you're new to coding pls learn the
+                         fundamentals of CSS first, so you can understand what the fuck you're actually doing. And If your website is really
+                         small and simple just use CSS, it's overkill and unnecessary. Use it, if your site is big and complicated that it actually
+                         requires modularity to make it more maintanable in the long run.
+                    </p>
+                    <p>
+                         And another big consideration is that you have to download it, it's not simple as clicking the download button. You have to use the
+                         terminal if you want it. So if that bothers you, you should probably stick with CSS. And for those who are brave enough to do 
+                         this, I commend you, you crazy mf.
+                    </p>
+                    <br>
+                    <p>
+                         Now for the scariest part of this blog, I used Javascript, pretty fucked up right? Nah just kidding, it was actually easy for me.
+                         You know why? Because I'm a programmer duh, obviously. But hey I hope some day you'll create some awesome shit with your site, just don't
+                         give up; hope and prosper (˶ˆᗜˆ˵). I have JS on my awesome music player at the home page and also the featured section of the blog
+                         page. 
+                    </p>
+                    <p>
+                         The music player was the most complex one I've "built", I say "built" in quotations it's actually code from a music player that I 
+                         searched on youtube conveniently. But here's the thing, I've actually improved it with my awesome programming skills. Because the code
+                         from that, not to be rude or anything, kinda sucks.
+                    </p>
+                    <p>
+                         Like it uses the <code>setInterval()</code> function to update the slider position. It updates every second of the script, causing 
+                         some performance issue for the website. I know it gets the job done, but I don't like any performance issues. Because I'm a performance 
+                         freak that likes his site to be actually usable even in older computers.
+                    </p>
+                    <h1> Graphics </h1>
+                    <p>
+                         Finally any website needs some graphic for some decorations to add a bit more flavor. Here's the banner which I made with GIMP, which was
+                         kinda hard to make, because it's hard to perfectly align each sections. Currently I'm perfectly fine with this current design, maybe some
+                         slight alterations and stuff could make it a bit better honestly.
+                    </p>
+                    <div class="post__gallery post__gallery--row post__gallery--justify-center">
+                         <img src="images/archive/Banner.avif" 
+                              class="post__gallery-img" alt="Awesome Banner" width="800" loading="lazy" data-pixelated>
+                    </div>
+                    <p>
+                         For the awesome 88x31 badges (i think that's what you called them) I made these with Asesprite. Honestly I'm actually proud that I even
+                         managed to do this despite my limited knowledge in art general. I manage to made three custsom 88x31 badges, I even made an animated one.
+                         I'll explain more of the creation process of the 88x31 badges on my next blog, hopefully.
+                    </p>
+                    <div class="post__gallery post__gallery--row post__gallery--justify-center">
+                         <img src="images/badges/custom/scss.png" 
+                              class="post__gallery-img" alt="scss" width="88" height="31" loading="lazy" data-pixelated>
+                         <img src="images/badges/custom/vscodium.png" 
+                              class="post__gallery-img" alt="vscodium" width="88" height="31" loading="lazy" data-pixelated>
+                         <img src="images/badges/custom/lordX.gif" 
+                              class="post__gallery-img" alt="lordX" width="88" height="31" loading="lazy" data-pixelated>
+                    </div>
                </article>
           </main>
      </article>
-     <script>
-          const g = window.location.pathname.split(/\W+/g)
-          const y = window.location.pathname.split(/\w+/g)
-          g.shift()
-          y.shift()
-
-          const j = g.slice(1, g.length - 1)
-          const k = y.slice(1, g.length - 2)
-          j[j.length-1] = document.querySelector('.post__headbar-title').textContent
-          const l = document.querySelector('.post__headbar-breadcrumbs')
-          for (let index = 0; index < j.length; index++) {
-               const thing = document.createElement('span')
-               thing.classList.add('post__headbar-crumbs')
-               thing.textContent = j[index]
-               l.appendChild(thing)
-
-               if (index < k.length) {
-                    const thing1 = document.createElement('span')
-                    thing1.textContent = k[index]
-                    l.appendChild(thing1)
-               }
-          }
-     </script>
 </body>
 </html>

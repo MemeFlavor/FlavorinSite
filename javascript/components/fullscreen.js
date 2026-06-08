@@ -8,7 +8,7 @@ const postDialogFullImg = document.querySelector('.post__fullscreen-image')
 // Open Dialog, i think
 postImages.forEach((images) => {
      images.addEventListener('click', (self) => {
-          postDialogFullImg.style.imageRendering = self.srcElement.hasAttribute('data-pixelated') == false ? 'pixelated' : 'auto'
+          postDialogFullImg.style.imageRendering = self.srcElement.hasAttribute('data-pixelated') == true ? 'pixelated' : 'auto'
           postDialogFullImg.setAttribute('src', self.srcElement.src)
           postDialogFullImg.setAttribute('alt', self.srcElement.alt)
           postDialogFull.show()
@@ -22,7 +22,12 @@ postDialogFullExit.addEventListener('mouseenter', self => self.srcElement.setAtt
 postDialogFullExit.addEventListener('mousedown',  self => self.srcElement.setAttribute('src', 'images/buttons/exit-active.png'))
 
 // Exiting
-postDialogFullExit.addEventListener('click', (self) => {
+function postDialogFullClose() {
      postDialogFull.close()
      theFuckingDocument.style.scrollbarWidth = 'auto'
+}
+
+document.addEventListener('keydown', (event) => {
+     if (event.key == 'Escape' && postDialogFull.open) postDialogFullClose();
 })
+postDialogFullExit.addEventListener('click', postDialogFullClose)

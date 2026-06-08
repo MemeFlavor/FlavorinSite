@@ -1,5 +1,5 @@
-import announcements from '../../../json/blogs/announcements.json' with { type: 'json' };
-import weblogs from '../../../json/blogs/weblogs.json' with { type: 'json' };
+import announcements from '../../json/blogs/announcements.json' with { type: 'json' };
+import weblogs from '../../json/blogs/weblogs.json' with { type: 'json' };
 
 /**
      * Complies every bloglist data into one big ass object.

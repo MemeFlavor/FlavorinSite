@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title> MemeFlavor - Blog • First Revamp </title>
+     <base href="../../../">
+     <meta charset="UTF-8">
+     <meta name="description" content="The flavorous site to exist! I think, maybe" />
+     <meta name="keywords" content="delicious, flavor, gaming, coding, programming, sonic, asexual" />
+     <meta name="author" content="MemeFlavor" />
+     <meta name="language" content="EN" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="color-scheme" content="dark" />
+     <meta name="robots" content="noindex">
+     <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
+     <link rel="stylesheet" type="text/css" href="css/reset.css">
+     <link rel="stylesheet" type="text/css" href="css/blogpage.css">
+     <script type="module" defer src="javascript/components/fullscreen.js"></script>
+     <script type="module" defer src="javascript/components/breadcrumbs.js"></script>
+</head>
+<body>
+     <article id="flavory-content">
+          <main class="post">
+               <dialog class="post__fullscreen"> <!-- Script Needed -->
+                    <img src="images/buttons/exit.png" alt="Exit Button" class="post__fullscreen-exit" width="42" height="42">
+                    <img class="post__fullscreen-image">
+               </dialog>
+               <hgroup class="post__headbar">
+                    <div class="post__headbar-back">
+                         <span class="post__headbar-back-arrows">&lt;&lt;</span>
+                         <a href="pages/blogs/announcements.html" class="post__headbar-back-link">Back</a>
+                    </div>
+                    <h1 class="post__headbar-title">First Revamp</h1>
+                    <div class="post__headbar-breadcrumbs"></div>
+               </hgroup>
+               <article class="post__body">
+                    <h1> Welcome Back!!! </h1>
+                    <p>
+                         Wowy another blog and another update to this site, see I always keep my promise from my last blog post. Updating this site
+                         was kinda painful, probably because I really love implementing Javascript slop into my site. And the fact I have to recode
+                         some HTML and SCSS stuff to be more maintainable to long run. Anyways I've got a lot of stuff to showcase some behind the
+                         scene stuff.
+                    </p>
+                    <p>
+                         This blog post might be a bit more technical in what I'm saying. I'll definitely try my best to make it more understanable
+                         and concise for you guys. Or probably not, I'm note sure really. This will be explained by 2 sections the part 
+                         <q>Redesigning and Restructuring</q> and <q>Javascripting Business</q>, self-explanatory by the title alone.
+                    </p>
+                    <h1> Redesigning and Restructuring </h1>
+                    <p>
+                         Now to start off with something you can clearly see in this site. I improve the designs for the sidebar and home page, did
+                         a bit of restructuring. Honestly I'm so satisfied with the results I actually cook with, especially with the sidebar. With
+                         some cool and unique designs that I was able to put with.
+                    </p>
+                    <p>
+                         Anyways I'm gonna start with the sidebar redesign because I have a lot to talk about this. This new design is a bit inspired
+                         by this <a href="https://spectralvalleynationalpark.neocities.org/park">website's sidebar</a> design with it's news channel
+                         asthetic. The website is basically an ARG from what I can tell, I just randomly discovered this website while websurfing for
+                         any design inspiration. So I took some elements I like and implemented it. You can obviously tell with the headbar having a
+                         CRT effect, the title (at the left) having a special background, and the subtitle (at the right) having a blinking background
+                         animation within the <q>Sidebar</q> text.
+                    </p>
+                    <p>
+                         About the CRT effect, I didn't make it, I stole it from this <a href="https://aleclownes.com/2017/02/01/crt-display.html">website</a>
+                         it basically explains in detailed how the effect is made. I only grabbed the screen-door and flicker effects and just implemented
+                         into SCSS. But I did some minor modifications—since it's SCSS I decided to randomize the opacity values of the keyframe percentages
+                         within the flickering animation. To add a more <q>authentic feeling</q> of randomness to the effect, and totally not flexing my skills
+                         (trust me).
+                    </p>
+                    <div class="post__code" data-prolang="scss">
+<pre class="post__code-text">
+$flicker-proximate: 100000;
+     @keyframes flicker {
+          @for $flicker-index from 0 through 20 {
+          $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
+          $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
+
+          #{$flicker-sections} {
+               opacity: $flicker-vars;
+          }
+     }
+}
+</pre>
+                    </div>
+                    <span class="post__notice">
+                         This code block will be updated with a newer design
+                    </span>
+                    <p>
+                         
+                         This is the code that I've implemented, it basically loops from <code>0</code> through <code>20</code> within the keyframe animation. 
+                         Because since the original CSS code has every percentage marker being intervals in 5, I obviously multiply it with the 
+                         <code>$flicker-index</code> for-loop variable. Dividing it by <code>100</code> and converting the result in the 
+                         <code>math.percentage()</code> method, all happening within the <code>$flicker-sections</code> variable.
+                    </p>
+                    <p>
+                         For the randomize values, I used the <code>math.random()</code> method and with the limit being 100,000k and dividing it by 100,000k
+                         in order to have hundred-thousandths place for the opacity values, at the <code>$flicker-vars</code> variables. 
+                    </p>
+                    <p>
+                         Finally applying those variables to their respective places, the <code>$flicker-sections</code> is placed at the marker, interpolated
+                         converting it into a real percentage marker. And the <code>$flicker-vars</code> is at the opacity values. 
+                    </p>
+                    <h1> Javascripting Business </h1>
+                    <p>
+
+                    </p>
+                    <h1>  </h1>
+               </article>
+          </main>
+     </article>
+</body>
+</html>

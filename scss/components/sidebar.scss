@@ -45,15 +45,14 @@ body .sidebar {
           }
      
           // This code is made by me, SCSS is so GOATED!!!
-          $flicker-vars: ();
           $flicker-proximate: 100000;
           @keyframes flicker {
                @for $flicker-index from 0 through 20 {
-                    $flicker-vals: calc(math.round(math.random() * $flicker-proximate) / $flicker-proximate);
-                    $flicker-vars: list.append($flicker-vars, $flicker-vals);
-     
-                    #{math.percentage(math.div(5 * $flicker-index, 100))} {
-                         opacity: list.nth($flicker-vars, $flicker-index + 1);
+                    $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
+                    $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
+                      
+                    #{$flicker-sections} {
+                         opacity: $flicker-vars;
                     }
                }
           }

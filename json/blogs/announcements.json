@@ -1,7 +1,16 @@
 [
      {
           "title": {
-               "content": "WOW YOU! EXIST!",
+               "content": "First Revamp",
+               "link": "pages/bloglist/announcements/first_revamp.html"
+          },
+          "type": "Blog",
+          "description": "Guy talks about a minor revamp of this site.",
+          "time": "2026-06-01"
+     },
+     {
+          "title": {
+               "content": "WOW! YOU EXIST!",
                "link": "pages/bloglist/announcements/wow_you_exist.html"
           },
           "type": "Blog",

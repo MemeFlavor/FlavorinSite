@@ -3,6 +3,7 @@
 
 @include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
 @include sc.font-face-var('Lexend', normal, normal, 100 900);
+@include sc.font-face-var('JetBrains Mono', normal, normal, 100 800);
 
 body {
      display: flex;
@@ -52,7 +53,7 @@ body {
                &:focus-within {
                     background-color: cornflowerblue;
                     outline: none;
-                    color: black;
+                    color: contrast-color(cornflowerblue);
                }
           }
 
@@ -130,12 +131,41 @@ body {
                }
           }
 
+          &__code {
+               background-color: #161616;
+               margin: 15px;
+          }
+
+          &__code-text {
+               white-space: pre;
+               overflow-x: auto;
+               tab-size: 5;
+               font-family: 'Fira Code', sc.$standard-code-font;
+               font-size: 0.8rem;
+               line-height: 1.3rem;
+               padding: 10px 15px;
+          }
+
+          &__notice {
+               font-family: sc.$fancy-font;
+               font-size: 0.8rem;
+               text-wrap: pretty;
+               text-align: justify;
+               text-rendering: optimizeSpeed;
+               color: gray;
+               padding-inline: 15px;
+
+               &::before {
+                    content: "*"
+               }
+          }
+
           &__body {
                padding-inline: 10px;
                margin-top: 0.5cm;
 
                h1, h2, h3, h4, h5, h6 {
-                    font-family: "Lexend";
+                    font-family: "JetBrains Mono", sc.$standard-font;
                     padding-inline: 10px;
                }
 
@@ -168,7 +198,21 @@ body {
                     font-size: 0.85rem;
                     background-color: #272525;
                     border-radius: 5px;
-                    padding: 3px 8px;
+                    padding: 3px 5px;
+               }
+
+               a {
+                    color: cornflowerblue;
+                    text-decoration: none;
+
+                    &:hover {
+                         text-decoration: underline;
+                    }
+                    &:focus-within {
+                         background-color: cornflowerblue;
+                         outline: none;
+                         color: contrast-color(cornflowerblue)
+                    }
                }
 
                ul, ol {
@@ -190,10 +234,6 @@ body {
 
                img {
                     cursor: pointer;
-
-                    &:hover {
-                         outline: 1px solid white
-                    }
                }
           }
 

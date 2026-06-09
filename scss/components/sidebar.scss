@@ -108,7 +108,6 @@ body .sidebar {
           margin-block: 15px;
      
           &__headbar {
-               z-index: 2;
                display: grid;
                grid-template-columns: 1fr;
                grid-template-rows: 1fr;
@@ -157,7 +156,6 @@ body .sidebar {
 
           --navigation-current-margin-left: 15px;
           --navigation-current-sideblock-visibility: auto;
-          --fart: 15px;
      
           &__list {
                display: flex;

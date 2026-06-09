@@ -51,6 +51,7 @@
                          a bit of restructuring. Honestly I'm so satisfied with the results I actually cook with, especially with the sidebar. With
                          some cool and unique designs that I was able to put with.
                     </p>
+                    <h2> Sidebar </h2>
                     <p>
                          Anyways I'm gonna start with the sidebar redesign because I have a lot to talk about this. This new design is a bit inspired
                          by this <a href="https://spectralvalleynationalpark.neocities.org/park">website's sidebar</a> design with it's news channel
@@ -69,14 +70,13 @@
                     <div class="post__code" data-prolang="scss">
 <pre class="post__code-text">
 $flicker-proximate: 100000;
-     @keyframes flicker {
-          @for $flicker-index from 0 through 20 {
-          $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
-          $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
+@keyframes flicker {
+     @for $flicker-index from 0 through 20 {
+     $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
+     $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
 
-          #{$flicker-sections} {
-               opacity: $flicker-vars;
-          }
+     #{$flicker-sections} {
+          opacity: $flicker-vars;
      }
 }
 </pre>
@@ -97,13 +97,107 @@ $flicker-proximate: 100000;
                     </p>
                     <p>
                          Finally applying those variables to their respective places, the <code>$flicker-sections</code> is placed at the marker, interpolated
-                         converting it into a real percentage marker. And the <code>$flicker-vars</code> is at the opacity values. 
+                         converting it into a real percentage marker. And the <code>$flicker-vars</code> is at the opacity values. Now with all of that explanation
+                         here's the converted code, to try and give you an idea:
+                    </p>
+                    <div class="post__code" data-prolang="css">
+<pre class="post__code-text">
+@keyframes flicker {
+     0%   { opacity: 0.66092; }
+     5%   { opacity: 0.63864; }
+     10%  { opacity: 0.9702;  }
+     15%  { opacity: 0.75368; }
+     20%  { opacity: 0.9673;  }
+     25%  { opacity: 0.26854; }
+     30%  { opacity: 0.88621; }
+     35%  { opacity: 0.53866; }
+     40%  { opacity: 0.47256; }
+     45%  { opacity: 0.82351; }
+     50%  { opacity: 0.00228; }
+     55%  { opacity: 0.37893; }
+     60%  { opacity: 0.58932; }
+     65%  { opacity: 0.0038;  }
+     70%  { opacity: 0.12685; }
+     75%  { opacity: 0.33917; }
+     80%  { opacity: 0.65031; }
+     85%  { opacity: 0.28364; }
+     90%  { opacity: 0.56818; }
+     95%  { opacity: 0.53418; }
+     100% { opacity: 0.38521; }
+}
+</pre>
+                    </div>
+                    <span class="post__notice">
+                         This code block will be updated with a newer design
+                    </span>
+                    <p>
+                         Yea it saves a lot of space.
+                    </p>
+                    <br>
+                    <p>
+                         Another thing you can see from my inspirations is the marquee behind the title in each sections of the sidebar. And it's actually easy
+                         to implement the overlapping of elements by just using the grid layout. 
+                    </p>
+                    <div class="post__code" data-prolang="html">
+<pre class="post__code-text">
+&lt;hgroup class&equals;"navigation__headbar"&gt;
+     &lt;h3 class&equals;"navigation__headbar-title">Navigation&lt;/h3&gt;
+     &lt;marquee class&equals;"navigation__headbar-marquee">Explore! • Explore! • Explore!&lt;/marquee&gt;
+&lt;/hgroup>
+</pre>
+                    </div>
+                    <span class="post__notice">
+                         This code block will be updated with a newer design
+                    </span>
+                    <p>
+                         Here we have an example on how implemented it, this HTML code has an element <code>hgroup</code> containing two child elements which will
+                         be overlapping eachother.
+                    </p>
+                    <div class="post__code" data-prolang="scss">
+<pre class="post__code-text">
+.navigation__headbar {
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: 1fr;
+     align-items: center; // added this visualize the overlapping by making the text center
+
+     & > * { // Supported now
+          grid-area: 1 / 1;
+     }
+}
+
+.navigation__headbar-title {
+     z-index: 1;
+     /* Insert CSS Stuff */
+}
+
+.navigation__headbar-marquee {
+     /* Insert CSS Stuff */
+}
+</pre>
+                    </div>
+                    <span class="post__notice">
+                         This code block will be updated with a newer design
+                    </span>
+                    <p>
+                         In CSS, convert the parent element, such as this <code>hgroup</code>, to a grid layout with both of its template columns and rows set to 
+                         <code>1fr</code>. Set the grid area of each child element to <code>1 / 1</code> to make the start and end of each column and row, set to
+                         <code>1</code>. Finally choose which child element's order by setting its z-index property. Boom your done!
+                    </p>
+                    <p>
+                         And also to clarify the nesting, it's actually supported to all browsers since 2023. Important to note that it is extremely different to 
+                         SCSS nesting, but I'm way too lazy to explain it right now. You can read this <a href="https://www.pivale.co/resources/blog/css-nesting">blog post</a> 
+                         I found, if you have the time. Also another thing try not to overnest your CSS code—enforce the three-level limit to make your code
+                         maintainable. Making it easier to read and understand, also makes it less uglier to look at.
+                    </p>
+                    <br>
+                    <p>
+                         
                     </p>
                     <h1> Javascripting Business </h1>
                     <p>
 
                     </p>
-                    <h1>  </h1>
                </article>
           </main>
      </article>

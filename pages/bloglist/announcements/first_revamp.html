@@ -275,9 +275,9 @@ $flicker-proximate: 100000;
                     </p>
                     <h2> Amy </h2>
                     <p>
-                         Remember Amy randomly dancing from left to right at the home page, I'm gonna explain how she works with her whole dancing movement. I promise you this is one
-                         of the more easier scripts to understand for dummies like you. But also you can use it in your very own website, with or without credit! Tho a bit of credit is
-                         nice tho. Anyways here's the script for Amy, It looks scary at first; Imma break it down for you.
+                         Remember how I added Amy randomly dancing in each direction at the home page. I'm gonna explain how she works with her whole dancing movement thingy, I'm promising
+                         you this is one of the most easier script to understand for dummies like you. And for the best part you can use this in your very own website, with or without credit!
+                         Tho a bit of credit will be nice tho. Anyways here's the script for Amy:
                     </p>
                     <div class="post__code" data-prolang="javascript">
 <pre class="post__code-text">
@@ -317,26 +317,51 @@ const intervalId &equals; setInterval(() &equals;&gt; {
                          <li>At line <code>9</code>, the <code>position</code> variable is the current position that Amy is in.</li>
                     </ul>
                     <p>
-                         Here at the <code>dancingMovement</code> variable is that main body of the script which is inside a <code>setInterval()</code> function, it basically just executes
-                         this peice of code within the first argument of the function. Which will execute the script at every 2500 milliseconds (2.5 seconds) intervals within the second argument 
-                         of the function.
+                         Now for the main part of the script which is the <code>dancingMovement</code> variable which holds a <code>setInterval()</code> function, that basically
+                         executes the given code at a fixed time interval. It contains two arguments, which are literal values that you passed towards a function. An arrow function
+                         that basically contains the main code and the delay time in which the code will execute in intervals. Which is 2500 milliseconds (2.5 seconds).
                     </p>
                     <p>
-                         In the main body of the <code>dancingMovement</code> variable, we have the <code>positionRancrement</code> randomizing from <code>-1</code> to <code>1</code>. Which will 
-                         be used to multiply by the <code>STEPS</code> variable which will be added and assign to the <code>position</code> variable. It will only do it, if the <code>positionRancrement</code>
-                         is not <code>0</code> in value; preventing a multiplication of <code>0</code> to the <code>position</code> value.
+                         The arrow function (the main code), we've got the <code>positionRancrement</code> variable that randomizes an integer value from <code>-1</code> to
+                         <code>1</code>. Which will be multiplied by the <code>STEPS</code> variable then added and assign to the <code>position</code> variable, determining which
+                         direction she'll go by its value added. It will only do this, if the <code>positionRancrement</code> variable is not <code>0</code>; preventing a multiplication 
+                         of <code>0</code>.
                     </p>
                     <p>
-                         For the last part we got a chain of <code>if</code> statements, first it checks if Amy is in a valid range of movement. If it is she will randomly move to any direction
-                         she desires. If not, she will move in the other way to remain within the valid range.
+                         At the last section we have <code>if</code> statement chain, it first checks whether Amy is within an acceptable range for movement. If it is she can randomly 
+                         move in any direction. Otherwise she will attempt to move in the opposite direction to a acceptable range for movement. To prevent her overflowing on other elements
+                         on the page.
                     </p>
-                    <p>
-                         That is everything how the Amy script go, hopefully you can understand my half-ass attempt of explaining it in detail while being consice. Now on to the most unintelligible
-                         part, in which you might not understand!
+                    <p>                         
+                         That's basically everything about this section, I just hope you understand my unintelligable half-ass attempt of explaining it to you guys. As for the dialogue
+                         hovering, it's basically just some CSS shenanigans. Just go to the SCSS file, since the CSS files are compressed for file saving purposes.
                     </p>
                     <h2> Bloglist </h2>
                     <p>
-                         
+                         Now this is the most complicated part of this section, because how complex the script is on how it generates the bloglist. And honestly I hate it, 
+                         I did not like coding this part, especially the pagination part. Because holy shit the amount of solving this specific problem was hard, yes it works properly
+                         but it's sloppily implemented and slightly has some performance issue. 
+                    </p>
+                    <p>
+                         So how does it work then? Well first it gets the respective bloglist jsons depending what section is in (i.e if it's on the announcements it will get the json of it).
+                         And will load the contents of the blogs onto the page itself, boom that's pretty much it. For the pagination, it is a completely different story.
+                    </p>
+                    <p>
+                         For this to work I made an array that stores the amount of pages within the bloglist. Then made an array that loops through the array that stores the pages, and gets
+                         three elements before, current, and after elements. Lastly made another array containing indices so that it can get the appropriate index, for the array to get and
+                         display the right pages. Then I apply all of these to their respective parts of the code blah blah blah.
+                    </p>
+                    <p>
+                         Honestly I don't like talking about this part, that's why it's short. And I'm also replacing the pagination it sucks I hate it looks stupid, I'm replacing it with
+                         an infinite scroll. By the use of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver">Intersection Observer API</a>, extremely good
+                         for lazy loading and infinite scrolls, and I can't wait to use it for my Javascript slop &#129316;.
+                    </p>
+                    <h1> Conclusion </h1>
+                    <p>
+                         That is all what I have to give you guys, that's probably my longest blog currently on this site. And sorry for how long I've made this blog post since I have to make
+                         some rewrites and adjustments. With the additions with stuff happening with my life right now, basically just focusing. For now you can expect some small updates coming
+                         to tthis site throughout the day. Another thing, this site is still being <q>maintained</q> and I will update the Neocitiy site to the current version of this after 
+                         <q>maintenance</q> is done. I promise bro, just trust me.
                     </p>
                </article>
           </main>

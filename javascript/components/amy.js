@@ -1,19 +1,19 @@
 import { getRandomInt } from "../modules/shortcuts.js";
 
+const LIMIT = 60
+const STEPS = 10
 const amy = document.querySelector('.music__album-amy')
 
-const LIMIT = 60
-const MULTIPLY = 10
 let position = 0
-const intervalId = setInterval(() => {
+const dancingMovement = setInterval(() => {
      let positionRancrement = getRandomInt(-1, 1)
      if (positionRancrement != 0) {
-          position += positionRancrement * MULTIPLY
+          position += positionRancrement * STEPS
      }
 
      if (position >= -LIMIT && position <= LIMIT) {
           amy.style.transform = `translateX(${position}px)`
      } else if (position <= -LIMIT || position >= LIMIT) {
-          position -= positionRancrement * MULTIPLY
+          position -= positionRancrement * STEPS
      }
 }, 2500);

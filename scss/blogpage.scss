@@ -175,7 +175,7 @@ body {
                     font-family: sc.$fancy-font;
                     font-size: 1rem;
                     text-wrap: pretty;
-                    text-align: justify;
+                    text-align: start;
                     text-rendering: optimizeSpeed;
                }
 
@@ -222,7 +222,7 @@ body {
                     margin-block: 15px;
 
                     li {
-                         margin-block: 3px;
+                         margin-block: 8px;
                     }
                }
 

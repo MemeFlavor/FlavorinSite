@@ -42,7 +42,7 @@
                     </p>
                     <p>
                          This blog post might be a bit more technical in what I'm saying. I'll definitely try my best to make it more understanable
-                         and concise for you guys. Or probably not, I'm note sure really. This will be explained by 2 sections the part 
+                         and concise for you guys. Or probably not, I'm not sure really. This will be explained by 2 sections the part 
                          <q>Redesigning and Restructuring</q> and <q>Javascripting Business</q>, self-explanatory by the title alone.
                     </p>
                     <h1> Redesigning and Restructuring </h1>
@@ -153,7 +153,7 @@ $flicker-proximate: 100000;
                          Here we have an example on how implemented it, this HTML code has an element <code>hgroup</code> containing two child elements which will
                          be overlapping eachother.
                     </p>
-                    <div class="post__code" data-prolang="scss">
+                    <div class="post__code" data-prolang="css">
 <pre class="post__code-text">
 .navigation__headbar {
      display: grid;
@@ -161,7 +161,7 @@ $flicker-proximate: 100000;
      grid-template-rows: 1fr;
      align-items: center; // added this visualize the overlapping by making the text center
 
-     & > * { // Supported now
+     & > * {
           grid-area: 1 / 1;
      }
 }
@@ -192,11 +192,151 @@ $flicker-proximate: 100000;
                     </p>
                     <br>
                     <p>
-                         
+                         For the navigation list, it has significantly improved greatly. Each item now only has one element, previously it contains another element
+                         which basically represent the side block decoration attached to the item. Now it uses a psuedo-element <code>::before</code> to represent 
+                         the side block. It basically just injects an element that is the first child of the selected element.
+                    </p>
+                    <div class="post__code" data-prolang="scss">
+<pre class="post__code-text">
+.item {
+     position: relative;
+
+     &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          width: 8px;
+          height: calc(1rem + 9px);
+     }
+}
+</pre>
+                    </div>
+                    <span class="post__notice">
+                         This code block will be updated with a newer design
+                    </span>
+                    <p>
+                         The way I did was pretty simple, you add the content property to the psuedo-element so that the element can be displayed, this is important. 
+                         I made the element have its position set to <code>relative</code>. The reason being for the psuedo-element positioned relative to the nearest 
+                         positioned ancestor, since it's position value is set to <code>absolute</code>. Alongside setting its position properties (i.e top, bottom, etc) 
+                         with their given values and adding the width and height properties respectively. 
+                    </p>
+                    <br>
+                    <p>
+                        That's pretty much all of the major design changes I've given to the sidebar, and I think it's of the best design I made for this stupid website.
+                        There's gonna be slightly new design changes in the future but it's mostly some minor stuff. Nothing anything major for the designs.
+                    </p>
+                    <h2> Home Page </h2>
+                    <p>
+                         The home page has some simpler changes, it's just some restructuring with the <q>Flavorlicious Goodies!</q> section. It still has the blogs and
+                         projects (wip) sections, but more noticeable the music section is back. I was actually thinking of scrapping the entire of having a music section,
+                         since Neocities doesn't support music file format, if you're not a supporter. Which requires money, which I'm poor and I can't afford it. Even If 
+                         I had the money to be a supporter, I need a steady source of income; I don't have a job.
+                    </p>
+                    <p>
+                         I also thought about making the music section only available to Github Pages, since it doesn't block any music file types. Just as long as it isn't
+                         like copyrighted music, which is a very smart workaround might I add. Unfortunately I like having small sizes for my files, in order to not hit the
+                         1GB limit of free space in Neocities. Despite all of that, I discovered the best way to add music in my site. It's using the Youtube Iframe Player API
+                         which is way more better solution than the last one.
+                    </p>
+                    <p>
+                         It saves tons of megabytes downloading compressed music files into my website, but the only caveats is the stupid Javascript that I have to endure. Which
+                         I can endure the amount of bullshit debugging and stupid bug fixes I have to do, and I hope to god it actually works like what I imagined to be.
+                         Anyways I also added Amy dancing to the beat that doesn't exist, and when you hover she says:
+                    </p>
+                    <blockquote>
+                         <q>
+                              <span style="color:#6644aa">COOL</span> 
+                              <span style="color:#ee44cc">SWEET</span> 
+                              <span style="color:#23ee66">&</span> 
+                              <span style="color:#ee8823">CATCHY!</span>
+                         </q>
+                    </blockquote>
+                    <p>
+                         That's pretty cute right? That Amy sprite came from Knuckles' Choatix on the sound test where she makes a cameo as an unlockable secret. By setting the 
+                         first nine MARS color test values to <code>0, 06 0B 11</code> and <code>8 17</code>, which will unlock her. All she does is dance left to right randomly,
+                         which I obviously recreate with Javascript. But I'm not sure it's accurate enough, but hey it's close enough I guess.
+                    </p>
+                    <br>
+                    <p>
+                         In addition I also change the header of the home page, I remove the big ass header image and my totatally tuff profile picture. I replaced it with a small
+                         main header image on the left, which is a WIP progress at the moment. Don't worry I'll redesign it later, and at the right we got some sonic characters. We
+                         got my GOAT Metal Sonic, your favorite pal <q>Sonic</q>, and mostly importantly Amy.
+                    </p>
+                    <p>
+                         Why them? well they're featured in Sonic CD, which is the game I like and extremely interested in. I can explain why I like it, but explaining it will take
+                         way more time. Even when I try to summarize in my best of my abilities, it is still way too long. Maybe in another time when I get the chance to do so.
                     </p>
                     <h1> Javascripting Business </h1>
                     <p>
+                         Now for the most technical part of this blog, the Javascript shenanigans happening on this site of mine. I've basically organize the Javascript folder to make
+                         it more modular, just making the code into smaller components so those can be reused later somewhere on this site. Just to make more maintainable and bearable
+                         in the long run. I'll be explaining the more simpler scripts to the more complicated ones, so everyone is in the same path as me. Just think of it a scuffed 
+                         Javascript tutorial, which I'll probably make a proper one in the future. Fuck it maybe a Youtube video, if I'm feeling like it and got the setup.
+                    </p>
+                    <h2> Amy </h2>
+                    <p>
+                         Remember Amy randomly dancing from left to right at the home page, I'm gonna explain how she works with her whole dancing movement. I promise you this is one
+                         of the more easier scripts to understand for dummies like you. But also you can use it in your very own website, with or without credit! Tho a bit of credit is
+                         nice tho. Anyways here's the script for Amy, It looks scary at first; Imma break it down for you.
+                    </p>
+                    <div class="post__code" data-prolang="javascript">
+<pre class="post__code-text">
+function getRandomInt(min, max) {
+     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+const LIMIT &equals; 60
+const STEPS &equals; 10
+const amy &equals; document.querySelector('.music__album-amy')
+
+let position &equals; 0
+const intervalId &equals; setInterval(() &equals;&gt; {
+     let positionRancrement &equals; getRandomInt(-1, 1)
+     if (positionRancrement !&equals; 0) {
+          position +&equals; positionRancrement * STEPS
+     }
+
+     if (position &gt;&equals; -LIMIT && position &lt;&equals; LIMIT) {
+          amy.style.transform &equals; `translateX(${position}px)`
+     } else if (position &lt;&equals; -LIMIT || position &gt;&equals; LIMIT) {
+          position -&equals; positionRancrement * STEPS
+     }
+}, 2500);
+</pre>
+                    </div>
+                    <span class="post__notice">
+                         This code block will be updated with a newer design
+                    </span>
+                    <p>
+                         Let's focus on the variables first, specifically the variables at the top of the script. 
+                    </p>
+                    <ul>
+                         <li>At line <code>5</code>, the <code>LIMIT</code> variable tells the allowed range will Amy move throughout the script.</li>
+                         <li>At line <code>6</code>, the <code>STEPS</code> variable tells how much the step amount will Amy move throughout the script.</li>
+                         <li>At line <code>7</code>, the <code>amy</code> variable just gets the element where Amy is at.</li>
+                         <li>At line <code>9</code>, the <code>position</code> variable is the current position that Amy is in.</li>
+                    </ul>
+                    <p>
+                         Here at the <code>dancingMovement</code> variable is that main body of the script which is inside a <code>setInterval()</code> function, it basically just executes
+                         this peice of code within the first argument of the function. Which will execute the script at every 2500 milliseconds (2.5 seconds) intervals within the second argument 
+                         of the function.
+                    </p>
+                    <p>
+                         In the main body of the <code>dancingMovement</code> variable, we have the <code>positionRancrement</code> randomizing from <code>-1</code> to <code>1</code>. Which will 
+                         be used to multiply by the <code>STEPS</code> variable which will be added and assign to the <code>position</code> variable. It will only do it, if the <code>positionRancrement</code>
+                         is not <code>0</code> in value; preventing a multiplication of <code>0</code> to the <code>position</code> value.
+                    </p>
+                    <p>
+                         For the last part we got a chain of <code>if</code> statements, first it checks if Amy is in a valid range of movement. If it is she will randomly move to any direction
+                         she desires. If not, she will move in the other way to remain within the valid range.
+                    </p>
+                    <p>
+                         That is everything how the Amy script go, hopefully you can understand my half-ass attempt of explaining it in detail while being consice. Now on to the most unintelligible
+                         part, in which you might not understand!
+                    </p>
+                    <h2> Bloglist </h2>
+                    <p>
+                         
                     </p>
                </article>
           </main>

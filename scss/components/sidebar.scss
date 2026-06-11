@@ -202,6 +202,8 @@ body .sidebar {
                     --navigation-current-margin-left: 0px;
                     --navigation-current-sideblock-visibility: none;
                     cursor: not-allowed;
+                    border-radius: 0;
+                    outline: 1px solid currentColor;
                }
           }
      
@@ -217,12 +219,12 @@ body .sidebar {
                     color: var(--navigation-text-hover-color);
                     @include sc.gradient(45deg, var(--navigation-primary-hover-color) 0%, var(--navigation-secondary-hover-color) 100%);
      
-                    &::after {
+                    &::before {
                          background-color: var(--navigation-primary-hover-color);
                     }
                }
      
-               &::after {
+               &::before {
                     content: "";
                     display: var(--navigation-current-sideblock-visibility);
                     background-color: var(--navigation-primary-color);

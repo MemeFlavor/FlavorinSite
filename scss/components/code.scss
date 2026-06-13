@@ -1,0 +1,74 @@
+body .post {
+     &__code {
+          --syntax-highlight-variables: hsl(0, 0%, 100%);
+          --syntax-highlight-keywords: hsl(1, 100%, 79%);
+          --syntax-highlight-operators: hsl(1, 100%, 79%);
+          --syntax-highlight-string: hsl(208, 100%, 78%);
+          --syntax-highlight-number: hsl(208, 100%, 78%);
+          --syntax-highlight-boolean: hsl(208, 100%, 78%);
+          --syntax-highlight-null: hsl(208, 100%, 78%);
+          --syntax-highlight-undefined: hsl(208, 100%, 78%);
+          --syntax-highlight-comments: hsl(212, 13%, 77%);
+          --syntax-highlight-function-declared: hsl(270, 100%, 86%);
+          --syntax-highlight-function-called: hsl(208, 100%, 78%);
+          --syntax-highlight-parameters: hsl(34, 100%, 65%);
+          --syntax-highlight-vargs: hsl(208, 100%, 78%);
+          --syntax-highlight-escape-characters: hsl(1, 100%, 79%);
+          --syntax-highlight-pattern-characters: hsl(168, 55%, 54%);
+
+          // CSS & SCSS
+          &[data-prolang="css"], &[data-prolang="scss"] {
+               --syntax-highlight-variables: hsl(34, 100%, 65%);
+          }
+
+          --syntax-highlight-selector: hsl(208, 100%, 78%);
+          --syntax-highlight-property: hsl(208, 100%, 78%);
+          --syntax-highlight-units: hsl(1, 100%, 79%);
+
+          // HTML
+          --syntax-highlight-element: hsl(118, 100%, 78%);
+          --syntax-highlight-attribute: hsl(208, 100%, 78%);
+          --syntax-highlight-value: hsl(208, 100%, 78%);
+
+          // Nesting
+          --syntax-highlight-nest-level-1: hsl(208, 100%, 78%);
+          --syntax-highlight-nest-level-2: hsl(132, 73%, 57%);
+          --syntax-highlight-nest-level-3: hsl(46, 93%, 58%);
+          --syntax-highlight-nest-level-4: hsl(2, 62%, 76%);
+          --syntax-highlight-nest-level-5: hsl(331, 80%, 80%);
+          --syntax-highlight-nest-level-6: hsl(271, 88%, 84%);
+     }
+
+     &__code-body {
+          code-var   { color: var(--syntax-highlight-variables);          }
+          code-kyw   { color: var(--syntax-highlight-keywords);           }
+          code-ope   { color: var(--syntax-highlight-operators);          }
+          code-str   { color: var(--syntax-highlight-string);             }
+          code-num   { color: var(--syntax-highlight-number);             }
+          code-boo   { color: var(--syntax-highlight-boolean);            }
+          code-nul   { color: var(--syntax-highlight-null);               }
+          code-und   { color: var(--syntax-highlight-und);                }
+          code-com   { color: var(--syntax-highlight-comments);           }
+          code-funcD { color: var(--syntax-highlight-function-declared);  }
+          code-funcC { color: var(--syntax-highlight-function-called);    }
+          code-para  { color: var(--syntax-highlight-parameters);         }
+          code-vargs { color: var(--syntax-highlight-vargs);              }
+          code-esc   { color: var(--syntax-highlight-escape-characters);  }
+          code-ptr   { color: var(--syntax-highlight-pattern-characters); }
+
+          code-sel { color: var(--syntax-highlight-selector);  }
+          code-pro { color: var(--syntax-highlight-property);  }
+          code-unt { color: var(--syntax-highlight-units);     }
+
+          code-elm { color: var(--syntax-highlight-elements);  }
+          code-att { color: var(--syntax-highlight-attribute); }
+          code-val { color: var(--syntax-highlight-value);     }
+
+          code-nest1  { color: var(--syntax-highlight-nest-level-1); }
+          code-nest2  { color: var(--syntax-highlight-nest-level-2); }
+          code-nest3  { color: var(--syntax-highlight-nest-level-3); }
+          code-nest4  { color: var(--syntax-highlight-nest-level-4); }
+          code-nest5  { color: var(--syntax-highlight-nest-level-5); }
+          code-nest6  { color: var(--syntax-highlight-nest-level-6); }
+     }
+}

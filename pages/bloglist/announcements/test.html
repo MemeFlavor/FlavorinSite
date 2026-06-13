@@ -14,6 +14,7 @@
      <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
      <link rel="stylesheet" type="text/css" href="css/reset.css">
      <link rel="stylesheet" type="text/css" href="css/blogpage.css">
+     <link rel="stylesheet" type="text/css" href="css/components/code.css">
      <script type="module" defer src="javascript/components/fullscreen.js"></script>
      <script type="module" defer src="javascript/components/breadcrumbs.js"></script>
      <script type="module" defer src="javascript/components/code.js"></script>
@@ -78,16 +79,19 @@
                               <span>99</span>
                          </div>
 <pre class="post__code-body">
-$flicker-proximate: 100000;
-@keyframes flicker {
-     @for $flicker-index from 0 through 20 {
-     $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
-     $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
+<code-kyw>@use</span> <code-str>"sass:math"</code-kyw>;
 
-     #{$flicker-sections} {
-          opacity: $flicker-vars;
-     }
-}a;iiduaio;fduyweo;ufyweofuywefiouowyefiuewyfiuweyfiuweyfiuweuyfiwueueyfiwuefyweiufyweiufyweiufyweiufyweieufyweiufyweifuywefiuywefiu
+<code-var>$flicker-proximate</code-var>: <code-num>100000</code-num>;
+<code-kyw>@keyframes</code-kyw> <code-funcD>flicker</code-funcD> <code-nest1>{</code-nest1>
+     <code-kyw>@for</code-kyw> <code-var>$flicker-index</code-var> <code-kyw>from</code-kyw> <code-num>0</code-num> <code-kyw>through</code-kyw> <code-num>20</code-num> <code-nest2>{</code-nest2>
+          <code-var>$flicker-sections</code-var>: <code-var>math</code-var>.<code-funcC>percentage</code-funcC><code-nest3>(</code-nest3><code-var>math</code-var>.<code-funcC>div</code-funcC><code-nest4>(</code-nest4><code-num>5</code-num> <code-ope>*</code-ope> <code-var>$flicker-index</code-var>, <code-num>100</code-num><code-nest4>)</code-nest4><code-nest3>)</code-nest3>;
+          <code-var>$flicker-vars</code-var>: <code-var>math</code-var>.<code-funcC>div</code-funcC><code-nest3>(</code-nest3><code-var>math</code-var>.<code-funcC>random</code-funcC><code-nest4>(</code-nest4><code-var>$flicker-proximate</code-var><code-nest4>)</code-nest4>, <code-var>$flicker-proximate</code-var><code-nest3>)</code-nest3>;
+
+          <code-kyw>#</code-kyw><code-kyw>{</code-kyw><code-var>$flicker-sections</code-var><code-kyw>}</code-kyw> <code-nest3>{</code-nest3>
+               <code-pro>opacity</code-pro>: <code-var>$flicker-vars</code-var>;
+          <code-nest3>}</code-nest3>
+     <code-nest2>}</code-nest2>
+<code-nest1>}</code-nest1>
 </pre>
                     </div>
                     <h1> Common Elements </h1>
@@ -150,7 +154,7 @@ $flicker-proximate: 100000;
      #{$flicker-sections} {
           opacity: $flicker-vars;
      }
-}a;iiduaio;fduyweo;ufyweofuywefiouowyefiuewyfiuweyfiuweyfiuweuyfiwueueyfiwuefyweiufyweiufyweiufyweiufyweieufyweiufyweifuywefiuywefiu
+}
 </pre>
                     </div>
                     <p>

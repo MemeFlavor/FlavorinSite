@@ -3,7 +3,7 @@
 <head>
      <title> MemeFlavor - Blog • First Revamp </title>
      <base href="../../../">
-     <meta charset="UTF-8">
+     <meta chpostCodeBodyt="UTF-8">
      <meta name="description" content="The flavorous site to exist! I think, maybe" />
      <meta name="keywords" content="delicious, flavor, gaming, coding, programming, sonic, asexual" />
      <meta name="author" content="MemeFlavor" />
@@ -16,6 +16,7 @@
      <link rel="stylesheet" type="text/css" href="css/blogpage.css">
      <script type="module" defer src="javascript/components/fullscreen.js"></script>
      <script type="module" defer src="javascript/components/breadcrumbs.js"></script>
+     <script type="module" defer src="javascript/components/code.js"></script>
 </head>
 <body>
      <article id="flavory-content">
@@ -74,7 +75,7 @@
                     </p>
                     <div class="post__code" data-prolang="scss">
                          <div class="post__code-lines">
-                              <span>&nbsp;</span>
+                              <span>99</span>
                          </div>
 <pre class="post__code-body">
 $flicker-proximate: 100000;
@@ -137,7 +138,7 @@ $flicker-proximate: 100000;
                     </p>
                     <div class="post__code" data-prolang="scss">
                          <div class="post__code-lines">
-                              <span>&nbsp;</span>
+                              <span>99</span>
                          </div>
 <pre class="post__code-body">
 $flicker-proximate: 100000;
@@ -194,7 +195,7 @@ $flicker-proximate: 100000;
                     </p>
                     <div class="post__code" data-prolang="scss">
                          <div class="post__code-lines">
-                              <span>&nbsp;</span>
+                              <span>99</span>
                          </div>
 <pre class="post__code-body">
 @keyframes flicker {
@@ -225,34 +226,5 @@ $flicker-proximate: 100000;
                </article>
           </main>
      </article>
-     <script>
-          const are = document.querySelectorAll('.post__code-body')[0]
-
-          const arse = document.querySelectorAll('.post__code-body')
-          for (let index = 0; index < arse.length; index++) {
-               const element = arse[index];
-               
-               const observer = new IntersectionObserver((entries) => {
-                    const self = entries[0]
-                    if (self.isIntersecting) {
-                         const yu = document.querySelectorAll('.post__code-lines')[index]
-
-                         const yue = element.textContent.match(/\n/g)
-                         const juy = Object.keys(yue).map((element, index1) => index1 + 1)
-
-                         for (let index1 = 0; index1 < juy.length; index1++) {
-                              const element = juy[index1];
-                              yu.innerHTML += `<span>${element}</span>`
-                         }
-                         yu.firstElementChild.remove();
-
-                         console.log(index)
-                         observer.unobserve(self.target);
-                    }
-               }, {})
-               observer.observe(element) 
-          }
-
-     </script>
 </body>
 </html>

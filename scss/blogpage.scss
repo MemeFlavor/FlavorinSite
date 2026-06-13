@@ -132,18 +132,33 @@ body {
           }
 
           &__code {
+               display: flex;
+               flex-direction: row;
+               font-family: 'Fira Code', sc.$standard-code-font;
+               font-size: 0.8rem;
+               line-height: 1.3rem;
                background-color: hsl(0, 0%, 7%);
                margin: 15px;
           }
 
-          &__code-text {
+          &__code-body, &__code-lines {
+               padding-block: 10px;
+          }
+
+          &__code-body {
                white-space: pre;
                overflow-x: auto;
                tab-size: 5;
-               font-family: 'Fira Code', sc.$standard-code-font;
-               font-size: 0.8rem;
-               line-height: 1.3rem;
-               padding: 10px 15px;
+               text-rendering: optimizeSpeed;
+               padding-right: 15px;
+               scrollbar-color: hsl(0, 0%, 14%) hsl(0, 0%, 7%);
+          }
+
+          &__code-lines {
+               display: flex;
+               flex-direction: column;
+               text-align: left;
+               margin-inline: 25px;
           }
 
           &__notice {

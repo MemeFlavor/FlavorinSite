@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title> MemeFlavor - Blog • First Revamp </title>
+     <base href="../../../">
+     <meta charset="UTF-8">
+     <meta name="description" content="The flavorous site to exist! I think, maybe" />
+     <meta name="keywords" content="delicious, flavor, gaming, coding, programming, sonic, asexual" />
+     <meta name="author" content="MemeFlavor" />
+     <meta name="language" content="EN" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="color-scheme" content="dark" />
+     <meta name="robots" content="noindex">
+     <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
+     <link rel="stylesheet" type="text/css" href="css/reset.css">
+     <link rel="stylesheet" type="text/css" href="css/blogpage.css">
+     <script type="module" defer src="javascript/components/fullscreen.js"></script>
+     <script type="module" defer src="javascript/components/breadcrumbs.js"></script>
+</head>
+<body>
+     <article id="flavory-content">
+          <main class="post">
+               <dialog class="post__fullscreen"> <!-- Script Needed -->
+                    <img src="images/buttons/exit.png" alt="Exit Button" class="post__fullscreen-exit" width="42" height="42">
+                    <img class="post__fullscreen-image">
+               </dialog>
+               <hgroup class="post__headbar">
+                    <div class="post__headbar-back">
+                         <span class="post__headbar-back-arrows">&lt;&lt;</span>
+                         <a href="pages/blogs/announcements.html" class="post__headbar-back-link">Back</a>
+                    </div>
+                    <h1 class="post__headbar-title">First Revamp</h1>
+                    <div class="post__headbar-breadcrumbs"></div>
+               </hgroup>
+               <article class="post__body">
+                    <p>
+                         Five Nights at Freddy's (FNaF) is a video game series and media franchise created by Scott Cawthon that includes video
+                         games, novels, graphic novels, and films. The story arcs typically follow a night guard or other character trying to
+                         survive from midnight to 6 a.m. for five levels, called "nights", while fending off attacks from homicidal animatronic
+                         characters. Each game is set in a different location connected to a fictional pizza restaurant franchise called "Freddy
+                         Fazbear's Pizza". The core gameplay mechanics involve using tools effectively and managing limited resources to avoid
+                         being caught by the animatronics.
+                    </p>
+                    <p>
+                         Cawthon conceived the idea for the first video game after his family-friendly resource management game, Chipper & Sons
+                         Lumber Co., was criticized for the resemblance of its characters to frightening animatronics. Responding to this
+                         feedback, he developed a game that focused on horror. Released in August 2014, the game's success prompted the
+                         development of its sequels. Cawthon created most of the games himself using game engine Clickteam Fusion, but partnered
+                         with Steel Wool Studios to create various entries in the series, including an open-world game and a virtual reality
+                         anthology. Several spin-offs were created in collaboration with groups such as Illumix and Mega Cat Studios.
+                    </p>
+                    <p>
+                         The series has had mixed critical reception, with praise for its storytelling and atmosphere but criticism for its
+                         gameplay. It has achieved significant commercial success, with merchandise available internationally. The franchise has
+                         garnered a cult following that produces numerous forms of fan media.
+                    </p>
+                    <h1> Origin and Development </h1>
+                    <p>
+                         The concept for Five Nights at Freddy's stemmed from the negative reception of Scott Cawthon's earlier game, Chipper &
+                         Sons Lumber Co.,[1] where players said that the main character resembled a "scary animatronic animal."[2] Initially
+                         discouraged by the criticism, Cawthon, who had predominantly created Christian-oriented games, leveraged this feedback
+                         to develop something intentionally frightening.[1] Five Nights at Freddy's was released on August 8, 2014, via
+                         Desura,[3] followed by a Steam release after gaining approval through the crowdsourcing platform Greenlight.[4] The game
+                         rapidly gained popularity after being showcased by prominent YouTubers.[2]
+                    </p>
+                    <p>
+                         Following its success, the franchise expanded rapidly, earning a Guinness World Record for "most video game sequels in a
+                         single year" for the games released between August 2014 and June 2015.[5] Cawthon used Clickteam Fusion 2.5 for game
+                         development and Autodesk 3ds Max for 3D graphics.[6] Since Help Wanted in 2019, Cawthon has worked with game development
+                         company Steel Wool Studios.[7][8] Ports for Five Nights at Freddy's, Five Nights at Freddy's 2, Five Nights at Freddy's
+                         3, and Five Nights at Freddy's 4 on PlayStation 4, Xbox One, and Nintendo Switch were released on November 29, 2019.[9]
+                         In 2021, following backlash regarding donations to members of the Republican Party, Cawthon announced his retirement
+                         from the franchise, stating that someone of his choosing would be "running the show" from then on.[10]
+                    </p>
+                    <div class="post__code" data-prolang="scss">
+                         <div class="post__code-lines">
+                              <span>&nbsp;</span>
+                         </div>
+<pre class="post__code-body">
+$flicker-proximate: 100000;
+@keyframes flicker {
+     @for $flicker-index from 0 through 20 {
+     $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
+     $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
+
+     #{$flicker-sections} {
+          opacity: $flicker-vars;
+     }
+}a;iiduaio;fduyweo;ufyweofuywefiouowyefiuewyfiuweyfiuweyfiuweuyfiwueueyfiwuefyweiufyweiufyweiufyweiufyweieufyweiufyweifuywefiuywefiu
+</pre>
+                    </div>
+               </article>
+          </main>
+     </article>
+     <script>
+          const are = document.querySelectorAll('.post__code-body')[0]
+
+          const yue = are.textContent.match(/\n/g)
+          const juy = Object.keys(yue).map((element, index) => index + 1)
+
+          for (let index = 0; index < juy.length; index++) {
+               const element = juy[index];               
+               document.querySelectorAll('.post__code-lines')[0].innerHTML += `<span>${element}</span>`
+          }
+          document.querySelectorAll('.post__code-lines')[0].firstElementChild.remove();
+     </script>
+</body>
+</html>

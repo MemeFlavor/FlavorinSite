@@ -133,22 +133,41 @@ body {
           }
 
           &__code {
-               display: flex;
-               flex-direction: row;
                font-size: 0.8rem;
                line-height: 1.3rem;
-               background-color: hsl(0, 0%, 2%);
                margin: 15px;
           }
 
-          &__code-lines, &__code-body {
+          &__code-headbar {
+               display: flex;
+               flex-direction: row;
+               justify-content: space-between;
+               font-family: sc.$fancy-font;
+               font-weight: 800;
+               background-color: #4f4eff;
+               width: 100%;
+               padding: 5px 10px;
+          }
+
+          &__code-headbar-title {
+               font-size: 1.1rem;
+          }
+
+          &__code-headbar-prolang {
+               font-size: 0.85rem;
+          }
+
+          &__code-body {
+               display: flex;
+               flex-direction: row;
+               font-family: 'Fira Code', sc.$standard-code-font;
+               background-color: hsl(0, 0%, 2%);
                padding-block: 10px;
           }
 
           &__code-lines {
                display: flex;
                flex-direction: column;
-               font-family: 'Fira Code', sc.$standard-code-font;
                text-align: right;
                color: silver;
                margin-inline: 25px;
@@ -159,7 +178,6 @@ body {
                white-space: pre;
                overflow-x: auto;
                tab-size: 5;
-               font-family: 'Fira Code', sc.$standard-code-font;
                text-rendering: optimizeLegibility;
                padding-right: 15px;
                scrollbar-color: hsl(0, 0%, 14%) hsl(0, 0%, 7%);

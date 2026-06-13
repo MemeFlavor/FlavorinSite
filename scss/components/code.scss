@@ -1,6 +1,21 @@
 body .post {
      &__code {
+          &[data-prolang="scss"] .post__code-headbar {
+               background-color: #cd669a;
+          }
+          &[data-prolang="css"] .post__code-headbar {
+               background-color: rebeccapurple;
+          }
+          &[data-prolang="html"] .post__code-headbar {
+               background-color: #e54c21;
+          }
+          &[data-prolang="js"] .post__code-headbar {
+               background-color: #f0dc4e;
+               color: black;
+          }
+
           --syntax-highlight-variables: hsl(0, 0%, 100%);
+          --syntax-highlight-const: hsl(208, 100%, 78%);
           --syntax-highlight-keywords: hsl(1, 100%, 79%);
           --syntax-highlight-operators: hsl(1, 100%, 79%);
           --syntax-highlight-string: hsl(208, 100%, 78%);
@@ -10,11 +25,12 @@ body .post {
           --syntax-highlight-undefined: hsl(208, 100%, 78%);
           --syntax-highlight-comments: hsl(212, 13%, 77%);
           --syntax-highlight-function-declared: hsl(270, 100%, 86%);
-          --syntax-highlight-function-called: hsl(208, 100%, 78%);
+          --syntax-highlight-function-called: hsl(270, 100%, 86%);
           --syntax-highlight-parameters: hsl(34, 100%, 65%);
           --syntax-highlight-vargs: hsl(208, 100%, 78%);
           --syntax-highlight-escape-characters: hsl(1, 100%, 79%);
           --syntax-highlight-pattern-characters: hsl(168, 55%, 54%);
+          --syntax-highlight-object: hsl(208, 100%, 78%);
 
           // CSS & SCSS
           &[data-prolang="css"], &[data-prolang="scss"] {
@@ -43,6 +59,7 @@ body .post {
 
      &__code-body {
           code-var   { color: var(--syntax-highlight-variables);          }
+          code-con   { color: var(--syntax-highlight-const);              }
           code-kyw   { color: var(--syntax-highlight-keywords);           }
           code-ope   { color: var(--syntax-highlight-operators);          }
           code-str   { color: var(--syntax-highlight-string);             }
@@ -57,6 +74,7 @@ body .post {
           code-vargs { color: var(--syntax-highlight-vargs);              }
           code-esc   { color: var(--syntax-highlight-escape-characters);  }
           code-ptr   { color: var(--syntax-highlight-pattern-characters); }
+          code-obj   { color: var(--syntax-highlight-object);             }
 
           code-selC { color: var(--syntax-highlight-selector-custom);  }
           code-selE { color: var(--syntax-highlight-selector-element); }

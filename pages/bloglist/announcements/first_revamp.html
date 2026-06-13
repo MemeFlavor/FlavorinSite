@@ -70,10 +70,15 @@
                          (trust me).
                     </p>
                     <div class="post__code" data-prolang="scss">
-                         <div class="post__code-lines">
-                              <span>99</span>
-                         </div>
-<pre class="post__code-body">
+                         <hgroup class="post__code-headbar">
+                              <span class="post__code-headbar-title">Flavor Code</span>
+                              <span class="post__code-headbar-prolang">SCSS</span>
+                         </hgroup>
+                         <div class="post__code-body">
+                              <div class="post__code-lines">
+                                   <span>99</span>
+                              </div>
+<pre class="post__code-text">
 <code-kyw>@use</span> <code-str>"sass:math"</code-kyw>;
 
 <code-var>$flicker-proximate</code-var>: <code-num>100000</code-num>;
@@ -88,6 +93,7 @@
      <code-nest2>}</code-nest2>
 <code-nest1>}</code-nest1>
 </pre>
+                         </div>
                     </div>
                     <p>
                          
@@ -105,11 +111,16 @@
                          converting it into a real percentage marker. And the <code>$flicker-vars</code> is at the opacity values. Now with all of that explanation
                          here's the converted code, to try and give you an idea:
                     </p>
-                    <div class="post__code" data-prolang="scss">
-                         <div class="post__code-lines">
-                              <span>99</span>
-                         </div>
-<pre class="post__code-body">
+                    <div class="post__code" data-prolang="css">
+                         <hgroup class="post__code-headbar">
+                              <span class="post__code-headbar-title">Flavor Code</span>
+                              <span class="post__code-headbar-prolang">CSS</span>
+                         </hgroup>
+                         <div class="post__code-body">
+                              <div class="post__code-lines">
+                                   <span>99</span>
+                              </div>
+<pre class="post__code-text">
 <code-kyw>@keyframes</code-kyw> <code-funcD>flicker</code-funcD> <code-nest1>{</code-nest1>
      <code-selC>0%</code-selC>   <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.66092</code-num>; <code-nest2>}</code-nest2>
      <code-selC>5%</code-selC>   <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.63864</code-num>; <code-nest2>}</code-nest2>
@@ -134,6 +145,7 @@
      <code-selC>100%</code-selC> <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.38521</code-num>; <code-nest2>}</code-nest2>
 <code-nest1>}</code-nest1>
 </pre>
+                         </div>
                     </div>
                     <p>
                          Yea it saves a lot of space.
@@ -144,25 +156,36 @@
                          to implement the overlapping of elements by just using the grid layout. 
                     </p>
                     <div class="post__code" data-prolang="html">
-                         <div class="post__code-lines">
-                              <span>99</span>
-                         </div>
-<pre class="post__code-body">
+                         <hgroup class="post__code-headbar">
+                              <span class="post__code-headbar-title">Flavor Code</span>
+                              <span class="post__code-headbar-prolang">HTML</span>
+                         </hgroup>
+                         <div class="post__code-body">
+                              <div class="post__code-lines">
+                                   <span>99</span>
+                              </div>
+<pre class="post__code-text">
 &lt;<code-elm>hgroup</code-elm> <code-att>class</code-att>&equals;<code-val>"navigation__headbar"</code-val>&gt;
      &lt;<code-elm>h3</code-elm> <code-att>class</code-att>&equals;<code-val>"navigation__headbar-title"</code-val>>Navigation&lt;/<code-elm>h3</code-elm>&gt;
      &lt;<code-elm>marquee</code-elm> <code-att>class</code-att>&equals;<code-val>"navigation__headbar-marquee"</code-val>>Explore! • Explore! • Explore!&lt;/<code-elm>marquee</code-elm>&gt;
 &lt;/<code-elm>hgroup</code-elm>>
 </pre>
+                         </div>
                     </div>
                     <p>
                          Here we have an example on how implemented it, this HTML code has an element <code>hgroup</code> containing two child elements which will
                          be overlapping eachother.
                     </p>
                     <div class="post__code" data-prolang="css">
-                         <div class="post__code-lines">
-                              <span>99</span>
-                         </div>
-<pre class="post__code-body">
+                         <hgroup class="post__code-headbar">
+                              <span class="post__code-headbar-title">Flavor Code</span>
+                              <span class="post__code-headbar-prolang">CSS</span>
+                         </hgroup>
+                         <div class="post__code-body">
+                              <div class="post__code-lines">
+                                   <span>99</span>
+                              </div>
+<pre class="post__code-text">
 <code-selC>.navigation__headbar</code-selC> <code-nest1>{</code-nest1>
      <code-pro>display</code-pro>: <code-val>grid</code-val>;
      <code-pro>grid-template-columns</code-pro>: <code-num>1</code-num><code-unt>fr</code-unt>;
@@ -183,6 +206,7 @@
      <code-com>/* Insert CSS Stuff */</code-com>
 <code-nest1>}</code-nest1>
 </pre>
+                         </div>
                     </div>
                     <p>
                          In CSS, convert the parent element, such as this <code>hgroup</code>, to a grid layout with both of its template columns and rows set to 
@@ -201,11 +225,16 @@
                          which basically represent the side block decoration attached to the item. Now it uses a psuedo-element <code>::before</code> to represent 
                          the side block. It basically just injects an element that is the first child of the selected element.
                     </p>
-                    <div class="post__code" data-prolang="scss">
-                         <div class="post__code-lines">
-                              <span>99</span>
-                         </div>
-<pre class="post__code-body">
+                    <div class="post__code" data-prolang="css">
+                         <hgroup class="post__code-headbar">
+                              <span class="post__code-headbar-title">Flavor Code</span>
+                              <span class="post__code-headbar-prolang">CSS</span>
+                         </hgroup>
+                         <div class="post__code-body">
+                              <div class="post__code-lines">
+                                   <span>99</span>
+                              </div>
+<pre class="post__code-text">
 <code-selC>.item</code-selC> <code-nest1>{</code-nest1>
      <code-pro>position</code-pro>: <code-val>relative</code-val>;
 
@@ -218,6 +247,7 @@
      <code-nest2>}</code-nest2>
 <code-nest1>}</code-nest1>
 </pre>
+                         </div>
                     </div>
                     <p>
                          The way I did was pretty simple, you add the content property to the psuedo-element so that the element can be displayed, this is important. 
@@ -284,33 +314,39 @@
                          you this is one of the most easier script to understand for dummies like you. And for the best part you can use this in your very own website, with or without credit!
                          Tho a bit of credit will be nice tho. Anyways here's the script for Amy:
                     </p>
-                    <div class="post__code" data-prolang="scss">
-                         <div class="post__code-lines">
-                              <span>99</span>
-                         </div>
-<pre class="post__code-body">
-function getRandomInt(min, max) {
-     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+                    <div class="post__code" data-prolang="js">
+                         <hgroup class="post__code-headbar">
+                              <span class="post__code-headbar-title">Flavor Code</span>
+                              <span class="post__code-headbar-prolang">Javascript</span>
+                         </hgroup>
+                         <div class="post__code-body">
+                              <div class="post__code-lines">
+                                   <span>99</span>
+                              </div>
+<pre class="post__code-text">
+<code-kyw>function</code-kyw> <code-funcD>getRandomInt</code-funcD><code-nest1>(</code-nest1><code-para>min</code-para>, <code-para>max</code-para><code-nest1>)</code-nest1> <code-nest1>{</code-nest1>
+     <code-kyw>return</code-kyw> <code-obj>Math</code-obj>.<code-funcC>floor</code-funcC><code-nest2>(</code-nest2><code-obj>Math</code-obj>.<code-funcC>random</code-funcC><code-nest3>()</code-nest3> <code-ope>*</code-ope> <code-nest3>(</code-nest3><code-para>max</code-para> <code-ope>-</code-ope> <code-para>min</code-para> <code-ope>+</code-ope> <code-num>1</code-num><code-nest3>)</code-nest3><code-nest2>)</code-nest2> <code-ope>+</code-ope> <code-para>min</code-para>;
+<code-nest1>}</code-nest1>
 
-const LIMIT &equals; 60
-const STEPS &equals; 10
-const amy &equals; document.querySelector('.music__album-amy')
+<code-kyw>const</code-kyw> <code-con>LIMIT</code-con> <code-ope>&equals;</code-ope> <code-num>60</code-num>
+<code-kyw>const</code-kyw> <code-con>STEPS</code-con> <code-ope>&equals;</code-ope> <code-num>10</code-num>
+<code-kyw>const</code-kyw> <code-con>amy</code-con> <code-ope>&equals;</code-ope> <code-obj>document</code-obj>.<code-funcC>querySelector</code-funcC><code-nest1>(</code-nest1><code-str>'.music__album-amy'</code-str><code-nest1>)</code-nest1>
 
-let position &equals; 0
-const intervalId &equals; setInterval(() &equals;&gt; {
-     let positionRancrement &equals; getRandomInt(-1, 1)
-     if (positionRancrement !&equals; 0) {
-          position +&equals; positionRancrement * STEPS
-     }
+<code-kyw>let</code-kyw> <code-var>position</code-var> <code-ope>&equals;</code-ope> <code-num>0</code-num>
+<code-kyw>const</code-kyw> <code-var>intervalId</code-var> <code-ope>&equals;</code-ope> <code-funcC>setInterval</code-funcC><code-nest1>(</code-nest1><code-nest2>()</code-nest2> <code-ope>&equals;&gt;</code-ope> <code-nest2>{</code-nest2>
+     <code-kyw>let</code-kyw> <code-var>positionRancrement</code-var> <code-ope>&equals;</code-ope> <code-funcC>getRandomInt</code-funcC><code-nest3>(</code-nest3><code-num>-1</code-num>, <code-num>1</code-num><code-nest3>)</code-nest3>
+     <code-kyw>if</code-kyw> <code-nest3>(</code-nest3><code-var>positionRancrement</code-var> <code-ope>!&equals;</code-ope> <code-num>0</code-num><code-nest3>)</code-nest3> <code-nest3>{</code-nest3>
+          <code-var>position</code-var> <code-ope>+&equals;</code-ope> <code-var>positionRancrement</code-var> <code-ope>*</code-ope> <code-var>STEPS</code-var>
+     <code-nest3>}</code-nest3>
 
-     if (position &gt;&equals; -LIMIT && position &lt;&equals; LIMIT) {
-          amy.style.transform &equals; `translateX(${position}px)`
-     } else if (position &lt;&equals; -LIMIT || position &gt;&equals; LIMIT) {
-          position -&equals; positionRancrement * STEPS
-     }
-}, 2500);
+     <code-kyw>if</code-kyw> <code-nest3>(</code-nest3>position <code-ope>&gt;&equals;</code-ope> <code-ope>-</code-ope><code-con>LIMIT</code-con> <code-ope>&&</code-ope> <code-var>position</code-var> <code-ope>&lt;&equals;</code-ope> <code-con>LIMIT</code-con><code-nest3>)</code-nest3> <code-nest3>{</code-nest3>
+          <code-con>amy</code-con>.<code-var>style</code-var>.<code-var>transform</code-var> <code-ope>&equals;</code-ope> <code-str>`translateX(${</code-str><code-var>position</code-var><code-str>}px)`</code-str>
+     <code-nest3>}</code-nest3> <code-kyw>else</code-kyw> <code-kyw>if</code-kyw> <code-nest3>(</code-nest3>position <code-ope>&lt;&equals;</code-ope> <code-ope>-</code-ope><code-con>LIMIT</code-con> <code-ope>||</code-ope> <code-var>position</code-var> <code-ope>&gt;&equals;</code-ope> <code-con>LIMIT</code-con><code-nest3>)</code-nest3> <code-nest3>{</code-nest3>
+          <code-var>position</code-var> <code-ope>-&equals;</code-ope> <code-var>positionRancrement</code-var> <code-ope>*</code-ope> <code-con>STEPS</code-con>
+     <code-nest3>}</code-nest3>
+<code-nest2>}</code-nest2>, <code-num>2500</code-num><code-nest1>)</code-nest1>;
 </pre>
+                         </div>
                     </div>
                     <p>
                          Let's focus on the variables first, specifically the variables at the top of the script. 

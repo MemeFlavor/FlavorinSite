@@ -1,4 +1,4 @@
-const postCodeBody = document.querySelectorAll('.post__code-body')
+const postCodeBody = document.querySelectorAll('.post__code-text')
 
 for (let codeBodyIndex = 0; codeBodyIndex < postCodeBody.length; codeBodyIndex++) {
      const codeBodyElement = postCodeBody[codeBodyIndex];

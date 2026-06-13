@@ -14,8 +14,10 @@
      <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
      <link rel="stylesheet" type="text/css" href="css/reset.css">
      <link rel="stylesheet" type="text/css" href="css/blogpage.css">
+     <link rel="stylesheet" type="text/css" href="css/components/code.css">
      <script type="module" defer src="javascript/components/fullscreen.js"></script>
      <script type="module" defer src="javascript/components/breadcrumbs.js"></script>
+     <script type="module" defer src="javascript/components/code.js"></script>
 </head>
 <body>
      <article id="flavory-content">
@@ -68,22 +70,25 @@
                          (trust me).
                     </p>
                     <div class="post__code" data-prolang="scss">
-<pre class="post__code-text">
-$flicker-proximate: 100000;
-@keyframes flicker {
-     @for $flicker-index from 0 through 20 {
-     $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
-     $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
+                         <div class="post__code-lines">
+                              <span>99</span>
+                         </div>
+<pre class="post__code-body">
+<code-kyw>@use</span> <code-str>"sass:math"</code-kyw>;
 
-     #{$flicker-sections} {
-          opacity: $flicker-vars;
-     }
-}
+<code-var>$flicker-proximate</code-var>: <code-num>100000</code-num>;
+<code-kyw>@keyframes</code-kyw> <code-funcD>flicker</code-funcD> <code-nest1>{</code-nest1>
+     <code-kyw>@for</code-kyw> <code-var>$flicker-index</code-var> <code-kyw>from</code-kyw> <code-num>0</code-num> <code-kyw>through</code-kyw> <code-num>20</code-num> <code-nest2>{</code-nest2>
+          <code-var>$flicker-sections</code-var>: <code-var>math</code-var>.<code-funcC>percentage</code-funcC><code-nest3>(</code-nest3><code-var>math</code-var>.<code-funcC>div</code-funcC><code-nest4>(</code-nest4><code-num>5</code-num> <code-ope>*</code-ope> <code-var>$flicker-index</code-var>, <code-num>100</code-num><code-nest4>)</code-nest4><code-nest3>)</code-nest3>;
+          <code-var>$flicker-vars</code-var>: <code-var>math</code-var>.<code-funcC>div</code-funcC><code-nest3>(</code-nest3><code-var>math</code-var>.<code-funcC>random</code-funcC><code-nest4>(</code-nest4><code-var>$flicker-proximate</code-var><code-nest4>)</code-nest4>, <code-var>$flicker-proximate</code-var><code-nest3>)</code-nest3>;
+
+          <code-kyw>#</code-kyw><code-kyw>{</code-kyw><code-var>$flicker-sections</code-var><code-kyw>}</code-kyw> <code-nest3>{</code-nest3>
+               <code-pro>opacity</code-pro>: <code-var>$flicker-vars</code-var>;
+          <code-nest3>}</code-nest3>
+     <code-nest2>}</code-nest2>
+<code-nest1>}</code-nest1>
 </pre>
                     </div>
-                    <span class="post__notice">
-                         This code block will be updated with a newer design
-                    </span>
                     <p>
                          
                          This is the code that I've implemented, it basically loops from <code>0</code> through <code>20</code> within the keyframe animation. 
@@ -100,36 +105,36 @@ $flicker-proximate: 100000;
                          converting it into a real percentage marker. And the <code>$flicker-vars</code> is at the opacity values. Now with all of that explanation
                          here's the converted code, to try and give you an idea:
                     </p>
-                    <div class="post__code" data-prolang="css">
-<pre class="post__code-text">
-@keyframes flicker {
-     0%   { opacity: 0.66092; }
-     5%   { opacity: 0.63864; }
-     10%  { opacity: 0.9702;  }
-     15%  { opacity: 0.75368; }
-     20%  { opacity: 0.9673;  }
-     25%  { opacity: 0.26854; }
-     30%  { opacity: 0.88621; }
-     35%  { opacity: 0.53866; }
-     40%  { opacity: 0.47256; }
-     45%  { opacity: 0.82351; }
-     50%  { opacity: 0.00228; }
-     55%  { opacity: 0.37893; }
-     60%  { opacity: 0.58932; }
-     65%  { opacity: 0.0038;  }
-     70%  { opacity: 0.12685; }
-     75%  { opacity: 0.33917; }
-     80%  { opacity: 0.65031; }
-     85%  { opacity: 0.28364; }
-     90%  { opacity: 0.56818; }
-     95%  { opacity: 0.53418; }
-     100% { opacity: 0.38521; }
-}
+                    <div class="post__code" data-prolang="scss">
+                         <div class="post__code-lines">
+                              <span>99</span>
+                         </div>
+<pre class="post__code-body">
+<code-kyw>@keyframes</code-kyw> <code-funcD>flicker</code-funcD> <code-nest1>{</code-nest1>
+     <code-selC>0%</code-selC>   <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.66092</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>5%</code-selC>   <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.63864</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>10%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.9702</code-num>;  <code-nest2>}</code-nest2>
+     <code-selC>15%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.75368</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>20%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.9673</code-num>;  <code-nest2>}</code-nest2>
+     <code-selC>25%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.26854</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>30%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.88621</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>35%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.53866</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>40%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.47256</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>45%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.82351</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>50%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.00228</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>55%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.37893</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>60%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.58932</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>65%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.0038</code-num>;  <code-nest2>}</code-nest2>
+     <code-selC>70%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.12685</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>75%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.33917</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>80%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.65031</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>85%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.28364</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>90%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.56818</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>95%</code-selC>  <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.53418</code-num>; <code-nest2>}</code-nest2>
+     <code-selC>100%</code-selC> <code-nest2>{</code-nest2> <code-pro>opacity</code-pro>: <code-num>0.38521</code-num>; <code-nest2>}</code-nest2>
+<code-nest1>}</code-nest1>
 </pre>
                     </div>
-                    <span class="post__notice">
-                         This code block will be updated with a newer design
-                    </span>
                     <p>
                          Yea it saves a lot of space.
                     </p>
@@ -139,46 +144,46 @@ $flicker-proximate: 100000;
                          to implement the overlapping of elements by just using the grid layout. 
                     </p>
                     <div class="post__code" data-prolang="html">
-<pre class="post__code-text">
-&lt;hgroup class&equals;"navigation__headbar"&gt;
-     &lt;h3 class&equals;"navigation__headbar-title">Navigation&lt;/h3&gt;
-     &lt;marquee class&equals;"navigation__headbar-marquee">Explore! • Explore! • Explore!&lt;/marquee&gt;
-&lt;/hgroup>
+                         <div class="post__code-lines">
+                              <span>99</span>
+                         </div>
+<pre class="post__code-body">
+&lt;<code-elm>hgroup</code-elm> <code-att>class</code-att>&equals;<code-val>"navigation__headbar"</code-val>&gt;
+     &lt;<code-elm>h3</code-elm> <code-att>class</code-att>&equals;<code-val>"navigation__headbar-title"</code-val>>Navigation&lt;/<code-elm>h3</code-elm>&gt;
+     &lt;<code-elm>marquee</code-elm> <code-att>class</code-att>&equals;<code-val>"navigation__headbar-marquee"</code-val>>Explore! • Explore! • Explore!&lt;/<code-elm>marquee</code-elm>&gt;
+&lt;/<code-elm>hgroup</code-elm>>
 </pre>
                     </div>
-                    <span class="post__notice">
-                         This code block will be updated with a newer design
-                    </span>
                     <p>
                          Here we have an example on how implemented it, this HTML code has an element <code>hgroup</code> containing two child elements which will
                          be overlapping eachother.
                     </p>
                     <div class="post__code" data-prolang="css">
-<pre class="post__code-text">
-.navigation__headbar {
-     display: grid;
-     grid-template-columns: 1fr;
-     grid-template-rows: 1fr;
-     align-items: center; // added this visualize the overlapping by making the text center
+                         <div class="post__code-lines">
+                              <span>99</span>
+                         </div>
+<pre class="post__code-body">
+<code-selC>.navigation__headbar</code-selC> <code-nest1>{</code-nest1>
+     <code-pro>display</code-pro>: <code-val>grid</code-val>;
+     <code-pro>grid-template-columns</code-pro>: <code-num>1</code-num><code-unt>fr</code-unt>;
+     <code-pro>grid-template-rows</code-pro>: <code-num>1</code-num><code-unt>fr</code-unt>;
+     <code-pro>align-items</code-pro>: <code-val>center</code-val>; <code-com>// added this to visualize the overlapping by making the text center</code-com>
 
-     & > * {
-          grid-area: 1 / 1;
-     }
-}
+     <code-selE>&</code-selE> <code-kyw>&gt;</code-kyw> <code-selE>*</code-selE> <code-nest2>{</code-nest2>
+          <code-pro>grid-area</code-pro>: <code-num>1</code-num> <code-ope>/</code-ope> <code-num>1</code-num>;
+     <code-nest2>}</code-nest2>
+<code-nest1>}</code-nest1>
 
-.navigation__headbar-title {
-     z-index: 1;
-     /* Insert CSS Stuff */
-}
+<code-selC>.navigation__headbar-title</code-selC> <code-nest1>{</code-nest1>
+     <code-pro>z-index</code-pro>: <code-num>1</code-num>;
+     <code-com>/* Insert CSS Stuff */</code-com>
+<code-nest1>}</code-nest1>
 
-.navigation__headbar-marquee {
-     /* Insert CSS Stuff */
-}
+<code-selC>.navigation__headbar-marquee</code-selC> <code-nest1>{</code-nest1>
+     <code-com>/* Insert CSS Stuff */</code-com>
+<code-nest1>}</code-nest1>
 </pre>
                     </div>
-                    <span class="post__notice">
-                         This code block will be updated with a newer design
-                    </span>
                     <p>
                          In CSS, convert the parent element, such as this <code>hgroup</code>, to a grid layout with both of its template columns and rows set to 
                          <code>1fr</code>. Set the grid area of each child element to <code>1 / 1</code> to make the start and end of each column and row, set to
@@ -197,23 +202,23 @@ $flicker-proximate: 100000;
                          the side block. It basically just injects an element that is the first child of the selected element.
                     </p>
                     <div class="post__code" data-prolang="scss">
-<pre class="post__code-text">
-.item {
-     position: relative;
+                         <div class="post__code-lines">
+                              <span>99</span>
+                         </div>
+<pre class="post__code-body">
+<code-selC>.item</code-selC> <code-nest1>{</code-nest1>
+     <code-pro>position</code-pro>: <code-val>relative</code-val>;
 
-     &::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          width: 8px;
-          height: calc(1rem + 9px);
-     }
-}
+     <code-selE>&</code-selE><code-selP>::before</code-selP> <code-nest2>{</code-nest2>
+          <code-pro>content</code-pro>: <code-str>""</code-str>;
+          <code-pro>position</code-pro>: <code-val>absolute</code-val>;
+          <code-pro>top</code-pro>: <code-num>0</code-num>;
+          <code-pro>width</code-pro>: <code-num>8</code-num><code-unt>px</code-unt>;
+          <code-pro>height</code-pro>: <code-funcC>calc</code-funcC><code-nest3>(</code-nest3><code-num>1</code-num><code-unt>rem</code-unt> <code-ope>+</code-ope> <code-num>9</code-num><code-unt>px</code-unt><code-nest3>)</code-nest3>;
+     <code-nest2>}</code-nest2>
+<code-nest1>}</code-nest1>
 </pre>
                     </div>
-                    <span class="post__notice">
-                         This code block will be updated with a newer design
-                    </span>
                     <p>
                          The way I did was pretty simple, you add the content property to the psuedo-element so that the element can be displayed, this is important. 
                          I made the element have its position set to <code>relative</code>. The reason being for the psuedo-element positioned relative to the nearest 
@@ -279,8 +284,11 @@ $flicker-proximate: 100000;
                          you this is one of the most easier script to understand for dummies like you. And for the best part you can use this in your very own website, with or without credit!
                          Tho a bit of credit will be nice tho. Anyways here's the script for Amy:
                     </p>
-                    <div class="post__code" data-prolang="javascript">
-<pre class="post__code-text">
+                    <div class="post__code" data-prolang="scss">
+                         <div class="post__code-lines">
+                              <span>99</span>
+                         </div>
+<pre class="post__code-body">
 function getRandomInt(min, max) {
      return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -304,9 +312,6 @@ const intervalId &equals; setInterval(() &equals;&gt; {
 }, 2500);
 </pre>
                     </div>
-                    <span class="post__notice">
-                         This code block will be updated with a newer design
-                    </span>
                     <p>
                          Let's focus on the variables first, specifically the variables at the top of the script. 
                     </p>

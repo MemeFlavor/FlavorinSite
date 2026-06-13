@@ -21,12 +21,14 @@ body .post {
                --syntax-highlight-variables: hsl(34, 100%, 65%);
           }
 
-          --syntax-highlight-selector: hsl(208, 100%, 78%);
+          --syntax-highlight-selector-element: hsl(118, 100%, 78%);
+          --syntax-highlight-selector-custom: hsl(208, 100%, 78%);
+          --syntax-highlight-selector-psuedo: hsl(270, 100%, 86%);
           --syntax-highlight-property: hsl(208, 100%, 78%);
           --syntax-highlight-units: hsl(1, 100%, 79%);
 
           // HTML
-          --syntax-highlight-element: hsl(118, 100%, 78%);
+          --syntax-highlight-elements: hsl(118, 100%, 78%);
           --syntax-highlight-attribute: hsl(208, 100%, 78%);
           --syntax-highlight-value: hsl(208, 100%, 78%);
 
@@ -56,9 +58,11 @@ body .post {
           code-esc   { color: var(--syntax-highlight-escape-characters);  }
           code-ptr   { color: var(--syntax-highlight-pattern-characters); }
 
-          code-sel { color: var(--syntax-highlight-selector);  }
-          code-pro { color: var(--syntax-highlight-property);  }
-          code-unt { color: var(--syntax-highlight-units);     }
+          code-selC { color: var(--syntax-highlight-selector-custom);  }
+          code-selE { color: var(--syntax-highlight-selector-element); }
+          code-selP { color: var(--syntax-highlight-selector-psuedo);  }
+          code-pro { color: var(--syntax-highlight-property);          }
+          code-unt { color: var(--syntax-highlight-units);             }
 
           code-elm { color: var(--syntax-highlight-elements);  }
           code-att { color: var(--syntax-highlight-attribute); }

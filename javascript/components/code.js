@@ -16,6 +16,7 @@ for (let codeBodyIndex = 0; codeBodyIndex < postCodeBody.length; codeBodyIndex++
                span.textContent = nums;
                postCodeLines.appendChild(span)
           }
+
           postCodeLines.firstElementChild.remove();
           observer.unobserve(self.target);
      }, {})

@@ -1,19 +1,24 @@
+commit 93b1a7-flavorin
+2026-06-13
+
+  * Code Sample Updated
+
 commit 89ab1c-flavorin
 2026-06-08
 
-     * Revamp Homepage
-       * New Header (WIP)
-       * New Goodies Format (WIP)
-     * Revamp Blogpage
-       * New Structure
-       * Fullscreen Image Feature
+  * Revamp Homepage
+    * New Header (WIP)
+    * New Goodies Format (WIP)
+  * Revamp Blogpage
+    * New Structure
+    * Fullscreen Image Feature
 
 commit fb7e12-flavorin
 2026-06-02
 
-     * Sidebar Revamp
+  * Sidebar Revamp
 
 commit 74fbld-flavorin
 2026-06-01
 
-     * Initial Commit
+  * Initial Commit

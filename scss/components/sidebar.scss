@@ -250,6 +250,8 @@ body .sidebar {
                overflow-y: auto;
                background-color: color.adjust(#272525, $lightness: -10%);
                border-radius: 3px;
+               scrollbar-width: thin;
+               scrollbar-color: #555555 transparent;
                height: 7cm;
                padding: 8px;
           }

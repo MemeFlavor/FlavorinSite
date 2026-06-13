@@ -70,6 +70,22 @@ body {
           padding: 20px;
           @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
 
+          &__title {
+               font-family: "Archivo", sc.$standard-font;
+               font-size: 1.35rem;
+               font-weight: 900;
+               font-stretch: expanded;
+               text-align: center;
+               background-color: #4f4eff;
+               border-radius: 5px;
+               padding: 5px 10px;
+               margin-bottom: 15px;
+
+               @supports (font-width: expanded) {
+                    font-width: expanded
+               }
+          }
+
           &__header {
                background-color: color.adjust(#272525, $lightness: -10%);
                border-radius: 5px;

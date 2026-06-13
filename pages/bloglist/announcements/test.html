@@ -89,20 +89,170 @@ $flicker-proximate: 100000;
 }a;iiduaio;fduyweo;ufyweofuywefiouowyefiuewyfiuweyfiuweyfiuweuyfiwueueyfiwuefyweiufyweiufyweiufyweiufyweieufyweiufyweifuywefiuywefiu
 </pre>
                     </div>
+                    <h1> Common Elements </h1>
+                    <p>
+                         The games in the Five Nights at Freddy's series are survival horror.[97][98] Players typically assume the role of a
+                         nighttime security guard at an establishment or other location connected to Freddy Fazbear's Pizza, a fictional pizzeria
+                         chain.[1] The objective is to monitor and survive the movements of homicidal animatronic characters that roam these
+                         establishments after hours. Many of the animatronics are possessed by the souls of children murdered by William Afton,
+                         the restaurant's co-founder.[99] Players must survive from midnight to 6 a.m. for five shifts—referred to as
+                         "nights"[100]—while managing a limited-use resource that, if depleted, leaves them vulnerable. These resources vary by
+                         game: for example, limited power in Five Nights at Freddy's,[1] failing systems that require rebooting in Five Nights at
+                         Freddy's 3,[101] and control of a friendly animatronic called Glamrock Freddy—who requires hourly recharging—in Security
+                         Breach.[102] As the nights progress, the animatronics become more aggressive. If the player is unable to defend
+                         themselves from the animatronics, they are jumpscared and receive a game over.[103] If they successfully survive for
+                         five nights, they win the game.[2]
+                    </p>
+                    <p>
+                         In many entries in the series, players use security cameras to track the animatronics' movements throughout the
+                         building.[a] Five Nights at Freddy's 2 introduces a music box mechanic, which must be kept wound via the camera feed to
+                         prevent the Puppet–an animatronic possessed by the other co-founder Henry Emily's daughter,[107] who was Afton's first
+                         victim–from activating.[108] In Five Nights at Freddy's 3, the cameras monitor a single animatronic containing an undead
+                         Afton, Springtrap,[107] and include an audio system that can be used to lure him to different areas.[23] Security
+                         Breach's camera system is accessed through Gregory's watch.[49] Lights are another recurring mechanic, often used to
+                         ward off animatronics or alert players to their presence.[b] Doors also appear frequently, allowing players to block
+                         away the animatronics in games such as Five Nights at Freddy's,[113] Five Nights at Freddy's 4,[32] and Help
+                         Wanted.[106]
+                    </p>
+                    <h1> Reception </h1>
+                    <h2> Video game series </h2>
+                    <p>
+                         The Five Nights at Freddy's video game series has had a mixed reception. The original game received "generally
+                         favorable" reviews, earning a score of 78 on the review aggregator website Metacritic.[114] Omri Petitte of PC Gamer
+                         described it as a "less-is-more" experience, where fear stemmed more from anticipation than direct threats. However,
+                         Petitte said the gameplay became repetitive once its mechanics were mastered.[100] GameRevolution's Ryan Bates commended
+                         the game's audio design and simple yet effective mechanics, calling it "horror done right," though he found the
+                         experience too short.[12]
+                    </p>
+                    <p>
+                         Subsequent entries saw divided responses. Five Nights at Freddy's 2 received a Metacritic score of 62,[115] with
+                         reviewers from Destructoid and TouchArcade finding its introduction of new mechanics and animatronics creatively
+                         enriching,[122][123] though Mitch Vogel of Nintendo Life found the difficulty punishing and the jumpscares
+                         excessive.[124] Five Nights at Freddy's 3, which earned a Metacritic score of 68,[116] maintained the franchise's core
+                         formula but updated its camera system; Petitte appreciated these improvements but felt the phantom animatronics fell
+                         short of their older counterparts.[101] Nic Rowen of Destructoid found it mechanically solid yet lacking the charm of
+                         earlier entries.[125] Five Nights at Freddy's 4, earned the series's lowest Metacritic score of 51 and divided reviewers
+                         further[117]—The Escapist and Gamezebo highlighted its darker tone, emotional subtext, and scare factor,[126][127] but
+                         others, like Rowen, called its gameplay confusing and encountered technical issues.[111]
+                    </p>
+                    <div class="post__code" data-prolang="scss">
+                         <div class="post__code-lines">
+                              <span>&nbsp;</span>
+                         </div>
+<pre class="post__code-body">
+$flicker-proximate: 100000;
+@keyframes flicker {
+     @for $flicker-index from 0 through 20 {
+     $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
+     $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
+
+     #{$flicker-sections} {
+          opacity: $flicker-vars;
+     }
+}a;iiduaio;fduyweo;ufyweofuywefiouowyefiuewyfiuweyfiuweyfiuweuyfiwueueyfiwuefyweiufyweiufyweiufyweiufyweieufyweiufyweifuywefiuywefiu
+</pre>
+                    </div>
+                    <p>
+                         Reviews for Sister Location were again mixed, with Metacritic assigning a score of 62.[118] Patricia Hernandez of Kotaku
+                         called it Scott Cawthon's "most ambitious game yet," praising its production value,[128] while Rowen and William Hughes
+                         of The A.V. Club highlighted the improved mobility and task-based gameplay.[5][129] Other critics, such as Angelo M.
+                         D'Argenio of GameCrate, argued the difficulty was unbalanced, likening each night to its own tutorial,[130] while Rowen
+                         criticized night four as a frustrating obstacle.[5] Additionally, outlets like Rock Paper Shotgun and GameCrate
+                         applauded Freddy Fazbear's Pizzeria Simulator's blend of business simulation and survival horror,[131][132] while PC
+                         Gamer described Ultimate Custom Night as an inventive twist on the franchise's standard gameplay loop.[133]
+                    </p>
+                    <p>
+                         Later titles continued to have mixed feedback. Help Wanted received praise for its use of virtual reality,[134] with the
+                         PlayStation 4 version earning a Metacritic score of 80.[119] Reviewers highlighted its atmosphere and blending of old
+                         and new content.[135] However, non-VR ports were criticized—Nintendo Life rated the Switch version poorly, citing the
+                         loss of VR functionality as a major drawback.[136] Security Breach, which was assigned a score of 64 by Metacritic,[120]
+                         drew attention for its larger scope and visuals,[137] but faced criticism for technical issues and a clunky save system
+                         by critics such as Ben Croshaw of The Escapist.[138] Meanwhile, Into the Pit, based on the franchise's extended
+                         universe, was positively received for its innovation yet adherence to the tone of the original series.[139][140] It
+                         received the series's highest Metacritic score of 87.[121]
+                    </p>
+                    <h2> Film adaptations </h2>
+                    <p>
+                         Both Five Nights at Freddy's films received negative reviews from critics. Metacritic assigned the first film a score of
+                         33 out of 100, indicating "generally unfavorable" reviews.[141] Murtada Elfadl of Variety criticized the film as not
+                         utilizing its setting, writing that the sets lacked color and missed the potential appeal of a haunted pizzeria.[142]
+                         Benjamin Lee of The Guardian said that the premise called back to the horror films of the 1980s, but said that this
+                         effect was diminished by a boring protagonist. The reviewer found the setting interesting, but disliked the script and
+                         felt that the plot lacked tension.[143] Simon Abrams of RogerEbert.com gave the film two stars out of four, saying that
+                         it was able to form an effective atmosphere, though it created an unenjoyable experience by not giving characters enough
+                         development. He cited the actors Josh Hutcherson and Matthew Lillard as demonstrating feelings that weren't adequately
+                         described through the script, finding the overall experience unmemorable.[144]
+                    </p>
+                    <p>
+                         Metacritic assigned the second film a score of 24 out of 100, indicating "generally unfavorable" reviews.[145] James
+                         Mottram of NME said that the film was unable to expand the backstory of the animatronics from the preceding film and
+                         lacked effective jumpscares.[146] Frank Scheck of The Hollywood Reporter found the plot to be too similar to that of the
+                         first film. The reviewer called the script dull, adding that it contained easter eggs that would only appeal to existing
+                         fans of the franchise.[146] Jesse Hassenger of The Guardian criticized Cawthon's script and said that the director Emma
+                         Tammi was unable to create suspense, writing that the ending was poorly executed and that the film existed as part of a
+                         franchise instead of having an individual identity.[147]
+                    </p>
+                    <div class="post__code" data-prolang="scss">
+                         <div class="post__code-lines">
+                              <span>&nbsp;</span>
+                         </div>
+<pre class="post__code-body">
+@keyframes flicker {
+     0%   { opacity: 0.66092; }
+     5%   { opacity: 0.63864; }
+     10%  { opacity: 0.9702;  }
+     15%  { opacity: 0.75368; }
+     20%  { opacity: 0.9673;  }
+     25%  { opacity: 0.26854; }
+     30%  { opacity: 0.88621; }
+     35%  { opacity: 0.53866; }
+     40%  { opacity: 0.47256; }
+     45%  { opacity: 0.82351; }
+     50%  { opacity: 0.00228; }
+     55%  { opacity: 0.37893; }
+     60%  { opacity: 0.58932; }
+     65%  { opacity: 0.0038;  }
+     70%  { opacity: 0.12685; }
+     75%  { opacity: 0.33917; }
+     80%  { opacity: 0.65031; }
+     85%  { opacity: 0.28364; }
+     90%  { opacity: 0.56818; }
+     95%  { opacity: 0.53418; }
+     100% { opacity: 0.38521; }
+}
+</pre>
+                    </div>
                </article>
           </main>
      </article>
      <script>
           const are = document.querySelectorAll('.post__code-body')[0]
 
-          const yue = are.textContent.match(/\n/g)
-          const juy = Object.keys(yue).map((element, index) => index + 1)
+          const arse = document.querySelectorAll('.post__code-body')
+          for (let index = 0; index < arse.length; index++) {
+               const element = arse[index];
+               
+               const observer = new IntersectionObserver((entries) => {
+                    const self = entries[0]
+                    if (self.isIntersecting) {
+                         const yu = document.querySelectorAll('.post__code-lines')[index]
 
-          for (let index = 0; index < juy.length; index++) {
-               const element = juy[index];               
-               document.querySelectorAll('.post__code-lines')[0].innerHTML += `<span>${element}</span>`
+                         const yue = element.textContent.match(/\n/g)
+                         const juy = Object.keys(yue).map((element, index1) => index1 + 1)
+
+                         for (let index1 = 0; index1 < juy.length; index1++) {
+                              const element = juy[index1];
+                              yu.innerHTML += `<span>${element}</span>`
+                         }
+                         yu.firstElementChild.remove();
+
+                         console.log(index)
+                         observer.unobserve(self.target);
+                    }
+               }, {})
+               observer.observe(element) 
           }
-          document.querySelectorAll('.post__code-lines')[0].firstElementChild.remove();
+
      </script>
 </body>
 </html>

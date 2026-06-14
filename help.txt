@@ -1,12 +1,12 @@
-usage: flavor [-h | --help]
-              [-r | --recent]
-              [-l | --logs]
-              [-c | --clear]
-              [-t | --testing]
+usage: flavor [-h | help]
+              [-r | recent]
+              [-l | logs]
+              [-c | clear]
+              [-t | testing]
 
 Available commands list:
-  --help      Help information
-  --recent    Recent changes
-  --logs      Full update logs
-  --clear     Self-explanatory
-  --testing   Experimental changes
+  help      Help information
+  recent    Recent changes
+  logs      Full update logs
+  clear     Self-explanatory
+  testing   Experimental changes

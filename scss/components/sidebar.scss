@@ -275,12 +275,26 @@ body .sidebar {
                padding: 8px;
           }
 
-          &__terminal {
+          &__terminal { // this is where text is shown dummy
                margin-top: auto;
                padding-bottom: 0 !important;
+
+               color-commit {
+                    color: #ffb300
+               }
+
+               color-head {
+                    color: #51cbd3;
+                    font-weight: bolder;
+               }
+
+               color-main {
+                    color: #43cd5f;
+                    font-weight: bolder
+               }
           }
 
-          &__input {
+          &__input { // this is where you put text dummy
                caret-shape: block;
                caret-color: white;
                caret-animation: manual;

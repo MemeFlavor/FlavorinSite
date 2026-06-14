@@ -1,0 +1,14 @@
+usage: flavor [-v | --version]
+              [-h | --help]
+              [-r | --recent]
+              [-l | --logs]
+              [-c | --clear]
+              [-t | --testing]
+
+Available commands list:
+  --version   Current version
+  --help      Help information
+  --recent    Recent changes
+  --logs      Full update logs
+  --clear     Self-explanatory
+  --testing   Experimental changes

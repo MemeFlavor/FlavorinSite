@@ -1,13 +1,13 @@
 commit 93b1a7
 Author: MemeFlavor
-        &lt;memeflavor.neocities.org&gt;
+        &lt;host.name&gt;
 Date:   2026-07-13
 
   > Code Sample Updated
 
 commit 89ab1c
 Author: MemeFlavor
-        &lt;memeflavor.neocities.org&gt;
+        &lt;host.name&gt;
 Date:   2026-06-08
 
   > Revamp Homepage
@@ -19,14 +19,14 @@ Date:   2026-06-08
 
 commit fb7e12
 Author: MemeFlavor
-        &lt;memeflavor.neocities.org&gt;
+        &lt;host.name&gt;
 Date:   2026-06-02
 
   > Sidebar Revamp
 
 commit 74fbld
 Author: MemeFlavor
-        &lt;memeflavor.neocities.org&gt;
+        &lt;host.name&gt;
 Date:   2026-06-01
 
   > Initial Commit

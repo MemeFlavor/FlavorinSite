@@ -34,7 +34,7 @@ function iklw() {
           .replace(/(commit.+)/g, '<color-commit>$1</color-commit>')
           .split('\n\n')
           .slice(0, 2)
-          .join('\n\n')
+          .join('\n\n') + '\n\n'
      )
      ert.appendChild(divs)
 }
@@ -45,7 +45,7 @@ function hegy() {
      ert.appendChild(divs)
 }
 
-hjkl()
+iklw()
 
 let que = false
 kil.addEventListener('keydown', (event) => {

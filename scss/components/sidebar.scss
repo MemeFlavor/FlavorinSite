@@ -6,6 +6,7 @@
 
 @include sc.font-face-var('Archivo', 62% 125%, normal, 100 900, "../..");
 @include sc.font-face-var('Lexend', normal, normal, 100 900, "../..");
+@include sc.font-face-var('Fira Code', normal, normal, 300 700, "../..");
 
 body .sidebar {
      background-color: rgb(40, 40, 40);
@@ -249,9 +250,13 @@ body .sidebar {
                flex-direction: column;
                overflow-y: auto;
                overflow-x: hidden;
-               text-rendering: optimizeSpeed;
                background-color: color.adjust(#272525, $lightness: -10%);
                height: 7cm;
+
+               &::selection, *::selection {
+                    background-color: #ffffff;
+                    color: #000000;
+               }
 
                &::-webkit-scrollbar {
                     width: 7px;
@@ -268,7 +273,7 @@ body .sidebar {
           }
 
           &__terminal, &__input {
-               font-family: sc.$standard-code-font;
+               font-family: 'Fira Code', sc.$standard-code-font;
                font-size: 0.6rem;
                line-height: 0.85rem;
                background-color: color.adjust(#272525, $lightness: -10%);

@@ -1,24 +1,32 @@
-commit 93b1a7-flavorin
-2026-06-13
+commit 93b1a7
+Author: MemeFlavor
+        &lt;memeflavor.neocities.org&gt;
+Date:   2026-07-13
 
-  * Code Sample Updated
+  > Code Sample Updated
 
-commit 89ab1c-flavorin
-2026-06-08
+commit 89ab1c
+Author: MemeFlavor
+        &lt;memeflavor.neocities.org&gt;
+Date:   2026-06-08
 
-  * Revamp Homepage
-    * New Header (WIP)
-    * New Goodies Format (WIP)
-  * Revamp Blogpage
-    * New Structure
-    * Fullscreen Image Feature
+  > Revamp Homepage
+    > New Header (WIP)
+    > New Goodies Format (WIP)
+  > Revamp Blogpage
+    > New Format
+    > Fullscreen Image Feature
 
-commit fb7e12-flavorin
-2026-06-02
+commit fb7e12
+Author: MemeFlavor
+        &lt;memeflavor.neocities.org&gt;
+Date:   2026-06-02
 
-  * Sidebar Revamp
+  > Sidebar Revamp
 
-commit 74fbld-flavorin
-2026-06-01
+commit 74fbld
+Author: MemeFlavor
+        &lt;memeflavor.neocities.org&gt;
+Date:   2026-06-01
 
-  * Initial Commit
+  > Initial Commit

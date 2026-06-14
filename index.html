@@ -82,7 +82,10 @@
                          <marquee class="navigation__headbar-marquee">Git Pushing Until I Make It!</marquee>
                     </hgroup>
                     <section class="updatelogs__body">
-                         <pre class="updatelogs__terminal"></pre>
+                         <div class="updatelogs__console">
+                              <pre class="updatelogs__terminal"></pre>
+                              <input class="updatelogs__input" type="text" maxlength="20" placeholder="More info, type &quot;flavory --help&quot;">
+                         </div>
                     </section>
                </aside>
           </aside>
@@ -220,7 +223,12 @@
           </main>
      </article>
      <script>
-          document.querySelector('.main__title').textContent = window.location.hostname
+          const doodoo = document.querySelector('.main__title')
+          if (window.location.hostname === 'memeflavor.github.io') {
+               doodoo.style.backgroundColor = 'hsl(90, 100%, 40%)'
+          }
+          doodoo.textContent = window.location.hostname
+          
      </script>
 </body>
 </html>

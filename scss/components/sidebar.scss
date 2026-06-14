@@ -243,17 +243,89 @@ body .sidebar {
                background-color: color.adjust(#272525, $lightness: -5%);
                padding: 15px;
           }
-     
-          &__terminal {
-               font-family: sc.$standard-code-font;
-               font-size: 0.65rem;
+
+          &__console {
+               display: flex;
+               flex-direction: column;
                overflow-y: auto;
+               overflow-x: hidden;
+               text-rendering: optimizeSpeed;
                background-color: color.adjust(#272525, $lightness: -10%);
-               border-radius: 3px;
-               scrollbar-width: thin;
-               scrollbar-color: #555555 transparent;
                height: 7cm;
+
+               &::-webkit-scrollbar {
+                    width: 7px;
+               }
+          
+               &::-webkit-scrollbar-track {
+                    background: color.adjust(#272525, $lightness: -10%);
+               }
+          
+               &::-webkit-scrollbar-thumb {
+                    background: #242424;
+                    border-radius: 0px;
+               }
+          }
+
+          &__terminal, &__input {
+               font-family: sc.$standard-code-font;
+               font-size: 0.6rem;
+               line-height: 0.85rem;
+               background-color: color.adjust(#272525, $lightness: -10%);
                padding: 8px;
           }
+
+          &__terminal {
+               margin-top: auto;
+               padding-bottom: 0 !important;
+          }
+
+          &__input {
+               caret-shape: block;
+               caret-color: white;
+               caret-animation: manual;
+               resize: none;
+               border: none;
+               outline: none;
+               position: sticky;
+               bottom: 0;
+               width: 100%;
+          }
+     
+          /* &__terminal {
+               display: flex;
+               flex-direction: column;
+               justify-content: flex-end;
+               flex: 1;
+               overflow-y: auto;
+               font-family: sc.$standard-code-font;
+               font-size: 0.63rem;
+               line-height: 0.85rem;
+               scrollbar-width: thin;
+               scrollbar-color: #555555 transparent;
+               background-color: color.adjust(#272525, $lightness: -10%);
+               height: 7cm;
+               min-height: 0;
+               padding: 8px;
+               margin: 0;
+          }
+
+          &__input {
+               display: flex;
+               caret-shape: block;
+               flex: 1;
+               font-family: 'Fira Code', sc.$standard-code-font;
+               font-size: 0.63rem;
+               line-height: 0.85rem;
+               resize: none;
+               background-color: color.adjust(#272525, $lightness: -10%);
+               width: 226px;
+               padding: 8px;
+
+               border: none;
+               border-top: 1px solid white;
+               outline: none;
+               margin: 0;
+          } */
      }
 }

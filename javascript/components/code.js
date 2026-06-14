@@ -2,8 +2,7 @@ const postCodeBody = document.querySelectorAll('.post__code-text')
 
 for (let codeBodyIndex = 0; codeBodyIndex < postCodeBody.length; codeBodyIndex++) {
      const codeBodyElement = postCodeBody[codeBodyIndex];
-
-     const observer = new IntersectionObserver((entries) => {
+     const codeBodyObserver = new IntersectionObserver((entries) => {
           const self = entries[0]
           if (!self.isIntersecting) return;
 
@@ -18,7 +17,7 @@ for (let codeBodyIndex = 0; codeBodyIndex < postCodeBody.length; codeBodyIndex++
           }
 
           postCodeLines.firstElementChild.remove();
-          observer.unobserve(self.target);
+          codeBodyObserver.unobserve(self.target);
      }, {})
-     observer.observe(codeBodyElement)
+     codeBodyObserver.observe(codeBodyElement)
 }

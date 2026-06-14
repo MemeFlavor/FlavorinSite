@@ -13,7 +13,8 @@ async function trag(file) {
 const die = await trag('changelog.txt')
 const cie = await trag('help.txt')
 
-const ert = document.querySelector('.updatelogs__terminal')
+const ert = document.querySelector('.debug__terminal')
+const kil = document.querySelector('.debug__input')
 
 function hjkl() {
      let divs = document.createElement('div')
@@ -25,56 +26,87 @@ function hjkl() {
      ert.appendChild(divs)
 }
 
+function iklw() {
+     let divs = document.createElement('div')
+     divs.insertAdjacentHTML('beforeend', die
+          .replace(/host\.name/g, window.location.hostname)
+          .replace(/(commit.+)/, `${die.match(/commit.+/g)[0]} (<color-head>HEAD -></color-head> <color-main>main</color-main>)`)
+          .replace(/(commit.+)/g, '<color-commit>$1</color-commit>')
+          .split('\n\n')
+          .slice(0, 2)
+          .join('\n\n')
+     )
+     ert.appendChild(divs)
+}
+
+function hegy() {
+     let divs = document.createElement('div')
+     divs.insertAdjacentHTML('beforeend', cie + '\n\n')
+     ert.appendChild(divs)
+}
+
 hjkl()
 
-document.querySelector('.updatelogs__input').addEventListener('keydown', (event) => {
-     if (event.key === 'Enter') {
-          event.preventDefault();
+let que = false
+kil.addEventListener('keydown', (event) => {
+     if (event.key !== 'Enter') return;
+     event.preventDefault();
 
-          if (event.target.value.match('log')) {
+     const dop = event.target.value
+     const iow = dop.match(/[a-z\-]+/g)
+
+     if (que == true) {
+          if (iow[0] === 'y') {
+               window.location.href = 'https://memeflavor.github.io/FlavorinSite/index.html'
+          } else if (iow[0] === 'n') {
+               let divs = document.createElement('div')
+               divs.insertAdjacentHTML('beforeend', `\n`)
+               ert.appendChild(divs)
+               que = false
+          }
+          return
+     }
+
+     if (iow[0] !== 'flavory') {
+          let divs = document.createElement('div')
+          divs.insertAdjacentHTML('beforeend', `command not found: ${iow[0]}`)
+          ert.appendChild(divs)
+          return
+     }
+
+     switch (iow[1]) {
+          case '-h': case 'help':
+               hegy()
+               break;
+          case '-r': case 'recent':
+               iklw()
+               break;
+          case '-l': case 'log':
                hjkl()
+               break;
+          case '-c': case 'clear':
+               ert.innerHTML = ''
+               break;
+          case '-t': case 'testing':
+               let divs1 = document.createElement('div')
+               divs1.insertAdjacentHTML('beforeend', 'Do you want to test some changes\nthat are currenty experimental?\n> [y/n]')
+               ert.appendChild(divs1)
 
-               const iop = document.querySelector('.updatelogs__console')
+               que = true
+               break;
+          default:
+               let divs = document.createElement('div')
+               divs.insertAdjacentHTML('beforeend', `flavory is not a command: ${iow[1]}`)
+               ert.appendChild(divs)
+               break;
+     }    
+})
 
-               const we = document.querySelectorAll('color-head')[1]
-               iop.scrollTop = iop.scrollHeight - iop.clientHeight;
-          }
-     }
-})   
+kil.addEventListener('keydown', (event) => {
+     if (event.key !== 'Enter') return;
+     event.preventDefault();
 
-/* let wer = await (async () => {
-     try {
-          const response = await fetch('changelog.txt');
-          if (!response.ok) { // Check if the request was successful
-               throw new Error('Network response was not ok');
-          }
-          return await new Response(response.body).text();
-     } catch (error) {
-          console.error('Error fetching data:', error);
-     }
-})()
-
-const huy = wer.match(/commit.+/g)
-const yu = huy.map((value) => {
-               return `<span style="color: #ffb300">${value}</span>`
-          })
-          .forEach((value, index) => {
-               wer = wer.replace(huy[index], value)
-          })
-const iop = wer.split('\n\n').slice(0, 2).join('\n\n')
-
-const werty = document.querySelector('.updatelogs__terminal')
-const iuop = document.querySelector('.updatelogs__input')
-
-const g = wer.replace(/host\.name/g, window.location.hostname)
-werty.innerHTML += '<div>' + g + '\n\n' + '</div>'
-
-const grtyt = document.querySelector('.updatelogs__terminal div span')
-const hyrts = ' (<span style="color: #51cbd3; font-weight: bolder">HEAD -></span> <span style="color: #43cd5f; font-weight: bolder">main</span>)'
-grtyt.innerHTML += hyrts
-
-iuop.addEventListener('keydown', (event) => {
-     if (event.key === 'Enter') {
-          event.preventDefault();
-     } 
-}) */
+     const iop = document.querySelector('.debug__console')
+     iop.scrollTop = iop.scrollHeight - iop.clientHeight;
+     event.target.value = ''
+})

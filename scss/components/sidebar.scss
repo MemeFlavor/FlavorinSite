@@ -104,7 +104,7 @@ body .sidebar {
           }
      }
      
-     .navigation, .updatelogs {
+     .navigation, .debug {
           margin-block: 15px;
      
           &__headbar {
@@ -238,7 +238,7 @@ body .sidebar {
           }
      }
      
-     .updatelogs {
+     .debug {
           &__body {
                background-color: color.adjust(#272525, $lightness: -5%);
                padding: 15px;
@@ -297,7 +297,6 @@ body .sidebar {
           &__input { // this is where you put text dummy
                caret-shape: block;
                caret-color: white;
-               caret-animation: manual;
                resize: none;
                border: none;
                outline: none;

@@ -67,7 +67,7 @@ kil.addEventListener('keydown', (event) => {
           return
      }
 
-     if (iow[0] !== 'flavory') {
+     if (iow[0] !== 'flavor') {
           let divs = document.createElement('div')
           divs.insertAdjacentHTML('beforeend', `command not found: ${iow[0]}`)
           ert.appendChild(divs)

@@ -245,7 +245,6 @@ body {
                
                --amy-dialogue-visibility: hidden;
                &__album-visualizer {
-                   
                     display: flex;
                     justify-content: center;
                     @include sc.unselectable;
@@ -253,16 +252,16 @@ body {
                     &:hover {
                          --amy-dialogue-visibility: visible;
                     }
+
+                    @supports not (position-anchor: --amy-dialogue) {
+                         position: relative;
+                    }
                }
 
                &__album-amy {
                     cursor: pointer;
                     image-rendering: pixelated;
                     transform: translateX(0px);
-
-                    @supports (anchor-name: --test) {
-                         anchor-name: --amy-dialogue;
-                    }
                }
 
                &__album-dialogue {
@@ -270,12 +269,20 @@ body {
                     content-visibility: var(--amy-dialogue-visibility);
                     image-rendering: pixelated;
                     position: absolute;
-                    top: -75px;
+                    
+                    @supports not (position-anchor: --amy-dialogue) {
+                         top: -75px;
+                    }
+               }
 
-                    @supports (position-anchor: --test) {
+               @supports (position-anchor: --amy-dialogue) {
+                    &__album-amy {
+                         anchor-name: --amy-dialogue;
+                    }
+
+                    &__album-dialogue {
                          position-anchor: --amy-dialogue;
                          position-area: top center;
-                         top: 0;
                     }
                }
 

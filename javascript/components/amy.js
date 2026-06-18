@@ -13,8 +13,9 @@ const dancingMovement = setInterval(() => {
      }
 
      if (position >= -LIMIT && position <= LIMIT) {
-          if (CSS.supports('position-anchor: --test')) 
+          if (!CSS.supports('position-anchor: --amy-dialogue')) 
                dlg.style.transform = `translateX(${position}px)`;
+          
           amy.style.transform = `translateX(${position}px)`
      } else if (position <= -LIMIT || position >= LIMIT) {
           position -= positionRancrement * STEPS

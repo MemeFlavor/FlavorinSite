@@ -309,41 +309,5 @@ body .sidebar {
                bottom: 0;
                width: 100%;
           }
-     
-          /* &__terminal {
-               display: flex;
-               flex-direction: column;
-               justify-content: flex-end;
-               flex: 1;
-               overflow-y: auto;
-               font-family: sc.$standard-code-font;
-               font-size: 0.63rem;
-               line-height: 0.85rem;
-               scrollbar-width: thin;
-               scrollbar-color: #555555 transparent;
-               background-color: color.adjust(#272525, $lightness: -10%);
-               height: 7cm;
-               min-height: 0;
-               padding: 8px;
-               margin: 0;
-          }
-
-          &__input {
-               display: flex;
-               caret-shape: block;
-               flex: 1;
-               font-family: 'Fira Code', sc.$standard-code-font;
-               font-size: 0.63rem;
-               line-height: 0.85rem;
-               resize: none;
-               background-color: color.adjust(#272525, $lightness: -10%);
-               width: 226px;
-               padding: 8px;
-
-               border: none;
-               border-top: 1px solid white;
-               outline: none;
-               margin: 0;
-          } */
      }
 }

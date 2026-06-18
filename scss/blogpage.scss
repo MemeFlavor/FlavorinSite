@@ -54,7 +54,7 @@ body {
                &:focus-within {
                     background-color: cornflowerblue;
                     outline: none;
-                    color: contrast-color(cornflowerblue);
+                    color: black;
                }
           }
 
@@ -180,11 +180,18 @@ body {
                tab-size: 5;
                text-rendering: optimizeLegibility;
                padding-right: 15px;
-               scrollbar-color: hsl(0, 0%, 14%) hsl(0, 0%, 7%);
 
                &::selection, *::selection {
                     background-color: #ffffff;
                     color: #000000;
+               }
+
+               &::-webkit-scrollbar-track {
+                    background: hsl(0, 0%, 7%);
+               }
+               
+               &::-webkit-scrollbar-thumb {
+                    background: hsl(0, 0%, 14%)
                }
           }
 
@@ -239,10 +246,11 @@ body {
                     &:hover {
                          text-decoration: underline;
                     }
+
                     &:focus-within {
                          background-color: cornflowerblue;
                          outline: none;
-                         color: contrast-color(cornflowerblue)
+                         color: black;
                     }
                }
 

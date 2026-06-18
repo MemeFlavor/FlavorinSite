@@ -107,7 +107,6 @@ body {
           &__text {
                font-family: sc.$fancy-font;
                font-size: 1rem;
-               text-wrap: pretty;
                text-align: justify;
                text-rendering: optimizeSpeed;
                line-height: 1.35rem;
@@ -116,6 +115,10 @@ body {
 
                &::before {
                     content: '> ';
+               }
+
+               @supports (text-wrap: pretty) {
+                    text-wrap: pretty;
                }
           }
 

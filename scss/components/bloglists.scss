@@ -101,8 +101,11 @@ body .blogs {
      &__bloglist-description {
           font-family: sc.$fancy-font;
           text-align: justify;
-          text-wrap: pretty;
           line-height: 1.1rem;
+
+          @supports (text-wrap: pretty) {
+               text-wrap: pretty;
+          }
      }
 
      &__bloglist-wrapper-time {

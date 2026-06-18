@@ -200,9 +200,12 @@ body {
                p, blockquote, li {
                     font-family: sc.$fancy-font;
                     font-size: 1rem;
-                    text-wrap: pretty;
                     text-align: start;
                     text-rendering: optimizeSpeed;
+
+                    @supports (text-wrap: pretty) {
+                         text-wrap: pretty;
+                    }
                }
 
                p, blockquote, ul, ol {

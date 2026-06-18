@@ -256,7 +256,10 @@ body {
                     cursor: pointer;
                     image-rendering: pixelated;
                     transform: translateX(0px);
-                    anchor-name: --amy-dialogue;
+
+                    @supports (anchor-name: --test) {
+                         anchor-name: --amy-dialogue;
+                    }
                }
 
                &__album-dialogue {
@@ -264,8 +267,13 @@ body {
                     content-visibility: var(--amy-dialogue-visibility);
                     image-rendering: pixelated;
                     position: absolute;
-                    position-anchor: --amy-dialogue;
-                    position-area: top center;
+                    top: -75px;
+
+                    @supports (position-anchor: --test) {
+                         position-anchor: --amy-dialogue;
+                         position-area: top center;
+                         top: 0;
+                    }
                }
 
                &__albumlist {

@@ -35,7 +35,7 @@ $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
 @function _font-sources($font, $sources) {
      $result: ();
      @each $type, $format in $sources {
-          $result: list.append($result, url('#{$font}.#{$type}') $format);
+          $result: list.append($result, url('#{$font}.#{$type}') $format, $separator: comma);
      }
      @return $result;
 }

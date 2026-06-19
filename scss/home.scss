@@ -226,47 +226,29 @@ body {
                     color: silver;
                }
                
-               --amy-dialogue-visibility: hidden;
+               --amy-dialogue-visibility: none;
                &__album-visualizer {
                     display: flex;
                     justify-content: center;
+                    position: relative;
                     @include sc.user-select(none);
 
                     &:hover {
-                         --amy-dialogue-visibility: visible;
-                    }
-
-                    @supports not (position-anchor: auto) {
-                         position: relative;
+                         --amy-dialogue-visibility: inline;
                     }
                }
 
                &__album-amy {
                     cursor: pointer;
                     image-rendering: pixelated;
-                    transform: translateX(0px);
                }
 
                &__album-dialogue {
                     pointer-events: none;
-                    content-visibility: var(--amy-dialogue-visibility);
+                    display: var(--amy-dialogue-visibility);
                     image-rendering: pixelated;
                     position: absolute;
-                    
-                    @supports not (position-anchor: auto) {
-                         top: -75px;
-                    }
-               }
-
-               @supports (position-anchor: auto) and (anchor-name: auto) {
-                    &__album-amy {
-                         anchor-name: --amy-dialogue;
-                    }
-
-                    &__album-dialogue {
-                         position-anchor: --amy-dialogue;
-                         position-area: top center;
-                    }
+                    top: -75px;
                }
 
                &__albumlist {

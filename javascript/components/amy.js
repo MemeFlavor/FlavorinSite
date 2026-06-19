@@ -13,10 +13,8 @@ const dancingMovement = setInterval(() => {
      }
 
      if (position >= -LIMIT && position <= LIMIT) {
-          if (!CSS.supports('position-anchor: auto')) 
-               dlg.style.transform = `translateX(${position}px)`;
-          
           amy.style.transform = `translateX(${position}px)`
+          dlg.style.transform = `translateX(${position}px)`;
      } else if (position <= -LIMIT || position >= LIMIT) {
           position -= positionRancrement * STEPS
      }

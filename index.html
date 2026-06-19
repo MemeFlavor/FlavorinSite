@@ -10,6 +10,7 @@
      <meta name="language" content="EN" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <meta name="color-scheme" content="dark" />
+     <meta name="robots" content="noai, noimageai">
      <link rel="icon" type="image/x-icon" href="images/Favicon.ico">
      <link rel="preload" href="images/header/banner.avif" as="image" fetchpriority="high">
      <link rel="preload" href="images/header/banner_metal.avif" as="image" fetchpriority="high">
@@ -95,15 +96,16 @@
                </hgroup>
                <article class="main__description">
                     <p>
-                         Welcome to my Flavorous Site! This is my little tiny corner of the internet where I can basically talk whatever I want.
-                         Sharing my weird little interests, creativity, and creations to all of you random people on the internet. I know social
-                         media exist and all that shit, but it kinda sucks fucking ass. For like a multitude of reasons that I'm way too lazy to
-                         mention in this about section.
+                         Welcome to my Flavorlicious Site on the Web! This is basically just my tiny little corner on the internet. It's where I can
+                         do whatever I want, how I want; sharing my own weird little interests, creativity, and creations to all of you random people 
+                         on the internet. I've basically made this bacuase I wanna join the Indie Web and also social media is complete ass, it just
+                         feels so inauthentic and feast on negativity like its only main energy source.
                     </p>
                     <p>
-                         Anyways I hope you enjoyed exploring this site, I have spent way too much free time building this site. Coding and 
-                         designing this site than putting effort on my school works. This site is still in under construction so expect some new 
-                         pages, redesign changes, and other stuff idk. But I'll try to do my best, if I even feel like it lmao.
+                         Anyways I hope you guys enjoyed exploring this site <i>(even though it's still under construction)</i>. I have spent way
+                         too much free time building this than putting any effort on my school works. I've done a lot of programming and designing
+                         this site, it was hard but worth it in the end. Also expect some new pages, redesign changes, and other stuff idk. But I'll 
+                         try to do my best, if I even feel like it lmao.
                     </p>
                </article>
                <hgroup class="main__header">
@@ -220,12 +222,11 @@
           </main>
      </article>
      <script>
-          const doodoo = document.querySelector('.main__title')
+          const flavorTitle = document.querySelector('.main__title')
           if (window.location.hostname === 'memeflavor.github.io') {
-               doodoo.style.backgroundColor = 'hsl(90, 100%, 40%)'
+               flavorTitle.style.backgroundColor = 'hsl(90, 100%, 40%)'
           }
-          doodoo.textContent = window.location.hostname
-          
+          flavorTitle.textContent = window.location.hostname
      </script>
 </body>
 </html>

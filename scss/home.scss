@@ -107,10 +107,6 @@ body {
                line-height: 1.5rem;
                padding-inline: 10px;
                margin-block: 10px;
-          
-               &::before {
-                    content: '> ';
-               }
 
                @supports (text-wrap: pretty) {
                     text-wrap: pretty;

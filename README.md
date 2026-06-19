@@ -1,2 +1,2 @@
 # FlavorinSite
-Hi
+This is my personal Neocities Site entire source code, it's basically just my tiny little corner on the internet. I've made this cuz I think the Indie web is cool and lets you express your creativity to the fullest. And also I love programming as a hobby as a whole, so it perfectly fits me making my my own website.

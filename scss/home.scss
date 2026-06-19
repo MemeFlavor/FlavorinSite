@@ -258,7 +258,7 @@ body {
                     }
                }
 
-               @supports (position-anchor: auto) and (anchor-name: --amy-dialogue) {
+               @supports (position-anchor: auto) and (anchor-name: auto) {
                     &__album-amy {
                          anchor-name: --amy-dialogue;
                     }

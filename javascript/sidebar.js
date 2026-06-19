@@ -96,7 +96,7 @@ kil.addEventListener('keydown', (event) => {
                break;
           default:
                let divs = document.createElement('div')
-               divs.insertAdjacentHTML('beforeend', `flavory is not a command: ${iow[1]}`)
+               divs.insertAdjacentHTML('beforeend', `flavor is not a command: ${iow[1]}`)
                ert.appendChild(divs)
                break;
      }    

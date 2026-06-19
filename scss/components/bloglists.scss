@@ -1,8 +1,14 @@
 @use '../modules/shortcuts.scss' as sc;
 @use 'sass:color';
 
-@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900, '../..');
-@include sc.font-face-var('Lexend', normal, normal, 100 900, '../..');
+@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "../..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
+@include sc.font-face-var('FiraCode', 300 700, normal, normal, "../..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
 
 body .blogs {
      &__bloglist {
@@ -40,10 +46,6 @@ body .blogs {
           letter-spacing: 1px;
           width: 100%;
           padding: calc((5px + 8px) / 2) 10px;
-
-          @supports (font-width: expanded) {
-               font-width: expanded;
-          }
      }
 
      &__bloglist-content {
@@ -81,10 +83,6 @@ body .blogs {
           letter-spacing: 1px;
           background-color: var(--title-background-color);
           width: fit-content;
-
-          @supports (font-width: 100%) {
-               font-width: 100%;
-          }
      }
 
      &__bloglist-type {
@@ -116,7 +114,7 @@ body .blogs {
      }
 
      &__bloglist-time {
-          font-family: "Fira Code", sc.$standard-code-font;
+          font-family: "FiraCode", sc.$standard-code-font;
           font-size: 0.65rem;
           background-color: #272525;
           border-radius: 5px;

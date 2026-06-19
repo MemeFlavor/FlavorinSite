@@ -1,9 +1,10 @@
 @use './modules/shortcuts.scss' as sc;
 @use 'sass:color';
 
-@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
-@include sc.font-face-var('Fira Code', normal, normal, 300 700);
-@include sc.font-face-var('Lexend', normal, normal, 100 900);
+@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
 
 body {
      display: flex;
@@ -34,8 +35,8 @@ body {
      .autobiography {
           grid-area: flavory-autobiography;
           background-color: color.adjust(#272525, $lightness: -5%);
+          box-shadow: 5px 5px 0px 0px #4f4eff;
           padding: 20px;
-          @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
 
           &__main {
                display: flex;
@@ -92,7 +93,7 @@ body {
 
           &__header-block-nums {
                padding: 1px 3px;
-               @include sc.unselectable;
+               @include sc.user-select(none);
 
                &--highlight {
                     background-color: color.adjust(color.invert(#4f4eff), $hue: 30deg, $lightness: 10%);

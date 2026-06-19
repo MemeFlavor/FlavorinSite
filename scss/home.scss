@@ -1,10 +1,13 @@
 @use './modules/shortcuts.scss' as sc;
 @use 'sass:color';
 
-@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
-@include sc.font-face-var('Fira Code', normal, normal, 300 700);
-@include sc.font-face-var('Lexend', normal, normal, 100 900);
-@include sc.font-face('Kimberley', 'Kimberley-', normal, "Black");
+@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
+@include sc.font-face('Kimberley', "Black", normal, "..", (
+     ('woff2', format('woff2'))
+));
 
 body {
      display: flex;
@@ -34,7 +37,7 @@ body {
           flex-direction: row-reverse;
           justify-content: space-between;
           grid-area: flavory-header;
-          @include sc.unselectable;
+          @include sc.user-select(none);
 
           &__characters {
                display: flex;
@@ -44,18 +47,18 @@ body {
 
           &__characters-profile {
                &--metal {
-                    @include sc.box-shadow(#001073, 5px 5px, 0px, 0px);
+                    box-shadow: 5px 5px 0px 0px #001073;
                }
                &--sonic {
-                    @include sc.box-shadow(#0e41b7, 5px 5px, 0px, 0px);
+                    box-shadow: 5px 5px 0px 0px #0e41b7;
                }
                &--amy {
-                    @include sc.box-shadow(#ce5592, 5px 5px, 0px, 0px);
+                    box-shadow: 5px 5px 0px 0px #ce5592;
                }
           }
 
           &__banner {
-               @include sc.box-shadow(#39b11f, 5px 5px, 0px, 0px);
+               box-shadow: 5px 5px 0px 0px #39b11f;
           }
      }
 
@@ -66,9 +69,9 @@ body {
      .main {
           grid-area: flavory-main;
           background-color: color.adjust(#272525, $lightness: -5%);
+          box-shadow: 5px 5px 0px 0px #4f4eff;
           height: fit-content;
           padding: 20px;
-          @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
 
           &__title {
                font-family: "Archivo", sc.$standard-font;
@@ -80,10 +83,6 @@ body {
                border-radius: 5px;
                padding: 5px 10px;
                margin-bottom: 15px;
-
-               @supports (font-width: expanded) {
-                    font-width: expanded
-               }
           }
 
           &__header {
@@ -98,10 +97,6 @@ body {
                font-size: 1.6rem;
                font-weight: 900;
                font-stretch: expanded;
-
-               @supports (font-width: expanded) {
-                    font-width: expanded
-               }
           }
 
           &__description p {
@@ -147,10 +142,6 @@ body {
                     font-size: 1.2rem;
                     font-weight: 900;
                     font-stretch: expanded;
-
-                    @supports (font-width: expanded) {
-                         font-width: expanded
-                    }
                }
           }
 
@@ -224,10 +215,7 @@ body {
                               to   { transform: translate(-100%, 0); }
                          }
                     }
-               
-                    @supports (font-width: expanded) {
-                         font-width: expanded
-                    }
+          
                }
                
                &__album-artists {
@@ -237,17 +225,13 @@ body {
                     font-stretch: 100%;
                     text-shadow: 3px 3px 0px black;
                     color: silver;
-               
-                    @supports (font-width: 100%) {
-                         font-width: 100%
-                    }
                }
                
                --amy-dialogue-visibility: hidden;
                &__album-visualizer {
                     display: flex;
                     justify-content: center;
-                    @include sc.unselectable;
+                    @include sc.user-select(none);
 
                     &:hover {
                          --amy-dialogue-visibility: visible;
@@ -330,10 +314,6 @@ body {
                     font-size: 0.95rem;
                     font-weight: 900;
                     font-stretch: 105%;
-
-                    @supports (font-width: 105%) {
-                         font-width: 105%;
-                    }
                }
 
                &__albumlist-artists {

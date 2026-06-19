@@ -1,10 +1,22 @@
 @use './modules/shortcuts.scss' as sc;
 @use 'sass:color';
 
-@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900);
-@include sc.font-face-var('Lexend', normal, normal, 100 900);
-@include sc.font-face-var('JetBrains Mono', normal, normal, 100 800);
-@include sc.font-face-var('Fira Code', normal, normal, 300 700);
+@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
+@include sc.font-face-var('Lexend', 100 900, normal, normal, "..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
+@include sc.font-face-var('FiraCode', 300 700, normal, normal, "..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
+@include sc.font-face-var('JetBrainsMono', 300 700, normal, normal, "..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
 
 body {
      display: flex;
@@ -68,10 +80,6 @@ body {
                padding: 10px 15px;
                width: 100%;
                margin-block: 10px;
-
-               @supports (font-width: expanded) {
-                    font-width: expanded;
-               }
           }
 
           &__headbar-breadcrumbs {
@@ -160,7 +168,7 @@ body {
           &__code-body {
                display: flex;
                flex-direction: row;
-               font-family: 'Fira Code', sc.$standard-code-font;
+               font-family: 'FiraCode', sc.$standard-code-font;
                background-color: hsl(0, 0%, 2%);
                padding-block: 10px;
           }
@@ -171,7 +179,7 @@ body {
                text-align: right;
                color: silver;
                margin-inline: 25px;
-               @include sc.unselectable;
+               @include sc.user-select(none);
           }
 
           &__code-body {
@@ -200,7 +208,7 @@ body {
                margin-top: 0.5cm;
 
                h1, h2, h3, h4, h5, h6 {
-                    font-family: "JetBrains Mono", sc.$standard-font;
+                    font-family: "JetBrainsMono", sc.$standard-font;
                     padding-inline: 10px;
                }
 
@@ -232,7 +240,7 @@ body {
                }
 
                code {
-                    font-family: "Fira Code", sc.$standard-code-font;
+                    font-family: "FiraCode", sc.$standard-code-font;
                     font-size: 0.85rem;
                     background-color: #272525;
                     border-radius: 5px;

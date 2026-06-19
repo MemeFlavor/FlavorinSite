@@ -32,9 +32,9 @@ body {
           flex-direction: column;
           grid-area: flavory-blogs;
           background-color: color.adjust(#272525, $lightness: -5%);
+          box-shadow: 5px 5px 0px 0px #4f4eff;
           padding: 20px;
           height: 110vh;
-          @include sc.box-shadow(#4f4eff, 5px 5px, 0px, 0px);
 
           &__navigation {
                margin-bottom: 10px;
@@ -48,22 +48,22 @@ body {
                @include sc.gradient(165deg, rgb(85, 85, 85) 0%, rgb(39, 39, 39) 95%);
           }
      
-          --nailss1: hsl(0, 0%, 43%);
-          --nailss2: hsl(0, 0%, 25%);
+          --item-colorpoint-start: hsl(0, 0%, 43%);
+          --item-colorpoint-end: hsl(0, 0%, 25%);
           &__navigation-item {
                cursor: pointer;
                border-right: 1px solid black;
                padding: 8px 10px;
      
                &--selected {
-                    --nailss1: rgb(85, 125, 201);
-                    --nailss2: rgb(39, 57, 91);
+                    --item-colorpoint-start: rgb(85, 125, 201);
+                    --item-colorpoint-end: rgb(39, 57, 91);
                     cursor: not-allowed;
                     @include sc.gradient(165deg, rgb(85, 125, 201) 0%, rgb(39, 57, 91) 95%);
                }
      
                &:hover {
-                    @include sc.gradient(165deg, var(--nailss1) 0%, var(--nailss2) 95%);
+                    @include sc.gradient(165deg, var(--item-colorpoint-start) 0%, var(--item-colorpoint-end) 95%);
                }
           }
      

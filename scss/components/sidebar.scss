@@ -4,17 +4,26 @@
 @use "sass:math";
 @use "sass:color";
 
-@include sc.font-face-var('Archivo', 62% 125%, normal, 100 900, "../..");
-@include sc.font-face-var('Lexend', normal, normal, 100 900, "../..");
-@include sc.font-face-var('Fira Code', normal, normal, 300 700, "../..");
+@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "../..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
+@include sc.font-face-var('Lexend', 100 900, normal, normal, "../..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
+@include sc.font-face-var('FiraCode', 300 700, normal, normal, "../..", (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+));
 
 body .sidebar {
      background-color: rgb(40, 40, 40);
      border: 2.5px solid transparent;
      border-image: linear-gradient(180deg, hsl(238, 64%, 60%), hsl(239, 53%, 43%)) 1;
+     box-shadow: 10px 0px 0px -5px hsl(253, 52%, 27%);
      width: 260px;
      height: fit-content;
-     @include sc.box-shadow(hsl(253, 52%, 27%), 10px 0px, 0px, -5px);
      
      &__headbar {
           display: flex;
@@ -28,7 +37,7 @@ body .sidebar {
           gap: 8px;
           padding-block: 8px 10px;
           @include sc.gradient(180deg, #3837b9 0%, #1e1e68 85%);
-          @include sc.unselectable;
+          @include sc.user-select(none);
      
           // Stolen Code @see https://aleclownes.com/2017/02/01/crt-display.html
           &::before {
@@ -69,10 +78,6 @@ body .sidebar {
           padding-block: 5px;
           padding-inline: 10px;
           @include sc.gradient(180deg, #39b11f 0%, #247812 100%);
-     
-          @supports (font-width: 105%) {
-               font-width: 105%;
-          }
      }
      
      &__headbar-slogan {
@@ -83,10 +88,6 @@ body .sidebar {
           font-stretch: expanded;
           text-align: right;
           padding-right: 5px;
-     
-          @supports (font-width: expanded) {
-               font-width: expanded;
-          }
      }
      
      &__headbar-slogan-text {
@@ -138,7 +139,7 @@ body .sidebar {
                font-family: sc.$fancy-font;
                font-size: 0.75rem;
                font-style: italic;
-               @include sc.unselectable;
+               @include sc.user-select(none);
           }
      
           &:last-of-type {
@@ -169,6 +170,7 @@ body .sidebar {
                cursor: pointer;
                font-family: 'Lexend', sc.$standard-font;
                font-size: 0.95rem;
+               font-weight: 650;
                text-decoration: none;
                color: currentColor;
      
@@ -273,7 +275,7 @@ body .sidebar {
           }
 
           &__terminal, &__input {
-               font-family: 'Fira Code', sc.$standard-code-font;
+               font-family: 'FiraCode', sc.$standard-code-font;
                font-size: 0.6rem;
                line-height: 0.85rem;
                background-color: color.adjust(#272525, $lightness: -10%);

@@ -13,70 +13,89 @@ $_weights: (
      "ExtraBold": 800,
      "Black": 900
 );
-$_types: (
-     "ttf": "truetype",
-     "otf": "opentype",
-     "woff2": "woff2",
-     "woff": "woff"
-);
 
+/// The fancy font.
+/// @type list
 $fancy-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+/// Standard default font.
+/// @type list
 $standard-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+/// Standard default font for code.
+/// @type list
 $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
 
-/// Shortcut for creating custom fonts.
-/// @param {String} $font-name - The given name of the font.
-/// @param {String} $font-path - The given path to the font.
-/// @param {String} $font-style - The specified style for the font.
-/// @param {Number} $font-weights - The weight of the font(s).
-/// @param {String} $font-type ["woff2"] - The file format of the font.
-/// @output Self-explanatory.
-@mixin font-face($font-name, $font-path, $font-style, $font-weights, $font-type: "woff2") {
-     $font-weight-length: list.length($font-weights);
+/* Functions */
 
-     @for $weight-index from 1 through $font-weight-length {
-          $font-weight-name: list.nth($font-weights, $weight-index);
-
-          $font-weight-path: '../fonts/#{$font-name}/#{$font-path}#{$font-weight-name}.#{$font-type}';
-          $font-weight-value: map.get($_weights, $font-weight-name);
-          @font-face {
-               font-family: $font-name;
-               src: url($font-weight-path) format(map.get($_types, $font-type));
-               font-weight: $font-weight-value;
-               font-style: $font-style;
-               font-display: swap;
-          }
+/// Creates a list of font sources, helper function.
+/// @access private
+/// @param {string}  $font    - The given filename of the font.
+/// @param {sources} $sources - The available source format for the font.
+@function _font-sources($font, $sources) {
+     $result: ();
+     @each $type, $format in $sources {
+          $result: list.append($result, url('#{$font}.#{$type}') $format);
      }
+     @return $result;
 }
 
-/// Shortcut for creating custom variable font, that's it.
-/// Variable fonts are a bunch of data (i.e width and weights) that is bundle into one file, as supposed to multiple.
-/// @param {String} $font-name - The given name of the font.
-/// @param {String} $font-style [normal] - The specified style for the font.
-/// @param {Number} $font-widths [normal] - The width/stretch of the font.
-/// @param {Number} $font-weights [100 900] - The weight of the font.
-/// @param {String} $font-type ["woff2"] - The file format of the font.
-/// @output Self-explanatory.
-@mixin font-face-var($font-name, $font-style: normal, $font-widths: normal, $font-weights: 100 900, $font-path: "..", $font-type: "woff2") {
-     $font-weight-path: '#{$font-path}/fonts/#{$font-name}/#{$font-name}.#{$font-type}';
+/// Outputs a font path, helper function.
+/// @access private
+/// @param {string}  $name - The given filename of the font.
+/// @param {sources} $root - The root path of the font.
+@function _font-path($name, $root) {
+     @return '#{$root}/fonts/#{$name}/#{$name}';
+}
 
+/* Mixins */
+
+/// Shortcut for creating custom font, that's it.
+/// @access public
+/// @param {string} $name    - The given name and filename of the font.
+/// @param {string} $weights - The weight range of the font.
+/// @param {string} $styles  - The style type of the font.
+/// @param {string} $root    - The root path of the font.
+/// @param {list}   $sources - The available source format for the font.
+/// @output The generated font-face.
+@mixin font-face($name, $weights, $style, $root, $sources) {
      @font-face {
-          font-family: $font-name;
-          src: url($font-weight-path) format($font-type);
-          font-weight: $font-weights;
-          font-stretch: $font-widths;
-          font-style: $font-style;
+          font-family: $name;
+          src: _font-sources(_font-path($name, $root), $sources);
+          font-weight: map.get($_weights, $weights);
+          font-style: $style;
           font-display: swap;
      }
 }
 
-/// Shortcut for CSS gradients, adds support to multiple browsers.
-/// @param {Number} $direction - The direction of the gradient to apply to.
-/// @param {List} $color-stops - The color and the percentage position on the gradient.
-/// @output Self-explanatory.
+/// Shortcut for creating custom variable font, that's it.
+/// @access public
+/// @param {string} $name    - The given name and filename of the font.
+/// @param {list}   $weights - The weight range of the font.
+/// @param {list}   $stretch - The stretch/width range of the font.
+/// @param {list}   $styles  - The style type of the font.
+/// @param {string} $root    - The root path of the font.
+/// @param {list}   $sources - The available source format for the font.
+/// @output The generated font-face.
+@mixin font-face-var($name, $weights, $stretch, $styles, $root, $sources) {
+     @font-face {
+          font-family: $name;
+          src: _font-sources(_font-path($name, $root), $sources);
+          font-weight: $weights;
+          font-stretch: $stretch;
+          font-style: $styles;
+          font-display: swap;
+     }
+}
+
+/// Shortcut for gradients, adds support to older browser version.
+/// @param {number} $direction   - The angle direction for the gradient.
+/// @param {list}   $color-stops - The position color points for the gradient. 
+/// @throw $color-stops must have an ending point for the gradient!
+/// @output The generated gradient.
 @mixin gradient($direction, $color-stops...) {
      @if list.length($color-stops) <= 1 {
-          @error "argument must have 2 or more value!";
+          @error "$color-stops must have an ending point for the gradient !";
      }
 
      background: list.nth(list.nth(list.nth($color-stops, 1), 1), 1); // gets the first color
@@ -85,48 +104,14 @@ $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
      background: linear-gradient($direction, $color-stops);
 }
 
-/// Shortcut for CSS box shadows, adds support to multiple browsers.
-/// @param {Color} $shadow-color - The color of the box shadow.
-/// @param {List} $shadow-position - The x and y positions of the box shadow.
-/// @param {Number} $blur-radius - The amount of the blur radius.
-/// @param {Number} $spread-radius - The amount of the spread radius.
-/// @param {String} $inset [""] - Whether the shadow will be inset or not.
-/// @output Self-explanatory.
-@mixin box-shadow($shadow-color, $shadow-position, $blur-radius, $spread-radius, $inset: null) {
-     box-shadow: $shadow-position $blur-radius $spread-radius $shadow-color $inset;
-     -webkit-box-shadow: $shadow-position $blur-radius $spread-radius $shadow-color $inset;
-     -moz-box-shadow: $shadow-position $blur-radius $spread-radius $shadow-color $inset;
-}
-
-/// Makes the element unselectable, shocker right, adds support to multiple browsers.
-/// @output Self-explanatory.
-@mixin unselectable {
-     -webkit-touch-callout: none; /* iOS Safari */
-     -webkit-user-select: none;   /* Safari */
-     -khtml-user-select: none;    /* Konqueror HTML */
-     -moz-user-select: none;      /* Old versions of Firefox */
-     -ms-user-select: none;       /* Internet Explorer/Edge */
-     user-select: none;           /* Non-prefixed version, supported by Chrome, Edge, Opera and Firefox */
-}
-
-/* Functions */
-
-/// Helper function, the specified weight range for the fonts.
-/// @param {Number} $start - The start of the range.
-/// @param {Number} $end - The end of the range.
-/// @param {List} $skip [] - Whether to skip certain weight values, if it doesn't exist.
-/// @return The weight range calculated.
-@function font-weight-range($start, $end, $skip...) {
-     $range: ();
-     @if list.length($skip) <= 0 {
-          @for $range-index from $start through $end {
-               $range: list.append($range, list.nth(map.keys($_weights), $range-index), comma);
-          }
-          @return $range;
-     }
-     
-     @each $skip-values in $skip {
-          $range: list-ex.remove($range, $skip-values)
-     }
-     @return $range;
+/// Shortcut for user selection, adds support to older browser version/multiple browsers.
+/// @param {string} $type - The given value controlling the selection text. 
+/// @output The entire user-select properties.
+@mixin user-select($type) {
+     -webkit-touch-callout: $type; /* iOS Safari */
+     -webkit-user-select: $type;   /* Safari */
+     -khtml-user-select: $type;    /* Konqueror HTML */
+     -moz-user-select: $type;      /* Old versions of Firefox */
+     -ms-user-select: $type;       /* Internet Explorer/Edge */
+     user-select: $type;           /* Non-prefixed version, supported by Chrome, Edge, Opera and Firefox */  
 }

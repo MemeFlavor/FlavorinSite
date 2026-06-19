@@ -215,7 +215,6 @@ body {
                               to   { transform: translate(-100%, 0); }
                          }
                     }
-          
                }
                
                &__album-artists {
@@ -237,7 +236,7 @@ body {
                          --amy-dialogue-visibility: visible;
                     }
 
-                    @supports not (position-anchor: --amy-dialogue) {
+                    @supports not (position-anchor: auto) {
                          position: relative;
                     }
                }
@@ -254,12 +253,12 @@ body {
                     image-rendering: pixelated;
                     position: absolute;
                     
-                    @supports not (position-anchor: --amy-dialogue) {
+                    @supports not (position-anchor: auto) {
                          top: -75px;
                     }
                }
 
-               @supports (position-anchor: --amy-dialogue) {
+               @supports (position-anchor: auto) {
                     &__album-amy {
                          anchor-name: --amy-dialogue;
                     }

@@ -46,19 +46,22 @@ body {
           padding: 15px;
 
           .information {
-               
+               display: flex;
+               flex-direction: column;
+               gap: 20px;
+
                &__profile {
                     border-radius: 5px;
                     box-shadow: 4px 4px 5px 0px hsl(245, 36%, 21%)
                }
 
-               &__header {
+               &__profile-header, &__socials-header {
                     border: 2px solid hsl(240, 54%, 35%);
                     border-top-left-radius: 5px;
                     border-top-right-radius: 5px;
                     width: 100%;
                     padding: 8px 10px;
-                    @include sc.gradient(180deg, 
+                    @include sc.gradient(180deg,
                          hsl(240, 57%, 48%) 0%,
                          hsl(240, 74%, 61%) 10%,
                          hsl(240, 57%, 48%) 20%,
@@ -67,19 +70,55 @@ body {
                     );
                }
 
-               &__header-title {
-                    font-family: sc.$fancy-font, "Archivo", sc.$standard-font;
-                    font-size: 1.3rem;
+               &__profile-header-title, &__socials-header-title {
+                    font-family: sc.$fancy-font;
+                    font-size: 1.15rem;
                     color: white;
                }
-               
-               &__body {
-                    background-color: beige;
+
+               &__profile-body, &__socials-body {
+                    display: flex;
+                    flex-direction: row;
+                    font-family: 'Candy Beans';
+                    font-size: 0.7rem;
+                    color: black;
+                    background-color: rgb(225, 220, 245);
                     border: 2px solid hsl(240, 54%, 35%);
                     border-top: none;
                     border-bottom-left-radius: 5px;
                     border-bottom-right-radius: 5px;
+                    gap: 10px;
                     padding: 8px;
+               }
+
+               &__profile-image {
+                    border-radius: 5px;
+               }
+
+               &__profile-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+               }
+
+               &__socials-body {
+                    flex-direction: column;
+                    font-size: 0.85rem;
+               }     
+
+               &__socials-badges {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr;
+                    gap: 5px;
+
+                    p {
+
+                    }
+
+                    img {
+                         image-rendering: pixelated;
+                    }
                }
           }
      }

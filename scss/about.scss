@@ -5,6 +5,9 @@
      ('woff2', format('woff2-variations')), 
      ('woff2', format('woff2') tech('variations'))
 ));
+@include sc.font-face('Candy Beans', "Regular", normal, "..", (
+     ('woff2', format('woff2'))
+));
 
 body {
      display: flex;
@@ -33,197 +36,58 @@ body {
      }
 
      .autobiography {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          grid-template-rows: 1fr;
           grid-area: flavory-autobiography;
           background-color: color.adjust(#272525, $lightness: -5%);
           box-shadow: 5px 5px 0px 0px #4f4eff;
-          padding: 20px;
+          gap: 15px;
+          padding: 15px;
 
-          &__main {
-               display: flex;
-               flex-direction: row;
-               justify-content: space-between;
-               gap: 15px;
-               margin-bottom: 10px;
-          }
-
-          &__description {
-               width: 100%;
-          }
-
-          &__header {
-               display: flex;
-               flex-direction: row;
-               align-items: center;
-               justify-content: space-around;
-               gap: 5px;
-          }
-
-          &__header-title, &__header-block {
-               font-family: "Archivo", sc.$standard-font;
-               font-weight: 900;
-               font-stretch: expanded;
-          }
-
-          &__header-title {
-               font-family: "Archivo", sc.$standard-font;
-               font-size: 1.6rem;
-               font-weight: 900;
-               font-stretch: expanded;
-               background-color: color.adjust(#272525, $lightness: -10%);
-               border-radius: 5px;
-               padding: 10px 15px;
-               width: 100%;
-
-               @keyframes blinker {
-                    0%, 100% { color: #ffb52b; }
-                    50%      { color: currentColor; }
+          .information {
+               
+               &__profile {
+                    border-radius: 5px;
+                    box-shadow: 4px 4px 5px 0px hsl(245, 36%, 21%)
                }
 
-               &--blinker {
-                    animation: blinker 3s step-start infinite;
-               }
-          }
-
-          &__header-block {
-               display: grid;
-               grid-template-columns: 1fr 1fr;
-               grid-template-rows: 1fr 1fr;
-               font-size: 0.95rem;
-          }
-
-          &__header-block-nums {
-               padding: 1px 3px;
-               @include sc.user-select(none);
-
-               &--highlight {
-                    background-color: color.adjust(color.invert(#4f4eff), $hue: 30deg, $lightness: 10%);
-                    color: black;
-               }
-          }
-
-          &__body {
-               display: block;
-          }
-
-          &__text {
-               font-family: sc.$fancy-font;
-               font-size: 1rem;
-               text-align: justify;
-               text-rendering: optimizeSpeed;
-               line-height: 1.35rem;
-               padding-inline: 10px;
-               margin-block: 10px;
-
-               &::before {
-                    content: '> ';
+               &__header {
+                    border: 2px solid hsl(240, 54%, 35%);
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    width: 100%;
+                    padding: 8px 10px;
+                    @include sc.gradient(180deg, 
+                         hsl(240, 57%, 48%) 0%,
+                         hsl(240, 74%, 61%) 10%,
+                         hsl(240, 57%, 48%) 20%,
+                         hsl(240, 100%, 65%) 88%,
+                         hsl(240, 59%, 25%) 100%,
+                    );
                }
 
-               @supports (text-wrap: pretty) {
-                    text-wrap: pretty;
+               &__header-title {
+                    font-family: sc.$fancy-font, "Archivo", sc.$standard-font;
+                    font-size: 1.3rem;
+                    color: white;
+               }
+               
+               &__body {
+                    background-color: beige;
+                    border: 2px solid hsl(240, 54%, 35%);
+                    border-top: none;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    padding: 8px;
                }
           }
+     }
 
-          &__info {
-               display: flex;
-               flex-direction: column;
-               width: 200px;
-          }
-
-          &__info-title {
-               display: flex;
-               flex-direction: row;
-               align-items: center;
-               justify-content: center;
-               font-family: "Archivo", sc.$standard-font;
-               font-size: 1.5rem;
-               font-weight: 900;
-               font-stretch: 100%;
-               background-color: #4f4eff;
-               color: black;
-               height: 45px;
-          }
-
-          &__info-quote {
-               font-size: 0.95rem;
-               text-align: center;
-               margin-block: 10px 15px;
-          }
-
-          &__info-data {
-               display: flex;
-               flex-direction: column;
-               gap: 8px;
-          }
-
-          &__info-metadata {
-               display: flex;
-               flex-direction: row;
-               align-items: end;
-               justify-content: space-between;
-          }
-
-          &__info-metadata-key {
-               font-weight: bolder;
-               font-size: 0.95rem;
-          }
-
-          &__info-metadata-value {
-               font-size: 0.85rem;
-               font-style: italic;
-               color: #9e9e9e;
-          }
-
-          &__trivia {
-               display: flex;
-               flex-direction: row;
-               justify-content: flex-start;
-               margin-inline: 10px;
-               margin-top: 15px;
-          }
-
-          &__trivia-container {
-               display: flex;
-               flex-flow: row wrap;
-               gap: 20px;
-          }
-
-          &__trivia-cards {
-               background-color: #101010;
-               border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
-               padding-top: 10px;
-               min-width: 180px;
-          } 
-
-          &__trivia-cards-title {
-               font-family: "Archivo", sc.$standard-font;
-               font-size: 1.2rem;
-               font-weight: 900;
-               font-stretch: 85%;
-               border-top: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
-               border-bottom: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
-               padding: 3px 8px;
-               width: 100%;
-               @include sc.gradient(180deg, #272525 0%, color.adjust(#272525, $lightness: -10%) 100%);
-
-               abbr {
-                    text-decoration: none;
-               }
-          }
-
-          &__trivia-cards-list {
-               display: flex;
-               flex-direction: column;
-               gap: 3px;
-               padding: 10px;
-          }
-
-          &__trivia-cards-item {
-               font-family: sc.$fancy-font;
-               font-size: 0.9rem;
-
-               &::before {
-                    content: '> ';
-               }
-          }
+     h1 {
+          font-family: 'Archivo', sc.$standard-font;
+          font-size: 1.35rem;
+          font-weight: 900;
+          font-stretch: expanded;
      }
 }

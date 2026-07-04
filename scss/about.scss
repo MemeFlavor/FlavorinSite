@@ -55,7 +55,7 @@ body {
                     box-shadow: 4px 4px 5px 0px hsl(245, 36%, 21%)
                }
 
-               &__profile-header, &__socials-header {
+               &__profile-header, &__socials-header, &__interests-header {
                     border: 2px solid hsl(240, 54%, 35%);
                     border-top-left-radius: 5px;
                     border-top-right-radius: 5px;
@@ -70,13 +70,13 @@ body {
                     );
                }
 
-               &__profile-header-title, &__socials-header-title {
+               &__profile-header-title, &__socials-header-title, &__interests-header-title {
                     font-family: sc.$fancy-font;
                     font-size: 1.15rem;
                     color: white;
                }
 
-               &__profile-body, &__socials-body {
+               &__profile-body, &__socials-body, &__interests-body {
                     display: flex;
                     flex-direction: row;
                     font-family: 'Candy Beans';
@@ -110,19 +110,15 @@ body {
                     font-size: 0.9rem;
                }
 
-               &__socials-badges {
+               &__socials-stuff {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     grid-template-rows: 1fr;
-                    gap: 5px;
+                    gap: 5px 0px;
+               }
 
-                    p {
-
-                    }
-
-                    img {
-                         image-rendering: pixelated;
-                    }
+               &__socials-badge {
+                    image-rendering: pixelated;
                }
           }
      }

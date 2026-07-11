@@ -6,7 +6,7 @@
      ('woff2', format('woff2') tech('variations'))
 ));
 @include sc.font-face('Kimberley', "Black", normal, "..", (
-     ('woff2', format('woff2'))
+     ('woff2', format('woff2')),
 ));
 
 body {

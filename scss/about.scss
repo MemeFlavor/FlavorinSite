@@ -57,7 +57,7 @@ body {
                     grid-template-rows: auto auto-fit;
                     grid-template-areas:
                          "account-profile account-profile"
-                         "account-banner account-stuff"
+                         "account-banner account-extra"
                     ;
                     gap: 5px 15px;
                }
@@ -67,7 +67,7 @@ body {
                     flex-direction: row;
                     grid-area: account-profile;
                     background-color: rgba(0, 0, 0, 0.5);
-                    background-image: url(../images/S1EUMan21.webp);
+                    background-image: url(../images/profile/gridlines.avif);
                     background-position: 30px -20px;
                     background-blend-mode: color-burn;
                     border-radius: 8px;
@@ -136,13 +136,44 @@ body {
                .banner {
                     grid-area: account-banner;
                     background-color: white;
+                    background-image: url(../images/profile/the_sky.avif);
+                    background-position: 900px 300px;
                     border-radius: 8px;
+                    color: black;
+                    position: relative;
                     height: 40px;
+                    padding: 1px 3px;
+
+                    &__small {
+                         font-size: 14px;
+                         position: absolute;
+                    }
+
+                    &__big {
+                         font-size: 25px;
+                         position: absolute;
+                         right: 3px;
+                         bottom: 0;
+                    }
                }
 
-               .stuff {
-                    grid-area: account-stuff;
+               .extra {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    grid-area: account-extra;
+                    background-color: black;
+                    background-position: 30px;
+                    background-size: 80px;
+                    background-repeat: no-repeat;
                     border-radius: 8px;
+                    overflow: hidden;
+                    height: 40px;
+
+                    &__centerpiece {
+                         image-rendering: pixelated;
+                    }
                }
           }
 

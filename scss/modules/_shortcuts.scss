@@ -61,7 +61,7 @@ $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
 @mixin font-face($name, $weights, $style, $root, $sources) {
      @font-face {
           font-family: $name;
-          src: _font-sources(_font-path($name, $root), $sources);
+          src: _font-sources(_font-path($name, $root) + "-#{$weights}", $sources);
           font-weight: map.get($_weights, $weights);
           font-style: $style;
           font-display: swap;

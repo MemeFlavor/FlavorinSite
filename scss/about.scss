@@ -114,12 +114,24 @@ body {
 
                &__biography-list {
                     font-family: 'CandyBeans', sc.$standard-font;
-                    font-size: 0.9rem;
+                    font-size: 0.85rem;
                     border: 2px solid hsl(0, 0%, 0%);
                     overflow-y: auto;
                     height: 1.85cm;
                     padding: 5px 8px;
                     @include sc.gradient(180deg, hsl(253, 76%, 34%) 0%, hsl(253, 76%, 20%) 100%);
+
+                    &::-webkit-scrollbar {
+                         width: 8px;
+                    }
+                    
+                    &::-webkit-scrollbar-track {
+                         background: transparent;
+                    }
+                    
+                    &::-webkit-scrollbar-thumb {
+                         background: hsl(253, 63%, 53%);
+                    }
                }
 
                .profile {

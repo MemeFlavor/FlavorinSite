@@ -12,10 +12,10 @@
      <meta name="color-scheme" content="dark" />
      <meta name="robots" content="noai, noimageai">
      <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-     <link rel="preload" href="https://file.garden/akaL6XVvah-9gxkK/Header/banner.png" as="image" fetchpriority="high">
-     <link rel="preload" href="https://file.garden/akaL6XVvah-9gxkK/Header/banner_metal.png" as="image" fetchpriority="high">
-     <link rel="preload" href="https://file.garden/akaL6XVvah-9gxkK/Header/banner_sonic.png" as="image" fetchpriority="high">
-     <link rel="preload" href="https://file.garden/akaL6XVvah-9gxkK/Header/banner_amy.png" as="image" fetchpriority="high">
+     <link rel="preload" href="https://file.garden/akaL6XVvah-9gxkK/Header/banner.png" as="image" fetchpriority="high" decoding="async">
+     <link rel="preload" href="https://file.garden/akaL6XVvah-9gxkK/Header/banner_metal.png" as="image" fetchpriority="high" decoding="async">
+     <link rel="preload" href="https://file.garden/akaL6XVvah-9gxkK/Header/banner_sonic.png" as="image" fetchpriority="high" decoding="async">
+     <link rel="preload" href="https://file.garden/akaL6XVvah-9gxkK/Header/banner_amy.png" as="image" fetchpriority="high" decoding="async">
      <link rel="prefetch" href="fonts/JetBrainsMono/JetBrainsMono.woff2" type="font/woff2">
      <link rel="prefetch" href="fonts/JetBrainsMono/JetBrainsMono-Italic.woff2" type="font/woff2">
      <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -30,11 +30,18 @@
      <article id="flavory-content">
           <header class="header">
                <div class="header__characters">
-                    <img class="header__characters-profile header__characters-profile--metal" src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_metal.png" alt="Metal Sonic" width="130" height="150">
-                    <img class="header__characters-profile header__characters-profile--sonic" src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_sonic.png" alt="Sonic" width="130" height="150">
-                    <img class="header__characters-profile header__characters-profile--amy" src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_amy.png" alt="Amy" width="130" height="150">
+                    <img src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_metal.png"
+                         class="header__characters-profile header__characters-profile--metal"
+                         alt="Metal Sonic" width="130" height="150">
+                    <img src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_sonic.png"
+                         class="header__characters-profile header__characters-profile--sonic"
+                         alt="Sonic" width="130" height="150">
+                    <img src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_amy.png"
+                         class="header__characters-profile header__characters-profile--amy"
+                         alt="Amy" width="130" height="150">
                </div>
-               <img class="header__banner" src="https://file.garden/akaL6XVvah-9gxkK/Header/banner.png" alt="Awesome Banner" width="650" height="150">
+               <img src="https://file.garden/akaL6XVvah-9gxkK/Header/banner.png"
+                    class="header__banner" alt="Awesome Banner" width="650" height="150">
           </header>
           <aside class="sidebar">
                <hgroup class="sidebar__headbar">
@@ -128,8 +135,8 @@
                                              <p class="music__album-artists"> Sinister Minds </p>
                                         </section>
                                         <section class="music__album-visualizer">
-                                             <img class="music__album-amy" src="images/amy.gif" alt="Amy" width="67" height="75">
-                                             <img class="music__album-dialogue" src="images/amy_dialogue.png" alt="Amy Dialogue" width="83" height="75">
+                                             <img class="music__album-amy" src="images/decorations/amy.gif" alt="Amy" width="67" height="75">
+                                             <img class="music__album-dialogue" src="images/decorations/amy_dialogue.png" alt="Amy Dialogue" width="83" height="75">
                                         </section>
                                    </div>
                               </div>

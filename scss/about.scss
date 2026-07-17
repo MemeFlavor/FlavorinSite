@@ -50,7 +50,6 @@ body {
           padding: 15px;
 
           .information {
-
                &__account {
                     display: grid;
                     grid-template-columns: 2fr 1fr;
@@ -60,78 +59,6 @@ body {
                          "account-banner account-extra"
                     ;
                     gap: 5px 15px;
-               }
-
-               &__biography {
-
-
-               }
-
-               &__biography-table {
-                    table-layout: fixed;
-                    border-collapse: collapse;
-                    width: 100%;
-               }
-
-               &__biography-sections {
-                    display: grid;
-                    grid-template-columns: 1fr 2fr;
-                    grid-template-rows: 1fr;
-                    column-gap: 5px;
-                    margin-block: 3px;
-               }
-
-               &__biography-title {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    font-family: sc.$fancy-font;
-                    font-size: 1.15rem;
-                    font-weight: bolder;
-                    border: 2px solid hsl(253, 67%, 10%);
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
-                    padding: 3px 8px;
-                    @include sc.gradient(180deg,
-                         hsl(240, 65%, 38%) 1%,
-                         hsl(240, 100%, 62%) 4%,
-                         hsl(240, 100%, 62%) 5%,
-                         hsl(240, 65%, 38%) 10%,
-                         hsl(240, 65%, 38%) 30%,
-                         hsl(240, 65%, 34%) 55%,
-                         hsl(240, 65%, 45%) 85%,
-                         hsl(240, 65%, 25%) 95%,
-                    );
-               }
-
-               &__biography-baybayin {
-                    font-size: 0.58rem;
-               }
-
-               &__biography-name {
-                    font-style: italic;
-               }
-
-               &__biography-list {
-                    font-family: 'CandyBeans', sc.$standard-font;
-                    font-size: 0.85rem;
-                    border: 2px solid hsl(0, 0%, 0%);
-                    overflow-y: auto;
-                    height: 1.85cm;
-                    padding: 5px 8px;
-                    @include sc.gradient(180deg, hsl(253, 76%, 34%) 0%, hsl(253, 76%, 20%) 100%);
-
-                    &::-webkit-scrollbar {
-                         width: 8px;
-                    }
-                    
-                    &::-webkit-scrollbar-track {
-                         background: transparent;
-                    }
-                    
-                    &::-webkit-scrollbar-thumb {
-                         background: hsl(253, 63%, 53%);
-                    }
                }
 
                .profile {
@@ -251,11 +178,123 @@ body {
                          image-rendering: pixelated;
                     }
                }
+
+               &__biography {
+                    margin-top: 1cm;
+               }
+
+               &__biography-headbar {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 3px;
+               }
+
+               &__biography-headtitle {
+                    font-family: "Archivo", sc.$standard-font;
+                    font-size: 1.1rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    border: 2px solid black;
+                    padding: 5px 10px;
+                    width: 100%;
+                    @include sc.gradient(165deg, hsl(240, 100%, 65%) 0%, hsl(240, 65%, 38%) 95%);
+               }
+
+               &__biography-headblocks {
+                    background-color: hsl(240, 65%, 38%);
+                    border: 2px solid black;
+                    width: 18px;
+                    height: auto;
+
+                    &--pallete-1 {
+                         background-color: hsl(240, 100%, 65%);
+                    }
+
+                    &--pallete-2 {
+                         background-color: hsl(89, 96%, 63%);
+                    }
+
+                    &--pallete-3 {
+                         background-color: hsl(0, 0%, 15%);
+                    }
+               }
+
+               &__biography-table {
+                    table-layout: fixed;
+                    border-collapse: collapse;
+                    width: 100%;
+               }
+
+               &__biography-sections {
+                    display: grid;
+                    grid-template-columns: 1fr 2fr;
+                    grid-template-rows: 1fr;
+                    column-gap: 5px;
+                    margin-block: 3px;
+               }
+
+               &__biography-title {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    font-family: sc.$fancy-font;
+                    font-size: 1.15rem;
+                    font-weight: bolder;
+                    border: 2px solid hsl(253, 67%, 10%);
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    padding: 3px 8px;
+                    @include sc.gradient(180deg,
+                         hsl(240, 65%, 38%) 1%,
+                         hsl(240, 100%, 62%) 4%,
+                         hsl(240, 100%, 62%) 5%,
+                         hsl(240, 65%, 38%) 10%,
+                         hsl(240, 65%, 38%) 30%,
+                         hsl(240, 65%, 34%) 55%,
+                         hsl(240, 65%, 45%) 85%,
+                         hsl(240, 65%, 25%) 95%,
+                    );
+               }
+
+               &__biography-baybayin {
+                    font-size: 0.58rem;
+               }
+
+               &__biography-name {
+                    font-style: italic;
+               }
+
+               &__biography-list {
+                    font-family: 'CandyBeans', sc.$standard-font;
+                    font-size: 0.85rem;
+                    background-color: #2b2a2e;
+                    border: 2px solid hsl(0, 0%, 0%);
+               }
+
+               &__biography-body {
+                    display: block;
+                    overflow-y: auto;
+                    height: 1.7cm;
+                    padding: 5px 8px;
+               
+                    &::-webkit-scrollbar {
+                         width: 8px;
+                    }
+               
+                    &::-webkit-scrollbar-track {
+                         background: transparent;
+                    }
+               
+                    &::-webkit-scrollbar-thumb {
+                         background: #c0c0c0;
+                         border: 1px inset rgb(71, 71, 71);
+                    }
+               }
           }
 
           .description {
 
-
+               
                h1 {
                     font-family: "Archivo", sc.$standard-font;
                     font-size: 1.6rem;

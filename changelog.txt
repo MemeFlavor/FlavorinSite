@@ -1,7 +1,22 @@
+commit 4bd3f0
+Author: MemeFlavor
+        &lt;host.name&gt;
+Date:   2026-07-17
+
+  > Image Changes
+    > HD Images are hotlinked
+      through garden
+    > New Banner Image
+    > Image folder reorganization
+  > Revamp Home Page (WIP)
+    > Added Interest Section
+    > Updated Profile
+    > Updated Description
+
 commit 61adbc
 Author: MemeFlavor
         &lt;host.name&gt;
-Date:   2026-07-19
+Date:   2026-06-19
 
   > Fixed prefetching fonts
   > Reorganize the shortcut module
@@ -11,7 +26,7 @@ Date:   2026-07-19
 commit 26b3c3
 Author: MemeFlavor
         &lt;host.name&gt;
-Date:   2026-07-18
+Date:   2026-06-18
 
   > Fixed a critical bug for older 
     browser version 
@@ -19,14 +34,14 @@ Date:   2026-07-18
 commit f2d765
 Author: MemeFlavor
         &lt;host.name&gt;
-Date:   2026-07-14
+Date:   2026-06-14
 
   > New Sidebar Debug Console
 
 commit 93b1a7
 Author: MemeFlavor
         &lt;host.name&gt;
-Date:   2026-07-13
+Date:   2026-06-13
 
   > Code Sample Updated
 

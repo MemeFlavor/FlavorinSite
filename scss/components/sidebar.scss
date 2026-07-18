@@ -131,7 +131,6 @@ body .sidebar {
                width: fit-content;
                padding: 5px 8px;
                margin-left: 10px;
-               //@include sc.gradient(165deg, hsl(38, 77%, 56%) 0%, hsl(38, 77%, 25%) 95%);
                @include sc.gradient(165deg, hsl(219, 52%, 56%) 0%, hsl(219, 40%, 25%) 95%);
           }
      

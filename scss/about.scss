@@ -412,6 +412,10 @@ body {
                               border: none;
                               padding: 2px 5px;
 
+                              &:hover {
+                                   background-color: hsl(90, 100%, 35%);
+                              }
+
                               &:focus-visible {
                                    color: hsl(90, 79%, 48%);
                                    outline: none;
@@ -471,6 +475,14 @@ body {
                               }
                               &--games {
                                    display: none;
+                              }
+                         }
+
+                         &__list-link {
+                              height: 31px;
+
+                              &:focus-visible {
+                                   outline: 2px solid black;
                               }
                          }
                     }

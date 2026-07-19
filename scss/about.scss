@@ -425,6 +425,7 @@ body {
 
                          &__list {
                               border: 2px solid black;
+                              border-top: none;
                          }
 
                          &__list-headbar {
@@ -434,7 +435,7 @@ body {
 
                          &__list-headtitle {
                               font-family: "ZalandoSans", sc.$standard-font;
-                              font-size: 0.78rem;
+                              font-size: 0.8rem;
                               font-weight: 700;
                               text-align: center;
                               color: white;
@@ -442,7 +443,7 @@ body {
 
                          &__list-badges {
                               overflow-y: scroll;
-                              height: 2.4cm;
+                              height: 2.5cm;
 
                               &:focus-visible {
                                    outline: none;

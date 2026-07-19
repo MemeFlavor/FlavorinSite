@@ -188,9 +188,10 @@ body {
                     grid-template-columns: 2fr 1fr;
                     grid-template-rows: 1fr;
                     grid-template-areas:
-                         "biography-manual biography-foundyou"
+                         "biography-manual biography-liminal"
                     ;
                     column-gap: 15px;
+                    margin-top: 0.5cm;
                }
 
                @mixin stylize-headbar {
@@ -241,7 +242,6 @@ body {
 
                .manual {
                     grid-area: biography-manual;
-                    margin-top: 0.5cm;
 
                     &__headbar {
                          @include stylize-headbar;
@@ -492,8 +492,13 @@ body {
                     }
                }
                
-               .foundyou {
-                    grid-area: biography-foundyou;
+               .liminal {
+                    grid-area: biography-liminal;
+                    image-rendering: optimizeQuality;
+                    background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg);
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 5px;
                }
                
                &__interests {

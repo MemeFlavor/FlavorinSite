@@ -257,7 +257,7 @@ body {
 
                     &__body {
                          background-color: beige;
-                         background-image: url(../images/sidecover.png);
+                         background-image: url(../images/sidecover.webp);
                          background-repeat: repeat-x;
                          background-size: 50%;
                          background-position: 50% -57%; // 57% > 43%
@@ -480,6 +480,10 @@ body {
 
                          &__list-link {
                               height: 31px;
+
+                              img {
+                                   image-rendering: pixelated;
+                              }
 
                               &:focus-visible {
                                    outline: 2px solid black;

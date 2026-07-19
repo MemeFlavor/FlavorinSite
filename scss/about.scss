@@ -256,7 +256,6 @@ body {
                     }
 
                     &__body {
-                         overflow-y: auto;
                          background-color: beige;
                          background-image: url(../images/sidecover.png);
                          background-repeat: repeat-x;
@@ -268,19 +267,6 @@ body {
                          width: 100%;
                          height: 7cm;
                          padding: 5px 10px;
-
-                         &::-webkit-scrollbar {
-                              width: 8px;
-                         }
-                    
-                         &::-webkit-scrollbar-track {
-                              background: transparent;
-                         }
-                    
-                         &::-webkit-scrollbar-thumb {
-                              background: #c0c0c0;
-                              border: 1px inset rgb(71, 71, 71);
-                         }
                     }
 
                     &__title {
@@ -294,7 +280,7 @@ body {
                          border: 2px solid black;
                          height: fit-content;
                          padding: 0px 8px;
-                         margin-bottom: 0.8cm;
+                         margin-bottom: 0.7cm;
 
                          &::before {
                               content: "";
@@ -336,52 +322,143 @@ body {
                          padding: 1px 5px;
                     }
 
-                    &__content {
+                    .biography {
                          display: grid;
                          grid-template-columns: 2fr 1fr;
                          grid-template-rows: 1fr;
                          column-gap: 10px;
+                         display: none;
+
+                         &__description {
+                              font-family: sc.$fancy-font;
+                              font-size: 0.7rem;
+                              font-weight: bolder;
+                              text-align: justify;
+                              color: black;
+                              padding-block: 5px;
+                              padding-right: 10px;
+                         }
+                    
+                         &__rewrite-wrapper {
+                              display: flex;
+                              justify-content: center;
+                         }
+                    
+                         &__rewrite {
+                              image-rendering: crisp-edges;
+                         }
+                    
+                         &__item {
+                              margin-block: 5px;
+                         }
+                    
+                         &__item-title {
+                              font-family: "ZalandoSans", sc.$standard-font;
+                              font-size: 0.7rem;
+                              font-weight: 700;
+                              text-align: center;
+                              background-color: #4f4eff;
+                              padding: 2px 5px;
+                         }
+                    
+                         &__item-description {
+                              font-family: sc.$fancy-font;
+                              font-size: 0.7rem;
+                              font-weight: bolder;
+                              text-align: start;
+                              color: black;
+                              padding: 2px 5px;
+                         }
                     }
 
-                    &__description {
-                         font-family: sc.$fancy-font;
-                         font-size: 0.7rem;
-                         font-weight: bolder;
-                         text-align: justify;
-                         color: black;
-                         padding-block: 5px;
-                         padding-right: 10px;
-                    }
+                    .socials {
+                         
 
-                    &__rewrite-wrapper {
-                         display: flex;
-                         justify-content: center;
-                    }
+                         &__description {
+                              font-family: sc.$fancy-font;
+                              font-size: 0.7rem;
+                              font-weight: bolder;
+                              text-align: justify;
+                              color: black;
+                              padding: 2px 5px;
+                         }
 
-                    &__rewrite {
-                         image-rendering: crisp-edges;
-                    }
+                         &__gallery {
+                              display: grid;
+                              grid-template-columns: 1fr 1fr;
+                              grid-template-rows: 1fr;
+                              column-gap: 10px;
+                              margin-top: 10px;
+                         }
 
-                    &__item {
-                         margin-block: 5px;
-                    }
+                         &__navigation {
+                              display: flex;
+                              flex-direction: column;
+                              row-gap: 5px;
+                         }
 
-                    &__item-title {
-                         font-family: "ZalandoSans", sc.$standard-font;
-                         font-size: 0.7rem;
-                         font-weight: 700;
-                         text-align: center;
-                         background-color: #4f4eff;
-                         padding: 2px 5px;
-                    }
+                         &__navigation-btn {
+                              cursor: pointer;
+                              font-family: "ZalandoSans", sc.$standard-font;
+                              font-size: 0.8rem;
+                              font-weight: 700;
+                              text-align: center;
+                              color: black;
+                              background-color: hsl(90, 79%, 48%);
+                              border: none;
+                              border-radius: 3px;
+                              padding: 2px 5px;
+                         }
 
-                    &__item-description {
-                         font-family: sc.$fancy-font;
-                         font-size: 0.7rem;
-                         font-weight: bolder;
-                         text-align: start;
-                         color: black;
-                         padding: 2px 5px;
+                         &__list {
+                              border: 2px solid black;
+                         }
+
+                         &__list-headbar {
+                              background-color: black;
+                              padding: 2px 5px;
+                         }
+
+                         &__list-headtitle {
+                              font-family: "ZalandoSans", sc.$standard-font;
+                              font-size: 0.78rem;
+                              font-weight: 700;
+                              text-align: center;
+                              color: white;
+                         }
+
+                         &__list-badges {
+                              overflow-y: auto;
+                              height: 2.4cm;
+
+                              &::-webkit-scrollbar {
+                                   width: 8px;
+                              }
+                              
+                              &::-webkit-scrollbar-track {
+                                   background: hsl(0, 0%, 20%);
+                              }
+                              
+                              &::-webkit-scrollbar-thumb {
+                                   background: #c0c0c0;
+                                   border: 1px inset rgb(71, 71, 71);
+                              }
+                         }
+
+                         &__list-collection {
+                              display: flex;
+                              flex-direction: column;
+                              align-items: center;
+                              row-gap: 5px;
+                              padding-block: 5px;
+
+                              &--general {
+                                   display: auto;
+                              }
+                              &--games {
+                                   display: none;
+                              }
+                         }
                     }
                }
                

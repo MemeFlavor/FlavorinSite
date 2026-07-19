@@ -269,8 +269,23 @@
      </article>
      <script>
 
-let title = 'BIOGRAPHY'
-let sect  = 'Everything About Me!'
+//let title = 'BIOGRAPHY'
+//let sect  = 'Everything About Me!'
+
+const next = document.querySelector('.manual__navigation')
+
+const title = document.querySelector('.manual__title')
+const sects = document.querySelector('.manual__title-section')
+
+const bio = document.querySelector('.manual__body .biography')
+const scl = document.querySelector('.manual__body .socials')
+next.addEventListener('click', () => {
+     bio.style.display = 'none'
+     scl.style.display = 'block'
+
+     title.textContent = 'SOCIALS'
+     sects.textContent = 'Legal Stalking'
+})
 
 const btn1 = document.querySelector('.socials__navigation-btn--general')
 const btn2 = document.querySelector('.socials__navigation-btn--games')

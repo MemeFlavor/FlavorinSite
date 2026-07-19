@@ -327,7 +327,6 @@ body {
                          grid-template-columns: 2fr 1fr;
                          grid-template-rows: 1fr;
                          column-gap: 10px;
-                         display: none;
 
                          &__description {
                               font-family: sc.$fancy-font;
@@ -372,7 +371,7 @@ body {
                     }
 
                     .socials {
-                         
+                         display: none;
 
                          &__description {
                               font-family: sc.$fancy-font;

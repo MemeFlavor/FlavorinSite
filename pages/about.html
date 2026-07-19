@@ -115,7 +115,7 @@
                                    <h1 class="manual__title">BIOGRAPHY</h1>
                                    <h2 class="manual__title-section">Everything About Me!</h2>
                                    <button class="manual__navigation" type="button">&#11157;</button>
-                                   <section class="biography">
+                                   <section class="manual__content biography">
                                         <div class="biography__gallery">
                                              <p class="biography__description">
                                                   Basically everything about me, do what you will with this information.
@@ -145,7 +145,7 @@
                                              </li>
                                         </ul>
                                    </section>
-                                   <section class="socials">
+                                   <section class="manual__content socials">
                                         <p class="socials__description">
                                              Check out my awesome socials that should definetely, totally check out.
                                              I'm sometimes active there whenever I feel like it or not.
@@ -269,39 +269,41 @@
      </article>
      <script>
 
-//let title = 'BIOGRAPHY'
-//let sect  = 'Everything About Me!'
+const manual = {
+     "biography": {
+          "title": "biography",
+          "section": "Everything About Me!"
+     },
+     "socials": {
+          "title": "socials",
+          "section": "Legal Stalking"
+     }
+}
 
-const next = document.querySelector('.manual__navigation')
+const manualContent = document.querySelectorAll('.manual__content')
+const manualContentBio = document.querySelector('.biography')
+const manualContentSoc = document.querySelector('.socials')
 
-const title = document.querySelector('.manual__title')
-const sects = document.querySelector('.manual__title-section')
+const manualTitle = document.querySelector('.manual__title')
+const manualSects = document.querySelector('.manual__title-section')
 
-const bio = document.querySelector('.manual__body .biography')
-const scl = document.querySelector('.manual__body .socials')
-next.addEventListener('click', () => {
-     bio.style.display = 'none'
-     scl.style.display = 'block'
+let manualFlip = false
+const manualNavBtn = document.querySelector('.manual__navigation')
+manualNavBtn.addEventListener('click', () => {
+     manualContent.forEach(value => value.style.display = 'none')
+     manualFlip = !manualFlip
 
-     title.textContent = 'SOCIALS'
-     sects.textContent = 'Legal Stalking'
+     if (manualFlip == false) {
+          manualTitle.textContent = manual.biography.title.toUpperCase()
+          manualSects.textContent = manual.biography.section
+          manualContentBio.style.display = 'grid'
+     } else {
+          manualTitle.textContent = manual.socials.title.toUpperCase()
+          manualSects.textContent = manual.socials.section
+          manualContentSoc.style.display = 'block'
+     }
 })
 
-const btn1 = document.querySelector('.socials__navigation-btn--general')
-const btn2 = document.querySelector('.socials__navigation-btn--games')
-
-const colt1 = document.querySelector('.socials__list-collection--general')
-const colt2 = document.querySelector('.socials__list-collection--games')
-
-btn1.addEventListener('click', () => {
-     colt1.style.display = 'flex'
-     colt2.style.display = 'none'
-})
-
-btn2.addEventListener('click', () => {
-     colt1.style.display = 'none'
-     colt2.style.display = 'flex'
-})
 
      </script>
 </body>

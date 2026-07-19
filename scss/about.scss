@@ -406,7 +406,6 @@ body {
                               color: black;
                               background-color: hsl(90, 79%, 48%);
                               border: none;
-                              border-radius: 3px;
                               padding: 2px 5px;
                          }
 
@@ -428,7 +427,7 @@ body {
                          }
 
                          &__list-badges {
-                              overflow-y: auto;
+                              overflow-y: scroll;
                               height: 2.4cm;
 
                               &::-webkit-scrollbar {

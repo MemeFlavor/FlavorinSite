@@ -152,8 +152,8 @@
                                         </p>
                                         <div class="socials__gallery">
                                              <section class="socials__navigation">
-                                                  <button class="socials__navigation-btn">General</button>
-                                                  <button class="socials__navigation-btn">Games</button>
+                                                  <button class="socials__navigation-btn socials__navigation-btn--general" type="button">General</button>
+                                                  <button class="socials__navigation-btn socials__navigation-btn--games" type="button">Games</button>
                                              </section>
                                              <section class="socials__list">
                                                   <div class="socials__list-headbar">
@@ -267,5 +267,27 @@
                </section>
           </main>
      </article>
+     <script>
+
+let title = 'BIOGRAPHY'
+let sect  = 'Everything About Me!'
+
+const btn1 = document.querySelector('.socials__navigation-btn--general')
+const btn2 = document.querySelector('.socials__navigation-btn--games')
+
+const colt1 = document.querySelector('.socials__list-collection--general')
+const colt2 = document.querySelector('.socials__list-collection--games')
+
+btn1.addEventListener('click', () => {
+     colt1.style.display = 'flex'
+     colt2.style.display = 'none'
+})
+
+btn2.addEventListener('click', () => {
+     colt1.style.display = 'none'
+     colt2.style.display = 'flex'
+})
+
+     </script>
 </body>
 </html>

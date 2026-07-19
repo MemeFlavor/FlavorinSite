@@ -259,179 +259,53 @@ body {
                          overflow-y: auto;
                          background-color: beige;
                          background-image: url(../images/sidecover.png);
-                         background-repeat: repeat-y;
+                         background-repeat: repeat-x;
                          background-size: 50%;
-                         background-position: 150% 5%;
+                         background-position: 50% -80%;
                          background-attachment: local;
                          border: 2px solid black;
-                         width: 100%; height: 6cm;
-                         
-                         
-                         &::-webkit-scrollbar {
-                              width: 8px;
-                         }
-                    
-                         &::-webkit-scrollbar-track {
-                              background: rgb(0, 0, 0);
-                         }
-                    
-                         &::-webkit-scrollbar-thumb {
-                              background: #c0c0c0;
-                              border: 1px inset rgb(71, 71, 71);
-                         }
+                         width: 100%;
+                         height: 6cm;
+                         padding: 5px 10px;
                     }
 
-                    &__page {
-                         padding: 5px 8px;
-                    }
-
-                    &__manualbar {
-                         display: grid;
-                         grid-template-columns: 73% auto;
-                         grid-template-rows: 1fr 1fr;
-                         grid-template-areas: 
-                              "manual-title manual-nav"
-                              "manual-subtitle manual-subtitle"
-                         ;
-                         row-gap: 5px;
-                         padding: 5px 8px;
-                         margin-bottom: 15px;
-                    }
-
-                    &__manualtitle {
-                         grid-area: manual-title;
-                         font-family: "Archivo", sc.$standard-font;
-                         font-size: 0.85rem;
+                    &__title {
+                         display: flex;
+                         align-items: center;
+                         font-family: "ZalandoSans", sc.$standard-font;
+                         font-size: 1.3rem;
                          font-weight: 900;
-                         font-stretch: expanded;
+                         text-transform: capitalize;
                          color: black;
                          border: 2px solid black;
-                         position: relative;
                          height: fit-content;
-                         padding: 3px 5px;
-                    
+                         padding: 0px 8px;
+                         margin-bottom: 0.8cm;
+
                          &::before {
                               content: "";
                               display: inline-block;
-                              background-color: black;
+                              background-color: currentColor;
                               border-radius: 360px;
-                              width: 10px;
-                              height: 10px;
+                              width: 15px;
+                              height: 15px;
                               margin-right: 3px;
                          }
                     }
 
-                    &__manualsubtitle {
-                         grid-area: manual-subtitle;
-                         font-family: sc.$fancy-font;
-                         font-size: 0.75rem;
-                         font-weight: bolder;
+                    &__title-section {
+                         display: flex;
+                         align-items: center;
+                         font-family: "ZalandoSans", sc.$standard-font;
+                         font-size: 0.8rem;
+                         font-weight: 600;
+                         text-transform: capitalize;
                          background-color: black;
-                         height: fit-content;
-                         padding: 4px 5px;
+                         padding: 3px 5px;
 
                          &::before {
-                              content: '\2605 '
-                         }
-                    }
-
-                    &__manualnav {
-                         cursor: pointer;
-                         grid-area: manual-nav;
-                         align-self: center;
-                         justify-self: flex-end;
-                         image-rendering: pixelated;
-                         animation: blink-effect 3s step-start infinite;
-
-                         &--prev {
-                              transform: scaleX(-1);
-                         }
-
-                         @keyframes blink-effect {
-                              0%, 100% { filter: hue-rotate(67deg) saturate(2000%); }
-                              50%      { filter: hue-rotate(0deg)  saturate(100%);  }
-                         }
-                    }
-
-                    &__biography {
-                         display: grid;
-                         grid-template-columns: 1fr 1fr;
-                         grid-template-rows: 1fr;
-                         gap: 10px;
-
-                         h3 {
-                              display: flex;
-                              align-items: center;
-                              font-family: "ZalandoSans", sc.$standard-font;
-                              font-size: 0.75rem;
-                              font-weight: 600;
-                              text-align: start;
-                              text-transform: uppercase;
-                              background-color: hsl(90, 100%, 35%);
-                              border: 2px solid black;
-                              height: fit-content;
-                              padding: 4px 5px;
-                         }
-
-                         p {
-                              font-family: sc.$fancy-font;
-                              font-size: 0.75rem;
-                              font-weight: bolder;
-                              color: black;
-                              padding: 3px 5px;
-
-                              &::before {
-                                   content: "\25B6  ";
-                              }
-                         }
-                    }
-
-                    &__socials {
-                         li {
-                              display: grid;
-                              grid-template-columns: 1fr auto;
-                              grid-template-rows: 1fr;
-                              grid-template-areas:
-                                   "socials-title socials-badges"
-                                   "socials-description socials-description"
-                              ;
-                              gap: 3px 10px;
-                              margin-block: 15px;
-                         }
-
-                         h3 {
-                              display: flex;
-                              align-items: center;
-                              grid-area: socials-title;
-                              font-family: "ZalandoSans", sc.$standard-font;
-                              font-size: 0.85rem;
-                              font-weight: 600;
-                              text-align: start;
-                              text-transform: uppercase;
-                              background-color: hsl(0, 100%, 35%);
-                              border: 2px solid black;
-                              height: 31px;
-                              padding: 4px 5px;
-                         }
-
-                         p {
-                              grid-area: socials-description;
-                              font-family: sc.$fancy-font;
-                              font-size: 0.8rem;
-                              font-weight: bolder;
-                              text-shadow: 1px 1px 0px beige;
-                              color: black;
-                              padding: 3px 5px;
-
-                              &::before {
-                                   content: "\25B6  ";
-                                   text-shadow: none;
-                              }
-                         }
-
-                         img {
-                              grid-area: socials-badges;
-                              image-rendering: pixelated;
+                              content: "\2605";
+                              margin-right: 3px;
                          }
                     }
                }

@@ -261,12 +261,26 @@ body {
                          background-image: url(../images/sidecover.png);
                          background-repeat: repeat-x;
                          background-size: 50%;
-                         background-position: 50% -80%;
+                         background-position: 50% -57%; // 57% > 43%
                          background-attachment: local;
                          border: 2px solid black;
+                         position: relative;
                          width: 100%;
-                         height: 6cm;
+                         height: 7cm;
                          padding: 5px 10px;
+
+                         &::-webkit-scrollbar {
+                              width: 8px;
+                         }
+                    
+                         &::-webkit-scrollbar-track {
+                              background: transparent;
+                         }
+                    
+                         &::-webkit-scrollbar-thumb {
+                              background: #c0c0c0;
+                              border: 1px inset rgb(71, 71, 71);
+                         }
                     }
 
                     &__title {
@@ -307,6 +321,67 @@ body {
                               content: "\2605";
                               margin-right: 3px;
                          }
+                    }
+
+                    &__navigation {
+                         cursor: pointer;
+                         font-size: 1rem;
+                         font-weight: 900;
+                         background-color: black;
+                         border: none;
+                         border-radius: 360px;
+                         position: absolute;
+                         left: 5px;
+                         bottom: 5px;
+                         padding: 1px 5px;
+                    }
+
+                    &__content {
+                         display: grid;
+                         grid-template-columns: 2fr 1fr;
+                         grid-template-rows: 1fr;
+                         column-gap: 10px;
+                    }
+
+                    &__description {
+                         font-family: sc.$fancy-font;
+                         font-size: 0.7rem;
+                         font-weight: bolder;
+                         text-align: justify;
+                         color: black;
+                         padding-block: 5px;
+                         padding-right: 10px;
+                    }
+
+                    &__rewrite-wrapper {
+                         display: flex;
+                         justify-content: center;
+                    }
+
+                    &__rewrite {
+                         image-rendering: crisp-edges;
+                    }
+
+                    &__item {
+                         margin-block: 5px;
+                    }
+
+                    &__item-title {
+                         font-family: "ZalandoSans", sc.$standard-font;
+                         font-size: 0.7rem;
+                         font-weight: 700;
+                         text-align: center;
+                         background-color: #4f4eff;
+                         padding: 2px 5px;
+                    }
+
+                    &__item-description {
+                         font-family: sc.$fancy-font;
+                         font-size: 0.7rem;
+                         font-weight: bolder;
+                         text-align: start;
+                         color: black;
+                         padding: 2px 5px;
                     }
                }
                

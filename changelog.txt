@@ -1,3 +1,13 @@
+commit 0781db
+Author: MemeFlavor
+        &lt;host.name&gt;
+Date:   2026-07-23
+
+  > Added Baybayin font for proper 
+    text rendering
+  > Optimize (hopefully) the banner
+    images at the home page
+
 commit b33bed
 Author: MemeFlavor
         &lt;host.name&gt;

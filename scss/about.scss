@@ -16,6 +16,9 @@
 @include sc.font-face('CandyBeans', "Regular", normal, "..", (
      ('woff2', format('woff2')),
 ));
+@include sc.font-face('BaybayinSans', "Regular", normal, "..", (
+     ('woff2', format('woff2')),
+));
 
 body {
      display: flex;
@@ -92,6 +95,7 @@ body {
                     }
 
                     &__baybayin-characters {
+                         font-family: "BaybayinSans", sc.$standard-font;
                          font-size: 1rem;
                     }
 
@@ -151,15 +155,16 @@ body {
                     padding: 1px 3px;
 
                     &__small {
+                         font-family: "BaybayinSans", sc.$standard-font;
                          font-size: 14px;
                          position: absolute;
                     }
 
                     &__big {
+                         font-family: "BaybayinSans", sc.$standard-font;
                          font-size: 25px;
                          position: absolute;
-                         right: 3px;
-                         bottom: 0;
+                         right: 3px; bottom: 0;
                     }
                }
 
@@ -547,6 +552,7 @@ body {
                }
 
                &__interests-baybayin {
+                    font-family: "BaybayinSans", sc.$standard-font;
                     font-size: 0.58rem;
                }
 

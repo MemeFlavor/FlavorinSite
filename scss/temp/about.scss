@@ -1,0 +1,627 @@
+@use './modules/shortcuts.scss' as sc;
+@use './modules/fonts.scss' as font;
+@use 'sass:color';
+
+@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, (
+     ('woff2', format('woff2-variations')),
+     ('woff2', format('woff2') tech('variations'))
+));
+@include font.font-face-var('Zalando Sans', 200 900, semi-expanded, normal, 1, (
+     ('woff2', format('woff2')),
+     ('woff2', format('woff2') tech('variations'))
+));
+@include font.font-face-var('Cabin', 400 700, 75% 100%, normal, 1, (
+     ('woff2', format('woff2')),
+     ('woff2', format('woff2') tech('variations'))
+));
+@include font.font-face-var('Cabin', 400 700, 75% 100%, italic, 1, (
+     ('woff2', format('woff2')),
+     ('woff2', format('woff2') tech('variations'))
+));
+@include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, (
+     ('woff2', format('woff2')),
+));
+
+body {
+     display: flex;
+     justify-content: center;
+     font-family: font.$standard-font;
+     background-image: url(../images/backgrounds/beach.avif);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-color: #312e3d;
+     background-blend-mode: color-burn;
+
+     #flavory-content {
+          display: grid;
+          grid-template-columns: auto 900px;
+          grid-template-rows: 1fr;
+          grid-template-areas:
+               "flavory-sidebar flavory-autointerests"
+          ;
+          gap: 5px;
+          margin-block: 0.5cm;
+     }
+
+     .sidebar {
+          grid-area: flavory-sidebar;
+     }
+
+     .autointerests {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr;
+          grid-area: flavory-autointerests;
+          background-color: color.adjust(#272525, $lightness: -5%);
+          box-shadow: 5px 5px 0px 0px #4f4eff;
+          gap: 15px;
+          padding: 15px;
+
+          .information {
+               &__account {
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+                    grid-template-rows: auto auto-fit;
+                    grid-template-areas:
+                         "account-profile account-profile"
+                         "account-banner account-extra"
+                    ;
+                    gap: 5px 15px;
+               }
+
+               .profile {
+                    display: flex;
+                    flex-direction: row;
+                    grid-area: account-profile;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    background-image: url(../images/profile/gridlines.avif);
+                    background-position: 30px -20px;
+                    background-blend-mode: color-burn;
+                    border-radius: 5px;
+                    padding: 10px;
+                    gap: 10px;
+
+                    &__image {
+                         border-radius: 5px;
+                    }
+
+                    &__content {
+                         display: flex;
+                         flex-direction: column;
+                    }
+
+                    &__baybayin {
+                         display: grid;
+                         grid-template-columns: 103px auto;
+                    }
+
+                    &__baybayin-characters {
+                         font-family: 'Noto Sans Tagalog', font.$standard-font;
+                         font-size: 1rem;
+                    }
+
+                    &__title {
+                         font-family: 'Archivo', font.$standard-font;
+                         font-size: 1.8rem;
+                         font-weight: 900;
+                         font-stretch: expanded;
+                    }
+
+                    &__description {
+                         font-family: 'Cabin', font.$standard-fancy-font, font.$standard-font;
+                         font-weight: 500;
+                         font-stretch: normal;
+                         font-size: 0.85rem;
+                         text-wrap: pretty;
+                         margin-top: 5px;
+                    }
+
+                    &__patterns {
+                         display: flex;
+                         flex-direction: row;
+                         justify-content: flex-end;
+                         gap: 5px;
+                         margin-top: auto;
+                    }
+
+                    &__patterns-block {
+                         border-radius: 3px;
+                         width: calc(20px * 2);
+                         height: 20px;
+
+                         &--pallete-1 {
+                              background-color: #4f4eff;
+                         }
+
+                         &--pallete-2 {
+                              background-color: #a3fb44;
+                         }
+
+                         &--pallete-3 {
+                              background-color: #272727;
+                         }
+                    }
+               }
+
+               .banner {
+                    user-select: none;
+                    grid-area: account-banner;
+                    background-color: white;
+                    background-image: url(../images/profile/the_sky.avif);
+                    background-position: 900px 300px;
+                    border-radius: 5px;
+                    color: black;
+                    position: relative;
+                    height: 40px;
+                    padding: 1px 3px;
+
+                    &__small {
+                         font-family: 'Noto Sans Tagalog', font.$standard-font;
+                         font-size: 14px;
+                         position: absolute;
+                    }
+
+                    &__big {
+                         font-family: 'Noto Sans Tagalog', font.$standard-font;
+                         font-size: 25px;
+                         position: absolute;
+                         right: 3px; bottom: 0;
+                    }
+               }
+
+               .extra {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    user-select: none;
+                    grid-area: account-extra;
+                    background-color: black;
+                    background-position: 30px;
+                    background-size: 80px;
+                    background-repeat: no-repeat;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    height: 40px;
+
+                    &__centerpiece {
+                         image-rendering: pixelated;
+                    }
+               }
+
+               &__biography {
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+                    grid-template-rows: 1fr;
+                    grid-template-areas:
+                         "biography-manual biography-liminal"
+                    ;
+                    column-gap: 15px;
+                    margin-top: 0.5cm;
+               }
+
+               @mixin stylize-headbar {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 3px;
+                    margin-bottom: 5px;
+               }
+
+               @mixin stylize-headtitle($gradient-start, $gradient-end) {
+                    font-family: 'Archivo', sc.$standard-font;
+                    font-size: 1.1rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    border: 2px solid black;
+                    padding: 5px 10px;
+                    width: 100%;
+                    @include sc.gradient(165deg, $gradient-start 0%, $gradient-end 95%);
+               }
+
+               @mixin stylize-headblocks($pallete-1, $pallete-2, $pallete-3) {
+                    border: 2px solid black;
+                    width: calc((15px + 20px) / 2); height: auto;
+               
+                    &--pallete-1 {
+                         background-color: $pallete-1;
+                    }
+                    &--pallete-2 {
+                         background-color: $pallete-2;
+                    }
+                    &--pallete-3 {
+                         background-color: $pallete-3;
+                    }
+               }
+
+               @mixin stylize-gradient($hue) {
+                    @include sc.gradient(180deg,
+                         hsl($hue, 65%, 38%) 1%,
+                         hsl($hue, 100%, 62%) 4%,
+                         hsl($hue, 100%, 62%) 5%,
+                         hsl($hue, 65%, 38%) 10%,
+                         hsl($hue, 65%, 38%) 30%,
+                         hsl($hue, 65%, 34%) 55%,
+                         hsl($hue, 65%, 45%) 85%,
+                         hsl($hue, 65%, 25%) 95%,
+                    );
+               }
+
+               .manual {
+                    grid-area: biography-manual;
+
+                    &__headbar {
+                         @include stylize-headbar;
+                    }
+
+                    &__headtitle {
+                         @include stylize-headtitle(hsl(90, 100%, 35%), hsl(91, 68%, 25%));
+                    }
+
+                    &__headblocks {
+                         @include stylize-headblocks(hsl(240, 95%, 62%), hsl(89, 96%, 45%), hsl(0, 0%, 15%));
+                    }
+
+                    &__body {
+                         background-color: beige;
+                         background-image: url(../images/sidecover.webp);
+                         background-repeat: repeat-x;
+                         background-size: 50%;
+                         background-position: 50% -57%; // 57% > 43%
+                         background-attachment: local;
+                         border: 2px solid black;
+                         position: relative;
+                         width: 100%;
+                         height: 7cm;
+                         padding: 5px 10px;
+                    }
+
+                    &__title {
+                         display: flex;
+                         align-items: center;
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1.3rem;
+                         font-weight: 900;
+                         font-stretch: expanded;
+                         text-transform: uppercase;
+                         color: black;
+                         border: 2px solid black;
+                         height: fit-content;
+                         padding: 0px 8px;
+                         margin-bottom: 0.7cm;
+
+                         &::before {
+                              content: "";
+                              display: inline-block;
+                              background-color: currentColor;
+                              border-radius: 360px;
+                              width: 15px;
+                              height: 15px;
+                              margin-right: 3px;
+                              margin-top: 1px;
+                         }
+                    }
+
+                    &__title-section {
+                         display: flex;
+                         align-items: center;
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.8rem;
+                         font-weight: 600;
+                         text-transform: uppercase;
+                         background-color: black;
+                         padding: 3px 5px;
+
+                         &::before {
+                              content: "\2605";
+                              margin-right: 3px;
+                         }
+                    }
+
+                    &__navigation {
+                         cursor: pointer;
+                         font-size: 1rem;
+                         font-weight: 900;
+                         outline: none;
+                         background-color: black;
+                         border: none;
+                         border-radius: 360px;
+                         position: absolute;
+                         left: 5px;
+                         bottom: 5px;
+                         padding: 1px 5px;
+
+                         &:focus-visible {
+                              background-color: hsl(0, 72%, 52%);
+                         }
+                    }
+
+                    .biography {
+                         display: grid;
+                         grid-template-columns: 2fr 1fr;
+                         grid-template-rows: 1fr;
+                         column-gap: 10px;
+
+                         &__description {
+                              font-family: 'Cabin', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.7rem;
+                              font-weight: bolder;
+                              text-align: justify;
+                              line-height: 0.7rem;
+                              color: black;
+                              padding-block: 5px;
+                              padding-right: 10px;
+                         }
+                    
+                         &__rewrite-wrapper {
+                              display: flex;
+                              justify-content: center;
+                         }
+                    
+                         &__rewrite {
+                              image-rendering: crisp-edges;
+                         }
+                    
+                         &__item {
+                              margin-block: 5px;
+                         }
+                    
+                         &__item-title {
+                              font-family: 'Zalando Sans', sc.$standard-font;
+                              font-size: 0.7rem;
+                              font-weight: 700;
+                              text-align: center;
+                              background-color: #4f4eff;
+                              padding: 2px 5px;
+                         }
+                    
+                         &__item-description {
+                              font-family: 'Cabin', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.7rem;
+                              font-weight: bolder;
+                              text-align: start;
+                              color: black;
+                              padding: 2px 5px;
+                         }
+                    }
+
+                    .socials {
+                         display: none;
+
+                         &__description {
+                              font-family: 'Cabin', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.7rem;
+                              font-weight: bolder;
+                              text-align: justify;
+                              color: black;
+                              padding: 2px 5px;
+                         }
+
+                         &__gallery {
+                              display: grid;
+                              grid-template-columns: 1fr 1fr;
+                              grid-template-rows: 1fr;
+                              column-gap: 10px;
+                              margin-top: 10px;
+                         }
+
+                         &__navigation {
+                              display: flex;
+                              flex-direction: column;
+                              row-gap: 5px;
+                         }
+
+                         &__navigation-btn {
+                              cursor: pointer;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.8rem;
+                              font-weight: 700;
+                              text-align: center;
+                              color: black;
+                              background-color: hsl(90, 79%, 48%);
+                              border: none;
+                              padding: 2px 5px;
+
+                              &:hover {
+                                   background-color: hsl(90, 100%, 35%);
+                              }
+
+                              &:focus-visible {
+                                   color: hsl(90, 79%, 48%);
+                                   outline: none;
+                                   background-color: black;
+                              }
+                         }
+
+                         &__list {
+                              border: 2px solid black;
+                              border-top: none;
+                         }
+
+                         &__list-headbar {
+                              background-color: black;
+                              padding: 2px 5px;
+                         }
+
+                         &__list-headtitle {
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.8rem;
+                              font-weight: 700;
+                              text-align: center;
+                              color: white;
+                         }
+
+                         &__list-badges {
+                              overflow-y: scroll;
+                              height: 2.5cm;
+
+                              &:focus-visible {
+                                   outline: none;
+                                   background-color: hsl(60, 9%, 62%);
+                              }
+
+                              &::-webkit-scrollbar {
+                                   width: 8px;
+                              }
+                              
+                              &::-webkit-scrollbar-track {
+                                   background: hsl(0, 0%, 20%);
+                              }
+                              
+                              &::-webkit-scrollbar-thumb {
+                                   background: #c0c0c0;
+                                   border: 1px inset rgb(71, 71, 71);
+                              }
+                         }
+
+                         &__list-collection {
+                              display: flex;
+                              flex-direction: column;
+                              align-items: center;
+                              row-gap: 5px;
+                              padding-block: 5px;
+
+                              &--general {
+                                   display: auto;
+                              }
+                              &--games {
+                                   display: none;
+                              }
+                         }
+
+                         &__list-link {
+                              height: 31px;
+
+                              img {
+                                   image-rendering: pixelated;
+                              }
+
+                              &:focus-visible {
+                                   outline: 2px solid black;
+                              }
+                         }
+                    }
+               }
+               
+               .liminal {
+                    grid-area: biography-liminal;
+                    image-rendering: optimizeQuality;
+                    background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg);
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 5px;
+               }
+               
+               &__interests {
+                    margin-top: 0.5cm;
+               }
+
+               &__interests-headbar {
+                    @include stylize-headbar;
+               }
+
+               &__interests-headtitle {
+                    @include stylize-headtitle(hsl(240, 100%, 65%), hsl(240, 65%, 38%));
+               }
+
+               &__interests-headblocks {
+                    @include stylize-headblocks(hsl(240, 98%, 62%), hsl(89, 96%, 45%), hsl(0, 0%, 15%));
+               }
+
+               &__interests-table {
+                    table-layout: fixed;
+                    border-collapse: collapse;
+                    width: 100%;
+               }
+
+               &__interests-sections {
+                    display: grid;
+                    grid-template-columns: 1fr 2fr;
+                    grid-template-rows: 1fr;
+                    column-gap: 5px;
+                    margin-block: 3px;
+               }
+
+               &__interests-title {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    font-family: 'Cabin', font.$standard-fancy-font, font.$standard-font;
+                    font-size: 1.15rem;
+                    font-weight: bolder;
+                    border: 2px solid hsl(253, 67%, 10%);
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    padding: 3px 8px;
+                    @include stylize-gradient(240deg);
+               }
+
+               &__interests-baybayin {
+                    font-family: 'Noto Sans Tagalog', font.$standard-font;
+                    font-size: 0.58rem;
+               }
+
+               &__interests-name {
+                    font-style: italic;
+               }
+
+               &__interests-list {
+                    font-family: 'Cabin', font.$standard-fancy-font, font.$standard-font;
+                    font-size: 0.85rem;
+                    line-height: 1.2;
+                    background-color: hsl(255, 5%, 17%);
+                    border: 2px solid hsl(0, 0%, 0%);
+               }
+
+               &__interests-body {
+                    display: block;
+                    overflow-y: auto;
+                    height: 1.7cm;
+                    padding: 5px 8px;
+
+                    &:focus-visible {
+                         outline: none;
+                         background-color: hsl(240, 6%, 10%);
+                    }
+               
+                    &::-webkit-scrollbar {
+                         width: 8px;
+                    }
+               
+                    &::-webkit-scrollbar-track {
+                         background: transparent;
+                    }
+               
+                    &::-webkit-scrollbar-thumb {
+                         background: #c0c0c0;
+                         border: 1px inset rgb(71, 71, 71);
+                    }
+               }
+          }
+
+          .description {
+               h1 {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1.6rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    background-color: color.adjust(#272525, $lightness: -10%);
+                    border-radius: 5px;
+                    padding: 10px 15px;
+                    width: 100%;
+               }
+
+               p {
+                    font-family: 'Cabin', font.$standard-fancy-font, font.$standard-font;
+                    font-size: 0.85rem;
+                    font-weight: 550;
+                    font-stretch: normal;
+                    text-align: justify;
+                    text-wrap: pretty;
+                    line-height: 1.4;
+                    padding-inline: 10px;
+                    margin-block: 10px;
+               }
+          }
+     }
+}

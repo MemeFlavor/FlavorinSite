@@ -6,7 +6,8 @@
 
 /* Helpers */
 
-///
+/// List of every predefined weight keywords.
+/// @access private
 /// @type map
 $_weights: (
      "Thin": 100,
@@ -20,7 +21,8 @@ $_weights: (
      "Black": 900
 );
 
-///
+/// List of every predefined width keywords.
+/// @access private
 /// @type map
 $_widths: (
      ultra-condensed: 50%,
@@ -34,18 +36,32 @@ $_widths: (
      ultra-expanded: 200%
 );
 
+/// Creates a path for the font.
+/// @access private
+/// @param {string} $name - The name of said font, will also applied to its folder name.
+/// @param {string} $root - The root level of the path.
+/// @return string
 @function _font-path($name, $root) {
      @return '#{$root}/fonts/#{$name}/#{$name}';
 }
 
-@function _font-sources($font, $sources) {
+/// Creates a source path of the font.
+/// @access private
+/// @param {string} $path    - The path of the font.
+/// @param {list}   $sources - The file format of the font.
+/// @return string
+@function _font-sources($path, $sources) {
      $result: ();
      @each $type, $format in $sources {
-          $result: list.append($result, url('#{$font}.#{$type}') $format, $separator: comma);
+          $result: list.append($result, url('#{$path}.#{$type}') $format, $separator: comma);
      }
      @return $result;
 }
 
+/// Creates nested path roots for the font path.
+/// @access private
+/// @param {number} $level [1] - The number of root levels.
+/// @return string
 @function _font-root($level: 1) {
      $result: "";
      @for $level from 1 through $level {
@@ -54,7 +70,11 @@ $_widths: (
      @return $result;
 }
 
-@function _font-weight($weight) {
+/// Adds the weight type of the font.
+/// @access private
+/// @param {string} $weight - The weight type.
+/// @return string
+@function _font-weight-suffix($weight) {
      $weight-name-index: list.index(map.values($_weights), $weight);
      @if ($weight-name-index != null) {
           $weight-name: list.nth(list.nth($_weights, $weight-name-index), 1);
@@ -64,7 +84,12 @@ $_widths: (
      @return "Regular";
 }
 
-@function _font-width($width, $path) {
+/// Adds the width type of the font, alters the path tto include its width subfolder.
+/// @access private
+/// @param {string} $width - The width type.
+/// @param {string} $path  - The path of the font.
+/// @return string
+@function _font-width-prefix($width, $path) {
      $font-path: string.split($path, '/');
      $font-path-length: list.length($font-path);
 
@@ -81,21 +106,25 @@ $_widths: (
 /* Main */
 
 /// Standard default font.
+/// @access public
 /// @type list
 $standard-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 
 /// Standard alternattive default font.
+/// @access public
 /// @type list
 $standard-fancy-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 /// Standard default code font.
+/// @access public
 /// @type list
 $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
 
-/// 
-/// @param {number|string} $min
-/// @param {number|string} $max
-/// @return
+/// Creates a list of properties based on its range, awesome helper function.
+/// @access public
+/// @param {number|string} $min - The minimum value to start.
+/// @param {number|string} $max - The maximum value to end.
+/// @return list
 @function font-property-range($min, $max) {
      $result: ();
      @if (meta.type-of($min) == 'number' and meta.type-of($max) == 'number') {
@@ -115,14 +144,15 @@ $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
      @return $result;
 }
 
-///
-/// @param {string} $name
-/// @param {list}   $weights
-/// @param {list}   $widths
-/// @param {string} $style
-/// @param {number} $level
-/// @param {map}    $sources
-/// @output
+/// Creates a static font face.
+/// @access public
+/// @param {string} $name     - The name of the font.
+/// @param {list}   $weights  - The weight(s) of the font.
+/// @param {list}   $widths   - The widths(s) of the font
+/// @param {string} $style    - The style of the font (i.e. italic, oblique).
+/// @param {number} $level    - The root path level of the font.
+/// @param {map}    $sources  - The file format(s) of the font.
+/// @output The generated font faces.
 @mixin font-face($name, $weights, $widths, $style, $level, $sources) {
      $weight-length: list.length($weights);
      $widths-length: list.length($widths);
@@ -133,32 +163,29 @@ $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
           @for $width-index from 1 through $widths-length {
                $width-value: list.nth($widths, $width-index);
 
-               $font-weight-suffix: _font-weight($weight-value);
-               $font-width-prefix:  _font-width($width-value, _font-path($name, _font-root($level)));
+               $font-weight-suffix: _font-weight-suffix($weight-value);
+               $font-width-prefix:  _font-width-prefix($width-value, _font-path($name, _font-root($level)));
                @font-face {
                     font-family: $name;
                     src: _font-sources("#{$font-width-prefix}-#{$font-weight-suffix}", $sources);
                     font-weight: $weight-value;
                     font-stretch: $width-value;
                     font-style: $style;
-                    font-pathsplay: swap;
+                    font-display: swap;
                }
           }
      }
 }
 
-@include font-face("Fira Sans", 100 300, normal semi-expanded, normal, 1, (
-     ('woff2', type('woff2')),
-));
-
-///
-/// @param {string} $name
-/// @param {list}   $weights
-/// @param {list}   $widths
-/// @param {string} $style
-/// @param {number} $level
-/// @param {map}    $sources
-/// @output
+/// Creates a variable font face.
+/// @access public
+/// @param {string} $name     - The name of the font.
+/// @param {list}   $weights  - The weight(s) of the font.
+/// @param {list}   $widths   - The widths(s) of the font
+/// @param {string} $style    - The style of the font (i.e. italic, oblique).
+/// @param {number} $level    - The root path level of the font.
+/// @param {map}    $sources  - The file format(s) of the font.
+/// @output The generated font faces.
 @mixin font-face-var($name, $weights, $width, $style, $level, $sources) {
      @font-face {
           font-family: $name;

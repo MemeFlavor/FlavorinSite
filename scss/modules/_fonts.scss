@@ -3,6 +3,7 @@
 @use 'sass:map';
 @use 'sass:meta';
 @use './built-in/list' as exlist;
+@use './built-in/string' as exstring;
 
 /* Helpers */
 
@@ -40,9 +41,14 @@ $_widths: (
 /// @access private
 /// @param {string} $name - The name of said font, will also applied to its folder name.
 /// @param {string} $root - The root level of the path.
+/// @param {string} $type - The font type.
+/// @param {string} $style [''] - The font style.
 /// @return string
-@function _font-path($name, $root) {
-     @return '#{$root}/fonts/#{$name}/#{$name}';
+@function _font-path($name, $root, $type, $style: '') {
+     @if ($style != '') {
+          @return '#{$root}/fonts/#{$type}/#{$name}/#{$name}-#{$style}';
+     }
+     @return '#{$root}/fonts/#{$type}/#{$name}/#{$name}';
 }
 
 /// Creates a source path of the font.
@@ -53,7 +59,7 @@ $_widths: (
 @function _font-sources($path, $sources) {
      $result: ();
      @each $type, $format in $sources {
-          $result: list.append($result, url('#{$path}.#{$type}') $format, $separator: comma);
+          $result: list.append($result, url("#{exstring.replace($path, ' ', '_')}.#{$type}") $format, $separator: comma);
      }
      @return $result;
 }
@@ -80,7 +86,7 @@ $_widths: (
           $weight-name: list.nth(list.nth($_weights, $weight-name-index), 1);
           @return $weight-name;
      }
-     @warn "Attempted to add precise weight value, reminder this for static fonts only.";
+     @warn "Attempted to add precise weight value or weight name.";
      @return "Regular";
 }
 
@@ -163,8 +169,12 @@ $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
           @for $width-index from 1 through $widths-length {
                $width-value: list.nth($widths, $width-index);
 
+               $font-style-format: string.to-upper-case(string.slice($style, 1, 1)) + string.slice($style, 2);
+               @if (string.to-lower-case($font-style-format) == 'normal') {
+                    $font-style-format: '';
+               }
                $font-weight-suffix: _font-weight-suffix($weight-value);
-               $font-width-prefix:  _font-width-prefix($width-value, _font-path($name, _font-root($level)));
+               $font-width-prefix:  _font-width-prefix($width-value, _font-path($name, _font-root($level), 'static', $font-style-format));
                @font-face {
                     font-family: $name;
                     src: _font-sources("#{$font-width-prefix}-#{$font-weight-suffix}", $sources);
@@ -187,12 +197,17 @@ $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
 /// @param {map}    $sources  - The file format(s) of the font.
 /// @output The generated font faces.
 @mixin font-face-var($name, $weights, $width, $style, $level, $sources) {
+     $font-style-format: string.to-upper-case(string.slice($style, 1, 1)) + string.slice($style, 2);
+     @if (string.to-lower-case($font-style-format) == 'normal') {
+          $font-style-format: '';
+     }
+     
      @font-face {
           font-family: $name;
-          src: _font-sources(_font-path($name, _font-root($level)), $sources);
+          src: _font-sources(_font-path($name, _font-root($level), 'variables', $font-style-format), $sources);
           font-weight: $weights;
           font-stretch: $width;
           font-style: $style;
-          font-pathsplay: swap;
+          font-display: swap;
      }
 }

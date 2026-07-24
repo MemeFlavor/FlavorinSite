@@ -17,3 +17,16 @@
      }
      @return $result;
 }
+
+@function list-to-string($list, $glue: "") {
+     $result: "";
+     @for $i from 1 through list.length($list) {
+          $e: list.nth($list, $i);
+          @if $i == 1 {
+               $result: #{$e};
+          } @else {
+               $result: #{$result}#{$glue}#{$e};
+          }
+     }
+     @return $result;
+}

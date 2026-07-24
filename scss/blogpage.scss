@@ -5,10 +5,6 @@
      ('woff2', format('woff2-variations')), 
      ('woff2', format('woff2') tech('variations'))
 ));
-@include sc.font-face-var('Lexend', 100 900, normal, normal, "..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
 @include sc.font-face-var('FiraCode', 300 700, normal, normal, "..", (
      ('woff2', format('woff2-variations')), 
      ('woff2', format('woff2') tech('variations'))

@@ -16,6 +16,9 @@
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, (
      ('woff2', format('woff2')),
 ));
+@include font.font-face('Candy Beans', 500, normal, normal, 1, (
+     ('woff2', format('woff2')),
+));
 
 body {
      display: flex;
@@ -516,9 +519,89 @@ body {
                $interests-background: hsl(240, 100%, 65%);
                .interests {
                     @include headbar($interests-palletes, $interests-gradient, $interests-background);
+
+                    &__gallery {
+                         table-layout: fixed;
+                         border-collapse: collapse;
+                         width: 100%;
+                    }
+
+                    &__category {
+                         display: grid;
+                         grid-template-columns: 1fr 2fr;
+                         grid-template-rows: 1fr;
+                         column-gap: 5px;
+                         margin-block: 3px;
+                    }
+
+                    &__title {
+                         display: flex;
+                         flex-direction: column;
+                         justify-content: flex-end;
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 1.15rem;
+                         font-weight: bolder;
+                         background: hsl(240deg, 65%, 38%);
+                         background: 
+                              linear-gradient(180deg,
+                                   hsl(240deg, 65%, 38%) 1%,
+                                   hsl(240deg, 100%, 62%) 4%,
+                                   hsl(240deg, 100%, 62%) 5%,
+                                   hsl(240deg, 65%, 38%) 10%,
+                                   hsl(240deg, 65%, 38%) 30%,
+                                   hsl(240deg, 65%, 34%) 55%,
+                                   hsl(240deg, 65%, 45%) 85%,
+                                   hsl(240deg, 65%, 25%) 95%,
+                              )
+                         ;
+                         border: 2px solid hsl(253, 67%, 10%);
+                         border-top-left-radius: 5px;
+                         border-bottom-left-radius: 5px;
+                         padding: 3px 8px;
+                    }
+
+                    &__name {
+                         font-style: italic;
+                    }
+
+                    &__name-baybayin {
+                         font-family: 'Noto Sans Tagalog', font.$standard-font;
+                         font-size: 0.58rem;
+                    }
+
+                    &__list {
+                         font-family: 'Candy Beans', font.$standard-font;
+                         font-size: 0.85rem;
+                         line-height: 1.2;
+                         background-color: hsl(255, 5%, 17%);
+                         border: 2px solid hsl(0, 0%, 0%);
+                    }
+
+                    &__catalog {
+                         display: block;
+                         overflow-y: auto;
+                         height: 1.7cm;
+                         padding: 5px 8px;
+                         
+                         &:focus-visible {
+                              outline: none;
+                              background-color: hsl(240, 6%, 10%);
+                         }
+                         
+                         &::-webkit-scrollbar {
+                              width: 8px;
+                         }
+                         
+                         &::-webkit-scrollbar-track {
+                              background: transparent;
+                         }
+                         
+                         &::-webkit-scrollbar-thumb {
+                              background: #c0c0c0;
+                              border: 1px inset rgb(71, 71, 71);
+                         }
+                    }
                }
-          
-               
           }
 
           .description {}

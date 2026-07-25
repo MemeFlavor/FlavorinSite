@@ -1,18 +1,17 @@
 @use './modules/shortcuts.scss' as sc;
+@use './modules/fonts.scss' as font;
 @use 'sass:color';
 
-@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
-@include sc.font-face('Kimberley', "Black", normal, "..", (
-     ('woff2', format('woff2')),
-));
+@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face('Eurostile Pro', 900, normal, normal, 1, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 
 body {
      display: flex;
      justify-content: center;
-     font-family: sc.$standard-font;
+     font-family: font.$standard-font;
      background-image: url(../images/backgrounds/grasslands.avif);
      background-repeat: no-repeat;
      background-size: cover;
@@ -74,7 +73,7 @@ body {
           padding: 20px;
 
           &__title {
-               font-family: "Archivo", sc.$standard-font;
+               font-family: "Archivo", font.$standard-font;
                font-size: 1.35rem;
                font-weight: 900;
                font-stretch: expanded;
@@ -93,14 +92,14 @@ body {
           }
 
           &__header-title {
-               font-family: "Archivo", sc.$standard-font;
+               font-family: "Archivo", font.$standard-font;
                font-size: 1.6rem;
                font-weight: 900;
                font-stretch: expanded;
           }
 
           &__description p {
-               font-family: sc.$fancy-font;
+               font-family: "Trebuchet MS", font.$standard-fancy-font, font.$standard-font;
                font-size: 0.95rem;
                text-align: justify;
                text-rendering: optimizeSpeed;
@@ -134,7 +133,7 @@ body {
                }
 
                &__headbar-title {
-                    font-family: "Archivo", sc.$standard-font;
+                    font-family: "Archivo", font.$standard-font;
                     font-size: 1.2rem;
                     font-weight: 900;
                     font-stretch: expanded;
@@ -151,7 +150,9 @@ body {
                }
 
                &__header {
-                    font-family: "Kimberley", sc.$standard-font;
+                    user-select: none;
+                    -webkit-user-select: none;
+                    font-family: "Eurostile Pro", font.$standard-font;
                     font-size: 1.45rem;
                     margin-bottom: 10px;
                }
@@ -187,7 +188,7 @@ body {
                }
                
                &__album-title {
-                    font-family: "Archivo", sc.$standard-font;
+                    font-family: "Archivo", font.$standard-font;
                     font-weight: 900;
                     font-size: 1.5rem;
                     font-stretch: expanded;
@@ -214,7 +215,7 @@ body {
                }
                
                &__album-artists {
-                    font-family: "Archivo", sc.$standard-font;
+                    font-family: "Archivo", font.$standard-font;
                     font-weight: 900;
                     font-size: 0.85rem;
                     font-stretch: 100%;
@@ -287,15 +288,17 @@ body {
                }
 
                &__albumlist-title {
-                    font-family: "Archivo", sc.$standard-font;
+                    font-family: "Archivo", font.$standard-font;
                     font-size: 0.95rem;
                     font-weight: 900;
                     font-stretch: 105%;
                }
 
                &__albumlist-artists {
-                    font-family: "Lexend";
+                    font-family: "Zalando Sans", font.$standard-font;
                     font-size: 0.85rem;
+                    font-weight: 550;
+                    font-stretch: 75%;
                     color: silver;
                }
           }

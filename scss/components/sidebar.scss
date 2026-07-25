@@ -1,21 +1,15 @@
 @use '../modules/shortcuts.scss' as sc;
+@use '../modules/fonts.scss' as font;
 @use "sass:string";
 @use "sass:list";
 @use "sass:math";
 @use "sass:color";
 
-@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "../..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
-@include sc.font-face-var('Lexend', 100 900, normal, normal, "../..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
-@include sc.font-face-var('FiraCode', 300 700, normal, normal, "../..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
+@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 2, font.$font-source-variable);
+@include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 2, font.$font-source-variable);
+@include font.font-face-var('Fira Code', 300 700, normal, normal, 2, font.$font-source-variable);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 2, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 2, font.$font-source-static);
 
 body .sidebar {
      background-color: rgb(40, 40, 40);
@@ -124,7 +118,7 @@ body .sidebar {
      
           &__headbar-title {
                z-index: 1;
-               font-family: sc.$fancy-font;
+               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: 0.85rem;
                font-weight: 700;
                border-inline: 1px solid black;
@@ -135,7 +129,7 @@ body .sidebar {
           }
      
           &__headbar-marquee {
-               font-family: sc.$fancy-font;
+               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: 0.75rem;
                font-style: italic;
                @include sc.user-select(none);
@@ -167,9 +161,10 @@ body .sidebar {
      
           &__link {
                cursor: pointer;
-               font-family: 'Lexend', sc.$standard-font;
-               font-size: 0.95rem;
+               font-family: 'Zalando Sans', font.$standard-font;
+               font-size: 0.9rem;
                font-weight: 650;
+               font-stretch: 75%;
                text-decoration: none;
                color: currentColor;
      
@@ -274,7 +269,7 @@ body .sidebar {
           }
 
           &__terminal, &__input {
-               font-family: 'FiraCode', sc.$standard-code-font;
+               font-family: 'Fira Code', font.$standard-code-font;
                font-size: 0.6rem;
                line-height: 0.85rem;
                background-color: color.adjust(#272525, $lightness: -10%);

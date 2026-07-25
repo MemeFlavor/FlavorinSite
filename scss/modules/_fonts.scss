@@ -126,6 +126,21 @@ $standard-fancy-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'L
 /// @type list
 $standard-code-font: Menlo, "Lucida Console", "Monaco", "monospace";
 
+/// Source for static fonts.
+/// @access public
+/// @type list
+$font-source-static: (
+     ('woff2', format('woff2')),
+);
+
+/// Source for variable fonts.
+/// @access public
+/// @type list
+$font-source-variable: (
+     ('woff2', format('woff2-variations')), 
+     ('woff2', format('woff2') tech('variations'))
+);
+
 /// Creates a list of properties based on its range, awesome helper function.
 /// @access public
 /// @param {number|string} $min - The minimum value to start.

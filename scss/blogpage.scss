@@ -1,23 +1,17 @@
 @use './modules/shortcuts.scss' as sc;
+@use './modules/fonts.scss' as font;
 @use 'sass:color';
 
-@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
-@include sc.font-face-var('FiraCode', 300 700, normal, normal, "..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
-@include sc.font-face-var('JetBrainsMono', 300 700, normal, normal, "..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
+@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face-var('Fira Code', 300 700, normal, normal, 1, font.$font-source-variable);
+@include font.font-face-var('JetBrains Mono', 300 700, normal, normal, 1, font.$font-source-variable);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 
 body {
      display: flex;
      justify-content: center;
-     font-family: sc.$standard-font;
+     font-family: font.$standard-font;
      background-image: url(../images/backgrounds/locker_room.avif);
      background-repeat: no-repeat;
      background-size: cover;
@@ -46,7 +40,7 @@ body {
           }
 
           &__headbar-back {
-               font-family: sc.$fancy-font;
+               font-family: "Trebuchet MS", font.$standard-fancy-font, font.$standard-font;
                padding-inline: 10px;
           }
 
@@ -67,7 +61,7 @@ body {
           }
 
           &__headbar-title {
-               font-family: "Archivo", sc.$standard-font;
+               font-family: "Archivo", font.$standard-font;
                font-size: 1.6rem;
                font-weight: 900;
                font-stretch: expanded;
@@ -81,7 +75,7 @@ body {
           &__headbar-breadcrumbs {
                display: flex;
                flex-direction: row;
-               font-family: sc.$fancy-font;
+               font-family: "Trebuchet MS", font.$standard-fancy-font, font.$standard-font;
                font-size: 1rem;
                gap: 10px;
                padding-inline: 10px;
@@ -146,7 +140,7 @@ body {
                display: flex;
                flex-direction: row;
                justify-content: space-between;
-               font-family: sc.$fancy-font;
+               font-family: "Trebuchet MS", font.$standard-fancy-font, font.$standard-font;
                font-weight: 800;
                background-color: #4f4eff;
                width: 100%;
@@ -164,7 +158,7 @@ body {
           &__code-body {
                display: flex;
                flex-direction: row;
-               font-family: 'FiraCode', sc.$standard-code-font;
+               font-family: 'Fira Code', font.$standard-code-font;
                background-color: hsl(0, 0%, 2%);
                padding-block: 10px;
           }
@@ -204,7 +198,7 @@ body {
                margin-top: 0.5cm;
 
                h1, h2, h3, h4, h5, h6 {
-                    font-family: "JetBrainsMono", sc.$standard-font;
+                    font-family: "JetBrains Mono", font.$standard-font;
                     padding-inline: 10px;
                }
 
@@ -213,7 +207,7 @@ body {
                }
 
                p, blockquote, li {
-                    font-family: sc.$fancy-font;
+                    font-family: "Trebuchet MS", font.$standard-fancy-font, font.$standard-font;
                     font-size: 1rem;
                     text-align: start;
                     text-rendering: optimizeSpeed;
@@ -240,7 +234,7 @@ body {
                }
 
                code {
-                    font-family: "FiraCode", sc.$standard-code-font;
+                    font-family: "Fira Code", font.$standard-code-font;
                     font-size: 0.85rem;
                     background-color: #272525;
                     border-radius: 5px;

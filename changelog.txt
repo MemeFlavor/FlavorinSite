@@ -1,12 +1,18 @@
-commit 0781db
+commit fb71c4
 Author: MemeFlavor
         &lt;host.name&gt;
-Date:   2026-07-23
+Date:   2026-07-25
 
-  > Added Baybayin font for proper 
-    text rendering
-  > Optimize (hopefully) the banner
-    images at the home page
+  > Actually Added support for
+    fonts to properly load
+    > Trebuchet MS & Baybayin
+  > Reorganize the About Page
+    > New banner image and 
+      "sway" animation
+    > Reformatted the socials page
+      within the manual
+  > Overall the SCSS font 
+    implementation system
 
 commit b33bed
 Author: MemeFlavor

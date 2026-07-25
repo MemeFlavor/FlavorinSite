@@ -1,14 +1,11 @@
 @use '../modules/shortcuts.scss' as sc;
+@use '../modules/fonts.scss' as font;
 @use 'sass:color';
 
-@include sc.font-face-var('Archivo', 100 900, 62% 125%, normal, "../..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
-@include sc.font-face-var('FiraCode', 300 700, normal, normal, "../..", (
-     ('woff2', format('woff2-variations')), 
-     ('woff2', format('woff2') tech('variations'))
-));
+@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 2, font.$font-source-variable);
+@include font.font-face-var('Fira Code', 300 700, normal, normal, 2, font.$font-source-variable);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 
 body .blogs {
      &__bloglist {
@@ -38,7 +35,7 @@ body .blogs {
      }
 
      &__bloglist-section-grp {
-          font-family: "Archivo", sc.$standard-font;
+          font-family: "Archivo", font.$standard-font;
           font-size: 0.95rem;
           font-weight: 900;
           font-stretch: expanded;
@@ -76,7 +73,7 @@ body .blogs {
      }
 
      &__bloglist-title {
-          font-family: "Archivo", sc.$standard-font;
+          font-family: "Archivo", font.$standard-font;
           font-size: 1rem;
           font-weight: 900;
           font-stretch: 100%;
@@ -97,7 +94,7 @@ body .blogs {
      }
 
      &__bloglist-description {
-          font-family: sc.$fancy-font;
+          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
           text-align: justify;
           line-height: 1.1rem;
 
@@ -114,7 +111,7 @@ body .blogs {
      }
 
      &__bloglist-time {
-          font-family: "FiraCode", sc.$standard-code-font;
+          font-family: "FiraCode", font.$standard-code-font;
           font-size: 0.65rem;
           background-color: #272525;
           border-radius: 5px;

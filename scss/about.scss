@@ -3,22 +3,12 @@
 @use 'sass:list';
 @use 'sass:string';
 
-@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, (
-     ('woff2', format('woff2-variations')),
-     ('woff2', format('woff2') tech('variations'))
-));
-@include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, (
-     ('woff2', format('woff2')),
-));
-@include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, (
-     ('woff2', format('woff2')),
-));
-@include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, (
-     ('woff2', format('woff2')),
-));
-@include font.font-face('Candy Beans', 500, normal, normal, 1, (
-     ('woff2', format('woff2')),
-));
+@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
+@include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
+@include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
 body {
      display: flex;
@@ -572,7 +562,7 @@ body {
                     &__list {
                          font-family: 'Candy Beans', font.$standard-font;
                          font-size: 0.85rem;
-                         line-height: 1.2;
+                         line-height: 1.4;
                          background-color: hsl(255, 5%, 17%);
                          border: 2px solid hsl(0, 0%, 0%);
                     }

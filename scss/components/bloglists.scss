@@ -4,8 +4,8 @@
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 2, font.$font-source-variable);
 @include font.font-face-var('Fira Code', 300 700, normal, normal, 2, font.$font-source-variable);
-@include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
-@include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 2, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 2, font.$font-source-static);
 
 body .blogs {
      &__bloglist {

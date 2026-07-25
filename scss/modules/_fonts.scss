@@ -71,9 +71,9 @@ $_widths: (
 @function _font-root($level: 1) {
      $result: "";
      @for $level from 1 through $level {
-          $result: $result + "..";
+          $result: $result + "/..";
      }
-     @return $result;
+     @return string.slice($result, 2);
 }
 
 /// Adds the weight type of the font.

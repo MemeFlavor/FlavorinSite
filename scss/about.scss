@@ -459,19 +459,6 @@ body {
                               height: 1in;
                               padding-block: 8px;
 
-                              a {
-                                   height: 31px;
-
-                                   &:focus-visible {
-                                        outline: 2px solid orangered;
-                                        border-radius: 1px;
-                                   }
-                              }
-
-                              img {
-                                   image-rendering: pixelated;
-                              }
-
                               &:focus-visible {
                                    outline: none;
                                    background-color: hsl(60, 9%, 62%);
@@ -491,6 +478,18 @@ body {
                               }
                          }
 
+                         &__badges-link {
+                              height: 31px;
+
+                              &:focus-visible {
+                                   outline: 2px solid orangered;
+                                   border-radius: 1px;
+                              }
+                         }
+
+                         &__badges-img {
+                              image-rendering: pixelated;
+                         }
                     }
           
                     .liminal {
@@ -612,6 +611,7 @@ body {
                     font-weight: 500;
                     font-stretch: normal;
                     text-align: justify;
+                    text-rendering: optimizeSpeed;
                     line-height: 1.4;
                     padding-inline: 10px;
                     margin-block: 10px;

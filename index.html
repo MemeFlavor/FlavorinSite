@@ -15,27 +15,25 @@
      <link rel="stylesheet" type="text/css" href="css/reset.css">
      <link rel="stylesheet" type="text/css" href="css/home.css">
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
-     <link rel="stylesheet" type="text/css" href="css/components/bloglists.css">
      <script type="module" src="javascript/sidebar.js"></script>
-     <script type="module" src="javascript/bloglists/featured.js"></script>
-     <script type="module" src="javascript/components/amy.js"></script>
 </head>
 <body>
      <article id="flavory-content">
           <header class="header">
                <div class="header__characters">
-                    <img src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_metal.png"
-                         class="header__characters-profile header__characters-profile--metal"
-                         alt="Metal Sonic" width="130" height="150" fetchpriority="high">
-                    <img src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_sonic.png"
-                         class="header__characters-profile header__characters-profile--sonic"
-                         alt="Sonic" width="130" height="150" fetchpriority="high">
-                    <img src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_amy.png"
-                         class="header__characters-profile header__characters-profile--amy"
-                         alt="Amy" width="130" height="150" fetchpriority="high">
+                    <img class="header__characters-profile" width="130" height="150" fetchpriority="high"
+                         alt="Metal Sonic" src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_metal.png"
+                    >
+                    <img class="header__characters-profile" width="130" height="150" fetchpriority="high"
+                         alt="Sonic" src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_sonic.png"
+                    >
+                    <img class="header__characters-profile" width="130" height="150" fetchpriority="high"
+                         alt="Amy" src="https://file.garden/akaL6XVvah-9gxkK/Header/banner_amy.png"
+                    >
                </div>
-               <img src="https://file.garden/akaL6XVvah-9gxkK/Header/banner.png"
-                    class="header__banner" alt="Awesome Banner" width="650" height="150" fetchpriority="high">
+               <img class="header__banner" width="650" height="150" fetchpriority="high"
+                    alt="Awesome Banner" src="https://file.garden/akaL6XVvah-9gxkK/Header/banner.png"
+               >
           </header>
           <aside class="sidebar">
                <hgroup class="sidebar__headbar">
@@ -92,144 +90,87 @@
                     </section>
                </aside>
           </aside>
-          <main class="main">
-               <h1 class="main__title">memeflavor.neocities.org</h1>
-               <hgroup class="main__header">
-                    <h1 class="main__header-title"> Flavory About! </h1>
-               </hgroup>
-               <article class="main__description">
-                    <p>
-                         Welcome to my Flavorlicious Site on the Web! This is basically just my tiny little corner on the internet. It's where I can
-                         do whatever I want, how I want; sharing my own weird little interests, creativity, and creations to all of you random people 
-                         on the internet. I've basically made this bacuase I wanna join the Indie Web and also social media is complete ass, it just
-                         feels so inauthentic and feast on negativity like its only main energy source.
-                    </p>
-                    <p>
-                         Anyways I hope you guys enjoyed exploring this site <i>(even though it's still under construction)</i>. I have spent way
-                         too much free time building this than putting any effort on my school works. I've done a lot of programming and designing
-                         this site, it was hard but worth it in the end. Also expect some new pages, redesign changes, and other stuff idk. But I'll 
-                         try to do my best, if I even feel like it lmao.
-                    </p>
-               </article>
-               <hgroup class="main__header">
-                    <h1 class="main__header-title"> Flavorlicious Goodies! </h1>
-               </hgroup>
-               <article class="main__goodies">
-                    <article class="music">
-                         <hgroup class="music__headbar">
-                              <h1 class="music__headbar-title"> Music (W.I.P) </h1>
-                         </hgroup>
-                         <div class="music__body">
-                              <h1 class="music__header" scrollamount="10"> Featured Awesome Music!!! </h1>
-                              <div class="music__album">
-                                   <img class="music__album-cover" src="images/album covers/st solis.avif" alt="" width="150" height="150">
-                                   <div class="music__album-container">
-                                        <section class="music__album-info">
-                                             <h1 class="music__album-title"><span> St. Solis </span></h1>
-                                             <p class="music__album-artists"> Sinister Minds </p>
-                                        </section>
-                                        <section class="music__album-visualizer">
-                                             <img class="music__album-amy" src="images/decorations/amy.gif" alt="Amy" width="67" height="75">
-                                             <img class="music__album-dialogue" src="images/decorations/amy_dialogue.png" alt="Amy Dialogue" width="83" height="75">
-                                        </section>
-                                   </div>
+          <main class="home">
+               <h1 class="domain">memeflavor.neocities.org</h1>
+               <article class="primary">
+                    <article class="description">
+                         <h1> Flavory About! </h1>
+                         <p>
+                              Welcome to my Flavorlicious Site on the Web! This is basically just my tiny little corner on the internet. It's where I
+                              can do whatever I want, how I want; sharing my own weird little interests, creativity, and creations to all of you
+                              random people on the internet. I've basically made this bacuase I wanna join the Indie Web and also social media is
+                              complete ass, it just feels so inauthentic and feast on negativity like its only main energy source.
+                         </p>
+                         <p>
+                              Anyways I hope you guys enjoyed exploring this site <i>(even though it's still under construction)</i>. I have spent 
+                              way too much free time building this than putting any effort on my school works. I've done a lot of programming and 
+                              designing this site, it was hard but worth it in the end. Also expect some new pages, redesign changes, and other stuff 
+                              idk. But I'll try to do my best, if I even feel like it lmao.
+                         </p>
+                    </article>
+                    <article class="gallery">
+                         <div class="banner">
+                              <div class="banner__headbar">
+                                   <h1 class="banner__headtitle">WARN</h1>
+                                   <h2 class="banner__headsubtitle">Always Updating!</h2>
                               </div>
-                              <table class="music__albumlist">
-                                   <tr class="music__albumlist-header">
-                                        <th class="music__albumlist-header-grp" style="width: 65px; text-align: center;">Album</th>
-                                        <th class="music__albumlist-header-grp" style="width: auto; text-align: left;">Title</th>
-                                   </tr>
-                                   <tr class="music__albumlist-content">
-                                        <td class="music__albumlist-content-grp">
-                                             <div class="music__albumlist-wrapper-img">
-                                                  <img src="images/album covers/sonic cd.avif" alt="" width="50" height="50">
-                                             </div>
-                                        </td>
-                                        <td class="music__albumlist-content-grp">
-                                             <div class="music__albumlist-wrapper-info">
-                                                  <span class="music__albumlist-title">Wacky Workbench (P-Mix)</span>
-                                                  <span class="music__albumlist-artists">Sonic CD OST</span>
-                                             </div>
-                                        </td>
-                                   </tr>
-                                   <tr class="music__albumlist-content">
-                                        <td class="music__albumlist-content-grp">
-                                             <div class="music__albumlist-wrapper-img">
-                                                  <img src="images/album covers/sonic cd.avif" alt="" width="50" height="50">
-                                             </div>
-                                        </td>
-                                        <td class="music__albumlist-content-grp">
-                                             <div class="music__albumlist-wrapper-info">
-                                                  <span class="music__albumlist-title">Stardust Speedway</span>
-                                                  <span class="music__albumlist-artists">Sonic CD OST</span>
-                                             </div>
-                                        </td>
-                                   </tr>
-                                   <tr class="music__albumlist-content">
-                                        <td class="music__albumlist-content-grp">
-                                             <div class="music__albumlist-wrapper-img">
-                                                  <img src="images/album covers/pareidolia.avif" alt="" width="50" height="50">
-                                             </div>
-                                        </td>
-                                        <td class="music__albumlist-content-grp">
-                                             <div class="music__albumlist-wrapper-info">
-                                                  <span class="music__albumlist-title">Pareidolia</span>
-                                                  <span class="music__albumlist-artists">SpringlessEcho</span>
-                                             </div>
-                                        </td>
-                                   </tr>
-                              </table>
+                              <div class="banner__body">
+                                   <section class="banner__information">
+                                        <h2 class="banner__label">Huh?</h2>
+                                        <p class="banner__description">It always updates, it never stops until it is satisfied with itself...</p>
+                                   </section>
+                                   <section class="banner__patterns">
+                                        <div class="banner__patterns-block banner__patterns-block--pallete-1"></div>
+                                        <div class="banner__patterns-block banner__patterns-block--pallete-2"></div>
+                                   </section>
+                              </div>
                          </div>
-                    </article>
-                    <article class="blogs">
-                         <hgroup class="blogs__headbar">
-                              <h1 class="blogs__headbar-title"> Blogs </h1>
-                         </hgroup>
-                         <div class="blogs__body">
-                              <table class="blogs__bloglist">
-                                   <thead>
-                                        <tr class="blogs__bloglist-header">
-                                             <th class="blogs__bloglist-header-grp" style="width: auto; text-align: left">Blogs</th>
-                                             <th class="blogs__bloglist-header-grp" style="width: 95px; text-align: left">Date</th>
-                                        </tr>
-                                   </thead>
-                                   <tbody>
-                                        <tr class="blogs__bloglist-section">
-                                             <td class="blogs__bloglist-section-grp" colspan="2"> [SECTION] </td>
-                                        </tr>
-                                        <tr class="blogs__bloglist-content">
-                                             <td class="blogs__bloglist-content-grp">
-                                                  <a href="" class="blogs__bloglist-link">
-                                                       <h1 class="blogs__bloglist-title"> [TITLE] </h1>
-                                                  </a>
-                                                  <p class="blogs__bloglist-type"> [TYPE] </p>
-                                                  <p class="blogs__bloglist-description"> [DESCRIPTION] </p>
-                                             </td>
-                                             <td class="blogs__bloglist-content-grp">
-                                                  <div class="blogs__bloglist-wrapper-time">
-                                                       <time class="blogs__bloglist-time" datetime=""> [TIME] </time>
-                                                  </div>
-                                             </td>
-                                        </tr>
-                                   </tbody>
-                              </table>
+                         <div class="panel">
+                              <section class="panel__headbar">
+                                   <h1 class="panel__headtitle"> Panel </h1>
+                                   <div class="panel__headblocks panel__headblocks--pallete-1"></div>
+                                   <div class="panel__headblocks panel__headblocks--pallete-2"></div>
+                                   <div class="panel__headblocks panel__headblocks--pallete-3"></div>
+                              </section>
+                              <section class="panel__command">
+                                   <code class="panel__command-body">
+                                        $ syncing (<code-base>HEAD -></code-base> <code-system>panel</code-system>) <code-load>⠋</code-load>
+                                   </code>
+                                   <div class="panel__command-block"></div>
+                              </section>
+                              <section class="panel__miscellaneous">
+                                   <div class=""></div>
+                                   <div class=""></div>
+                                   <div class=""></div>
+                              </section>
                          </div>
-                    </article>
-                    <article class="projects">
-                         <hgroup class="projects__headbar">
-                              <h1 class="projects__headbar-title"> Projects (W.I.P) </h1>
-                         </hgroup>
-                         <div class="projects-body"> Hahaha Work in Progress ROFL </div>
+                         <div class="liminal"></div>
                     </article>
                </article>
+               <article class="miscellaneous">
+                    <article class="blogs"></article>
+                    <article class="music"></article>
+               </article>
+               <article class="projects"></article>
           </main>
      </article>
      <script>
-          const flavorTitle = document.querySelector('.main__title')
+          const domain = document.querySelector('.domain')
           if (window.location.hostname === 'memeflavor.github.io') {
-               flavorTitle.style.backgroundColor = 'hsl(90, 100%, 40%)'
+               domain.style.backgroundColor = 'hsl(90, 100%, 40%)'
           }
-          flavorTitle.textContent = window.location.hostname
+          domain.textContent = window.location.hostname
+
+          const panelConsoleLoad = document.querySelector('.panel__command-body code-load')
+          const panelConsoleChar = '⠋⠇⠦⠴⠸⠙'
+          let panelConsoleIndex = 0;
+
+          const consoleLoading = setInterval(() => {
+               if (panelConsoleIndex % 5 === 0) panelConsoleIndex = 0;
+
+               panelConsoleLoad.innerHTML = panelConsoleChar.charAt(panelConsoleIndex);
+               panelConsoleIndex++;
+          }, 80)
      </script>
 </body>
 </html>

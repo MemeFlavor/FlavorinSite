@@ -133,15 +133,23 @@
                                    <div class="panel__headblocks panel__headblocks--pallete-3"></div>
                               </section>
                               <section class="panel__command">
-                                   <code class="panel__command-body">
-                                        $ syncing (<code-base>HEAD -></code-base> <code-system>panel</code-system>) <code-load>⠋</code-load>
-                                   </code>
+                                   <code class="panel__command-body">$ syncing (<code-base>HEAD -></code-base> <code-system>panel</code-system>) <code-load>⠋</code-load></code>
                                    <div class="panel__command-block"></div>
                               </section>
-                              <section class="panel__miscellaneous">
-                                   <div class=""></div>
-                                   <div class=""></div>
-                                   <div class=""></div>
+                              <section class="panel__random">
+                                   <div class="terminal">
+                                        <pre class="terminal__body"></pre>
+                                   </div>
+                                   <div class="filler">
+                                        <div class="filler__midareta"></div>
+                                        <div class="filler__palletes">
+                                            <div class="filler__blocks filler__blocks--pallete-1"></div>
+                                            <div class="filler__blocks filler__blocks--pallete-2"></div>
+                                        </div>
+                                   </div>
+                                   <div class="motivational">
+                                        <p class="motivational__main"> ᜋᜄ᜔ᜉᜆᜓᜎᜓᜌ᜔ </p>
+                                   </div>
                               </section>
                          </div>
                          <div class="liminal"></div>
@@ -154,7 +162,19 @@
                <article class="projects"></article>
           </main>
      </article>
-     <script>
+     <script type="module">
+          async function trag(file) {
+               try {
+                    const response = await fetch(file);
+                    if (!response.ok) { // Check if the request was successful
+                         throw new Error('Network response was not ok');
+                    }
+                    return await new Response(response.body).text();
+               } catch (error) {
+                    console.error('Error fetching data:', error);
+               }
+          }
+
           const domain = document.querySelector('.domain')
           if (window.location.hostname === 'memeflavor.github.io') {
                domain.style.backgroundColor = 'hsl(90, 100%, 40%)'
@@ -171,6 +191,15 @@
                panelConsoleLoad.innerHTML = panelConsoleChar.charAt(panelConsoleIndex);
                panelConsoleIndex++;
           }, 80)
+
+          let d = await trag('fetching.txt')
+
+          
+
+          document.querySelector('.terminal__body').innerHTML = d
+               .replace(/!(.+\s*\(\d+\%\))\$\$\$/g, '<code-high>$1</code-high>')
+               .replace(/!(.+\s*\(\d+\%\))\$\$/g, '<code-mid>$1</code-mid>')
+               .replace(/!(.+\s*\(\d+\%\))\$/g, '<code-low>$1</code-low>')
      </script>
 </body>
 </html>

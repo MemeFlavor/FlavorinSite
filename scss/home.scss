@@ -296,13 +296,15 @@ body {
                               grid-template-rows: 2fr 1fr;
                               grid-template-areas: 
                                    "random-disarranged random-occhiolism"
-                                   "random-motivational random-motivational"
+                                   "random-color random-color"
                               ;
                               gap: 10px;
                               height: 100%;
                          }
 
                          .disarranged {
+                              user-select: none;
+                              -webkit-user-select: none;
                               display: flex;
                               justify-content: center;
                               grid-area: random-disarranged;
@@ -371,10 +373,21 @@ body {
                               border-radius: 5px;
                          }
 
-                         &__random-motivational {
-                              grid-area: random-motivational;
-                              background-color: black;
+                         .color {
+                              display: flex;
+                              align-items: flex-end;
+                              grid-area: random-color;
+                              background-color: #4f4eff;
                               border-radius: 5px;
+                              padding: 3px 8px;
+
+                              &__name {
+                                   font-family: "Zalando Sans";
+                                   font-size: 1.4rem;
+                                   font-weight: 800;
+                                   font-stretch: expanded;
+                                   text-transform: uppercase;
+                              }
                          }
                     }
 

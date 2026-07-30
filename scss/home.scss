@@ -295,43 +295,79 @@ body {
                               grid-template-columns: 2fr 1fr;
                               grid-template-rows: 2fr 1fr;
                               grid-template-areas: 
-                                   "random-error random-guy"
+                                   "random-disarranged random-occhiolism"
                                    "random-motivational random-motivational"
                               ;
                               gap: 10px;
                               height: 100%;
                          }
 
-                         &__random-error {
+                         .disarranged {
                               display: flex;
                               justify-content: center;
-                              grid-area: random-error;
+                              grid-area: random-disarranged;
                               background-color: black;
                               border-radius: 5px;
                               position: relative;
                               overflow: hidden;
 
-                              img {
-                                   image-rendering: pixelated;
+                              /// Stolen Code 
+                              /// @see https://aleclownes.com/2017/02/01/crt-display.html
+                              &::before {
+                                   content: " ";
+                                   z-index: 2;
+                                   pointer-events: none;
+                                   display: block;
+                                   background:
+                                        linear-gradient(hsla(0, 6%, 7%, 0.5) 50%, hsla(0, 0%, 0%, 0.45) 50%),
+                                        linear-gradient(90deg, hsla(0, 100%, 50%, 0.06), hsla(120, 100%, 50%, 0.02), hsla(240, 100%, 50%, 0.06));
+                                   background-size: 100% 2px, 3px 100%;
+                                   animation: flicker 0.5s infinite;
+                                   position: absolute;
+                                   inset: 0;
+                              }
+                              
+                              $flicker-proximate: 100000;
+                              @keyframes flicker {
+                                   @for $flicker-index from 0 through 20 {
+                                        $flicker-sections: math.percentage(math.div(5 * $flicker-index, 100));
+                                        $flicker-vars: math.div(math.random($flicker-proximate), $flicker-proximate);
+                              
+                                        #{$flicker-sections} {
+                                             opacity: $flicker-vars;
+                                        }
+                                   }
+                              }
+
+                              &__illegal-instructions {
+                                   display: flex;
+                                   flex-direction: column;
+                                   justify-content: start;
+                                   background-color: #0a0a49;
+                                   background-image: url(../images/decorations/tthis.png);
+                                   background-size: 230%;
+                                   background-position: center 25%;
+                                   background-repeat: no-repeat;
+
+                                   img {
+                                        filter: contrast(200%) brightness(150%) sepia(30%);
+                                        image-rendering: pixelated;
+                                   }
+                              }
+
+                              &__midareta {
+                                   filter: contrast(130%);
+                                   position: absolute;
+                                   bottom: 0;
                               }
                          }
 
-                         .die {
-                              background-image: url(../images/decorations/tthis.png);
-                              background-size: 200%;
-                              background-position: center;
-                              background-repeat: no-repeat;
-                         }
-
-                         &__random-midareta {
-                              filter: contrast(130%);
-                              position: absolute;
-                              bottom: 0;
-                         }
-
-                         &__random-guy {
-                              grid-area: random-guy;
+                         .occhiolism {
+                              grid-area: random-occhiolism;
                               background-color: black;
+                              background-image: url(https://i.kym-cdn.com/photos/images/masonry/003/065/190/b06.jpeg);
+                              background-size: cover;
+                              background-position: right;
                               border-radius: 5px;
                          }
 
@@ -342,7 +378,7 @@ body {
                          }
                     }
 
-                    .liminal {
+                    .parking {
                          background-color: white;
                          background-image: url(https://images.pexels.com/photos/20229095/pexels-photo-20229095.jpeg);
                          background-size: cover;

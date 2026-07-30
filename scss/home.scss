@@ -1,6 +1,7 @@
 @use './modules/shortcuts.scss' as sc;
 @use './modules/fonts.scss' as font;
-@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
@@ -91,7 +92,7 @@ body {
 
                .gallery {
                     display: grid;
-                    grid-template-columns: 1fr 3fr;
+                    grid-template-columns: 1fr 2fr;
                     grid-template-rows: 1fr 2fr;
                     grid-template-areas: 
                          "gallery-banner gallery-banner"
@@ -238,166 +239,61 @@ body {
                          }
 
                          &__command {
-                              display: flex;
-                              flex-direction: row-reverse;
-                              column-gap: 3px;
-                         }
-
-                         &__command-body {
                               user-select: none;
                               -webkit-user-select: none;
+                              width: 200px;
+                         }
+
+                         &__terminal {
                               font-family: 'Fira Code', font.$standard-font;
-                              font-size: 0.68rem;
-                              text-align: center;
-                              text-wrap: nowrap;
-                              color: goldenrod;
+                              font-size: 0.7rem;
+                              color: mintcream;
                               background-color: hsl(0, 2.6315789474%, 4.9019607843%);
                               border: 2px solid black;
                               width: 100%;
                               padding: 3px 5px;
 
-                              code-base {
-                                   font-weight: bold;
-                                   color: #51cbd3;
+                              trm-load {
+                                   color: #4ff97a;
                               }
-                              code-system {
-                                   font-weight: bold;
-                                   color: #43cd5f;
+                              trm-time {
+                                   color: silver;
                               }
-                              code-load {
-                                   color: white;
+                              trm-empty {
+                                   color: mintcream !important
                               }
-                         }
 
-                         &__command-block {
-                              background-color: goldenrod;
-                              border: 2px solid black;
-                              width: calc((10px + 15px) / 2);
-                              height: auto;
-                         }
+                              $prograss-gradient: #7CFF2B, #4ff97a, #4ff9b2;
+                              @for $gradient-index from 1 through list.length($prograss-gradient) {
+                                   $gradient-value: list.nth($prograss-gradient, $gradient-index);
 
-                         &__random {
-                              display: grid;
-                              grid-template-columns: 1fr 3fr;
-                              grid-template-rows: 3fr 1fr;
-                              grid-template-areas: 
-                                   "random-filler random-terminal"
-                                   "random-motivational random-motivational"
-                              ;
-                              gap: 10px;
-                              height: 100%;
-
-                              .terminal {
-                                   grid-area: random-terminal;
-                                   overflow-y: auto;
-                                   background-color: hsl(0, 2.6315789474%, 4.9019607843%);
-                                   border: 2px solid black;
-                                   height: 145px;
-                                   padding: 5px;
-
-                                   &::-webkit-scrollbar {
-                                        width: 3px;
-                                   }
-                              
-                                   &::-webkit-scrollbar-track {
-                                        background: hsl(0, 3%, 5%);
-                                   }
-                              
-                                   &::-webkit-scrollbar-thumb {
-                                        background: hsl(0, 0%, 14%);
-                                        border-radius: 0px;
+                                   trm-progress:nth-of-type(#{$gradient-index}) {
+                                        color: $gradient-value;
                                    }
                               }
 
-                              .terminal__body {
-                                   font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
-                                   font-size: 0.6rem;
-                              
-                                   &::selection, *::selection {
-                                        color: #000000;
-                                        background-color: #ffffff;
+                              $percent-gradient: #ff251a, #ffc933, #7dfa00;
+                              @for $percent-index from 1 through 10 {
+                                   $percent-value: list.nth($percent-gradient, math.ceil(calc($percent-index / 3.5)));
+
+                                   trm-percent {
+                                        font-weight: bolder;
+                                        color: #ff251a;
+
+                                        &[level="#{$percent-index * 10}"] {
+                                             color: $percent-value;
+                                        }
                                    }
-                              
-                                   code-high {
-                                        color: hsl(120, 98%, 68%);
-                                   }
-                              
-                                   code-mid {
-                                        color: hsl(44, 100%, 61%);
-                                   }
-                              
-                                   code-low {
-                                        color: hsl(0, 100%, 61%);
-                                   }
-                              }
-
-                              .filler {
-                                   display: grid;
-                                   grid-template-columns: 1fr;
-                                   grid-template-rows: 2fr 1fr;
-                                   grid-area: random-filler;
-                                   row-gap: 10px;
-                              }
-
-                              .filler__palletes {
-                                   display: grid;
-                                   grid-template-columns: 1fr;
-                                   grid-template-rows: 1fr 1fr;
-                                   row-gap: 5px;
-                              }
-
-                              .filler__blocks {
-                                   border-radius: 3px;
-
-                                   &--pallete-1 {
-                                        background-color: #4f4eff;
-                                   }
-                                   &--pallete-2 {
-                                        background-color: hsl(89, 96%, 45%);
-                                   }
-                              }
-
-                              .filler__midareta {
-                                   background-color: black;
-                                   background-image: url(../images/decorations/midareta.gif);
-                                   background-size: 130%;
-                                   background-position-y: center;
-                                   background-repeat: no-repeat;
-                                   image-rendering: pixelated;
-                                   border-radius: 5px;
-                                   overflow: hidden;
-                              }
-
-                              .motivational {
-                                   grid-area: random-motivational;
-                                   background-image: url(https://i.kym-cdn.com/photos/images/original/002/976/360/7c0.jpeg);
-                                   background-size: cover;
-                                   background-position: center 55%;
-                                   border-radius: 5px;
-                                   position: relative;
-                                   padding: 1px 3px;
-                              }
-
-                              .motivational__main {
-                                   user-select: none;
-                                   -webkit-user-select: none;
-                                   font-family: 'Noto Sans Tagalog', font.$standard-font;
-                                   font-size: 1.15rem;
-                                   text-shadow: 2px 1px 0px black;
-                                   color: aliceblue;
-                                   position: absolute;
-                                   right: 5px;
-                                   bottom: 3px;
                               }
                          }
                     }
 
                     .liminal {
-                         grid-area: gallery-liminal;
-                         background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/347/a27.jpeg);
+                         background-color: white;
+                         background-image: url(https://images.pexels.com/photos/20229095/pexels-photo-20229095.jpeg);
                          background-size: cover;
-                         background-position: center;
-                         image-rendering: smooth;
+                         background-position: left;
+                         background-repeat: no-repeat;
                          border-radius: 5px;
                     }
                }
@@ -416,7 +312,7 @@ body {
           
                     p {
                          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: 0.95rem;
+                         font-size: 0.9rem;
                          font-weight: 500;
                          font-stretch: normal;
                          text-align: start;

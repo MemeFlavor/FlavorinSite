@@ -135,11 +135,10 @@
                                    <div class="panel__headblocks panel__headblocks--pallete-3"></div>
                               </section>
                               <section class="panel__command">
-                                   <code class="panel__command-body">$ syncing (<code-base>HEAD -></code-base> <code-system>panel</code-system>) <code-load>⠋</code-load></code>
-                                   <div class="panel__command-block"></div>
+                                   <pre class="panel__terminal">$<br>$<br>$</pre>
                               </section>
                               <section class="panel__random">
-                                   <div class="terminal">
+                                   <!-- <div class="terminal">
                                         <pre class="terminal__body"></pre>
                                    </div>
                                    <div class="filler">
@@ -151,7 +150,7 @@
                                    </div>
                                    <div class="motivational">
                                         <p class="motivational__main"> ᜋᜄ᜔ᜉᜆᜓᜎᜓᜌ᜔ </p>
-                                   </div>
+                                   </div> -->
                               </section>
                          </div>
                          <div class="liminal"></div>
@@ -165,6 +164,8 @@
           </main>
      </article>
      <script type="module">
+          import { getRandomInt } from "./javascript/modules/shortcuts.js";
+
           async function trag(file) {
                try {
                     const response = await fetch(file);
@@ -183,23 +184,61 @@
           }
           domain.textContent = window.location.hostname
 
-          const panelConsoleLoad = document.querySelector('.panel__command-body code-load')
-          const panelConsoleChar = '⠋⠇⠦⠴⠸⠙'
-          let panelConsoleIndex = 0;
+          const panelTerminal = document.querySelector('.panel__terminal')
+          panelTerminal.innerHTML = await trag('txts/syncing.txt')
 
-          const consoleLoading = setInterval(() => {
-               if (panelConsoleIndex % 5 === 0) panelConsoleIndex = 0;
+          const a = panelTerminal.querySelectorAll('trm-progress')
+          const b = panelTerminal.querySelectorAll('trm-percent')
+          const c = panelTerminal.querySelectorAll('trm-time')
+          const d = panelTerminal.querySelectorAll('trm-load')
 
-               panelConsoleLoad.innerHTML = panelConsoleChar.charAt(panelConsoleIndex);
-               panelConsoleIndex++;
-          }, 80)
+          for (let index = 0; index < 3; index++) {
+               let panelTerminalChar = '⠋⠇⠦⠴⠸⠙'
+               let panelTerminalIndex = 0;
+               let y = getRandomInt(0, 10)
 
-          let d = await trag('fetching.txt')
+               setInterval(() => {
+                    if (y % 11 == 0) y = 0;
+
+                    c[index].innerHTML = `${getRandomInt(0,9)}:${getRandomInt(0,5)}${getRandomInt(0,9)}`
+                    a[index].innerHTML = '#'.repeat((y / 10) * 10).padEnd(10, `-`).replace(/\-/g, '<trm-empty>-</trm-empty>')
+                    b[index].innerHTML = `${y * 10}%`.padStart(4, ' ')
+                    b[index].setAttribute('level', y*10)
+                    y++
+               }, 1100)
+
+               setInterval(() => {
+                    if (panelTerminalIndex % 5 === 0) panelTerminalIndex = 0;
+
+                    d[index].innerHTML = panelTerminalChar.charAt(panelTerminalIndex)
+                    panelTerminalIndex++;
+               }, 100)
+          }
+
+          
+
+          /* let d = await trag('fetching.txt')
 
           document.querySelector('.terminal__body').innerHTML = d
                .replace(/!(.+\s*\(\d+\%\))\$\$\$/g, '<code-high>$1</code-high>')
                .replace(/!(.+\s*\(\d+\%\))\$\$/g, '<code-mid>$1</code-mid>')
-               .replace(/!(.+\s*\(\d+\%\))\$/g, '<code-low>$1</code-low>')
+               .replace(/!(.+\s*\(\d+\%\))\$/g, '<code-low>$1</code-low>') */
+
+
+          /* const panelTerminal = document.querySelector('.panel__terminal')
+          panelTerminal.innerHTML = await trag('txts/syncing.txt')
+
+          const panelTerminalDie = panelTerminal.innerHTML.split('\n')
+          let panelTerminalChar = '⠋⠇⠦⠴⠸⠙'
+          let panelTerminalIndex = 0;
+
+          setInterval(() => {
+               if (panelTerminalIndex % 5 === 0) panelTerminalIndex = 0;
+
+               panelTerminalIndex++;
+               panelTerminal.innerHTML = panelTerminalDie.join('\n')
+          }, 80) */
+     
      </script>
 </body>
 </html>

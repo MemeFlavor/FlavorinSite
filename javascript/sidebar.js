@@ -10,8 +10,8 @@ async function trag(file) {
      }
 }
 
-const die = await trag('changelog.txt')
-const cie = await trag('help.txt')
+const die = await trag('txts/changelog.txt')
+const cie = await trag('txts/help.txt')
 
 const ert = document.querySelector('.debug__terminal')
 const kil = document.querySelector('.debug__input')

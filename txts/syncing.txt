@@ -1,0 +1,3 @@
+<trm-load>⠋</trm-load> [<trm-time>0:00</trm-time>] [<trm-progress><trm-empty>----------</trm-empty></trm-progress>] <trm-percent>  0%</trm-percent>
+<trm-load>⠋</trm-load> [<trm-time>0:00</trm-time>] [<trm-progress><trm-empty>----------</trm-empty></trm-progress>] <trm-percent>  0%</trm-percent>
+<trm-load>⠋</trm-load> [<trm-time>0:00</trm-time>] [<trm-progress><trm-empty>----------</trm-empty></trm-progress>] <trm-percent>  0%</trm-percent>

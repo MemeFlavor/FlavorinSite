@@ -313,6 +313,8 @@ body {
                          }
 
                          &__navigation {
+                              user-select: none;
+                              -webkit-user-select: none;
                               cursor: pointer;
                               font-size: 1rem;
                               font-weight: 900;
@@ -348,6 +350,8 @@ body {
                          }
 
                          &__rewrite-container {
+                              user-select: none;
+                              -webkit-user-select: none;
                               display: flex;
                               justify-content: center;
                          }

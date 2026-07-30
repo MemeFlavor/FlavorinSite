@@ -253,14 +253,17 @@ body {
                               width: 100%;
                               padding: 3px 5px;
 
+                              trm-time {
+                                   font-weight: 500;
+                                   color: silver;
+                              }
+
                               trm-load {
                                    color: #4ff97a;
                               }
-                              trm-time {
-                                   color: silver;
-                              }
+
                               trm-empty {
-                                   color: mintcream !important
+                                   color: mintcream !important;
                               }
 
                               $prograss-gradient: #7CFF2B, #4ff97a, #4ff9b2;
@@ -285,6 +288,57 @@ body {
                                         }
                                    }
                               }
+                         }
+
+                         &__random {
+                              display: grid;
+                              grid-template-columns: 2fr 1fr;
+                              grid-template-rows: 2fr 1fr;
+                              grid-template-areas: 
+                                   "random-error random-guy"
+                                   "random-motivational random-motivational"
+                              ;
+                              gap: 10px;
+                              height: 100%;
+                         }
+
+                         &__random-error {
+                              display: flex;
+                              justify-content: center;
+                              grid-area: random-error;
+                              background-color: black;
+                              border-radius: 5px;
+                              position: relative;
+                              overflow: hidden;
+
+                              img {
+                                   image-rendering: pixelated;
+                              }
+                         }
+
+                         .die {
+                              background-image: url(../images/decorations/tthis.png);
+                              background-size: 200%;
+                              background-position: center;
+                              background-repeat: no-repeat;
+                         }
+
+                         &__random-midareta {
+                              filter: contrast(130%);
+                              position: absolute;
+                              bottom: 0;
+                         }
+
+                         &__random-guy {
+                              grid-area: random-guy;
+                              background-color: black;
+                              border-radius: 5px;
+                         }
+
+                         &__random-motivational {
+                              grid-area: random-motivational;
+                              background-color: black;
+                              border-radius: 5px;
                          }
                     }
 

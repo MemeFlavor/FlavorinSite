@@ -16,6 +16,7 @@
      <link rel="stylesheet" type="text/css" href="css/home.css">
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
      <script type="module" src="javascript/sidebar.js"></script>
+     <script type="module" src="javascript/about.js"></script>
 </head>
 <body>
      <article id="flavory-content">
@@ -138,6 +139,27 @@
                                    <pre class="panel__terminal">$<br>$<br>$</pre>
                               </section>
                               <section class="panel__random">
+                                   <div class="panel__random-error">
+                                        <div class="die" style="display: flex; flex-direction: column; justify-content: start; background-color: #00006e;">
+                                             <marquee direction="left">
+                                                  <img src="images/decorations/illegal_instruction2.png" alt="" width="187" height="6">
+                                             </marquee>
+                                             <marquee direction="right">
+                                                  <img src="images/decorations/illegal_instruction1.png" alt="" width="187" height="6">
+                                             </marquee>
+                                             <marquee direction="left">
+                                                  <img src="images/decorations/illegal_instruction2.png" alt="" width="187" height="6">
+                                             </marquee>
+                                             <marquee direction="right">
+                                                  <img src="images/decorations/illegal_instruction2.png" alt="" width="187" height="6">
+                                             </marquee>
+                                        </div>
+                                        <img class="panel__random-midareta" width="91" height="75"
+                                             alt="Amy" src="images/decorations/midareta.gif"
+                                        >
+                                   </div>
+                                   <div class="panel__random-guy">2</div>
+                                   <div class="panel__random-motivational">4</div>
                                    <!-- <div class="terminal">
                                         <pre class="terminal__body"></pre>
                                    </div>
@@ -163,82 +185,5 @@
                <article class="projects"></article>
           </main>
      </article>
-     <script type="module">
-          import { getRandomInt } from "./javascript/modules/shortcuts.js";
-
-          async function trag(file) {
-               try {
-                    const response = await fetch(file);
-                    if (!response.ok) { // Check if the request was successful
-                         throw new Error('Network response was not ok');
-                    }
-                    return await new Response(response.body).text();
-               } catch (error) {
-                    console.error('Error fetching data:', error);
-               }
-          }
-
-          const domain = document.querySelector('.domain')
-          if (window.location.hostname === 'memeflavor.github.io') {
-               domain.style.backgroundColor = 'hsl(90, 100%, 40%)'
-          }
-          domain.textContent = window.location.hostname
-
-          const panelTerminal = document.querySelector('.panel__terminal')
-          panelTerminal.innerHTML = await trag('txts/syncing.txt')
-
-          const a = panelTerminal.querySelectorAll('trm-progress')
-          const b = panelTerminal.querySelectorAll('trm-percent')
-          const c = panelTerminal.querySelectorAll('trm-time')
-          const d = panelTerminal.querySelectorAll('trm-load')
-
-          for (let index = 0; index < 3; index++) {
-               let panelTerminalChar = '⠋⠇⠦⠴⠸⠙'
-               let panelTerminalIndex = 0;
-               let y = getRandomInt(0, 10)
-
-               setInterval(() => {
-                    if (y % 11 == 0) y = 0;
-
-                    c[index].innerHTML = `${getRandomInt(0,9)}:${getRandomInt(0,5)}${getRandomInt(0,9)}`
-                    a[index].innerHTML = '#'.repeat((y / 10) * 10).padEnd(10, `-`).replace(/\-/g, '<trm-empty>-</trm-empty>')
-                    b[index].innerHTML = `${y * 10}%`.padStart(4, ' ')
-                    b[index].setAttribute('level', y*10)
-                    y++
-               }, 1100)
-
-               setInterval(() => {
-                    if (panelTerminalIndex % 5 === 0) panelTerminalIndex = 0;
-
-                    d[index].innerHTML = panelTerminalChar.charAt(panelTerminalIndex)
-                    panelTerminalIndex++;
-               }, 100)
-          }
-
-          
-
-          /* let d = await trag('fetching.txt')
-
-          document.querySelector('.terminal__body').innerHTML = d
-               .replace(/!(.+\s*\(\d+\%\))\$\$\$/g, '<code-high>$1</code-high>')
-               .replace(/!(.+\s*\(\d+\%\))\$\$/g, '<code-mid>$1</code-mid>')
-               .replace(/!(.+\s*\(\d+\%\))\$/g, '<code-low>$1</code-low>') */
-
-
-          /* const panelTerminal = document.querySelector('.panel__terminal')
-          panelTerminal.innerHTML = await trag('txts/syncing.txt')
-
-          const panelTerminalDie = panelTerminal.innerHTML.split('\n')
-          let panelTerminalChar = '⠋⠇⠦⠴⠸⠙'
-          let panelTerminalIndex = 0;
-
-          setInterval(() => {
-               if (panelTerminalIndex % 5 === 0) panelTerminalIndex = 0;
-
-               panelTerminalIndex++;
-               panelTerminal.innerHTML = panelTerminalDie.join('\n')
-          }, 80) */
-     
-     </script>
 </body>
 </html>

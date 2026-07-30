@@ -50,7 +50,7 @@ for (let terminalIndex = 0; terminalIndex < 3; terminalIndex++) {
      }
 
      function terminalLoading() {
-          if (terminalLoadIndex % PERCENT_INDEX_LIMIT === 0) terminalLoadIndex = 0;
+          if (terminalLoadIndex % (PERCENT_INDEX_LIMIT + 1) === 0) terminalLoadIndex = 0;
           const load = panelTerminalLoad[terminalIndex]
 
           load.innerHTML = terminalLoadChars.charAt(terminalLoadIndex)

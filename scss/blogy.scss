@@ -1,0 +1,177 @@
+@use './modules/fonts.scss' as font;
+
+@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
+@include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
+
+body {
+     display: flex;
+     justify-content: center;
+     font-family: font.$standard-font;
+     background-image: url(../images/backgrounds/apartment.avif);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-color: #312e3d; //#312e3d
+     background-position-y: center;
+     background-blend-mode: color-burn;
+
+     #flavory-content {
+          display: grid;
+          grid-template-columns: auto 900px;
+          grid-template-rows: 1fr;
+          grid-template-areas:
+               "flavory-sidebar flavory-blogs"
+          ;
+          gap: 5px;
+          margin-block: 0.5cm;
+     }
+
+     .sidebar {
+          grid-area: flavory-sidebar;
+     }
+
+     .blogs {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 3fr;
+          grid-area: flavory-blogs;
+          row-gap: 10px;
+          background-color: hsl(0, 3%, 10%);
+          box-shadow: 5px 5px 0px 0px #4f4eff;
+          height: 110vh;
+          padding: 20px;
+
+          .banner {
+               display: grid;
+               grid-template-columns: 2fr 3fr;
+               grid-template-rows: 1fr;
+               column-gap: 15px;
+
+               &__random {
+                    display: grid;
+                    grid-template-columns: 1fr 3fr;
+                    grid-template-rows: 1fr 2fr;
+                    grid-template-areas:
+                         "random-a random-b"
+                         "random-a random-c"
+                    ;
+                    gap: 10px;
+
+                    .a, .b {
+                         background-color: beige;
+                    }
+
+                    .a {
+                         grid-area: random-a;
+                    }
+
+                    .b {
+                         grid-area: random-b;
+                    }
+
+                    .c {
+                         display: grid;
+                         grid-template-columns: 2fr 1fr;
+                         grid-template-rows: 1fr 1fr;
+                         grid-template-areas: 
+                              "c-1 c-2"
+                              "c-1 c-3"
+                         ;
+                         grid-area: random-c;
+                         gap: 10px;
+
+                         * {
+                              background-color: beige;
+                         }
+
+                         .c1 {
+                              grid-area: c-1;
+                         }
+
+                         .c2 {
+                              grid-area: c-2;
+                         }
+
+                         .c3 {
+                              grid-area: c-3;
+                         }
+                    }
+               }
+
+               &__header {
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+                    grid-template-rows: 3fr 1fr;
+                    grid-template-areas: 
+                         "header-information header-information"
+                         "header-motivational header-color"
+                    ;
+                    gap: 10px;
+
+                    .information {
+                         grid-area: header-information;
+                         background-color: rgba(0, 0, 0, 0.5);
+                         background-image: url(../images/backgrounds/grids.avif);
+                         background-position: -15px center;
+                         background-blend-mode: color-burn;
+                         border-radius: 5px;
+                    }
+
+                    .motivational {
+                         grid-area: header-motivational;
+                         background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
+                         background-size: cover;
+                         background-position: center;
+                         border-radius: 5px;
+                         position: relative;
+
+                         &__message {
+                              user-select: none;
+                              -webkit-user-select: none;
+                              font-family: 'Noto Sans Tagalog', font.$standard-font;
+                              font-size: 1.15rem;
+                              text-shadow: 3px 2px 0px black;
+                              color: GhostWhite;
+                              position: absolute;
+                              left: 5px;
+                              bottom: 3px;
+                         }
+                    }
+
+                    .color {
+                         grid-area: header-color;
+                         background-color: hsl(89, 96%, 63%);
+                         border-radius: 5px;
+                         padding: 3px 5px;
+
+                         &__name {
+                              font-family: "Zalando Sans";
+                              font-size: 1.3rem;
+                              font-weight: 800;
+                              font-stretch: expanded;
+                              text-transform: uppercase;
+                              color: black;
+                         }
+                    }
+               }
+          }
+
+          .forums {
+               display: grid;
+               grid-template-columns: 2fr 3fr;
+               grid-template-rows: 1fr;
+               column-gap: 10px;
+
+               &__idk {
+                    //background-color: white;
+               }
+
+               &__directory {
+                    //background-color: white;
+               }
+          }
+     }
+}

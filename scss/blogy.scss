@@ -89,7 +89,7 @@ body {
                               color: GhostWhite;
                               position: absolute;
                               right: 5px;
-                              top: 3px;
+                              bottom: 3px;
                          }
                     }
 
@@ -141,24 +141,54 @@ body {
                     }
 
                     .information {
+                         display: grid;
+                         grid-template-columns: 1fr 1fr;
+                         grid-template-rows: 1fr;
                          grid-area: header-information;
+                         column-gap: 10px;
                          background-color: rgba(0, 0, 0, 0.5);
                          background-image: url(../images/backgrounds/grids.avif);
                          background-position: -15px center;
                          background-blend-mode: color-burn;
                          padding: 10px;
 
+                         &__title {
+                              display: flex;
+                              align-items: center;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 1.4rem;
+                              font-weight: 900;
+                              font-stretch: 120%;
+                              text-transform: uppercase;
+                              color: beige;
+                              border: 2px solid beige;
+                              height: fit-content;
+                              padding: 1px 8px;
+                              margin-bottom: 5px;
+                              
+                              &::before {
+                                   content: "";
+                                   display: inline-block;
+                                   background-color: currentColor;
+                                   border-radius: 360px;
+                                   width: 18px;
+                                   height: 18px;
+                                   margin-right: 5px;
+                                   margin-top: 1px;
+                              }
+                         }
+
                          &__headbar {
                               display: flex;
                               flex-direction: row;
                               align-items: center;
                               column-gap: 8px;
-                              margin-bottom: 6px;
+                              margin-bottom: 5px;
                          }
 
                          &__headtitle {
                               font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 1.1rem;
+                              font-size: 1rem;
                               font-weight: 750;
                               font-stretch: semi-expanded;
                               color: black;
@@ -189,7 +219,7 @@ body {
                               font-weight: 550;
                               font-stretch: semi-condensed;
                               text-transform: uppercase;
-                              background-color: hsl(357, 94%, 60%);
+                              background-color: #4f4eff;
                               padding: 3px 5px;
 
                               &::before {
@@ -198,23 +228,12 @@ body {
                               }
                          }
 
-                         &__body {
-                              display: grid;
-                              grid-template-columns: 3fr 2fr;
-                              grid-template-rows: 1fr;
-                              column-gap: 30px;
-
-                              p {
-                                   font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                                   font-size: 0.85rem;
-                                   text-align: start;
-                                   line-height: 1.1;
-                                   margin-block: 8px;
-
-                                   &::before {
-
-                                   }
-                              }
+                         &__description {
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.85rem;
+                              text-align: start;
+                              line-height: 1.2;
+                              margin-block: 8px;
                          }
                     }
 

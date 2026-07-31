@@ -219,7 +219,7 @@ body {
                               font-weight: 550;
                               font-stretch: semi-condensed;
                               text-transform: uppercase;
-                              background-color: #4f4eff;
+                              background-color: hsl(240, 100%, 65%);
                               padding: 3px 5px;
 
                               &::before {
@@ -234,6 +234,36 @@ body {
                               text-align: start;
                               line-height: 1.2;
                               margin-block: 8px;
+                         }
+
+                         &__types {
+                              counter-reset: type-counter;
+                         }
+
+                         &__item {
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.75rem;
+                              font-weight: bolder;
+                              text-align: start;
+                              margin-block: 5px;
+                              
+                              &::before {
+                                   content: counter(type-counter);
+                                   counter-increment: type-counter;
+                                   display: inline-block;
+                                   font-family: 'Zalando Sans', font.$standard-font;
+                                   font-size: 0.95rem;
+                                   font-weight: 600;
+                                   font-stretch: condensed;
+                                   text-align: center;
+                                   color: black;
+                                   background-color: hsl(89, 96%, 63%);
+                                   border-radius: 360px;
+                                   width: 20px;
+                                   height: 20px;
+                                   margin-right: 5px;
+                                   margin-top: 1px;
+                              }
                          }
                     }
 

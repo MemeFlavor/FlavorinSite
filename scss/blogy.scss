@@ -60,16 +60,37 @@ body {
                     ;
                     gap: 10px;
 
-                    .a, .b {
-                         background-color: beige;
+                    & > * {
+                         background-color: hsl(0, 0%, 5%);
+                         border-radius: 5px;
                     }
 
                     .a {
                          grid-area: random-a;
+                         background-image: url(https://preview.redd.it/a-quiet-communion-with-the-hills-and-open-sky-v0-6xypfw4gteqe1.jpg?width=1080&crop=smart&auto=webp&s=0f8bf6ccd902b6eb2c6d872c19c140c6e5da749f);
+                         background-size: cover;
+                         background-position: center;
+                         border-radius: 5px;
                     }
 
                     .b {
                          grid-area: random-b;
+                         background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
+                         background-size: cover;
+                         background-position: center;
+                         position: relative;
+
+                         &__message {
+                              user-select: none;
+                              -webkit-user-select: none;
+                              font-family: 'Noto Sans Tagalog', font.$standard-font;
+                              font-size: 1rem;
+                              text-shadow: 3px 2px 0px black;
+                              color: GhostWhite;
+                              position: absolute;
+                              right: 5px;
+                              top: 3px;
+                         }
                     }
 
                     .c {
@@ -82,9 +103,12 @@ body {
                          ;
                          grid-area: random-c;
                          gap: 10px;
+                         background-color: transparent;
+                         border-radius: 0px;
 
-                         * {
-                              background-color: beige;
+                         & > * {
+                              background-color: hsl(0, 0%, 5%);
+                              border-radius: 5px;
                          }
 
                          .c1 {
@@ -111,40 +135,96 @@ body {
                     ;
                     gap: 10px;
 
+                    & > * {
+                         background-color: beige;
+                         border-radius: 5px;
+                    }
+
                     .information {
                          grid-area: header-information;
                          background-color: rgba(0, 0, 0, 0.5);
                          background-image: url(../images/backgrounds/grids.avif);
                          background-position: -15px center;
                          background-blend-mode: color-burn;
-                         border-radius: 5px;
+                         padding: 10px;
+
+                         &__headbar {
+                              display: flex;
+                              flex-direction: row;
+                              align-items: center;
+                              column-gap: 8px;
+                              margin-bottom: 6px;
+                         }
+
+                         &__headtitle {
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 1.1rem;
+                              font-weight: 750;
+                              font-stretch: semi-expanded;
+                              color: black;
+                              background-color: #a4fb46;
+                              width: fit-content;
+                              padding: 2px 5px 2px 3px;
+                                
+                              &::before {
+                                   content: '\279C ';
+                                   margin-right: 3px;
+                              }
+                         }
+
+                         &__headsubtitle {
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 1rem;
+                              font-weight: 750;
+                              font-stretch: semi-expanded;
+                              text-transform: uppercase;
+                              width: 100%;
+                         }
+
+                         &__label {
+                              display: flex;
+                              align-items: center;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.8rem;
+                              font-weight: 550;
+                              font-stretch: semi-condensed;
+                              text-transform: uppercase;
+                              background-color: hsl(357, 94%, 60%);
+                              padding: 3px 5px;
+
+                              &::before {
+                                   content: "\2605";
+                                   margin-right: 3px;
+                              }
+                         }
+
+                         &__body {
+                              display: grid;
+                              grid-template-columns: 3fr 2fr;
+                              grid-template-rows: 1fr;
+                              column-gap: 30px;
+
+                              p {
+                                   font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                                   font-size: 0.85rem;
+                                   text-align: start;
+                                   line-height: 1.1;
+                                   margin-block: 8px;
+
+                                   &::before {
+
+                                   }
+                              }
+                         }
                     }
 
                     .motivational {
                          grid-area: header-motivational;
-                         background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
-                         background-size: cover;
-                         background-position: center;
-                         border-radius: 5px;
-                         position: relative;
-
-                         &__message {
-                              user-select: none;
-                              -webkit-user-select: none;
-                              font-family: 'Noto Sans Tagalog', font.$standard-font;
-                              font-size: 1.15rem;
-                              text-shadow: 3px 2px 0px black;
-                              color: GhostWhite;
-                              position: absolute;
-                              left: 5px;
-                              bottom: 3px;
-                         }
                     }
 
                     .color {
                          grid-area: header-color;
                          background-color: hsl(89, 96%, 63%);
-                         border-radius: 5px;
                          padding: 3px 5px;
 
                          &__name {

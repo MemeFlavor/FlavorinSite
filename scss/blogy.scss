@@ -327,7 +327,7 @@ body {
                     grid-template-columns: 160px 1fr;
                     grid-template-rows: 1fr 1fr;
                     grid-template-areas:
-                         "gallery-wacky-workbench gallery-binary"
+                         "gallery-wacky-workbench gallery-dejavu"
                          "gallery-wacky-workbench gallery-floccinaucinihilipilification"
                     ;
                     grid-area: gallery-decorations;
@@ -368,10 +368,19 @@ body {
                          }
                     }
                     
-                    .binary {
-                         grid-area: gallery-binary;
-                         
+                    .dejavu {
+                         filter: contrast(100%);
+                         grid-area: gallery-dejavu;
+                         background-image: url(../images/decorations/ThrillerGenEncoreBGPOV.webp);
+                         background-size: cover;
+                         background-position: center;
+                         image-rendering: smooth;
+                         animation: contrasting 3s ease-in-out 0s infinite;
 
+                         @keyframes contrasting {
+                              0%, 100% { filter: contrast(100%);  }
+                              50%      { filter: contrast(200%); } 
+                         }
                     }
                     
                     .floccinaucinihilipilification {
@@ -379,6 +388,7 @@ body {
                          background-image: url(../images/decorations/floccinaucinihilipilification.webp);
                          background-size: cover;
                          background-position: left;
+                         image-rendering: smooth;
                     }
                }
           }

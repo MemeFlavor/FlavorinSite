@@ -134,9 +134,7 @@
                               </marquee>
                          </div>
                          <div class="binary">
-                              <code class="binary__code">10001011</code>
-                              <code class="binary__code">01100001</code>
-                              <code class="binary__code">11000100</code>
+
                          </div>
                          <div class="floccinaucinihilipilification"></div>
                     </div>
@@ -151,19 +149,6 @@
      
 
 
-     setInterval(() => {
-
-          for (let index = 0; index < 3; index++) {
-               const num = getRandomInt(0, 255);
-               const a = num.toString(2).padStart(8, '0').split('');
-
-
-               document.querySelectorAll('.binary__code')[index].innerHTML = a.join('')
-               
-          }
-          
-          
-     }, 200)
 
      </script>
 </body>

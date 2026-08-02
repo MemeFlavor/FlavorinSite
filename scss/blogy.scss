@@ -1,7 +1,9 @@
 @use './modules/fonts.scss' as font;
+@use 'sass:color';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face-var('Fira Code', 300 700, normal, normal, 2, font.$font-source-variable);
 @include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
@@ -35,297 +37,389 @@ body {
 
      .blogs {
           display: grid;
-          grid-template-columns: 1fr;
+          grid-template-columns: 2fr 3fr;
           grid-template-rows: 1fr 3fr;
+          grid-template-areas: 
+               "blogs-gallery blogs-header"
+               "blogs-navigation blogs-compilation"
+          ;
           grid-area: flavory-blogs;
-          row-gap: 10px;
+          gap: 10px;
           background-color: hsl(0, 3%, 10%);
           box-shadow: 5px 5px 0px 0px #4f4eff;
           height: 110vh;
           padding: 20px;
 
-          .banner {
+          .header {
                display: grid;
-               grid-template-columns: 2fr 3fr;
-               grid-template-rows: 1fr;
-               column-gap: 15px;
+               grid-template-columns: 2fr 1fr;
+               grid-template-rows: repeat(2, auto);
+               grid-template-areas:
+                    "header-information header-information"
+                    "header-notice header-windows"
+               ;
+               grid-area: blogs-header;
+               gap: 10px;
 
-               &__random {
+               & > * {
+                    background-color: hsl(0, 0%, 5%);
+                    border-radius: 5px;
+               }
+               
+               .information {
                     display: grid;
-                    grid-template-columns: 1fr 3fr;
-                    grid-template-rows: 1fr 2fr;
-                    grid-template-areas:
-                         "random-anemoia random-motivational"
-                         "random-anemoia random-gallery"
-                    ;
-                    gap: 10px;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: 1fr;
+                    grid-area: header-information;
+                    column-gap: 10px;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    background-image: url(../images/backgrounds/grids.avif);
+                    background-position: -15px center;
+                    background-attachment: local;
+                    background-blend-mode: color-burn;
+                    padding: 10px;
 
-                    & > * {
-                         background-color: hsl(0, 0%, 5%);
-                         border-radius: 5px;
-                    }
-
-                    .anemoia {
-                         grid-area: random-anemoia;
-                         background-image: url(https://preview.redd.it/a-quiet-communion-with-the-hills-and-open-sky-v0-6xypfw4gteqe1.jpg?width=1080&crop=smart&auto=webp&s=0f8bf6ccd902b6eb2c6d872c19c140c6e5da749f);
-                         background-size: cover;
-                         background-position: center;
-                         border-radius: 5px;
-                    }
-
-                    .motivational {
-                         grid-area: random-motivational;
-                         background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
-                         background-size: cover;
-                         background-position: center;
-                         position: relative;
-
-                         &__message {
-                              user-select: none;
-                              -webkit-user-select: none;
-                              font-family: 'Noto Sans Tagalog', font.$standard-font;
-                              font-size: 1rem;
-                              text-shadow: 3px 2px 0px black;
-                              color: GhostWhite;
-                              position: absolute;
-                              right: 5px;
-                              bottom: 3px;
+                    &__title {
+                         display: flex;
+                         align-items: center;
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1.4rem;
+                         font-weight: 900;
+                         font-stretch: 120%;
+                         text-transform: uppercase;
+                         color: beige;
+                         border: 2px solid beige;
+                         height: fit-content;
+                         padding: 1px 8px;
+                         margin-bottom: 5px;
+               
+                         &::before {
+                              content: "";
+                              display: inline-block;
+                              background-color: currentColor;
+                              border-radius: 360px;
+                              width: 18px;
+                              height: 18px;
+                              margin-right: 5px;
+                              margin-top: 1px;
                          }
                     }
-
-                    .gallery {
-                         display: grid;
-                         grid-template-columns: 160px 1fr;
-                         grid-template-rows: 1fr 1fr;
-                         grid-template-areas: 
-                              "gallery-workbench gallery-2"
-                              "gallery-workbench gallery-3"
-                         ;
-                         grid-area: random-gallery;
-                         gap: 10px;
-                         background-color: transparent;
-                         border-radius: 0px;
-
-                         & > * {
-                              background-color: hsl(0, 0%, 5%);
-                              border-radius: 5px;
+               
+                    &__headbar {
+                         display: flex;
+                         flex-direction: row;
+                         align-items: center;
+                         column-gap: 8px;
+                         margin-bottom: 5px;
+                    }
+               
+                    &__headtitle {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1rem;
+                         font-weight: 750;
+                         font-stretch: semi-expanded;
+                         color: black;
+                         background-color: #a4fb46;
+                         width: fit-content;
+                         padding: 2px 5px 2px 3px;
+               
+                         &::before {
+                              content: '\279C ';
+                              margin-right: 3px;
                          }
-
-                         .workbench {
-                              user-select: none;
-                              -webkit-user-select: none;
-                              display: grid;
-                              grid-template-columns: 1fr;
-                              grid-template-rows: 1fr;
-                              grid-area: gallery-workbench;
-                              overflow: hidden;
-                              height: 160px;
-
-                              & > * {
-                                   image-rendering: pixelated;
-                                   grid-column: 1;
-                                   grid-row: 1;
-                              }
-
-                              &__background {
-                                   z-index: 1;
-                              }
-
-                              &__layout {
-                                   z-index: 3;
-                              }
-
-                              &__sonic {
-                                   z-index: 2;
-                              }
+                    }
+               
+                    &__headsubtitle {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1rem;
+                         font-weight: 750;
+                         font-stretch: semi-expanded;
+                         text-transform: uppercase;
+                         width: 100%;
+                    }
+               
+                    &__headings {
+                         display: flex;
+                         align-items: center;
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.8rem;
+                         font-weight: 550;
+                         font-stretch: semi-condensed;
+                         text-transform: uppercase;
+                         background-color: hsl(240, 100%, 65%);
+                         padding: 3px 5px;
+               
+                         &::before {
+                              content: "\2605";
+                              margin-right: 3px;
                          }
-
-                         .c2 {
-                              grid-area: gallery-2;
-                         }
-
-                         .c3 {
-                              grid-area: gallery-3;
+                    }
+               
+                    &__description {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.85rem;
+                         text-align: start;
+                         line-height: 1.2;
+                         margin-block: 8px;
+                    }
+               
+                    &__category {
+                         counter-reset: type-counter;
+                    }
+               
+                    &__category-item {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.75rem;
+                         font-weight: bolder;
+                         text-align: start;
+                         margin-block: 5px;
+               
+                         &::before {
+                              content: counter(type-counter);
+                              counter-increment: type-counter;
+                              display: inline-block;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.95rem;
+                              font-weight: 600;
+                              font-stretch: condensed;
+                              text-align: center;
+                              color: black;
+                              background-color: hsl(89, 96%, 63%);
+                              border-radius: 360px;
+                              width: 20px;
+                              height: 20px;
+                              margin-right: 5px;
+                              margin-top: 1px;
                          }
                     }
                }
 
-               &__header {
+               .notice {
                     display: grid;
-                    grid-template-columns: 2fr 1fr;
-                    grid-template-rows: 3fr 1fr;
-                    grid-template-areas: 
-                         "header-information header-information"
-                         "header-tags header-color"
-                    ;
-                    gap: 10px;
+                    grid-area: header-notice;
+                    background: hsl(0, 0%, 5%);
+                    background: linear-gradient(90deg, hsl(0, 0%, 5%) 95%, hsl(42, 100%, 53%) 95%);
+                    padding: 5px 6px;
 
-                    & > * {
-                         background-color: hsl(0, 0%, 5%);
-                         border-radius: 5px;
+                    &__headbar {
+                         display: flex;
+                         flex-direction: row;
+                         align-items: center;
+                         column-gap: 5px;
+                         margin-bottom: 3px;
                     }
 
-                    .information {
-                         display: grid;
-                         grid-template-columns: 1fr 1fr;
-                         grid-template-rows: 1fr;
-                         grid-area: header-information;
-                         column-gap: 10px;
-                         background-color: rgba(0, 0, 0, 0.5);
-                         background-image: url(../images/backgrounds/grids.avif);
-                         background-position: -15px center;
-                         background-blend-mode: color-burn;
-                         padding: 10px;
-
-                         &__title {
-                              display: flex;
-                              align-items: center;
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 1.4rem;
-                              font-weight: 900;
-                              font-stretch: 120%;
-                              text-transform: uppercase;
-                              color: beige;
-                              border: 2px solid beige;
-                              height: fit-content;
-                              padding: 1px 8px;
-                              margin-bottom: 5px;
-                              
-                              &::before {
-                                   content: "";
-                                   display: inline-block;
-                                   background-color: currentColor;
-                                   border-radius: 360px;
-                                   width: 18px;
-                                   height: 18px;
-                                   margin-right: 5px;
-                                   margin-top: 1px;
-                              }
-                         }
-
-                         &__headbar {
-                              display: flex;
-                              flex-direction: row;
-                              align-items: center;
-                              column-gap: 8px;
-                              margin-bottom: 5px;
-                         }
-
-                         &__headtitle {
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 1rem;
-                              font-weight: 750;
-                              font-stretch: semi-expanded;
-                              color: black;
-                              background-color: #a4fb46;
-                              width: fit-content;
-                              padding: 2px 5px 2px 3px;
-                                
-                              &::before {
-                                   content: '\279C ';
-                                   margin-right: 3px;
-                              }
-                         }
-
-                         &__headsubtitle {
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 1rem;
-                              font-weight: 750;
-                              font-stretch: semi-expanded;
-                              text-transform: uppercase;
-                              width: 100%;
-                         }
-
-                         &__label {
-                              display: flex;
-                              align-items: center;
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 0.8rem;
-                              font-weight: 550;
-                              font-stretch: semi-condensed;
-                              text-transform: uppercase;
-                              background-color: hsl(240, 100%, 65%);
-                              padding: 3px 5px;
-
-                              &::before {
-                                   content: "\2605";
-                                   margin-right: 3px;
-                              }
-                         }
-
-                         &__description {
-                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                              font-size: 0.85rem;
-                              text-align: start;
-                              line-height: 1.2;
-                              margin-block: 8px;
-                         }
-
-                         &__types {
-                              counter-reset: type-counter;
-                         }
-
-                         &__item {
-                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                              font-size: 0.75rem;
-                              font-weight: bolder;
-                              text-align: start;
-                              margin-block: 5px;
-                              
-                              &::before {
-                                   content: counter(type-counter);
-                                   counter-increment: type-counter;
-                                   display: inline-block;
-                                   font-family: 'Zalando Sans', font.$standard-font;
-                                   font-size: 0.95rem;
-                                   font-weight: 600;
-                                   font-stretch: condensed;
-                                   text-align: center;
-                                   color: black;
-                                   background-color: hsl(89, 96%, 63%);
-                                   border-radius: 360px;
-                                   width: 20px;
-                                   height: 20px;
-                                   margin-right: 5px;
-                                   margin-top: 1px;
-                              }
-                         }
+                    &__headtitle {
+                         display: flex;
+                         flex-direction: row;
+                         align-items: center;
+                         column-gap: 3px;
+                         background-color: hsl(357, 94%, 60%);
+                         width: fit-content;
+                         padding: 2px 5px;
                     }
 
-                    .tags {
-                         grid-area: header-tags;
+                    &__headtitle-icon {
+                         image-rendering: crisp-edges;
                     }
 
-                    .color {
-                         grid-area: header-color;
-                         background-color: hsl(89, 96%, 63%);
-                         padding: 3px 5px;
+                    &__headtitle-text {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.85rem;
+                         font-weight: 750;
+                         font-stretch: semi-expanded;
+                         color: black;
+                    }
 
-                         &__name {
-                              font-family: "Zalando Sans", font.$standard-font;
-                              font-size: 1.3rem;
-                              font-weight: 800;
-                              font-stretch: expanded;
-                              text-transform: uppercase;
-                              color: black;
-                         }
+                    &__headsubtitle {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.8rem;
+                         font-weight: 750;
+                         font-stretch: semi-expanded;
+                         text-transform: uppercase;
+                         width: 100%;
+                    }
+
+                    &__description {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.8rem;
+                         text-align: start;
+                         line-height: 1.2;
+                    }
+               }
+
+               .windows {
+                    grid-area: header-windows;
+                    background-color: silver;
+                    border: 1px solid white;
+                    border-bottom-color: hsl(0, 0%, 28%);
+                    border-right-color: hsl(0, 0%, 28%);
+                    border-radius: 0px;
+                    position: relative;
+                    padding: 1px;
+
+                    &__headbar {
+                         background: hsl(240, 100%, 24%);
+                         background: linear-gradient(90deg, hsl(240, 100%, 24%) 0%, hsl(205, 93%, 39%) 100%);
+                         padding-inline: 3px;
+                    }
+
+                    &__headtitle {
+                         font-family: 'Zalando Sans';
+                         font-size: 0.65rem;
+                         font-stretch: expanded;
+                    }
+
+                    &__badge {
+                         image-rendering: pixelated;
+                         position: absolute;
+                         left: 3px;
+                         bottom: 3px;
                     }
                }
           }
 
-          .forums {
+          .gallery {
                display: grid;
-               grid-template-columns: 2fr 3fr;
-               grid-template-rows: 1fr;
-               column-gap: 10px;
+               grid-template-columns: 1fr 3fr;
+               grid-template-rows: 1fr 2fr;
+               grid-template-areas:
+                    "gallery-anemoia gallery-motivational"
+                    "gallery-anemoia gallery-decorations"
+               ;
+               grid-area: blogs-gallery;
+               gap: 10px;
 
-               &__idk {
-                    //background-color: white;
+               & > * {
+                    background-color: hsl(0, 0%, 5%);
+                    border-radius: 5px;
                }
 
-               &__directory {
-                    //background-color: white;
+               .anemoia {
+                    grid-area: gallery-anemoia;
+                    background-image: url(https://preview.redd.it/a-quiet-communion-with-the-hills-and-open-sky-v0-6xypfw4gteqe1.jpg?width=1080&crop=smart&auto=webp&s=0f8bf6ccd902b6eb2c6d872c19c140c6e5da749f);
+                    background-size: cover;
+                    background-position: center;
                }
+
+               .motivational {
+                    grid-area: gallery-motivational;
+                    background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
+                    background-size: cover;
+                    background-position: center;
+                    position: relative;
+               
+                    &__message {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         font-family: 'Noto Sans Tagalog', font.$standard-font;
+                         font-size: 1rem;
+                         text-shadow: 3px 2px 0px black;
+                         color: GhostWhite;
+                         position: absolute;
+                         right: 5px;
+                         bottom: 3px;
+                    }
+               }
+
+               .decorations {
+                    display: grid;
+                    grid-template-columns: 160px 1fr;
+                    grid-template-rows: 1fr 1fr;
+                    grid-template-areas:
+                         "gallery-wacky-workbench gallery-binary"
+                         "gallery-wacky-workbench gallery-floccinaucinihilipilification"
+                    ;
+                    grid-area: gallery-decorations;
+                    gap: 10px;
+                    background-color: transparent;
+                    border-radius: 0px;
+
+                    & > * {
+                         background-color: hsl(0, 0%, 5%);
+                         border-radius: 5px;
+                    }
+                    
+                    .wacky-workbench {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         display: grid;
+                         grid-template-columns: 1fr;
+                         grid-template-rows: 1fr;
+                         grid-area: gallery-wacky-workbench;
+                         overflow: hidden;
+                         height: 160px;
+                    
+                         & > * {
+                              image-rendering: pixelated;
+                              grid-area: 1 / 1;
+                         }
+                    
+                         &__background {
+                              z-index: 1;
+                         }
+                    
+                         &__layout {
+                              z-index: 3;
+                         }
+                    
+                         &__sonic {
+                              z-index: 2;
+                         }
+                    }
+                    
+                    .binary {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         display: flex;
+                         flex-direction: column;
+                         align-items: center;
+                         justify-content: center;
+                         grid-area: gallery-binary;
+                         row-gap: 2px;
+                         border: 2px solid hsl(0, 0%, 35%);
+                         padding: 5px;
+                         
+                         $starting-color: #ffce2b;
+                         $ending-color: #4ff974;
+                         &__code {
+                              font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
+                              font-size: 0.8rem;
+                              font-weight: bold;
+                              color: $starting-color;
+
+                              &:nth-child(1) {
+                                   animation: binary-gradient 2s linear 100ms infinite;
+                              }
+                              &:nth-child(2) {
+                                   animation: binary-gradient 2s linear 200ms infinite;
+                              }
+                              &:nth-child(3) {
+                                   animation: binary-gradient 2s linear 300ms infinite;
+                              }
+                         }
+
+                         @keyframes binary-gradient {
+                              0%, 100% { color: $starting-color; }
+                              50%      { color: $ending-color; }
+                         }
+                    }
+                    
+                    .floccinaucinihilipilification {
+                         grid-area: gallery-floccinaucinihilipilification;
+                         background-image: url(../images/decorations/floccinaucinihilipilification.webp);
+                         background-size: cover;
+                         background-position: left;
+                    }
+               }
+          }
+
+          .navigation {
+               grid-area: blogs-navigation;
+          }
+
+          .compilation {
+               grid-area: blogs-compilation;
           }
      }
 }

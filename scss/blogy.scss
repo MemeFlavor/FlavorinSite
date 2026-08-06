@@ -432,14 +432,18 @@ body {
           .weblog {
                grid-area: blogs-weblog;
 
-               &__table {
+               &__directory {
                     table-layout: fixed;
                     border-collapse: collapse;
                     width: 100%;
-               }
 
-               :is(&__headbar, &__section, &__content) > * {
-                    border: 1.5px solid hsl(207, 4%, 52%);
+                    tr > :is(td, th) {
+                         border: 1.5px solid hsl(207, 4%, 52%);
+                    }
+
+                    tr > th:nth-of-type(1) {
+                         width: 80%;
+                    }
                }
 
                &__headbar {
@@ -455,16 +459,12 @@ body {
                     font-size: 0.85rem;
                     font-weight: 600;
                     font-stretch: 120%;
-                    text-align: left;
+                    text-align: start;
                     color: #ffffff;
                     padding: 3px 10px;
-
-                    &--weblogs {
-                         width: 80%;
-                    }
                }
 
-               &__section {
+               &__rank {
                     $starting-point: hsl(0, 0%, 15%);
                     $ending-point: hsl(0, 0%, 5%);
 
@@ -472,7 +472,7 @@ body {
                     background: linear-gradient(to bottom, $starting-point 0%, $ending-point 100%);
                }
 
-               &__sectiontitle {
+               &__ranktitle {
                     font-family: "Archivo", font.$standard-font;
                     font-size: 0.95rem;
                     font-weight: 900;
@@ -481,20 +481,20 @@ body {
                     padding: calc((5px + 8px) / 2) 10px;
                }
 
-               &__content {
+               &__pages {
                     background-color: #101010;
-               }
 
-               &__content-group {
-                    overflow-wrap: break-word;
-                    padding: 10px;
-
-                    &--date {
+                    & > td:last-of-type {
                          text-align: center;
                     }
                }
 
-               &__content-title {
+               &__pages-information, &__pages-time {
+                    overflow-wrap: break-word;
+                    padding: 10px;
+               }
+
+               &__pages-title {
                     font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
                     font-size: 1rem;
                     font-weight: 900;
@@ -502,7 +502,7 @@ body {
                     width: 100%;
                }
 
-               &__content-titlelink {
+               &__pages-titlelink {
                     display: block;
                     text-decoration: none;
                     color: cornflowerblue;
@@ -519,15 +519,15 @@ body {
                     }
                }
 
-               &__content-stickers {
+               &__pages-stickers {
                     display: flex;
                     flex-direction: row;
                     justify-content: flex-end;
                     column-gap: 5px;
                }
 
-               &__content-tags {
-                    --hi: currentColor;
+               &__pages-tags {
+                    --tag-color: currentColor;
 
                     font-family: "Zalando Sans", font.$standard-font;
                     font-size: 0.65rem;
@@ -535,29 +535,33 @@ body {
                     font-stretch: condensed;
                     color: hsl(0, 0%, 70%);
                     background-color: hsl(0, 0%, 1%);
-                    box-shadow: 1px 1px 0px 0px var(--hi);
+                    box-shadow: 1px 1px 0px 0px var(--tag-color);
                     border: 1px solid hsl(207, 6%, 32%);
                     padding: 2px 4px;
 
                     &::before {
                          content: "";
                          display: inline-block;
-                         background-color: var(--hi);
+                         background-color: var(--tag-color);
                          border-radius: 360px;
                          width: 8px;
                          height: 8px;
                          margin-right: 3px;
                     }
 
+                    &::selection {
+                         background-color: transparent;
+                    }
+
                     &--updates {
-                         --hi: hsl(89, 96%, 63%);
+                         --tag-color: hsl(89, 96%, 63%);
                     }
                     &--technical {
-                         --hi: #4f4eff;
+                         --tag-color: hsl(240, 100%, 65%);
                     }
                }
 
-               &__content-description {
+               &__pages-description {
                     font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                     font-size: 0.85rem;
                     text-align: justify;
@@ -565,13 +569,17 @@ body {
                     margin-block: 3px 8px;
                }
 
-               &__content-date {
+               &__pages-date {
                     font-family: "FiraCode", font.$standard-code-font, font.$standard-font;
                     font-size: 0.7rem;
                     background-color: #272525;
                     border-radius: 5px;
                     height: fit-content;
                     padding: 5px 5px 3px 5px;
+
+                    &::selection {
+                         background-color: transparent;
+                    }
                }
           }
      }

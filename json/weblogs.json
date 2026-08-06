@@ -1,0 +1,38 @@
+[
+     {
+          "title": {
+               "content": "First Revamp",
+               "link": "pages/blogs/first_revamp.html"
+          },
+          "tags": ["updates", "technical"],
+          "description": "Guy talks about a minor revamp of this site.",
+          "date": "2026-06-12"
+     },
+     {
+          "title": {
+               "content": "WOW! YOU EXIST!",
+               "link": "pages/blogs/wow_you_exist.html"
+          },
+          "tags": ["casual", "updates"],
+          "description": "Guy finally talks about the website finally having content after months of it being blank.",
+          "date": "2026-06-01"
+     },
+     {
+          "title": {
+               "content": "WOW! YOU EXIST!",
+               "link": "pages/blogs/wow_you_exist.html"
+          },
+          "tags": ["casual", "updates"],
+          "description": "Guy finally talks about the website finally having content after months of it being blank.",
+          "date": "2026-06-01"
+     },
+     {
+          "title": {
+               "content": "WOW! YOU EXIST!",
+               "link": "pages/blogs/wow_you_exist.html"
+          },
+          "tags": ["casual", "updates"],
+          "description": "Guy finally talks about the website finally having content after months of it being blank.",
+          "date": "2026-06-01"
+     }
+]

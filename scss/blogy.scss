@@ -3,7 +3,7 @@
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
-@include font.font-face-var('Fira Code', 300 700, normal, normal, 2, font.$font-source-variable);
+@include font.font-face-var('Fira Code', 300 700, normal, normal, 1, font.$font-source-variable);
 @include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
@@ -64,7 +64,7 @@ body {
                grid-area: blogs-header;
                gap: 10px;
 
-               &>* {
+               & > * {
                     background-color: hsl(0, 0%, 5%);
                     border-radius: 5px;
                }
@@ -249,8 +249,13 @@ body {
                     &__description {
                          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                          font-size: 0.8rem;
+                         font-style: italic;
                          text-align: start;
                          line-height: 1.2;
+
+                         &::before {
+                              content: '> ';
+                         }
                     }
                }
 
@@ -483,7 +488,7 @@ body {
 
                     &::before {
                          content: "\2605";
-                         margin-right: 1px;
+                         margin-right: 5px;
                     }
                }
 
@@ -516,9 +521,11 @@ body {
                     &:hover, &:focus-visible {
                          text-decoration: underline;
                          text-decoration-thickness: 2px;
+                         text-decoration-skip-ink: none;
                     }
 
                     &:focus-visible {
+                         text-decoration-style: double;
                          color: hsl(89, 96%, 63%);
                          outline: none;
                          width: fit-content;
@@ -539,10 +546,11 @@ body {
                     font-size: 0.65rem;
                     font-weight: 750;
                     font-stretch: condensed;
+                    text-transform: uppercase;
                     color: hsl(0, 0%, 70%);
                     background-color: hsl(0, 0%, 1%);
-                    box-shadow: 1px 1px 0px 0px var(--primary-color);
-                    border: 1px solid hsl(207, 6%, 32%);
+                    box-shadow: 1px 1px 0px 0px hsla(60, 56%, 91%, 0.8);
+                    border: 1px solid var(--primary-color);
                     padding: 2px 4px;
 
                     &::before {
@@ -559,11 +567,14 @@ body {
                          background-color: transparent;
                     }
 
+                    &--casual {
+                         --primary-color: hsl(240, 100%, 65%);
+                    }
                     &--updates {
                          --primary-color: hsl(89, 96%, 63%);
                     }
                     &--technical {
-                         --primary-color: hsl(240, 100%, 65%);
+                         --primary-color: hsl(42, 100%, 53%);
                     }
                }
 

@@ -15,7 +15,7 @@ body .blogs {
      }
 
      &__bloglist-header-grp, &__bloglist-section-grp, &__bloglist-content-grp {
-          border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
+          border: 1px solid color.adjust(hsl(0, 0%, 42%), $lightness: -10%);
      }
 
      &__bloglist-header {

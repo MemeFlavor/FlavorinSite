@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <title> MemeFlavor - ABOUT ME! ABOUT ME! ABOUT ME! ABOUT ME! </title>
+     <title> MemeFlavor - Blog Bumfuzzle </title>
      <base href="../">
      <meta charset="UTF-8">
      <meta name="description" content="The flavorous site to exist! I think, maybe" />
@@ -45,6 +45,9 @@
                               </a>
                               <a class="navigation__link navigation__link--not-supported">
                                    <li class="navigation__item">Projects</li>
+                              </a>
+                              <a class="navigation__link navigation__link--not-supported">
+                                   <li class="navigation__item">Music</li>
                               </a>
                               <a class="navigation__link navigation__link--flavory navigation__link--not-supported">
                                    <li class="navigation__item">Flavory Profile</li>
@@ -100,7 +103,7 @@
                     <div class="notice">
                          <div class="notice__headbar">
                               <h1 class="notice__headtitle">
-                                   <svg class="notice__headtitle-icon" width="14" height="14">
+                                   <svg class="notice__headtitle-icon" width="14" height="14" aria-hidden="true">
                                         <use href="svgs/error.svg" width="14" height="14"></use>
                                    </svg>
                                    <span class="notice__headtitle-text">ERROR</span>
@@ -109,7 +112,7 @@
                          </div>
                          <p class="notice__description">Javascript is required to view the page properly!</p>
                     </div>
-                    <div class="windows">
+                    <div class="windows" aria-hidden="true">
                          <div class="windows__headbar">
                               <h1 class="windows__headtitle">Funfo</h1>
                          </div>
@@ -117,7 +120,7 @@
                               alt="No Phone!" src="images/badges/no_phone.webp">
                     </div>
                </article>
-               <article class="gallery" aria-hidden>
+               <article class="gallery" aria-hidden="true">
                     <div class="anemoia"></div>
                     <div class="motivational">
                          <p class="motivational__message">ᜑᜓᜏᜄ᜔ ᜃ ᜈᜅ᜔ ᜊᜓᜋᜎᜒᜃ᜔</p>
@@ -137,8 +140,45 @@
                          <div class="floccinaucinihilipilification"></div>
                     </div>
                </article>
-               <article class="navigation">3</article>
-               <article class="compilation">4</article>
+               <article class="navigation">
+                    <div class="system"></div>
+                    <div class="pagination">
+                    </div>
+               </article>
+               <article class="weblog">
+                    <table class="weblog__table">
+                         <thead>
+                              <tr class="weblog__headbar">
+                                   <th class="weblog__headtitle weblog__headtitle--weblogs">Weblogs</th>
+                                   <th class="weblog__headtitle weblog__headtitle--date">Date</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              <tr class="weblog__section">
+                                   <td class="weblog__sectiontitle" colspan="2"> Section </td>
+                              </tr>
+                              <tr class="weblog__content">
+                                   <td class="weblog__content-group weblog__content-group--primary">
+                                        <h1 class="weblog__content-title">
+                                             <a class="weblog__content-titlelink" target="_blank" rel="noopener noreferrer" 
+                                                href=""> WOW! YOU EXIST! </a>
+                                        </h1>
+                                        <div class="weblog__content-stickers">
+                                             <span class="weblog__content-tags weblog__content-tags--casual">Casual</span>
+                                             <span class="weblog__content-tags weblog__content-tags--updates">Updates</span>
+                                             <span class="weblog__content-tags weblog__content-tags--technical">Technical</span>
+                                        </div>
+                                        <p class="weblog__content-description">
+                                             Guy finally talks about the website finally having content after months of it being blank.
+                                        </p>
+                                   </td>
+                                   <td class="weblog__content-group weblog__content-group--date">
+                                        <time class="weblog__content-date" datetime=""> 9/99/99 </time>
+                                   </td>
+                              </tr>
+                         </tbody>
+                    </table>
+               </article>
           </main>
      </article>
 </body>

@@ -32,22 +32,25 @@ body {
      }
 
      .sidebar {
+          align-self: flex-start;
           grid-area: flavory-sidebar;
+          position: sticky;
+          top: 10px;
      }
 
      .blogs {
           display: grid;
           grid-template-columns: 2fr 3fr;
-          grid-template-rows: 1fr 3fr;
-          grid-template-areas: 
+          grid-template-rows: 250px 3fr;
+          grid-template-areas:
                "blogs-gallery blogs-header"
-               "blogs-navigation blogs-compilation"
+               "blogs-navigation blogs-weblog"
           ;
           grid-area: flavory-blogs;
           gap: 10px;
           background-color: hsl(0, 3%, 10%);
           box-shadow: 5px 5px 0px 0px #4f4eff;
-          height: 110vh;
+          height: 150vh;
           padding: 20px;
 
           .header {
@@ -61,11 +64,11 @@ body {
                grid-area: blogs-header;
                gap: 10px;
 
-               & > * {
+               &>* {
                     background-color: hsl(0, 0%, 5%);
                     border-radius: 5px;
                }
-               
+
                .information {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
@@ -80,6 +83,9 @@ body {
                     padding: 10px;
 
                     &__title {
+                         $title-color: beige;
+                         $title-icon-size: 18px;
+
                          display: flex;
                          align-items: center;
                          font-family: 'Zalando Sans', font.$standard-font;
@@ -87,24 +93,24 @@ body {
                          font-weight: 900;
                          font-stretch: 120%;
                          text-transform: uppercase;
-                         color: beige;
-                         border: 2px solid beige;
+                         color: $title-color;
+                         border: 2px solid $title-color;
                          height: fit-content;
                          padding: 1px 8px;
                          margin-bottom: 5px;
-               
+
                          &::before {
                               content: "";
                               display: inline-block;
                               background-color: currentColor;
                               border-radius: 360px;
-                              width: 18px;
-                              height: 18px;
+                              width: $title-icon-size;
+                              height: $title-icon-size;
                               margin-right: 5px;
                               margin-top: 1px;
                          }
                     }
-               
+
                     &__headbar {
                          display: flex;
                          flex-direction: row;
@@ -112,7 +118,7 @@ body {
                          column-gap: 8px;
                          margin-bottom: 5px;
                     }
-               
+
                     &__headtitle {
                          font-family: 'Zalando Sans', font.$standard-font;
                          font-size: 1rem;
@@ -122,13 +128,13 @@ body {
                          background-color: #a4fb46;
                          width: fit-content;
                          padding: 2px 5px 2px 3px;
-               
+
                          &::before {
                               content: '\279C ';
                               margin-right: 3px;
                          }
                     }
-               
+
                     &__headsubtitle {
                          font-family: 'Zalando Sans', font.$standard-font;
                          font-size: 1rem;
@@ -137,7 +143,7 @@ body {
                          text-transform: uppercase;
                          width: 100%;
                     }
-               
+
                     &__headings {
                          display: flex;
                          align-items: center;
@@ -148,13 +154,13 @@ body {
                          text-transform: uppercase;
                          background-color: hsl(240, 100%, 65%);
                          padding: 3px 5px;
-               
+
                          &::before {
                               content: "\2605";
                               margin-right: 3px;
                          }
                     }
-               
+
                     &__description {
                          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                          font-size: 0.85rem;
@@ -162,18 +168,18 @@ body {
                          line-height: 1.2;
                          margin-block: 8px;
                     }
-               
+
                     &__category {
                          counter-reset: type-counter;
                     }
-               
+
                     &__category-item {
                          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                          font-size: 0.75rem;
                          font-weight: bolder;
                          text-align: start;
                          margin-block: 5px;
-               
+
                          &::before {
                               content: counter(type-counter);
                               counter-increment: type-counter;
@@ -290,16 +296,17 @@ body {
                grid-area: blogs-gallery;
                gap: 10px;
 
-               & > * {
+               &>* {
                     background-color: hsl(0, 0%, 5%);
                     border-radius: 5px;
                }
 
                .anemoia {
                     grid-area: gallery-anemoia;
-                    background-image: url(https://preview.redd.it/a-quiet-communion-with-the-hills-and-open-sky-v0-6xypfw4gteqe1.jpg?width=1080&crop=smart&auto=webp&s=0f8bf6ccd902b6eb2c6d872c19c140c6e5da749f);
+                    background-image: url(https://preview.redd.it/the-place-i-grew-up-western-kansas-v0-tjco5q3lnvfh1.jpeg?width=1080&crop=smart&auto=webp&s=4d29488dd5dd37c50cacdea61680123f2dd3e925);
                     background-size: cover;
                     background-position: center;
+                    image-rendering: smooth;
                }
 
                .motivational {
@@ -308,7 +315,7 @@ body {
                     background-size: cover;
                     background-position: center;
                     position: relative;
-               
+
                     &__message {
                          user-select: none;
                          -webkit-user-select: none;
@@ -335,11 +342,11 @@ body {
                     background-color: transparent;
                     border-radius: 0px;
 
-                    & > * {
+                    &>* {
                          background-color: hsl(0, 0%, 5%);
                          border-radius: 5px;
                     }
-                    
+
                     .wacky-workbench {
                          user-select: none;
                          -webkit-user-select: none;
@@ -349,25 +356,25 @@ body {
                          grid-area: gallery-wacky-workbench;
                          overflow: hidden;
                          height: 160px;
-                    
-                         & > * {
+
+                         &>* {
                               image-rendering: pixelated;
                               grid-area: 1 / 1;
                          }
-                    
+
                          &__background {
                               z-index: 1;
                          }
-                    
+
                          &__layout {
                               z-index: 3;
                          }
-                    
+
                          &__sonic {
                               z-index: 2;
                          }
                     }
-                    
+
                     .dejavu {
                          filter: contrast(100%);
                          grid-area: gallery-dejavu;
@@ -378,11 +385,11 @@ body {
                          animation: contrasting 3s ease-in-out 0s infinite;
 
                          @keyframes contrasting {
-                              0%, 100% { filter: contrast(100%);  }
-                              50%      { filter: contrast(200%); } 
+                              0%, 100% { filter: contrast(100%); }
+                              50%      { filter: contrast(200%); }
                          }
                     }
-                    
+
                     .floccinaucinihilipilification {
                          grid-area: gallery-floccinaucinihilipilification;
                          background-image: url(../images/decorations/floccinaucinihilipilification.webp);
@@ -394,11 +401,155 @@ body {
           }
 
           .navigation {
+               display: grid;
+               align-self: flex-start;
+               grid-template-columns: 1fr;
+               grid-template-rows: 8cm 1.5cm;
+               grid-template-areas:
+                    "navigation-system"
+                    "navigation-pagination"
+               ;
                grid-area: blogs-navigation;
+               row-gap: 10px;
+               position: sticky;
+               top: 10px;
+
+               &>* {
+                    background-color: hsl(0, 0%, 5%);
+                    border-radius: 5px;
+               }
+
+               .system {
+                    grid-area: navigation-system;
+                    padding: 8px;
+               }
+
+               .pagination {
+                    grid-area: navigation-pagination;
+               }
           }
 
-          .compilation {
-               grid-area: blogs-compilation;
+          .weblog {
+               grid-area: blogs-weblog;
+
+               &__table {
+                    table-layout: fixed;
+                    border-collapse: collapse;
+                    width: 100%;
+               }
+
+               :is(&__headbar, &__section, &__content) > * {
+                    border: 1.5px solid hsl(207, 4%, 52%);
+               }
+
+               &__headbar {
+                    $starting-point: hsl(240, 100%, 65%);
+                    $ending-point: hsl(240, 84%, 30%);
+
+                    background: $starting-point;
+                    background: linear-gradient(90deg, $starting-point 0%, $ending-point 100%);
+               }
+
+               &__headtitle {
+                    font-family: 'Zalando Sans', font.$standard-font;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    font-stretch: 120%;
+                    text-align: left;
+                    color: #ffffff;
+                    padding: 3px 10px;
+
+                    &--weblogs {
+                         width: 80%;
+                    }
+
+                    &--date {
+                         width: auto;
+                    }
+               }
+
+               &__section {
+                    $starting-point: hsl(0, 0%, 15%);
+                    $ending-point: hsl(0, 0%, 5%);
+
+                    background: $starting-point;
+                    background: linear-gradient(to bottom, $starting-point 0%, $ending-point 100%);
+               }
+
+               &__sectiontitle {
+                    font-family: "Archivo", font.$standard-font;
+                    font-size: 0.95rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    text-align: start;
+                    padding: calc((5px + 8px) / 2) 10px;
+               }
+
+               &__content {
+                    background-color: #101010;
+               }
+
+               &__content-group {
+                    overflow-wrap: break-word;
+                    padding: 10px;
+
+                    &--date {
+                         text-align: center;
+                    }
+               }
+
+               &__content-title {
+                    font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
+                    font-size: 1rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    width: 100%;
+               }
+
+               &__content-titlelink {
+                    display: block;
+                    text-decoration: none;
+                    color: cornflowerblue;
+
+                    &:hover {
+                         text-decoration: underline;
+                         text-decoration-thickness: 2px;
+                    }
+               }
+
+               &__content-stickers {
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 5px;
+               }
+
+               &__content-tags {
+                    font-family: 'Zalando Sans';
+                    font-size: 0.7rem;
+                    font-weight: 750;
+                    font-stretch: condensed;
+                    color: gray;
+
+                    &::before {
+                         content: '*'
+                    }
+               }
+
+               &__content-description {
+                    font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                    font-size: 0.85rem;
+                    text-align: justify;
+                    line-height: 1;
+                    margin-top: 8px;
+               }
+
+               &__content-date {
+                    font-family: "FiraCode", font.$standard-code-font;
+                    font-size: 0.7rem;
+                    background-color: #272525;
+                    border-radius: 5px;
+                    padding: 3px 5px;
+               }
           }
      }
 }

@@ -230,18 +230,25 @@ body {
                          margin-bottom: 3px;
                     }
 
+                    --error-blink-text-color: hsl(357, 94%, 60%);
+                    --error-blink-bg-color: transparent;
+                    --error-blink-duration: 2s;
                     &__headtitle {
                          display: flex;
                          flex-direction: row;
                          align-items: center;
                          column-gap: 3px;
-                         background-color: hsl(357, 94%, 60%);
+                         background-color: var(--error-blink-bg-color);
+                         box-shadow: inset 0 0 0 2px hsl(357, 94%, 60%);
+                         animation: error-blinking var(--error-blink-duration) step-start infinite;
                          width: fit-content;
                          padding: 2px 5px;
                     }
 
                     &__headtitle-icon {
+                         fill: var(--error-blink-text-color);
                          image-rendering: crisp-edges;
+                         animation: error-blinking var(--error-blink-duration) step-start infinite;
                     }
 
                     &__headtitle-text {
@@ -249,7 +256,8 @@ body {
                          font-size: 0.85rem;
                          font-weight: 750;
                          font-stretch: semi-expanded;
-                         color: black;
+                         color: var(--error-blink-text-color);
+                         animation: error-blinking var(--error-blink-duration) step-start infinite;
                     }
 
                     &__headsubtitle {
@@ -270,6 +278,13 @@ body {
 
                          &::before {
                               content: '> ';
+                         }
+                    }
+
+                    @keyframes error-blinking {
+                         50% {
+                              --error-blink-text-color: black;
+                              --error-blink-bg-color: hsl(357, 94%, 60%);
                          }
                     }
                }

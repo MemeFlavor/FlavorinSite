@@ -462,10 +462,6 @@ body {
                     &--weblogs {
                          width: 80%;
                     }
-
-                    &--date {
-                         width: auto;
-                    }
                }
 
                &__section {
@@ -511,27 +507,53 @@ body {
                     text-decoration: none;
                     color: cornflowerblue;
 
-                    &:hover {
+                    &:hover, &:focus-visible {
                          text-decoration: underline;
                          text-decoration-thickness: 2px;
+                    }
+
+                    &:focus-visible {
+                         color: hsl(89, 96%, 63%);
+                         outline: none;
+                         width: fit-content;
                     }
                }
 
                &__content-stickers {
                     display: flex;
                     flex-direction: row;
+                    justify-content: flex-end;
                     column-gap: 5px;
                }
 
                &__content-tags {
-                    font-family: 'Zalando Sans';
-                    font-size: 0.7rem;
+                    --hi: currentColor;
+
+                    font-family: "Zalando Sans", font.$standard-font;
+                    font-size: 0.65rem;
                     font-weight: 750;
                     font-stretch: condensed;
-                    color: gray;
+                    color: hsl(0, 0%, 70%);
+                    background-color: hsl(0, 0%, 1%);
+                    box-shadow: 1px 1px 0px 0px var(--hi);
+                    border: 1px solid hsl(207, 6%, 32%);
+                    padding: 2px 4px;
 
                     &::before {
-                         content: '*'
+                         content: "";
+                         display: inline-block;
+                         background-color: var(--hi);
+                         border-radius: 360px;
+                         width: 8px;
+                         height: 8px;
+                         margin-right: 3px;
+                    }
+
+                    &--updates {
+                         --hi: hsl(89, 96%, 63%);
+                    }
+                    &--technical {
+                         --hi: #4f4eff;
                     }
                }
 
@@ -540,15 +562,16 @@ body {
                     font-size: 0.85rem;
                     text-align: justify;
                     line-height: 1;
-                    margin-top: 8px;
+                    margin-block: 3px 8px;
                }
 
                &__content-date {
-                    font-family: "FiraCode", font.$standard-code-font;
+                    font-family: "FiraCode", font.$standard-code-font, font.$standard-font;
                     font-size: 0.7rem;
                     background-color: #272525;
                     border-radius: 5px;
-                    padding: 3px 5px;
+                    height: fit-content;
+                    padding: 5px 5px 3px 5px;
                }
           }
      }

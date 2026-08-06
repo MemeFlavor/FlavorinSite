@@ -342,7 +342,7 @@ body {
                     background-color: transparent;
                     border-radius: 0px;
 
-                    &>* {
+                    & > * {
                          background-color: hsl(0, 0%, 5%);
                          border-radius: 5px;
                     }
@@ -357,7 +357,7 @@ body {
                          overflow: hidden;
                          height: 160px;
 
-                         &>* {
+                         & > * {
                               image-rendering: pixelated;
                               grid-area: 1 / 1;
                          }
@@ -434,6 +434,7 @@ body {
 
                &__directory {
                     table-layout: fixed;
+                    box-shadow: 3px 3px 0px 0px hsl(357, 94%, 60%);
                     border-collapse: collapse;
                     width: 100%;
 
@@ -479,6 +480,11 @@ body {
                     font-stretch: expanded;
                     text-align: start;
                     padding: calc((5px + 8px) / 2) 10px;
+
+                    &::before {
+                         content: "\2605";
+                         margin-right: 1px;
+                    }
                }
 
                &__pages {
@@ -527,7 +533,7 @@ body {
                }
 
                &__pages-tags {
-                    --tag-color: currentColor;
+                    --primary-color: currentColor;
 
                     font-family: "Zalando Sans", font.$standard-font;
                     font-size: 0.65rem;
@@ -535,14 +541,14 @@ body {
                     font-stretch: condensed;
                     color: hsl(0, 0%, 70%);
                     background-color: hsl(0, 0%, 1%);
-                    box-shadow: 1px 1px 0px 0px var(--tag-color);
+                    box-shadow: 1px 1px 0px 0px var(--primary-color);
                     border: 1px solid hsl(207, 6%, 32%);
                     padding: 2px 4px;
 
                     &::before {
                          content: "";
                          display: inline-block;
-                         background-color: var(--tag-color);
+                         background-color: var(--primary-color);
                          border-radius: 360px;
                          width: 8px;
                          height: 8px;
@@ -554,10 +560,10 @@ body {
                     }
 
                     &--updates {
-                         --tag-color: hsl(89, 96%, 63%);
+                         --primary-color: hsl(89, 96%, 63%);
                     }
                     &--technical {
-                         --tag-color: hsl(240, 100%, 65%);
+                         --primary-color: hsl(240, 100%, 65%);
                     }
                }
 

@@ -16,6 +16,7 @@
      <link rel="stylesheet" type="text/css" href="css/blogy.css">
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
      <script type="module" src="javascript/sidebar.js"></script>
+     <script type="module" src="javascript/blogs.js"></script>
 </head>
 <body>
      <article id="flavory-content">
@@ -81,9 +82,15 @@
                               <h1 class="information__title">Blogging</h1>
                               <p class="information__description">So many types of blogs to read...</p>
                               <ol class="information__category">
-                                   <li class="information__category-item">Casual — <i>The ordinary stuff</i></li>
-                                   <li class="information__category-item">Updates — <i>Site progress</i></li>
-                                   <li class="information__category-item">Technical — <i>Boring nerd stuff</i></li>
+                                   <li class="information__category-item information__category-item--casual">
+                                        Casual — <i>The ordinary stuff</i>
+                                   </li>
+                                   <li class="information__category-item information__category-item--updates">
+                                        Updates — <i>Site progress</i>
+                                   </li>
+                                   <li class="information__category-item information__category-item--technical">
+                                        Technical — <i>Boring nerd stuff</i>
+                                   </li>
                               </ol>
                          </section>
                          <section class="information__page2">
@@ -177,61 +184,4 @@
                </article>
           </main>
      </article>
-     <script type="module">
-          import weblogs from '../json/weblogs.json' with { type: 'json' };
-
-          const Ranks = Object.freeze({
-               FRESH: 0,
-               PRESERVED: 3
-          });
-
-          const weblogsBodyDirectory = document.querySelector('.weblog__directory tbody')
-          const weblogsBodyRank = document.querySelector('.weblog__rank');
-          const weblogsBodyPage = document.querySelector('.weblog__pages');
-          const weblogsPageTags = document.querySelector('.weblog__pages-tags')
-          weblogsBodyRank.remove();
-          weblogsBodyPage.remove();
-          weblogsPageTags.remove()
-
-          function createWeblogRank(rankName) {
-               const weblogsBodyRankClone = weblogsBodyRank.cloneNode(true);
-               weblogsBodyRankClone.querySelector('.weblog__ranktitle').textContent = rankName
-               weblogsBodyDirectory.appendChild(weblogsBodyRankClone)
-          }
-
-          function createWeblogPages(weblogData) {
-               const bloglistContentClone = weblogsBodyPage.cloneNode(true);
-               bloglistContentClone.querySelector('.weblog__pages-titlelink').textContent = weblogData.title.content;
-               bloglistContentClone.querySelector('.weblog__pages-titlelink').setAttribute('href', weblogData.title.link);
-               bloglistContentClone.querySelector('.weblog__pages-date').textContent = weblogData.date;
-               bloglistContentClone.querySelector('.weblog__pages-date').setAttribute('datetime', weblogData.date)
-
-               for (const tags of weblogData.tags) {
-                    const weblogPageNewTags = document.createElement("span");
-                    weblogPageNewTags.textContent = tags;
-                    weblogPageNewTags.classList.add('weblog__pages-tags', `weblog__pages-tags--${tags}`)
-
-                    bloglistContentClone.querySelector('.weblog__pages-stickers').appendChild(weblogPageNewTags)
-               }
-               bloglistContentClone.setAttribute('data-tags', weblogData.tags.join(' '))
-
-               bloglistContentClone.querySelector('.weblog__pages-description').textContent = weblogData.description;
-               weblogsBodyDirectory.appendChild(bloglistContentClone);
-          }
-
-          for (const [weblogPage, weblogData] of Object.entries(weblogs)) {
-               if (weblogPage == Ranks.FRESH) {
-                    createWeblogRank('Fresh Bumfuzzles')
-               } else if (weblogPage == Ranks.PRESERVED) {
-                    createWeblogRank('Preserved Flavors')
-               }
-               createWeblogPages(weblogData)
-          }
-     </script>
 </body>
-
-<!-- 
-
-Fresh Bumfuzzles -> Preserved Flavors
-
--->

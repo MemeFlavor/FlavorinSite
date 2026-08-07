@@ -1,10 +1,17 @@
-@use './modules/shortcuts.scss' as sc;
+@use './modules/fonts.scss' as font;
 @use 'sass:color';
+
+@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face-var('Fira Code', 300 700, normal, normal, 1, font.$font-source-variable);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
+@include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 
 body {
      display: flex;
      justify-content: center;
-     font-family: sc.$standard-font;
+     font-family: font.$standard-font;
      background-image: url(../images/backgrounds/apartment.avif);
      background-repeat: no-repeat;
      background-size: cover;
@@ -25,123 +32,608 @@ body {
      }
 
      .sidebar {
+          align-self: flex-start;
           grid-area: flavory-sidebar;
+          position: sticky;
+          top: 10px;
      }
 
      .blogs {
-          display: flex;
-          flex-direction: column;
+          display: grid;
+          grid-template-columns: 2fr 3fr;
+          grid-template-rows: 250px 3fr;
+          grid-template-areas:
+               "blogs-gallery blogs-header"
+               "blogs-navigation blogs-weblog"
+          ;
           grid-area: flavory-blogs;
-          background-color: color.adjust(#272525, $lightness: -5%);
+          gap: 10px;
+          background-color: hsl(0, 3%, 10%);
           box-shadow: 5px 5px 0px 0px #4f4eff;
+          height: 150vh;
           padding: 20px;
-          height: 110vh;
 
-          &__navigation {
-               margin-bottom: 10px;
-          }
-     
-          &__navigation-list {
-               display: flex;
-               flex-direction: row;
-               border: 1px solid black;
-               width: 100%;
-               @include sc.gradient(165deg, rgb(85, 85, 85) 0%, rgb(39, 39, 39) 95%);
-          }
-     
-          --item-colorpoint-start: hsl(0, 0%, 43%);
-          --item-colorpoint-end: hsl(0, 0%, 25%);
-          &__navigation-item {
-               cursor: pointer;
-               border-right: 1px solid black;
-               padding: 8px 10px;
-     
-               &--selected {
-                    --item-colorpoint-start: rgb(85, 125, 201);
-                    --item-colorpoint-end: rgb(39, 57, 91);
-                    cursor: not-allowed;
-                    @include sc.gradient(165deg, rgb(85, 125, 201) 0%, rgb(39, 57, 91) 95%);
-               }
-     
-               &:hover {
-                    @include sc.gradient(165deg, var(--item-colorpoint-start) 0%, var(--item-colorpoint-end) 95%);
-               }
-          }
-     
-          &__navigation-item-btn {
-               cursor: inherit;
-               font-family: sc.$fancy-font;
-               font-size: 1rem;
-               font-weight: 600;
-               text-decoration: none;
-               background: none;
-               border: none;
-               color: currentColor;
-     
-               &:disabled {
-                    color: inherit;
-               }
-     
-               &:focus-within {
-                    background-color: cornflowerblue;
-                    outline: none;
-                    color: black;
-               }
-          }
-
-          &__pagination {
-               display: flex;
-               flex-direction: row;
-               align-items: center;
-               justify-content: space-between;
-               font-size: 0.8rem;
-               border: 1px solid color.adjust(#6b6b6b, $lightness: -10%);
-               padding: 3px 8px;
-               margin-top: auto
-          }
-
-          &__pagination-pages {
-               display: inline-flex;
-          }
-
-          &__pagination-pages-title, &__pagination-nav-title {
-               font-weight: bolder;
-          }
-
-          &__pagination-pages-title {
-               margin-right: 10px;
-          }
-
-          &__pagination-pages-list {
-               display: flex;
-               flex-direction: row;
+          .header {
+               display: grid;
+               grid-template-columns: 2fr 1fr;
+               grid-template-rows: repeat(2, auto);
+               grid-template-areas:
+                    "header-information header-information"
+                    "header-notice header-windows"
+               ;
+               grid-area: blogs-header;
                gap: 10px;
+
+               & > * {
+                    background-color: hsl(0, 0%, 5%);
+                    border-radius: 5px;
+               }
+
+               .information {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: 1fr;
+                    grid-area: header-information;
+                    column-gap: 10px;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    background-image: url(../images/backgrounds/grids.avif);
+                    background-position: -15px center;
+                    background-attachment: local;
+                    background-blend-mode: color-burn;
+                    padding: 10px;
+
+                    &__title {
+                         $title-color: beige;
+                         $title-icon-size: 18px;
+
+                         display: flex;
+                         align-items: center;
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1.4rem;
+                         font-weight: 900;
+                         font-stretch: 120%;
+                         text-transform: uppercase;
+                         color: $title-color;
+                         border: 2px solid $title-color;
+                         height: fit-content;
+                         padding: 1px 8px;
+                         margin-bottom: 5px;
+
+                         &::before {
+                              content: "";
+                              display: inline-block;
+                              background-color: currentColor;
+                              border-radius: 360px;
+                              width: $title-icon-size;
+                              height: $title-icon-size;
+                              margin-right: 5px;
+                              margin-top: 1px;
+                         }
+                    }
+
+                    &__headbar {
+                         display: flex;
+                         flex-direction: row;
+                         align-items: center;
+                         column-gap: 8px;
+                         margin-bottom: 5px;
+                    }
+
+                    &__headtitle {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1rem;
+                         font-weight: 750;
+                         font-stretch: semi-expanded;
+                         color: black;
+                         background-color: #a4fb46;
+                         width: fit-content;
+                         padding: 2px 5px 2px 3px;
+
+                         &::before {
+                              content: '\279C ';
+                              margin-right: 3px;
+                         }
+                    }
+
+                    &__headsubtitle {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1rem;
+                         font-weight: 750;
+                         font-stretch: semi-expanded;
+                         text-transform: uppercase;
+                         width: 100%;
+                    }
+
+                    &__headings {
+                         display: flex;
+                         align-items: center;
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.8rem;
+                         font-weight: 550;
+                         font-stretch: semi-condensed;
+                         text-transform: uppercase;
+                         background-color: hsl(240, 100%, 65%);
+                         padding: 3px 5px;
+
+                         &::before {
+                              content: "\2605";
+                              margin-right: 3px;
+                         }
+                    }
+
+                    &__description {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.85rem;
+                         text-align: start;
+                         line-height: 1.2;
+                         margin-block: 8px;
+                    }
+
+                    &__category {
+                         counter-reset: type-counter;
+                    }
+
+                    &__category-item {
+                         --primary-color: currentColor;
+
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.75rem;
+                         font-weight: bolder;
+                         text-align: start;
+                         margin-block: 5px;
+
+                         &::before {
+                              content: counter(type-counter);
+                              counter-increment: type-counter;
+                              display: inline-block;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.95rem;
+                              font-weight: 600;
+                              font-stretch: condensed;
+                              text-align: center;
+                              color: black;
+                              background-color: var(--primary-color);
+                              border-radius: 360px;
+                              width: 20px;
+                              height: 20px;
+                              margin-right: 5px;
+                              margin-top: 1px;
+                         }
+
+                         &--casual {
+                              --primary-color: hsl(240, 100%, 65%);
+                         }
+                              
+                         &--updates {
+                              --primary-color: hsl(89, 96%, 63%);
+                         }
+                              
+                         &--technical {
+                              --primary-color: hsl(42, 100%, 53%);
+                         }
+                    }
+               }
+
+               .notice {
+                    display: grid;
+                    grid-area: header-notice;
+                    background: hsl(0, 0%, 5%);
+                    background: linear-gradient(90deg, hsl(0, 0%, 5%) 95%, hsl(42, 100%, 53%) 95%);
+                    border-radius: 0px;
+                    padding: 5px 6px;
+
+                    &__headbar {
+                         display: flex;
+                         flex-direction: row;
+                         align-items: center;
+                         column-gap: 5px;
+                         margin-bottom: 3px;
+                    }
+
+                    --error-blink-text-color: hsl(357, 94%, 60%);
+                    --error-blink-bg-color: transparent;
+                    $error-blink-duration: 1s;
+                    &__headtitle {
+                         display: flex;
+                         flex-direction: row;
+                         align-items: center;
+                         column-gap: 3px;
+                         background-color: var(--error-blink-bg-color);
+                         box-shadow: inset 0 0 0 2px hsl(357, 94%, 60%);
+                         animation: error-blinking $error-blink-duration step-start infinite;
+                         width: fit-content;
+                         padding: 2px 5px;
+                    }
+
+                    &__headtitle-icon {
+                         fill: var(--error-blink-text-color);
+                         image-rendering: crisp-edges;
+                         animation: error-blinking $error-blink-duration step-start infinite;
+                    }
+
+                    &__headtitle-text {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.85rem;
+                         font-weight: 750;
+                         font-stretch: semi-expanded;
+                         color: var(--error-blink-text-color);
+                         animation: error-blinking $error-blink-duration step-start infinite;
+                    }
+
+                    &__headsubtitle {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.8rem;
+                         font-weight: 750;
+                         font-stretch: semi-expanded;
+                         text-transform: uppercase;
+                         width: 100%;
+                    }
+
+                    &__description {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.8rem;
+                         font-style: italic;
+                         text-align: start;
+                         line-height: 1.2;
+
+                         &::before {
+                              content: '> ';
+                         }
+                    }
+
+                    @keyframes error-blinking {
+                         50% {
+                              --error-blink-text-color: black;
+                              --error-blink-bg-color: hsl(357, 94%, 60%);
+                         }
+                    }
+               }
+
+               .windows {
+                    $windows-light-border-color: white;
+                    $windows-dark-border-color: hsl(0, 0%, 28%);
+
+                    grid-area: header-windows;
+                    background-color: silver;
+                    border: 1px solid $windows-light-border-color;
+                    border-bottom-color: $windows-dark-border-color;
+                    border-right-color: $windows-dark-border-color;
+                    border-radius: 0px;
+                    position: relative;
+                    padding: 1px;
+
+                    &__headbar {
+                         $headbar-starting-point: hsl(240, 100%, 24%);
+                         $headbar-ending-point: hsl(205, 93%, 39%);
+
+                         background: $headbar-starting-point;
+                         background: linear-gradient(90deg, $headbar-starting-point 0%, $headbar-ending-point 100%);
+                         padding-inline: 3px;
+                    }
+
+                    &__headtitle {
+                         font-family: 'Zalando Sans';
+                         font-size: 0.65rem;
+                         font-stretch: expanded;
+                    }
+
+                    &__badge {
+                         image-rendering: pixelated;
+                         position: absolute;
+                         left: 3px;
+                         bottom: 3px;
+                    }
+               }
           }
 
-          &__pagination-pages-btn, &__pagination-nav-btn {
-               cursor: pointer;
-               text-decoration: underline;
-               background: none;
-               border: none;
-               color: cornflowerblue;
-
-               &--current {
-                    cursor: auto;
-                    color: currentColor;
-                    text-decoration: none;
-                    font-weight: bolder;
-               }
-               &--nil {
-                    cursor: not-allowed;
-                    color: grey;
-                    text-decoration: none;
-               }
-          }
-
-          &__pagination-nav {
-               display: flex;
-               flex-direction: row;
+          .gallery {
+               display: grid;
+               grid-template-columns: 1fr 3fr;
+               grid-template-rows: 1fr 2fr;
+               grid-template-areas:
+                    "gallery-anemoia gallery-motivational"
+                    "gallery-anemoia gallery-decorations"
+               ;
+               grid-area: blogs-gallery;
                gap: 10px;
+
+               & > * {
+                    background-color: hsl(0, 0%, 5%);
+                    border-radius: 5px;
+               }
+
+               .anemoia {
+                    grid-area: gallery-anemoia;
+                    background-image: url(https://preview.redd.it/the-place-i-grew-up-western-kansas-v0-tjco5q3lnvfh1.jpeg?width=1080&crop=smart&auto=webp&s=4d29488dd5dd37c50cacdea61680123f2dd3e925);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
+               }
+
+               .motivational {
+                    grid-area: gallery-motivational;
+                    background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
+                    background-size: cover;
+                    background-position: center;
+                    position: relative;
+
+                    &__message {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         font-family: 'Noto Sans Tagalog', font.$standard-font;
+                         font-size: 1rem;
+                         text-shadow: 3px 2px 0px black;
+                         color: GhostWhite;
+                         position: absolute;
+                         right: 5px;
+                         bottom: 3px;
+                    }
+               }
+
+               .decorations {
+                    display: grid;
+                    grid-template-columns: 160px 1fr;
+                    grid-template-rows: 1fr 1fr;
+                    grid-template-areas:
+                         "gallery-wacky-workbench gallery-dejavu"
+                         "gallery-wacky-workbench gallery-floccinaucinihilipilification"
+                    ;
+                    grid-area: gallery-decorations;
+                    gap: 10px;
+                    background-color: transparent;
+                    border-radius: 0px;
+
+                    & > * {
+                         background-color: hsl(0, 0%, 5%);
+                         border-radius: 5px;
+                    }
+
+                    .wacky-workbench {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         display: grid;
+                         grid-template-columns: 1fr;
+                         grid-template-rows: 1fr;
+                         grid-area: gallery-wacky-workbench;
+                         overflow: hidden;
+                         height: 160px;
+
+                         & > * {
+                              image-rendering: pixelated;
+                              grid-area: 1 / 1;
+                         }
+
+                         &__background {
+                              z-index: 1;
+                         }
+
+                         &__layout {
+                              z-index: 3;
+                         }
+
+                         &__sonic {
+                              z-index: 2;
+                         }
+                    }
+
+                    .dejavu {
+                         filter: contrast(100%);
+                         grid-area: gallery-dejavu;
+                         background-image: url(../images/decorations/greenzone.webp);
+                         background-size: cover;
+                         background-position: center;
+                         image-rendering: smooth;
+                         animation: contrasting 3s ease-in-out 0s infinite;
+
+                         @keyframes contrasting {
+                              0%, 100% { filter: contrast(100%); }
+                              50%      { filter: contrast(200%); }
+                         }
+                    }
+
+                    .floccinaucinihilipilification {
+                         grid-area: gallery-floccinaucinihilipilification;
+                         background-image: url(../images/decorations/floccinaucinihilipilification.webp);
+                         background-size: cover;
+                         background-position: left;
+                         image-rendering: smooth;
+                    }
+               }
+          }
+
+          .navigation {
+               display: grid;
+               align-self: flex-start;
+               grid-template-columns: 1fr;
+               grid-template-rows: 8cm 1.5cm;
+               grid-template-areas:
+                    "navigation-system"
+                    "navigation-pagination"
+               ;
+               grid-area: blogs-navigation;
+               row-gap: 10px;
+               position: sticky;
+               top: 10px;
+
+               & > * {
+                    background-color: hsl(0, 0%, 5%);
+                    //border-radius: 5px;
+               }
+
+               .system {
+                    grid-area: navigation-system;
+                    padding: 8px;
+               }
+
+               .pagination {
+                    grid-area: navigation-pagination;
+               }
+          }
+
+          .weblog {
+               grid-area: blogs-weblog;
+
+               &__directory {
+                    table-layout: fixed;
+                    box-shadow: 3px 3px 0px 0px hsl(240, 72%, 45%);
+                    border-collapse: collapse;
+                    width: 100%;
+
+                    tr > :is(td, th) {
+                         border: 1.5px solid hsl(207, 4%, 52%);
+                    }
+
+                    tr > th:nth-of-type(1) {
+                         width: 80%;
+                    }
+               }
+
+               &__headbar {
+                    $headbar-starting-point: hsl(240, 100%, 65%);
+                    $headbar-ending-point: hsl(240, 84%, 30%);
+
+                    background: $headbar-starting-point;
+                    background: linear-gradient(90deg, $headbar-starting-point 0%, $headbar-ending-point 100%);
+               }
+
+               &__headtitle {
+                    font-family: 'Zalando Sans', font.$standard-font;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    font-stretch: 120%;
+                    text-align: start;
+                    color: #ffffff;
+                    padding: 3px 10px;
+               }
+
+               &__rank {
+                    $rank-starting-point: hsl(0, 0%, 15%);
+                    $rank-ending-point: hsl(0, 0%, 5%);
+
+                    background: $rank-starting-point;
+                    background: linear-gradient(to bottom, $rank-starting-point 0%, $rank-ending-point 100%);
+               }
+
+               &__ranktitle {
+                    font-family: "Archivo", font.$standard-font;
+                    font-size: 0.95rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    text-align: start;
+                    padding: calc((5px + 8px) / 2) 10px;
+
+                    &::before {
+                         content: "\2605";
+                         margin-right: 5px;
+                    }
+               }
+
+               &__pages {
+                    background-color: #101010;
+
+                    & > td:last-of-type {
+                         text-align: center;
+                    }
+               }
+
+               &__pages-information, &__pages-time {
+                    overflow-wrap: break-word;
+                    padding: 10px;
+               }
+
+               &__pages-title {
+                    font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
+                    font-size: 1rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    width: 100%;
+               }
+
+               &__pages-titlelink {
+                    display: block;
+                    text-decoration: none;
+                    color: cornflowerblue;
+
+                    &:hover, &:focus-visible {
+                         text-decoration: underline;
+                         text-decoration-thickness: 2px;
+                         text-decoration-skip-ink: none;
+                    }
+
+                    &:focus-visible {
+                         text-decoration-style: double;
+                         color: hsl(89, 96%, 63%);
+                         outline: none;
+                         width: fit-content;
+                    }
+               }
+
+               &__pages-stickers {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    column-gap: 5px;
+               }
+
+               &__pages-tags {
+                    --primary-color: currentColor;
+
+                    font-family: "Zalando Sans", font.$standard-font;
+                    font-size: 0.65rem;
+                    font-weight: 750;
+                    font-stretch: condensed;
+                    text-transform: uppercase;
+                    color: hsl(0, 0%, 70%);
+                    background-color: hsl(0, 0%, 1%);
+                    box-shadow: 1px 1px 0px 0px hsla(60, 56%, 91%, 0.8);
+                    border: 1px solid var(--primary-color);
+                    padding: 2px 4px;
+
+                    &::before {
+                         content: "";
+                         display: inline-block;
+                         background-color: var(--primary-color);
+                         border-radius: 360px;
+                         width: 8px;
+                         height: 8px;
+                         margin-right: 3px;
+                    }
+
+                    &::selection {
+                         background-color: transparent;
+                    }
+
+                    &--casual {
+                         --primary-color: hsl(240, 100%, 65%);
+                    }
+                    &--updates {
+                         --primary-color: hsl(89, 96%, 63%);
+                    }
+                    &--technical {
+                         --primary-color: hsl(42, 100%, 53%);
+                    }
+               }
+
+               &__pages-description {
+                    font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                    font-size: 0.85rem;
+                    text-align: start;
+                    line-height: 1.2;
+                    margin-block: 3px 8px;
+               }
+
+               &__pages-date {
+                    font-family: "FiraCode", font.$standard-code-font, font.$standard-font;
+                    font-size: 0.7rem;
+                    background-color: #272525;
+                    border-radius: 5px;
+                    height: fit-content;
+                    padding: 5px 5px 3px 5px;
+
+                    &::selection {
+                         background-color: transparent;
+                    }
+               }
           }
      }
 }

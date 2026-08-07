@@ -1,15 +1,3 @@
-import announcements from '../../json/blogs/announcements.json' with { type: 'json' };
-import weblogs from '../../json/blogs/weblogs.json' with { type: 'json' };
-
-/**
-     * Complies every bloglist data into one big ass object.
-     * @type {Object} 
-*/
-export const bloglistData = {
-     "announcements": [...announcements],
-     "weblogs": [...weblogs]
-}
-
 /**  
      * Converts the first letter of the given text to be capitalized.
      * @param {String} str The given text.

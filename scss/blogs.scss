@@ -60,7 +60,7 @@ body {
                grid-template-rows: 3fr 75px;
                grid-template-areas:
                     "header-information header-gays header-windows"
-                    "header-notice header-gays header-windows"
+                    "header-stats header-gays header-windows"
                ;
                grid-area: blogs-header;
                gap: 10px;
@@ -74,16 +74,131 @@ body {
                     grid-area: header-information;
                }
 
-               .notice {
-                    grid-area: header-notice;
+               .stats {
+                    display: flex;
+                    flex-direction: column;
+                    grid-area: header-stats;
+                    padding: 8px;
+
+                    &__title {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1rem;
+                         font-weight: 800;
+                         font-stretch: semi-expanded;
+                    }
+
+                    &__subtitle {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.65rem;
+                         font-weight: bold;
+                         color: silver;
+                    }
+
+                    &__metrics {
+                         font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+                         font-size: 0.7rem;
+                         font-weight: 750;
+                         margin-block: auto;
+                    }
+
+                    &__data {
+                         --data-primary-color: transparent;
+
+                         display: inline-block;
+                         margin-inline: 3px;
+
+                         &::before {
+                              content: '';
+                              display: inline-block;
+                              background-color: var(--data-primary-color);
+                              border-radius: 180px;
+                              width: 8px;
+                              height: 8px;
+                              margin-right: calc((3px + 5px) / 2);
+                         }
+
+                         &--flavor {
+                              --data-primary-color: hsl(240, 100%, 65%);
+                         }
+
+                         &--awesome {
+                              --data-primary-color: hsl(89, 96%, 63%);
+                         }
+
+                         &--slop {
+                              --data-primary-color: hsl(42, 100%, 53%);
+                         }
+
+                         &--void {
+                              --data-primary-color: hsl(357, 94%, 60%);
+                         } 
+                    }
+
+                    &__accuracy {
+                         color: silver;
+                    }
+
+                    &__progress {
+                         display: flex;
+                         flex-direction: row;
+                         column-gap: 2px;
+                         background-color: beige;
+                         border-radius: 3px;
+                         padding: 1px 2px;
+                         margin-top: auto;
+                    }
+
+                    &__itembar {
+                         --itembar-primary-color: transparent;
+                         --itembar-percentage: 0;
+
+                         display: block;
+                         background-color: var(--itembar-primary-color);
+                         width: calc((var(--itembar-percentage) / 20) * 100%);
+                         height: 5px;
+
+                         $itembar-inline-border-radius: 5px;
+                         &:nth-child(1) {
+                              border-top-left-radius: $itembar-inline-border-radius;
+                              border-bottom-left-radius: $itembar-inline-border-radius;
+                         }
+                         &:nth-last-child(1) {
+                              border-top-right-radius: $itembar-inline-border-radius;
+                              border-bottom-right-radius: $itembar-inline-border-radius;
+                         }
+
+                         &--flavor {
+                              --itembar-primary-color: hsl(240, 100%, 65%);
+                              --itembar-percentage: 11;
+                         }
+
+                         &--awesome {
+                              --itembar-primary-color: hsl(89, 96%, 63%);
+                              --itembar-percentage: 4;
+                         }
+
+                         &--slop {
+                              --itembar-primary-color: hsl(42, 100%, 53%);
+                              --itembar-percentage: 3;
+                         }
+
+                         &--void {
+                              --itembar-primary-color: hsl(357, 94%, 60%);
+                              --itembar-percentage: 2;
+                         }               
+                    }
                }
 
                .windows {
                     grid-area: header-windows;
+                    
                }
 
                .gay {
                     grid-area: header-gays;
+                    background-image: url(https://preview.redd.it/what-exactly-is-a-dream-v0-qd2fuo6mwshh1.jpeg?width=1080&crop=smart&auto=webp&s=4ffc5a3c5a975435395886ed799fd1c25f0c4d74);
+                    background-size: cover;
+                    background-position: center;
                }
           }
 

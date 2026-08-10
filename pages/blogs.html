@@ -35,7 +35,7 @@
                     </hgroup>
                     <nav class="navigation__body">
                          <ul class="navigation__list">
-                              <a href="index.html" class="navigation__link">
+                              <a href="accuracyIndex.html" class="navigation__link">
                                    <li class="navigation__item">Home</li>
                               </a>
                               <a href="pages/about.html" class="navigation__link">
@@ -78,53 +78,16 @@
           <main class="blogs">
                <article class="header">
                     <div class="information">
-                         <section class="information__page1">
-                              <h1 class="information__title">Blogging</h1>
-                              <p class="information__description">So many types of blogs to read...</p>
-                              <ol class="information__category">
-                                   <li class="information__category-item information__category-item--casual">
-                                        Casual — <i>The ordinary stuff</i>
-                                   </li>
-                                   <li class="information__category-item information__category-item--updates">
-                                        Updates — <i>Site progress</i>
-                                   </li>
-                                   <li class="information__category-item information__category-item--technical">
-                                        Technical — <i>Boring nerd stuff</i>
-                                   </li>
-                              </ol>
-                         </section>
-                         <section class="information__page2">
-                              <hgroup class="information__headbar">
-                                   <h1 class="information__headtitle">READ</h1>
-                                   <h2 class="information__headsubtitle"> Check it out! </h2>
-                              </hgroup>
-                              <h2 class="information__headings"> Delusional Ranting! </h2>
-                              <p class="information__description">
-                                   Welcome to my blogging page! There's not a lot going on here besides the blogs I've made.
-                              </p>
-                              <p class="information__description">
-                                   So go read them or something—if you have basic reading comprehension.
-                              </p>
-                         </section>
+                         
                     </div>
                     <div class="notice">
-                         <div class="notice__headbar">
-                              <h1 class="notice__headtitle">
-                                   <svg class="notice__headtitle-icon" width="14" height="14" aria-hidden="true">
-                                        <use href="svgs/error.svg" width="14" height="14"></use>
-                                   </svg>
-                                   <span class="notice__headtitle-text">ERROR</span>
-                              </h1>
-                              <h2 class="notice__headsubtitle">Javascript slop</h2>
-                         </div>
-                         <p class="notice__description">Javascript is required to view the page properly!</p>
+
                     </div>
-                    <div class="windows" aria-hidden="true">
-                         <div class="windows__headbar">
-                              <h1 class="windows__headtitle">Funfo</h1>
-                         </div>
-                         <img class="windows__badge" width="88" height="31"
-                              alt="No Phone!" src="images/badges/no_phone.webp">
+                    <div class="windows">
+
+                    </div>
+                    <div class="gay">
+                         
                     </div>
                </article>
                <article class="gallery" aria-hidden="true">
@@ -271,10 +234,10 @@
           const bannerAccr = document.querySelectorAll('.manual__banner-accuracy')
           const bannerAccrCrement = document.querySelectorAll('.manual__banner-accuracy accr-crement')
           const bannerAccrNumbers = document.querySelectorAll('.manual__banner-accuracy accr-num')
-          for (let index = 0; index < 3; index++) {
-               const accuracyLines    = bannerAccr[index]
-               const accuracyCrements = bannerAccrCrement[index];
-               const accuracyNumbers  = bannerAccrNumbers[index];
+          for (let accuracyIndex = 0; accuracyIndex < 3; accuracyIndex++) {
+               const accuracyLines    = bannerAccr[accuracyIndex]
+               const accuracyCrements = bannerAccrCrement[accuracyIndex];
+               const accuracyNumbers  = bannerAccrNumbers[accuracyIndex];
                
                const randomize = getRandomInt(0, 1)
                accuracyLines.style.color  = randomize === 1 ? 'hsl(89, 96%, 63%)' : 'hsl(357, 94%, 60%)'

@@ -1,9 +1,10 @@
 @use './modules/fonts.scss' as font;
-@use 'sass:color';
+@use 'sass:math';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Fira Code', 300 700, normal, normal, 1, font.$font-source-variable);
+@include font.font-face-var('JetBrains Mono', 100 800, normal, normal, 1, font.$font-source-variable);
 @include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
@@ -56,7 +57,7 @@ body {
           .header {
                display: grid;
                grid-template-columns: 2fr 1fr;
-               grid-template-rows: repeat(2, auto);
+               grid-template-rows: auto 57px;
                grid-template-areas:
                     "header-information header-information"
                     "header-notice header-windows"
@@ -64,7 +65,7 @@ body {
                grid-area: blogs-header;
                gap: 10px;
 
-               & > * {
+               &>* {
                     background-color: hsl(0, 0%, 5%);
                     border-radius: 5px;
                }
@@ -203,11 +204,11 @@ body {
                          &--casual {
                               --primary-color: hsl(240, 100%, 65%);
                          }
-                              
+
                          &--updates {
                               --primary-color: hsl(89, 96%, 63%);
                          }
-                              
+
                          &--technical {
                               --primary-color: hsl(42, 100%, 53%);
                          }
@@ -233,6 +234,7 @@ body {
                     --error-blink-text-color: hsl(357, 94%, 60%);
                     --error-blink-bg-color: transparent;
                     $error-blink-duration: 1s;
+
                     &__headtitle {
                          display: flex;
                          flex-direction: row;
@@ -337,7 +339,7 @@ body {
                grid-area: blogs-gallery;
                gap: 10px;
 
-               & > * {
+               &>* {
                     background-color: hsl(0, 0%, 5%);
                     border-radius: 5px;
                }
@@ -383,7 +385,7 @@ body {
                     background-color: transparent;
                     border-radius: 0px;
 
-                    & > * {
+                    &>* {
                          background-color: hsl(0, 0%, 5%);
                          border-radius: 5px;
                     }
@@ -398,7 +400,7 @@ body {
                          overflow: hidden;
                          height: 160px;
 
-                         & > * {
+                         &>* {
                               image-rendering: pixelated;
                               grid-area: 1 / 1;
                          }
@@ -426,8 +428,15 @@ body {
                          animation: contrasting 3s ease-in-out 0s infinite;
 
                          @keyframes contrasting {
-                              0%, 100% { filter: contrast(100%); }
-                              50%      { filter: contrast(200%); }
+
+                              0%,
+                              100% {
+                                   filter: contrast(100%);
+                              }
+
+                              50% {
+                                   filter: contrast(200%);
+                              }
                          }
                     }
 
@@ -445,9 +454,9 @@ body {
                display: grid;
                align-self: flex-start;
                grid-template-columns: 1fr;
-               grid-template-rows: 8cm 1.5cm;
+               grid-template-rows: 380px 1.5cm;
                grid-template-areas:
-                    "navigation-system"
+                    "navigation-information"
                     "navigation-pagination"
                ;
                grid-area: blogs-navigation;
@@ -455,18 +464,350 @@ body {
                position: sticky;
                top: 10px;
 
-               & > * {
+               &>* {
                     background-color: hsl(0, 0%, 5%);
-                    //border-radius: 5px;
                }
 
-               .system {
-                    grid-area: navigation-system;
+               .information {
+                    grid-area: navigation-information;
                     padding: 8px;
+
+                    .headbar {
+                         $primary-color: beige;
+
+                         display: flex;
+                         flex-direction: row;
+                         column-gap: 5px;
+
+                         &__heading {
+                              display: flex;
+                              flex-direction: row;
+                              align-items: center;
+                              justify-content: space-between;
+                              border: 2px solid $primary-color;
+                              border-left-width: 10px;
+                              padding: 3px 8px;
+                              width: 100%;
+                         }
+
+                         &__title {
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 1.1rem;
+                              font-weight: 700;
+                              font-stretch: expanded;
+                              text-transform: uppercase;
+                              color: $primary-color;
+                         }
+
+                         &__controls {
+                              display: flex;
+                              flex-direction: row;
+                              column-gap: 5px;
+                         }
+
+                         &__controls-btn {
+                              $button-size: 9px;
+
+                              width: $button-size;
+                              height: $button-size;
+
+                              &--close {
+                                   background-color: hsl(357, 94%, 60%);
+                              }
+
+                              &--minify {
+                                   background-color: hsl(42, 100%, 53%);
+                              }
+
+                              &--full {
+                                   background-color: hsl(89, 96%, 63%);
+                              }
+                         }
+
+                         &__decorations {
+                              display: flex;
+                              flex-direction: row;
+                              column-gap: 3px;
+                         }
+
+                         &__blocks {
+                              border: 2px solid $primary-color;
+                              width: calc((10px + 18px) / 2);
+                              height: auto;
+                         }
+                    }
+
+                    .package {
+                         display: flex;
+                         flex-direction: column;
+                         padding-inline: 1px;
+                         margin-block: 5px 10px;
+
+                         &__lines {
+                              display: flex;
+                              flex-direction: row;
+                              justify-content: space-between;
+                         }
+
+                         &__psuedocode {
+                              user-select: none;
+                              -webkit-user-select: none;
+                              font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+                              font-size: 0.65rem;
+                              font-weight: 550;
+                              text-transform: uppercase;
+                              line-height: 1.45;
+                              color: white;
+
+                              code-kyw {
+                                   color: hsl(1, 74%, 64%);
+                              }
+
+                              code-spc {
+                                   color: hsl(118, 100%, 78%);
+                              }
+
+                              code-pkg {
+                                   color: hsl(34, 100%, 65%);
+                              }
+
+                              code-data {
+                                   color: hsl(208, 100%, 78%);
+                              }
+
+                              code-func {
+                                   color: hsl(270, 100%, 86%);
+                              }
+                         }
+
+                         &__barstuff {
+                              user-select: none;
+                              -webkit-user-select: none;
+                              align-self: flex-end;
+                              image-rendering: pixelated;
+                              margin-top: 5px;
+                         }
+                    }
+
+                    .manual {
+                         display: grid;
+                         grid-template-columns: 88px auto;
+                         grid-template-rows: 1fr auto;
+                         grid-template-areas:
+                              "manual-banner manual-page"
+                              "manual-badges manual-page"
+                         ;
+                         gap: 10px;
+
+                         &__page {
+                              grid-area: manual-page;
+                              overflow-y: auto;
+                              height: 250px;
+                              padding: 0px 5px 5px 5px;
+
+                              &::-webkit-scrollbar {
+                                   width: 3px;
+                              }
+
+                              &::-webkit-scrollbar-track {
+                                   background: #000000;
+                              }
+
+                              &::-webkit-scrollbar-thumb {
+                                   background: #242424;
+                                   border-radius: 0px;
+                              }
+                         }
+
+                         &__headbar {
+                              display: flex;
+                              flex-direction: row;
+                              align-items: center;
+                              column-gap: 8px;
+                              margin-bottom: 5px;
+                         }
+
+                         &__headtitle {
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 1rem;
+                              font-weight: 750;
+                              font-stretch: semi-expanded;
+                              color: black;
+                              background-color: #a4fb46;
+                              width: fit-content;
+                              padding: 2px 5px 2px 3px;
+
+                              &::before {
+                                   content: '\279C ';
+                                   margin-right: 3px;
+                              }
+                         }
+
+                         &__headsubtitle {
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.9rem;
+                              font-weight: 750;
+                              font-stretch: semi-expanded;
+                              text-transform: uppercase;
+                              width: 100%;
+                         }
+
+                         &__headings {
+                              display: flex;
+                              align-items: center;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.8rem;
+                              font-weight: 550;
+                              font-stretch: semi-condensed;
+                              text-transform: uppercase;
+                              background-color: hsl(240, 100%, 65%);
+                              padding: 3px 5px;
+
+                              &::before {
+                                   content: "\2605";
+                                   margin-right: 3px;
+                              }
+                         }
+
+                         &__description {
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.75rem;
+                              text-align: start;
+                              line-height: 1.2;
+                              margin-block: 8px;
+                         }
+
+                         &__category {
+                              counter-reset: type-counter;
+                         }
+
+                         &__category-item {
+                              --primary-color: currentColor;
+
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.75rem;
+                              font-weight: bolder;
+                              text-align: start;
+                              margin-block: 5px;
+
+                              &::before {
+                                   content: counter(type-counter);
+                                   counter-increment: type-counter;
+                                   display: inline-block;
+                                   font-family: 'Zalando Sans', font.$standard-font;
+                                   font-size: 0.95rem;
+                                   font-weight: 600;
+                                   font-stretch: condensed;
+                                   text-align: center;
+                                   color: black;
+                                   background-color: var(--primary-color);
+                                   border-radius: 360px;
+                                   width: 20px;
+                                   height: 20px;
+                                   margin-right: 5px;
+                              }
+
+                              &--casual {
+                                   --primary-color: hsl(240, 100%, 65%);
+                              }
+
+                              &--updates {
+                                   --primary-color: hsl(89, 96%, 63%);
+                              }
+
+                              &--technical {
+                                   --primary-color: hsl(42, 100%, 53%);
+                              }
+                         }
+
+                         &__banner {
+                              user-select: none;
+                              -webkit-user-select: none;
+                              display: flex;
+                              flex-direction: column;
+                              grid-area: manual-banner;
+                              background-color: hsl(220, 15%, 10%);
+                              padding: 3px 5px 5px 5px;
+                         }
+
+                         &__banner-title {
+                              font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
+                              font-size: 1.5rem;
+                              color: beige;
+                         }
+
+                         &__banner-stats {
+                              display: flex;
+                              flex-direction: column;
+                              align-self: flex-end;
+                              padding-inline: 2px;
+                         }
+
+                         &__banner-accuracy {
+                              font-size: 0.7rem;
+                              color: beige;
+
+                              accr-num {
+                                   font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+                                   font-weight: 700;
+                              }
+                         }
+
+                         &__banner-decorations {
+                              display: flex;
+                              flex-direction: column;
+                              row-gap: 3px;
+                              margin-top: auto;
+                         }
+
+                         &__banner-blocks {
+                              font-size: 0.75rem;
+                              font-weight: bolder;
+                              color: black;
+                              height: 15px;
+                              padding-left: 3px;
+
+                              &--pallete-1 {
+                                   background-color: hsl(240, 100%, 65%);
+                              }
+
+                              &--pallete-2 {
+                                   background-color: hsl(89, 96%, 63%);
+                              }
+
+                              &--pallete-3 {
+                                   background-color: hsl(42, 100%, 53%);
+                              }
+                         }
+
+                         &__badges {
+                              display: flex;
+                              flex-direction: column;
+                              grid-area: manual-badges;
+                              row-gap: 5px;
+
+                              img {
+                                   image-rendering: pixelated;
+                              }
+                         }
+                    }
                }
 
                .pagination {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr;
                     grid-area: navigation-pagination;
+                    padding: 8px;
+
+                    &__title {
+                         font-family: 'Archivo', font.$standard-font;
+                         font-size: 1rem;
+                         font-weight: 800;
+                         font-stretch: semi-expanded;
+                         text-transform: lowercase;
+                         color: #a4fb46;
+                    }
                }
           }
 
@@ -475,7 +816,6 @@ body {
 
                &__directory {
                     table-layout: fixed;
-                    box-shadow: 3px 3px 0px 0px hsl(240, 72%, 45%);
                     border-collapse: collapse;
                     width: 100%;
 
@@ -606,9 +946,11 @@ body {
                     &--casual {
                          --primary-color: hsl(240, 100%, 65%);
                     }
+
                     &--updates {
                          --primary-color: hsl(89, 96%, 63%);
                     }
+
                     &--technical {
                          --primary-color: hsl(42, 100%, 53%);
                     }

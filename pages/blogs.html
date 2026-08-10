@@ -144,15 +144,94 @@
                               </marquee>
                          </div>
                          <div class="dejavu"></div>
-                         <div class="floccinaucinihilipilification"></div>
+                         <div class="floccinaucinihilipilification"></div> <!-- when i ran out of stuff to put, so i just put an image a downloaded years ago -->
                     </div>
                </article>
                <article class="navigation">
-                    <div class="system">
-                         
-                    </div>
-                    <div class="pagination">
-                    </div>
+                    <article class="information">
+                         <section class="headbar">
+                              <div class="headbar__heading">
+                                   <h1 class="headbar__title"> information </h1>
+                                   <div class="headbar__controls" aria-hidden="true">
+                                        <div class="headbar__controls-btn headbar__controls-btn--close"></div>
+                                        <div class="headbar__controls-btn headbar__controls-btn--minify"></div>
+                                        <div class="headbar__controls-btn headbar__controls-btn--full"></div>
+                                   </div>
+                              </div>
+                              <div class="headbar__decorations" aria-hidden="true">
+                                   <div class="headbar__blocks"></div>
+                                   <div class="headbar__blocks"></div>
+                              </div>
+                         </section>
+                         <section class="package" aria-hidden="true">
+                              <section class="package__lines">
+                                   <code class="package__psuedocode"><code-kyw>private</code-kyw> <code-kyw>const</code-kyw> <code-data>string</code-data></code>
+                                   <code class="package__psuedocode">systems_id <code-kyw>&equals;</code-kyw> <code-func>batch</code-func>()</code>
+                              </section>
+                              <section class="package__lines">
+                                   <code class="package__psuedocode"><code-kyw>repackaged</code-kyw> &lt;<code-spc>strict</code-spc>&gt;</code>
+                                   <code class="package__psuedocode"><code-kyw>@systems</code-kyw> <code-pkg>flavor</code-pkg>&lt;<code-spc>int</code-spc>&gt;</code>
+                              </section>
+                              <img class="package__barstuff" width="100" height="25"
+                                   alt="Peter Griffin" src="images/decorations/barstuff.png">
+                         </section>
+                         <section class="manual">
+                              <div class="manual__page">
+                                   <hgroup class="manual__headbar">
+                                        <h1 class="manual__headtitle">READ</h1>
+                                        <h2 class="manual__headsubtitle"> Check it out! </h2>
+                                   </hgroup>
+                                   <h2 class="manual__headings"> Delusional Ranting! </h2>
+                                   <p class="manual__description">
+                                        Welcome to my blogging page! There's not a lot going on here besides the blogs I've made.
+                                   </p>
+                                   <p class="manual__description">
+                                        So go read them or something—if you have basic reading comprehension.
+                                   </p>
+                                   <h2 class="manual__headings"> Types of What? </h2>
+                                   <p class="manual__description">
+                                        So many types of blogs to read, so little time... woudn't you agree?
+                                   </p>
+                                   <ol class="manual__category">
+                                        <li class="manual__category-item manual__category-item--casual">
+                                             Casual — <i>The ordinary stuff</i>
+                                        </li>
+                                        <li class="manual__category-item manual__category-item--updates">
+                                             Updates — <i>Site progress</i>
+                                        </li>
+                                        <li class="manual__category-item manual__category-item--technical">
+                                             Technical — <i>Boring nerd stuff</i>
+                                        </li>
+                                   </ol>
+                              </div>
+                              <div class="manual__banner" aria-hidden="true">
+                                   <h1 class="manual__banner-title">FLVR</h1>
+                                   <div class="manual__banner-stats">
+                                        <p class="manual__banner-accuracy">
+                                             <accr-crement>&#9664;</accr-crement> <accr-num>00.0%</accr-num>
+                                        </p>
+                                        <p class="manual__banner-accuracy">
+                                             <accr-crement>&#9664;</accr-crement> <accr-num>00.0%</accr-num>
+                                        </p>
+                                        <p class="manual__banner-accuracy">
+                                             <accr-crement>&#9664;</accr-crement> <accr-num>00.0%</accr-num>
+                                        </p>
+                                   </div>
+                                   <div class="manual__banner-decorations">
+                                        <div class="manual__banner-blocks manual__banner-blocks--pallete-1">&#10022;</div>
+                                        <div class="manual__banner-blocks manual__banner-blocks--pallete-2">&#10022;</div>
+                                        <div class="manual__banner-blocks manual__banner-blocks--pallete-3">&#10022;</div>
+                                   </div>
+                              </div>    
+                              <div class="manual__badges">
+                                   <img src="images/badges/js.png" alt="Goddamn Javascript" width="88" height="31">
+                                   <img src="images/badges/html.webp" alt="HTML" width="88" height="31">
+                              </div>
+                         </section>
+                    </article>
+                    <article class="pagination" aria-hidden="true">
+                         <h1 class="pagination__title"> Pagination </h1>
+                    </article>
                </article>
                <article class="weblog">
                     <table class="weblog__directory">
@@ -186,4 +265,21 @@
                </article>
           </main>
      </article>
+     <script type="module">
+          import { getRandomInt } from "../javascript/modules/shortcuts.js";
+
+          const bannerAccr = document.querySelectorAll('.manual__banner-accuracy')
+          const bannerAccrCrement = document.querySelectorAll('.manual__banner-accuracy accr-crement')
+          const bannerAccrNumbers = document.querySelectorAll('.manual__banner-accuracy accr-num')
+          for (let index = 0; index < 3; index++) {
+               const accuracyLines    = bannerAccr[index]
+               const accuracyCrements = bannerAccrCrement[index];
+               const accuracyNumbers  = bannerAccrNumbers[index];
+               
+               const randomize = getRandomInt(0, 1)
+               accuracyLines.style.color  = randomize === 1 ? 'hsl(89, 96%, 63%)' : 'hsl(357, 94%, 60%)'
+               accuracyCrements.innerHTML = randomize === 1 ? '&#9650;' : '&#9660;'
+               accuracyNumbers.innerHTML  = `${getRandomInt(0, 35)}.${getRandomInt(0, 9)}%`.padStart(5, '0')
+          }
+     </script>
 </body>

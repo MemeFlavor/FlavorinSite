@@ -60,8 +60,8 @@ body {
                grid-template-columns: 3fr 1fr 2fr;
                grid-template-rows: 3fr 75px;
                grid-template-areas:
-                    "header-windows header-monachopsis header-test"
-                    "header-stats header-monachopsis header-test"
+                    "header-windows header-monachopsis header-unknown"
+                    "header-stats header-monachopsis header-unknown"
                ;
                grid-area: blogs-header;
                gap: 10px;
@@ -76,6 +76,7 @@ body {
                     background-image: url(https://static.wikitide.net/windowswallpaperwiki/c/cf/Bliss.jpg);
                     background-size: cover;
                     background-position: center;
+                    background-blend-mode: exclusion;
 
                     &__screensaver {
                          width: 100%;
@@ -126,6 +127,8 @@ body {
                          }
 
                          button-group {
+                              user-select: none;
+                              -webkit-user-select: none;
                               display: inline-block;
                               position: absolute;
                               right: 8px;
@@ -288,10 +291,26 @@ body {
                     }
                }
 
-               .test {
-                    grid-area: header-test;
-                    
-                    
+               .unknown {
+                    user-select: none;
+                    -webkit-user-select: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    grid-area: header-unknown;
+                    background: hsl(240, 70%, 8%);
+                    background: linear-gradient(to bottom, hsl(240, 70%, 8%) 0%, hsl(240, 70%, 0%) 100%);
+                    padding: 8px;
+               
+                    &__date {
+                         font-family: 'Archivo', font.$standard-font;
+                         font-size: 1.5rem;
+                         font-weight: 850;
+                         font-stretch: condensed;
+                         color: beige;
+                         border: 3px solid beige;
+                         padding: 3px 10px;
+                    }
                }
 
                .monachopsis {
@@ -359,7 +378,7 @@ body {
                     background-color: transparent;
                     border-radius: 0px;
 
-                    &>* {
+                    & > * {
                          background-color: hsl(0, 0%, 5%);
                          border-radius: 5px;
                     }
@@ -374,7 +393,7 @@ body {
                          overflow: hidden;
                          height: 160px;
 
-                         &>* {
+                         & > * {
                               image-rendering: pixelated;
                               grid-area: 1 / 1;
                          }
@@ -402,15 +421,8 @@ body {
                          animation: contrasting 3s ease-in-out 0s infinite;
 
                          @keyframes contrasting {
-
-                              0%,
-                              100% {
-                                   filter: contrast(100%);
-                              }
-
-                              50% {
-                                   filter: contrast(200%);
-                              }
+                              0%, 100% { filter: contrast(100%); }
+                              50%      { filter: contrast(200%); }
                          }
                     }
 
@@ -576,6 +588,7 @@ body {
                          &__page {
                               grid-area: manual-page;
                               overflow-y: auto;
+                              outline: none;
                               height: 250px;
                               padding: 0px 5px 5px 5px;
 
@@ -590,6 +603,10 @@ body {
                               &::-webkit-scrollbar-thumb {
                                    background: #242424;
                                    border-radius: 0px;
+                              }
+
+                              &:focus-visible::-webkit-scrollbar-thumb {
+                                   background: hsl(0, 0%, 35%);
                               }
                          }
 

@@ -10,8 +10,14 @@
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 
 body {
-     display: flex;
+     display: grid;
      justify-content: center;
+     grid-template-columns: auto 900px;
+     grid-template-rows: 1fr;
+     grid-template-areas:
+          "flavory-sidebar flavory-blogs"
+     ;
+     gap: 5px;
      font-family: font.$standard-font;
      background-image: url(../images/backgrounds/apartment.avif);
      background-repeat: no-repeat;
@@ -20,17 +26,7 @@ body {
      background-color: #312e3d; //#312e3d
      background-position-y: center;
      background-blend-mode: color-burn;
-
-     #flavory-content {
-          display: grid;
-          grid-template-columns: auto 900px;
-          grid-template-rows: 1fr;
-          grid-template-areas:
-               "flavory-sidebar flavory-blogs"
-          ;
-          gap: 5px;
-          margin-block: 0.5cm;
-     }
+     margin-block: 0.5cm;
 
      .sidebar {
           align-self: flex-start;
@@ -286,7 +282,7 @@ body {
                          &--void {
                               --itembar-primary-color: hsl(357, 94%, 60%);
                               --itembar-percentage: 2;
-                         }               
+                         }
                     }
                }
 
@@ -454,12 +450,11 @@ body {
                }
 
                .information {
+                    --information-primary-color: beige;
                     grid-area: navigation-information;
                     padding: 8px;
 
                     .headbar {
-                         $primary-color: beige;
-
                          display: flex;
                          flex-direction: row;
                          column-gap: 5px;
@@ -469,7 +464,7 @@ body {
                               flex-direction: row;
                               align-items: center;
                               justify-content: space-between;
-                              border: 2px solid $primary-color;
+                              border: 2px solid var(--information-primary-color);
                               border-left-width: 10px;
                               padding: 3px 8px;
                               width: 100%;
@@ -481,7 +476,7 @@ body {
                               font-weight: 700;
                               font-stretch: expanded;
                               text-transform: uppercase;
-                              color: $primary-color;
+                              color: var(--information-primary-color);
                          }
 
                          &__controls {
@@ -491,10 +486,9 @@ body {
                          }
 
                          &__controls-btn {
-                              $button-size: 9px;
-
-                              width: $button-size;
-                              height: $button-size;
+                              background-color: silver;
+                              width: 9px;
+                              height: 9px;
 
                               &--close {
                                    background-color: hsl(357, 94%, 60%);
@@ -516,7 +510,7 @@ body {
                          }
 
                          &__blocks {
-                              border: 2px solid $primary-color;
+                              border: 2px solid var(--information-primary-color);
                               width: calc((10px + 18px) / 2);
                               height: auto;
                          }
@@ -672,7 +666,7 @@ body {
                          }
 
                          &__category-item {
-                              --primary-color: currentColor;
+                              --category-item-color: currentColor;
 
                               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                               font-size: 0.75rem;
@@ -690,7 +684,7 @@ body {
                                    font-stretch: condensed;
                                    text-align: center;
                                    color: black;
-                                   background-color: var(--primary-color);
+                                   background-color: var(--category-item-color);
                                    border-radius: 360px;
                                    width: 20px;
                                    height: 20px;
@@ -698,15 +692,15 @@ body {
                               }
 
                               &--casual {
-                                   --primary-color: hsl(240, 100%, 65%);
+                                   --category-item-color: hsl(240, 100%, 65%);
                               }
 
                               &--updates {
-                                   --primary-color: hsl(89, 96%, 63%);
+                                   --category-item-color: hsl(89, 96%, 63%);
                               }
 
                               &--technical {
-                                   --primary-color: hsl(42, 100%, 53%);
+                                   --category-item-color: hsl(42, 100%, 53%);
                               }
                          }
 
@@ -723,7 +717,7 @@ body {
                          &__banner-title {
                               font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
                               font-size: 1.5rem;
-                              color: beige;
+                              color: var(--information-primary-color);
                          }
 
                          &__banner-stats {
@@ -735,7 +729,7 @@ body {
 
                          &__banner-accuracy {
                               font-size: 0.7rem;
-                              color: beige;
+                              color: var(--information-primary-color);
 
                               accr-num {
                                    font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
@@ -911,7 +905,7 @@ body {
                }
 
                &__pages-tags {
-                    --primary-color: currentColor;
+                    --pages-tag-color: currentColor;
 
                     font-family: "Zalando Sans", font.$standard-font;
                     font-size: 0.65rem;
@@ -921,13 +915,13 @@ body {
                     color: hsl(0, 0%, 70%);
                     background-color: hsl(0, 0%, 1%);
                     box-shadow: 1px 1px 0px 0px hsla(60, 56%, 91%, 0.8);
-                    border: 1px solid var(--primary-color);
+                    border: 1px solid var(--pages-tag-color);
                     padding: 2px 4px;
 
                     &::before {
                          content: "";
                          display: inline-block;
-                         background-color: var(--primary-color);
+                         background-color: var(--pages-tag-color);
                          border-radius: 360px;
                          width: 8px;
                          height: 8px;
@@ -939,15 +933,15 @@ body {
                     }
 
                     &--casual {
-                         --primary-color: hsl(240, 100%, 65%);
+                         --pages-tag-color: hsl(240, 100%, 65%);
                     }
 
                     &--updates {
-                         --primary-color: hsl(89, 96%, 63%);
+                         --pages-tag-color: hsl(89, 96%, 63%);
                     }
 
                     &--technical {
-                         --primary-color: hsl(42, 100%, 53%);
+                         --pages-tag-color: hsl(42, 100%, 53%);
                     }
                }
 

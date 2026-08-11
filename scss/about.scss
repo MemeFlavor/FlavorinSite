@@ -9,8 +9,14 @@
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
 body {
-     display: flex;
+     display: grid;
      justify-content: center;
+     grid-template-columns: auto 900px;
+     grid-template-rows: 1fr;
+     grid-template-areas:
+          "flavory-sidebar flavory-about"
+     ;
+     gap: 5px;
      font-family: font.$standard-font;
      background-image: url(../images/backgrounds/locker.avif);
      background-repeat: no-repeat;
@@ -18,17 +24,7 @@ body {
      background-attachment: fixed;
      background-color: #312e3d;
      background-blend-mode: color-burn;
-
-     #flavory-content {
-          display: grid;
-          grid-template-columns: auto 900px;
-          grid-template-rows: 1fr;
-          grid-template-areas:
-               "flavory-sidebar flavory-about"
-          ;
-          gap: 5px;
-          margin-block: 0.5cm;
-     }
+     margin-block: 0.5cm;
 
      .sidebar {
           grid-area: flavory-sidebar;

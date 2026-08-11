@@ -9,8 +9,15 @@
 @include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 
 body {
-     display: flex;
+     display: grid;
      justify-content: center;
+     grid-template-columns: auto 900px;
+     grid-template-rows: auto 1fr;
+     grid-template-areas:
+          "flavory-header flavory-header"
+          "flavory-sidebar flavory-home"
+     ;
+     gap: 20px 5px;
      font-family: font.$standard-font;
      background-image: url(../images/backgrounds/grasslands.avif);
      background-repeat: no-repeat;
@@ -18,18 +25,7 @@ body {
      background-attachment: fixed;
      background-color: #312e3d;
      background-blend-mode: color-burn;
-
-     #flavory-content {
-          display: grid;
-          grid-template-columns: auto 900px;
-          grid-template-rows: auto-fill 1fr 1fr;
-          grid-template-areas:
-               "flavory-header flavory-header"
-               "flavory-sidebar flavory-home"
-          ;
-          gap: 20px 5px;
-          margin-block: 0.5cm;
-     }
+     margin-block: 0.5cm;
 
      .sidebar {
           grid-area: flavory-sidebar;
@@ -53,14 +49,21 @@ body {
                gap: 20px;
           }
 
-          &__characters-profile[alt="Metal Sonic"] {
-               box-shadow: 5px 5px 0px 0px #001073;
-          }
-          &__characters-profile[alt="Sonic"] {
-               box-shadow: 5px 5px 0px 0px #0e41b7;
-          }
-          &__characters-profile[alt="Amy"] {
-               box-shadow: 5px 5px 0px 0px #ce5592;
+          &__characters-profile {
+               --character-profile-color: transparent;
+               box-shadow: 5px 5px 0px 0px var(--character-profile-color);
+
+               &[alt="Metal Sonic"] {
+                    --character-profile-color: #001073;
+               }
+
+               &[alt="Sonic"] {
+                    --character-profile-color: #0e41b7;
+               }
+
+               &[alt="Amy"] {
+                    --character-profile-color: #ce5592;
+               }
           }
      }
 

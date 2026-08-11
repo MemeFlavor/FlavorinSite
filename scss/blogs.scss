@@ -7,6 +7,7 @@
 @include font.font-face-var('JetBrains Mono', 100 800, normal, normal, 1, font.$font-source-variable);
 @include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
+@include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 
 body {
@@ -59,8 +60,8 @@ body {
                grid-template-columns: 3fr 1fr 2fr;
                grid-template-rows: 3fr 75px;
                grid-template-areas:
-                    "header-information header-gays header-windows"
-                    "header-stats header-gays header-windows"
+                    "header-windows header-monachopsis header-test"
+                    "header-stats header-monachopsis header-test"
                ;
                grid-area: blogs-header;
                gap: 10px;
@@ -70,8 +71,106 @@ body {
                     border-radius: 5px;
                }
 
-               .information {
-                    grid-area: header-information;
+               .windows {
+                    grid-area: header-windows;
+                    background-image: url(https://static.wikitide.net/windowswallpaperwiki/c/cf/Bliss.jpg);
+                    background-size: cover;
+                    background-position: center;
+
+                    &__screensaver {
+                         width: 100%;
+                         height: 100%;
+                    }
+
+                    &__prompt {
+                         background-color: #c0c0c0;
+                         border: 1px solid #c0c0c0;
+                         border-bottom-color: black;
+                         border-right-color: black;
+                         position: relative;
+                         width: 150px;
+                         height: 80px;
+
+                         &::before {
+                              content: '';
+                              border-width: 1px;
+                              border-style: solid;
+                              border-top-color: white;
+                              border-left-color: white;
+                              border-bottom-color: hsl(0, 0%, 50%);
+                              border-right-color: hsl(0, 0%, 50%);
+                              position: absolute;
+                              width: 100%;
+                              height: 100%;
+                         }
+                    }
+
+                    &__headbar {
+                         font-family: 'MS Pixel Serif', font.$standard-font;
+                         font-size: 0.3rem;
+                         font-weight: bold;
+                         background: navy;
+                         background: linear-gradient(to right, navy 20%, hsl(197, 70%, 56%) 100%);
+                         padding-block: 3px 1px;
+                         padding-inline: 5px;
+                    }
+
+                    &__body {
+                         padding: 5px;
+
+                         p {
+                              font-family: 'MS Pixel Serif', font.$standard-font;
+                              font-size: 0.25rem;
+                              color: black;
+                              margin-top: 3px;
+                         }
+
+                         button-group {
+                              display: inline-block;
+                              position: absolute;
+                              right: 8px;
+                              bottom: 8px;
+                         }
+
+                         button {
+                              font-family: 'MS Pixel Serif', font.$standard-font;
+                              font-size: 0.25rem;
+                              color: black;
+                              background-color: #c0c0c0;
+                              border: 1px solid #c0c0c0;
+                              border-bottom-color: black;
+                              border-right-color: black;
+                              position: relative;
+                              width: 55px;
+                              height: 18px;
+
+                              &:hover {
+                                   cursor: pointer;
+                                   border-color: black;
+                              }
+
+                              &:active span {
+                                   display: inline-block;
+                                   border: 1px dotted black;
+                                   width: calc(55px * 0.85);
+                                   padding-block: 1px;
+                              }
+                         
+                              &::before {
+                                   content: '';
+                                   border-width: 1px;
+                                   border-style: solid;
+                                   border-top-color: white;
+                                   border-left-color: white;
+                                   border-bottom-color: hsl(0, 0%, 50%);
+                                   border-right-color: hsl(0, 0%, 50%);
+                                   position: absolute;
+                                   inset: 0;
+                                   width: 100%;
+                                   height: 100%;
+                              }
+                         }
+                    }
                }
 
                .stats {
@@ -189,14 +288,15 @@ body {
                     }
                }
 
-               .windows {
-                    grid-area: header-windows;
+               .test {
+                    grid-area: header-test;
+                    
                     
                }
 
-               .gay {
-                    grid-area: header-gays;
-                    background-image: url(https://preview.redd.it/what-exactly-is-a-dream-v0-qd2fuo6mwshh1.jpeg?width=1080&crop=smart&auto=webp&s=4ffc5a3c5a975435395886ed799fd1c25f0c4d74);
+               .monachopsis {
+                    grid-area: header-monachopsis;
+                    background-image: url(https://preview.redd.it/japanese-subway-stations-v0-5p1icvffsifh1.jpeg?width=1080&crop=smart&auto=webp&s=d98bfc013d99e61d78d1037507247c31dd7a950e);
                     background-size: cover;
                     background-position: center;
                }

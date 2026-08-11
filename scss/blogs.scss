@@ -896,6 +896,11 @@ body {
                          outline: none;
                          width: fit-content;
                     }
+
+                    &::selection {
+                         color: white;
+                         background-color: cornflowerblue;
+                    }
                }
 
                &__pages-stickers {

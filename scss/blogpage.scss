@@ -164,12 +164,13 @@ body {
           }
 
           &__code-lines {
+               user-select: none;
+               -webkit-user-select: none;
                display: flex;
                flex-direction: column;
                text-align: right;
                color: silver;
                margin-inline: 25px;
-               @include sc.user-select(none);
           }
 
           &__code-body {

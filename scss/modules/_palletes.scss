@@ -1,0 +1,14 @@
+@use 'sass:color';
+
+@function color-contrast($background-color) {
+     $r: color.channel($background-color, "red", $space: rgb);
+     $g: color.channel($background-color, "green", $space: rgb);
+     $b: color.channel($background-color, "blue", $space: rgb);
+
+     $brightness: calc((($r * 299) + ($g * 587) + ($b * 114)) / 1000);
+     @if ($brightness > 128) {
+          @return #000000;
+     } @else {
+          @return #ffffff;
+     }
+}

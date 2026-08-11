@@ -15,8 +15,9 @@
      <link rel="stylesheet" type="text/css" href="css/reset.css">
      <link rel="stylesheet" type="text/css" href="css/blogs.css">
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
-     <script type="module" src="javascript/sidebar.js"></script>
+     <script type="module" src="javascript/components/weblogs.js"></script>
      <script type="module" src="javascript/blogs.js"></script>
+     <script type="module" src="javascript/sidebar.js"></script>
 </head>
 <body>
      <article id="flavory-content">
@@ -252,21 +253,4 @@
                </article>
           </main>
      </article>
-     <script type="module">
-          import { getRandomInt } from "../javascript/modules/shortcuts.js";
-
-          const bannerAccr = document.querySelectorAll('.manual__banner-accuracy')
-          const bannerAccrCrement = document.querySelectorAll('.manual__banner-accuracy accr-crement')
-          const bannerAccrNumbers = document.querySelectorAll('.manual__banner-accuracy accr-num')
-          for (let accuracyIndex = 0; accuracyIndex < 3; accuracyIndex++) {
-               const accuracyLines    = bannerAccr[accuracyIndex]
-               const accuracyCrements = bannerAccrCrement[accuracyIndex];
-               const accuracyNumbers  = bannerAccrNumbers[accuracyIndex];
-               
-               const randomize = getRandomInt(0, 1)
-               accuracyLines.style.color  = randomize === 1 ? 'hsl(89, 96%, 63%)' : 'hsl(357, 94%, 60%)'
-               accuracyCrements.innerHTML = randomize === 1 ? '&#9650;' : '&#9660;'
-               accuracyNumbers.innerHTML  = `${getRandomInt(0, 35)}.${getRandomInt(0, 9)}%`.padStart(5, '0')
-          }
-     </script>
 </body>

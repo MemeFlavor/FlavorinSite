@@ -1,49 +1,15 @@
-import weblogs from '../json/weblogs.json' with { type: 'json' };
+import { getRandomInt } from "./modules/shortcuts.js";
 
-const Ranks = Object.freeze({
-     FRESH: 0,
-     PRESERVED: 3
-});
+const bannerAccr = document.querySelectorAll('.manual__banner-accuracy')
+const bannerAccrCrement = document.querySelectorAll('.manual__banner-accuracy accr-crement')
+const bannerAccrNumbers = document.querySelectorAll('.manual__banner-accuracy accr-num')
+for (let accuracyIndex = 0; accuracyIndex < 3; accuracyIndex++) {
+     const accuracyLines = bannerAccr[accuracyIndex]
+     const accuracyCrements = bannerAccrCrement[accuracyIndex];
+     const accuracyNumbers = bannerAccrNumbers[accuracyIndex];
 
-const weblogsBodyDirectory = document.querySelector('.weblog__directory tbody')
-const weblogsBodyRank = document.querySelector('.weblog__rank');
-const weblogsBodyPage = document.querySelector('.weblog__pages');
-const weblogsPageTags = document.querySelector('.weblog__pages-tags')
-weblogsBodyRank.remove();
-weblogsBodyPage.remove();
-weblogsPageTags.remove()
-
-function createWeblogRank(rankName) {
-     const weblogsBodyRankClone = weblogsBodyRank.cloneNode(true);
-     weblogsBodyRankClone.querySelector('.weblog__ranktitle').textContent = rankName
-     weblogsBodyDirectory.appendChild(weblogsBodyRankClone)
-}
-
-function createWeblogPages(weblogData) {
-     const bloglistContentClone = weblogsBodyPage.cloneNode(true);
-     bloglistContentClone.querySelector('.weblog__pages-titlelink').textContent = weblogData.title.content;
-     bloglistContentClone.querySelector('.weblog__pages-titlelink').setAttribute('href', weblogData.title.link);
-     bloglistContentClone.querySelector('.weblog__pages-date').textContent = weblogData.date;
-     bloglistContentClone.querySelector('.weblog__pages-date').setAttribute('datetime', weblogData.date)
-
-     for (const tags of weblogData.tags) {
-          const weblogPageNewTags = document.createElement("span");
-          weblogPageNewTags.textContent = tags;
-          weblogPageNewTags.classList.add('weblog__pages-tags', `weblog__pages-tags--${tags}`)
-
-          bloglistContentClone.querySelector('.weblog__pages-stickers').appendChild(weblogPageNewTags)
-     }
-     bloglistContentClone.setAttribute('data-tags', weblogData.tags.join(' '))
-
-     bloglistContentClone.querySelector('.weblog__pages-description').textContent = weblogData.description;
-     weblogsBodyDirectory.appendChild(bloglistContentClone);
-}
-
-for (const [weblogPage, weblogData] of Object.entries(weblogs)) {
-     if (weblogPage == Ranks.FRESH) {
-          createWeblogRank('Fresh Bumfuzzles')
-     } else if (weblogPage == Ranks.PRESERVED) {
-          createWeblogRank('Preserved Flavors')
-     }
-     createWeblogPages(weblogData)
+     const randomize = getRandomInt(0, 1)
+     accuracyLines.style.color = randomize === 1 ? 'hsl(89, 96%, 63%)' : 'hsl(357, 94%, 60%)'
+     accuracyCrements.innerHTML = randomize === 1 ? '&#9650;' : '&#9660;'
+     accuracyNumbers.innerHTML = `${getRandomInt(0, 35)}.${getRandomInt(0, 9)}%`.padStart(5, '0')
 }

@@ -1,4 +1,3 @@
-@use '../modules/shortcuts.scss' as sc;
 @use '../modules/fonts.scss' as font;
 @use "sass:string";
 @use "sass:list";
@@ -20,18 +19,20 @@ body .sidebar {
      height: fit-content;
      
      &__headbar {
+          user-select: none;
+          -webkit-user-select: none;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
           overflow: hidden;
+          background: #3837b9;
+          background: linear-gradient(180deg, #3837b9 0%, #1e1e68 85%);
           border-bottom: 2.5px solid hsl(238, 64%, 60%);
           position: relative;
           height: auto;
           gap: 8px;
           padding-block: 8px 10px;
-          @include sc.gradient(180deg, #3837b9 0%, #1e1e68 85%);
-          @include sc.user-select(none);
      
           // Stolen Code @see https://aleclownes.com/2017/02/01/crt-display.html
           &::before {
@@ -67,11 +68,12 @@ body .sidebar {
           font-size: 1.05rem;
           font-weight: 800;
           font-stretch: 105%;
+          background: #39b11f;
+          background: linear-gradient(180deg, #39b11f 0%, #247812 100%);
           border-right: 3px solid #104206;
           width: fit-content;
           padding-block: 5px;
           padding-inline: 10px;
-          @include sc.gradient(180deg, #39b11f 0%, #247812 100%);
      }
      
      &__headbar-slogan {
@@ -106,8 +108,9 @@ body .sidebar {
                grid-template-columns: 1fr;
                grid-template-rows: 1fr;
                align-items: center;
+               background: rgb(85, 85, 85);
+               background: linear-gradient(165deg, rgb(85, 85, 85) 0%, rgb(39, 39, 39) 95%);
                border-block: 1px solid black;
-               @include sc.gradient(165deg, rgb(85, 85, 85) 0%, rgb(39, 39, 39) 95%);
      
                & > * {
                     grid-area: 1 / 1;
@@ -121,16 +124,18 @@ body .sidebar {
                font-weight: 700;
                border-inline: 1px solid black;
                width: fit-content;
+               background: hsl(219, 52%, 56%);
+               background: linear-gradient(165deg, hsl(219, 52%, 56%) 0%, hsl(219, 40%, 25%) 95%);
                padding: 5px 8px;
                margin-left: 10px;
-               @include sc.gradient(165deg, hsl(219, 52%, 56%) 0%, hsl(219, 40%, 25%) 95%);
           }
      
           &__headbar-marquee {
+               user-select: none;
+               -webkit-user-select: none;
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: 0.75rem;
                font-style: italic;
-               @include sc.user-select(none);
           }
      
           &:last-of-type {
@@ -206,13 +211,15 @@ body .sidebar {
                outline: 1px solid black;
                position: relative;
                padding: 3px 8px;
+               background: var(--navigation-primary-color);
+               background: linear-gradient(45deg, var(--navigation-primary-color) 0%, var(--navigation-secondary-color) 100%);
                margin-left: var(--navigation-current-margin-left);
-               @include sc.gradient(45deg, var(--navigation-primary-color) 0%, var(--navigation-secondary-color) 100%);
      
                &:hover {
                     font-style: var(--navigation-text-hover-style);
                     color: var(--navigation-text-hover-color);
-                    @include sc.gradient(45deg, var(--navigation-primary-hover-color) 0%, var(--navigation-secondary-hover-color) 100%);
+                    background: var(--navigation-primary-hover-color);
+                    background: linear-gradient(45deg, var(--navigation-primary-hover-color) 0%, var(--navigation-secondary-hover-color) 100%);
      
                     &::before {
                          background-color: var(--navigation-primary-hover-color);

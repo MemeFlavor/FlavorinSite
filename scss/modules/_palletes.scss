@@ -1,9 +1,31 @@
 @use 'sass:color';
 
-@function color-contrast($background-color) {
-     $r: color.channel($background-color, "red", $space: rgb);
-     $g: color.channel($background-color, "green", $space: rgb);
-     $b: color.channel($background-color, "blue", $space: rgb);
+/* Main Flavors */
+
+$flavor-primary-color: hsl(240, 100%, 65%);
+$flavor-secondary-color: hsl(89, 96%, 63%);
+$flavor-tertiary-color: hsl(42, 100%, 53%);
+$flavor-quaternary-color: hsl(357, 94%, 60%);
+
+/* Side Flavors */
+
+$flavor-wallpaper-color: hsl(252, 14%, 21%);
+$flavor-content-color: hsl(0, 3%, 10%);
+$flavor-bento-color: hsl(0, 0%, 5%);
+
+$flavor-scrollbar-background: hsl(0, 0%, 0%);
+$flavor-scrollbar-thumb: hsl(254, 25%, 14%);
+
+/* Extra Flavors */
+
+/// Calculate the contrast ratio of text and background colors.
+/// I also stole this code from somewhere.
+/// @param {color} $color - The color to measure its contrast
+/// @return The contrasting color, either white or black.
+@function color-contrast($color) {
+     $r: color.channel($color, "red", $space: rgb);
+     $g: color.channel($color, "green", $space: rgb);
+     $b: color.channel($color, "blue", $space: rgb);
 
      $brightness: calc((($r * 299) + ($g * 587) + ($b * 114)) / 1000);
      @if ($brightness > 128) {

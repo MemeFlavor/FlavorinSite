@@ -1,3 +1,6 @@
+@use './modules/palletes.scss' as plt;
+@use 'sass:color';
+
 *, *::before, *::after {
      box-sizing: border-box;
      padding: 0;
@@ -15,11 +18,11 @@ html {
      }
 
      &::-webkit-scrollbar-track {
-          background: #000000;
+          background: plt.$flavor-scrollbar-background;
      }
 
      &::-webkit-scrollbar-thumb {
-          background: #242424;
+          background: plt.$flavor-scrollbar-thumb;
           border-radius: 0px;
      }
 }

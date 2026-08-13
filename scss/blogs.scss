@@ -188,6 +188,8 @@ body {
                }
 
                .deathscreen {
+                    user-select: none;
+                    -webkit-user-select: none;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -481,7 +483,7 @@ body {
                          grid-template-columns: 88px auto;
                          grid-template-rows: 1fr auto;
                          grid-template-areas:
-                              "manual-banner manual-page"
+                              "manual-ticket manual-page"
                               "manual-badges manual-page"
                          ;
                          gap: 10px;
@@ -615,47 +617,78 @@ body {
                               }
                          }
 
-                         &__banner {
+                         &__ticket {
                               user-select: none;
                               -webkit-user-select: none;
                               display: flex;
                               flex-direction: column;
-                              grid-area: manual-banner;
-                              background-color: hsl(220, 15%, 10%);
-                              padding: 3px 5px 5px 5px;
-                         }
+                              grid-area: manual-ticket;
+                              background: hsl(220, 15%, 10%);
 
-                         &__banner-title {
-                              font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
-                              font-size: 1.5rem;
-                              color: $information-primary-color;
-                         }
+                              h1 {
+                                   font-family: 'Archivo', font.$standard-font;
+                                   font-size: 1rem;
+                                   font-weight: 800;
+                                   font-stretch: semi-condensed;
+                                   text-align: center;
+                                   text-transform: uppercase;
+                                   color: plt.color-contrast(plt.$flavor-tertiary-color);
+                                   background-color: plt.$flavor-tertiary-color;
+                                   padding: calc((3px + 4px) / 2.5) 5px;
+                              }
 
-                         &__banner-deathscreen {
-                              display: flex;
-                              flex-direction: column;
-                              align-self: flex-end;
-                              padding-inline: 2px;
-                         }
+                              p {
+                                   font-family: 'Trebuchet MS';
+                                   font-size: calc((0.50rem + 0.55rem) / 2);
+                                   font-weight: bolder;
+                                   text-align: justify;
+                                   text-justify: inter-word;
+                                   color: $information-primary-color;
+                                   padding: 8px 5px;
+                              }
 
-                         &__banner-accuracy {
-                              font-size: 0.7rem;
-                              color: $information-primary-color;
-
-                              accr-num {
-                                   font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
-                                   font-weight: 700;
+                              img {
+                                   align-self: center;
+                                   image-rendering: pixelated;
                               }
                          }
 
-                         &__banner-decorations {
+                         &__ticket-title {
+                              font-family: 'Archivo', font.$standard-font;
+                              font-size: 1rem;
+                              font-weight: 800;
+                              font-stretch: semi-condensed;
+                              text-align: center;
+                              text-transform: uppercase;
+                              color: plt.color-contrast(plt.$flavor-tertiary-color);
+                              background-color: plt.$flavor-tertiary-color;
+                              padding: calc((3px + 4px) / 2.5) 5px;
+                         }
+
+                         &__ticket-description {
+                              font-family: 'Trebuchet MS' font.$standard-fancy-font, font.$standard-font;
+                              font-size: calc((0.50rem + 0.55rem) / 2);
+                              font-weight: bolder;
+                              text-align: justify;
+                              text-justify: inter-word;
+                              color: $information-primary-color;
+                              padding: 8px 5px;
+                         }
+
+                         &__ticket-reminder {
+                              align-self: center;
+                              image-rendering: pixelated;
+                         }
+
+                         &__ticket-decorations {
                               display: flex;
                               flex-direction: column;
                               row-gap: 3px;
+                              padding: 5px;
                               margin-top: auto;
                          }
 
-                         &__banner-blocks {
+                         &__ticket-blocks {
                               font-size: 0.75rem;
                               font-weight: bolder;
                               color: black;
@@ -672,7 +705,7 @@ body {
                               }
 
                               &--pallete-3 {
-                                   background-color: plt.$flavor-tertiary-color;
+                                   background-color: plt.$flavor-quaternary-color;
                               }
                          }
 

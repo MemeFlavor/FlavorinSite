@@ -594,22 +594,22 @@ body {
                               grid-area: manual-page;
                               overflow-y: auto;
                               outline: none;
-                              height: 250px;
+                              height: 257px;
                               padding: 0px 5px 5px 5px;
 
                               &::-webkit-scrollbar {
                                    width: 3px;
                               }
-
+                              
                               &::-webkit-scrollbar-track {
                                    background: plt.$flavor-scrollbar-background;
                               }
-
+                              
                               &::-webkit-scrollbar-thumb {
                                    background: plt.$flavor-scrollbar-thumb;
                                    border-radius: 0px;
                               }
-
+                              
                               &:focus-visible::-webkit-scrollbar-thumb {
                                    background: color.adjust(plt.$flavor-scrollbar-thumb, $lightness: 10%);
                               }

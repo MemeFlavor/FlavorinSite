@@ -1,5 +1,6 @@
 @use './modules/fonts.scss' as font;
-@use 'sass:list';
+@use './modules/palletes.scss' as plt;
+@use 'sass:color';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
@@ -33,587 +34,72 @@ body {
      .about {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-template-rows: auto;
+          grid-template-rows: 360px 1fr;
+          grid-template-areas: 
+               "about-profile about-a"
+               "about-b about-c"
+          ;
           grid-area: flavory-about;
-          background-color: hsl(0, 3%, 10%);
-          box-shadow: 5px 5px 0px 0px #4f4eff;
+          background-color: plt.$flavor-content-color;
+          box-shadow: 5px 5px 0px 0px plt.$flavor-primary-color;
           gap: 15px;
-          padding: 15px;
+          padding: 20px;
 
-          .panel {
-               display: flex;
-               flex-direction: column;
-               row-gap: 0.5cm;
+          .profile {
+               display: grid;
+               grid-template-columns: 2fr 1fr;
+               grid-template-rows: 1fr 4fr 2fr;
+               grid-template-areas: 
+                    "profile-banner profile-watchmen"
+                    "profile-details profile-details"
+                    "profile-decorations profile-decorations"
+               ;
+               grid-area: about-profile;
+               gap: 10px;
 
-               .details {
+               & > * {
+                    background-color: plt.$flavor-bento-color;
+                    border-radius: 5px;
+               }
+
+               &__details {
+                    grid-area: profile-details;
+               }
+
+               &__banner {
+                    grid-area: profile-banner;
+               }
+
+               &__watchmen {
+                    grid-area: profile-watchmen;
+               }
+
+               &__decorations {
                     display: grid;
-                    grid-template-columns: 2fr 1fr;
-                    grid-template-rows: auto auto-fit;
-                    grid-template-areas:
-                         "details-profile details-profile"
-                         "details-motivational details-all-seeing"
-                    ;
-                    gap: 5px 15px;
-          
-                    .profile {
-                         display: flex;
-                         flex-direction: row;
-                         grid-area: details-profile;
-                         background-color: rgba(0, 0, 0, 0.5);
-                         background-image: url(../images/backgrounds/grids.avif);
-                         background-position: 30px -20px;
-                         background-blend-mode: color-burn;
+                    grid-template-columns: 90px 1fr;
+                    grid-template-rows: 90px;
+                    grid-area: profile-decorations;
+                    column-gap: 10px;
+                    background-color: transparent;
+                    border-radius: 0px;
+
+                    & > * {
+                         background-color: plt.$flavor-bento-color;
                          border-radius: 5px;
-                         padding: 10px;
-                         column-gap: 10px;
-          
-                         &__image {
-                              border-radius: 5px;
-                              image-rendering: smooth;
-                         }
-          
-                         &__coverage {
-                              display: flex;
-                              flex-direction: column;
-                         }
-          
-                         &__title {
-                              display: grid;
-                              grid-template-columns: auto 1fr;
-                              grid-template-rows: repeat(auto, 2);
-                         }
-          
-                         &__name {
-                              font-family: 'Archivo', font.$standard-font;
-                              font-size: 1.8rem;
-                              font-weight: 900;
-                              font-stretch: expanded;
-                         }
-          
-                         &__name-baybayin {
-                              font-family: 'Noto Sans Tagalog', font.$standard-font;
-                              font-size: 1rem;
-                              font-display: block;
-                         }
-          
-                         &__description {
-                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                              font-size: 0.85rem;
-                              font-weight: 400;
-                              font-stretch: 100%;
-                              font-style: italic;
-                              padding-right: 30px;
-                              margin-top: 5px;
-                         }
-          
-                         &__patterns {
-                              display: flex;
-                              flex-direction: row;
-                              justify-content: flex-end;
-                              column-gap: 5px;
-                              margin-top: auto;
-                              margin-right: 17px;
-                         }
-          
-                         &__patterns-block {
-                              border-radius: 3px;
-                              width: 40px;
-                              height: 20px;
-          
-                              &--pallete-1 {
-                                   background-color: #4f4eff;
-                              }
-          
-                              &--pallete-2 {
-                                   background-color: #a3fb44;
-                              }
-          
-                              &--pallete-3 {
-                                   background-color: #272727;
-                              }
-                         }
-                    }
-          
-                    .motivational {
-                         user-select: none;
-                         -webkit-user-select: none;
-                         grid-area: details-motivational;
-                         animation: sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
-                         background-image: url(https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg);
-                         background-size: 100%;
-                         background-position: center 25%;
-                         background-repeat: no-repeat;
-                         border-radius: 5px;
-                         position: relative;
-                         height: 40px;
-                         padding: 1px 3px;
-          
-                         &__minor, &__main {
-                              font-family: 'Noto Sans Tagalog', font.$standard-font;
-                              color: GhostWhite;
-                              position: absolute;
-                         }
-          
-                         &__minor {
-                              font-size: 0.875rem;
-                              text-shadow: 1px 1px 0px black;
-                         }
-          
-                         &__main {
-                              font-size: 1.5625rem;
-                              text-shadow: 2px 2px 0px black;
-                              right: 3px;
-                              bottom: 0;
-                         }
-          
-                         @keyframes sway {
-                              from { background-position-y: 25%; }
-                              to   { background-position-y: 55%; }
-                         }
-                    }
-          
-                    .all-seeing {
-                         user-select: none;
-                         -webkit-user-select: none;
-                         display: flex;
-                         flex-direction: row;
-                         align-items: center;
-                         justify-content: center;
-                         overflow: hidden;
-                         grid-area: details-all-seeing;
-                         background-color: black;
-                         background-position: 30px;
-                         background-size: 80px;
-                         background-repeat: no-repeat;
-                         border-radius: 5px;
-                         height: 40px;
-          
-                         &__him {
-                              image-rendering: pixelated;
-                         }
-                    }
-               }
-          
-               @mixin headbar($palletes, $gradient, $background) {
-                    &__headbar {
-                         display: flex;
-                         flex-direction: row;
-                         column-gap: 3px;
-                         margin-bottom: 5px;
-                    }
-          
-                    &__headtitle {
-                         font-family: 'Archivo', font.$standard-font;
-                         font-size: 1.1rem;
-                         font-weight: 900;
-                         font-stretch: expanded;
-                         background: $background;
-                         background: $gradient;
-                         border: 2px solid black;
-                         padding: 5px 10px;
-                         width: 100%;
-                    }
-          
-                    &__headblocks {
-                         border: 2px solid black;
-                         width: calc((15px + 20px) / 2);
-                         height: auto;
-          
-                         &--pallete-1 {
-                              background-color: list.nth($palletes, 1);
-                         }
-          
-                         &--pallete-2 {
-                              background-color: list.nth($palletes, 2);
-                         }
-          
-                         &--pallete-3 {
-                              background-color: list.nth($palletes, 3);
-                         }
-                    }
-               }
-          
-               $information-palletes: hsl(240, 95%, 62%) hsl(89, 96%, 45%) hsl(0, 0%, 15%);
-               $information-gradient: linear-gradient(144deg, hsl(90, 100%, 35%) 0%, hsl(91, 69%, 25%) 95%);
-               $information-background: hsl(90, 100%, 35%);
-               .information {
-                    display: grid;
-                    grid-template-columns: 2fr 1fr;
-                    grid-template-rows: 1fr;
-                    grid-template-areas:
-                         "information-biography information-liminal"
-                    ;
-                    column-gap: 15px;
-          
-                    .manual {
-                         grid-area: information-biography;
-                         @include headbar($information-palletes, $information-gradient, $information-background);
-
-                         &__body {
-                              background-color: beige;
-                              background-image: url(../images/decorations/manual/sidecover.webp);
-                              background-repeat: repeat-x;
-                              background-size: 50%;
-                              background-position: 50% -57%; // 57% > 43%
-                              background-attachment: local;
-                              border: 2px solid black;
-                              position: relative;
-                              width: 100%;
-                              height: 7cm;
-                              padding: 5px 10px;
-                         }
-
-                         &__title {
-                              display: flex;
-                              align-items: center;
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 1.3rem;
-                              font-weight: 900;
-                              font-stretch: 120%;
-                              text-transform: uppercase;
-                              color: black;
-                              border: 2px solid black;
-                              height: fit-content;
-                              padding: 0px 8px;
-                              margin-bottom: 0.7cm;
-                              
-                              &::before {
-                                   content: "";
-                                   display: inline-block;
-                                   background-color: currentColor;
-                                   border-radius: 360px;
-                                   width: 15px;
-                                   height: 15px;
-                                   margin-right: 3px;
-                                   margin-top: 1px;
-                              }
-                         }
-
-                         &__label {
-                              display: flex;
-                              align-items: center;
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 0.8rem;
-                              font-weight: 550;
-                              font-stretch: semi-condensed;
-                              text-transform: uppercase;
-                              background-color: black;
-                              padding: 3px 5px;
-
-                              &::before {
-                                   content: "\2605";
-                                   margin-right: 3px;
-                              }
-                         }
-
-                         &__navigation {
-                              user-select: none;
-                              -webkit-user-select: none;
-                              cursor: pointer;
-                              font-size: 1rem;
-                              font-weight: 900;
-                              outline: none;
-                              background-color: black;
-                              border: none;
-                              border-radius: 360px;
-                              position: absolute;
-                              left: 5px;
-                              bottom: 5px;
-                              padding: 1px 5px;
-                              
-                              &:focus-visible {
-                                   background-color: hsl(0, 72%, 52%);
-                              }
-                         }
-                    }
-
-                    .manual .biography {
-                         display: grid;
-                         grid-template-columns: 1fr 90px;
-                         grid-template-rows: 1fr;
-                         column-gap: 15px;
-
-                         &__description {
-                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                              font-size: 0.7rem;
-                              font-weight: bolder;
-                              text-align: justify;
-                              line-height: 1.1;
-                              color: black;
-                              padding-block: 5px;
-                         }
-
-                         &__rewrite-container {
-                              user-select: none;
-                              -webkit-user-select: none;
-                              display: flex;
-                              justify-content: center;
-                         }
-                    
-                         &__rewrite {
-                              image-rendering: pixelated;
-                         }
-
-                         &__item {
-                              margin-block: 5px;
-                         }
-
-                         &__item-title {
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 0.7rem;
-                              font-weight: 700;
-                              text-align: center;
-                              background-color: #4f4eff;
-                              padding: 3px 5px;
-                         }
-
-                         &__item-description {
-                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                              font-size: 0.7rem;
-                              font-weight: bolder;
-                              text-align: start;
-                              color: black;
-                              padding-block: 2px;
-                         }
-                    }
-
-                    .manual .socials {
-                         display: none;
-
-                         &__description {
-                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                              font-size: 0.7rem;
-                              font-weight: bolder;
-                              text-align: justify;
-                              line-height: 1.1;
-                              color: black;
-                              padding-block: 5px;
-                         }
-
-                         &__content {
-                              display: grid;
-                              grid-template-columns: 1fr 1fr;
-                              grid-template-rows: 1fr;
-                              column-gap: 10px;
-                              margin-top: 5px;
-                         }
-
-                         &__decorations {
-                              display: flex;
-                              flex-direction: column;
-                              row-gap: 3px;
-                         }
-
-                         &__headings {
-                              display: flex;
-                              align-items: center;
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 0.7rem;
-                              font-weight: 550;
-                              font-stretch: semi-condensed;
-                              text-transform: uppercase;
-                              background-color: #61ab12;
-                              border: 2px solid black;
-                              padding: 2px 5px;
-
-                              &::before {
-                                   content: "\25BA";
-                                   margin-right: 5px;
-                              }
-                         }
-
-                         &__sonic {
-                              user-select: none;
-                              -webkit-user-select: none;
-                              image-rendering: pixelated;
-                              margin-top: auto;
-                              margin-left: auto;
-                         }
-
-                         &__collection {
-                              border: 2px solid black;
-                              border-top: none;
-                         }
-
-                         &__collection-headbar {
-                              background-color: black;
-                              padding: 3px 5px;
-                         }
-
-                         &__collection-headtitle {
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 0.75rem;
-                              font-weight: 550;
-                              font-stretch: semi-condensed;
-                              text-align: center;
-                         }
-
-                         &__badges {
-                              display: flex;
-                              flex-direction: column;
-                              align-items: center;
-                              overflow-y: auto;
-                              row-gap: 5px;
-                              height: 1in;
-                              padding-block: 8px;
-
-                              &:focus-visible {
-                                   outline: none;
-                                   background-color: hsl(60, 9%, 62%);
-                              }
-
-                              &::-webkit-scrollbar {
-                                   width: 8px;
-                              }
-                              
-                              &::-webkit-scrollbar-track {
-                                   background: hsl(0, 0%, 20%);
-                              }
-                              
-                              &::-webkit-scrollbar-thumb {
-                                   background: #c0c0c0;
-                                   border: 1px inset rgb(71, 71, 71);
-                              }
-                         }
-
-                         &__badges-link {
-                              height: 31px;
-
-                              &:focus-visible {
-                                   outline: 2px solid orangered;
-                                   border-radius: 1px;
-                              }
-                         }
-
-                         &__badges-img {
-                              image-rendering: pixelated;
-                         }
-                    }
-          
-                    .liminal {
-                         grid-area: information-liminal;
-                         background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg);
-                         background-size: cover;
-                         background-position: center;
-                         background-repeat: no-repeat;
-                         image-rendering: smooth !important;
-                         border-radius: 5px;
-                    }
-               }
-          
-               $interests-palletes: hsl(89, 96%, 45%) hsl(240, 95%, 62%) hsl(0, 0%, 15%);
-               $interests-gradient: linear-gradient(144deg, hsl(240, 100%, 65%) 0%, hsl(240, 65%, 38%) 95%);
-               $interests-background: hsl(240, 100%, 65%);
-               .interests {
-                    @include headbar($interests-palletes, $interests-gradient, $interests-background);
-
-                    &__gallery {
-                         table-layout: fixed;
-                         border-collapse: collapse;
-                         width: 100%;
-                    }
-
-                    &__category {
-                         display: grid;
-                         grid-template-columns: 1fr 2fr;
-                         grid-template-rows: 1fr;
-                         column-gap: 5px;
-                         margin-block: 3px;
-                    }
-
-                    &__title {
-                         display: flex;
-                         flex-direction: column;
-                         justify-content: flex-end;
-                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: 1.15rem;
-                         font-weight: bolder;
-                         background: hsl(240deg, 65%, 38%);
-                         background: 
-                              linear-gradient(180deg,
-                                   hsl(240deg, 65%, 38%) 1%,
-                                   hsl(240deg, 100%, 62%) 4%,
-                                   hsl(240deg, 100%, 62%) 5%,
-                                   hsl(240deg, 65%, 38%) 10%,
-                                   hsl(240deg, 65%, 38%) 30%,
-                                   hsl(240deg, 65%, 34%) 55%,
-                                   hsl(240deg, 65%, 45%) 85%,
-                                   hsl(240deg, 65%, 25%) 95%,
-                              )
-                         ;
-                         border: 2px solid hsl(253, 67%, 10%);
-                         border-top-left-radius: 5px;
-                         border-bottom-left-radius: 5px;
-                         padding: 3px 8px;
-                    }
-
-                    &__name {
-                         font-style: italic;
-                    }
-
-                    &__name-baybayin {
-                         font-family: 'Noto Sans Tagalog', font.$standard-font;
-                         font-size: 0.58rem;
-                    }
-
-                    &__list {
-                         font-family: 'Candy Beans', font.$standard-font;
-                         font-size: 0.85rem;
-                         line-height: 1.4;
-                         background-color: hsl(255, 5%, 17%);
-                         border: 2px solid hsl(0, 0%, 0%);
-                    }
-
-                    &__catalog {
-                         display: block;
-                         overflow-y: auto;
-                         height: 1.7cm;
-                         padding: 5px 8px;
-                         
-                         &:focus-visible {
-                              outline: none;
-                              background-color: hsl(240, 6%, 10%);
-                         }
-                         
-                         &::-webkit-scrollbar {
-                              width: 8px;
-                         }
-                         
-                         &::-webkit-scrollbar-track {
-                              background: transparent;
-                         }
-                         
-                         &::-webkit-scrollbar-thumb {
-                              background: #c0c0c0;
-                              border: 1px inset rgb(71, 71, 71);
-                         }
                     }
                }
           }
 
-          .description {
-               h1 {
-                    font-family: 'Archivo', font.$standard-font;
-                    font-size: 1.6rem;
-                    font-weight: 900;
-                    font-stretch: expanded;
-                    background-color: hsl(0, 3%, 5%);
-                    border-radius: 5px;
-                    padding: 10px 15px;
-                    width: 100%;
-               }
+          .a {
+               grid-area: about-a;
+          }
 
-               p {
-                    font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                    font-size: 0.85rem;
-                    font-weight: 500;
-                    font-stretch: normal;
-                    text-align: justify;
-                    text-rendering: optimizeSpeed;
-                    line-height: 1.4;
-                    padding-inline: 10px;
-                    margin-block: 10px;
-               }
+          .b {
+               grid-area: about-b;
+          }
+
+          .c {
+               grid-area: about-c;
           }
      }
 }

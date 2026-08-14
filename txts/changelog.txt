@@ -1,3 +1,19 @@
+commit bb1eae 
+Author: MemeFlavor
+        &lt;host.name&gt;
+Date:   2026-08-14
+
+  > Change some bento box elements
+    within the Blog section
+  > Adjusted the information
+    manual design
+  > Organize the SCSS code to be
+    less insufferable
+  > Added support for reduce motion
+    for accessibility support
+    > Only for the Blog section,
+      more will come soon
+
 commit f7c918 
 Author: MemeFlavor
         &lt;host.name&gt;

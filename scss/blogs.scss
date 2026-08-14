@@ -57,8 +57,8 @@ body {
                grid-template-columns: 3fr 1fr 2fr;
                grid-template-rows: 3fr 75px;
                grid-template-areas:
-                    "header-windows header-monachopsis header-unknown"
-                    "header-deathscreen header-monachopsis header-unknown"
+                    "header-windows header-monachopsis header-pricetag"
+                    "header-deathscreen header-monachopsis header-pricetag"
                ;
                grid-area: blogs-header;
                gap: 10px;
@@ -208,9 +208,81 @@ body {
                     }
                }
 
-               .unknown {
-                    grid-area: header-unknown;
+               .pricetag {
+                    user-select: none;
+                    -webkit-user-select: none;
+                    display: flex;
+                    flex-direction: column;
+                    grid-area: header-pricetag;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    background-image: url(../images/backgrounds/grids.avif);
+                    background-attachment: local;
+                    background-size: 380%;
+                    background-position: 35%;
+                    background-blend-mode: color-burn;
                     padding: 8px;
+
+                    &__headbar {
+                         display: flex;
+                         flex-direction: row;
+                         column-gap: 5px;
+                    }
+                    
+                    &__headtitle {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 1.1rem;
+                         font-weight: 700;
+                         font-stretch: expanded;
+                         text-transform: uppercase;
+                         color: plt.$flavor-quaternary-color;
+                         border: 2px solid plt.$flavor-quaternary-color;
+                         border-left-width: 10px;
+                         padding: 3px 8px;
+                         width: 100%;
+                    }
+
+                    &__headblocks {
+                         border: 2px solid plt.$flavor-quaternary-color;
+                         width: calc((10px + 18px) / 2);
+                         height: auto;
+                    }
+
+                    &__subtitle {
+                         font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+                         font-size: 0.65rem;
+                         font-weight: 800;
+                         color: plt.$flavor-quaternary-color;
+                         margin-block: 3px;
+                    }
+
+                    &__metadata {
+                         display: flex;
+                         flex-direction: row;
+                         align-items: flex-end;
+                         justify-content: space-between;
+                         margin-block: auto 3px;
+                    }
+
+                    &__name {
+                         font-family: 'Archivo', font.$standard-font;
+                         font-size: 1.1rem;
+                         font-weight: 800;
+                         color: plt.$flavor-tertiary-color;
+                    }
+
+                    &__cost {
+                         font-family: 'Archivo', font.$standard-font;
+                         font-size: 0.95rem;
+                         font-weight: 650;
+                         color: plt.$flavor-quaternary-color;
+                         position: relative;
+                         bottom: 1px;
+                    }
+
+                    &__barstuff {
+                         align-self: flex-end;
+                         image-rendering: pixelated;
+                    }
                }
 
                .monachopsis {
@@ -624,33 +696,6 @@ body {
                               flex-direction: column;
                               grid-area: manual-ticket;
                               background: hsl(220, 15%, 10%);
-
-                              h1 {
-                                   font-family: 'Archivo', font.$standard-font;
-                                   font-size: 1rem;
-                                   font-weight: 800;
-                                   font-stretch: semi-condensed;
-                                   text-align: center;
-                                   text-transform: uppercase;
-                                   color: plt.color-contrast(plt.$flavor-tertiary-color);
-                                   background-color: plt.$flavor-tertiary-color;
-                                   padding: calc((3px + 4px) / 2.5) 5px;
-                              }
-
-                              p {
-                                   font-family: 'Trebuchet MS';
-                                   font-size: calc((0.50rem + 0.55rem) / 2);
-                                   font-weight: bolder;
-                                   text-align: justify;
-                                   text-justify: inter-word;
-                                   color: $information-primary-color;
-                                   padding: 8px 5px;
-                              }
-
-                              img {
-                                   align-self: center;
-                                   image-rendering: pixelated;
-                              }
                          }
 
                          &__ticket-title {

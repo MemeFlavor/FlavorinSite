@@ -1,15 +1,20 @@
-/* import { getRandomInt } from "./modules/shortcuts.js";
+const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-const bannerAccr = document.querySelectorAll('.manual__banner-accuracy')
-const bannerAccrCrement = document.querySelectorAll('.manual__banner-accuracy accr-crement')
-const bannerAccrNumbers = document.querySelectorAll('.manual__banner-accuracy accr-num')
-for (let accuracyIndex = 0; accuracyIndex < 3; accuracyIndex++) {
-     const accuracyLines = bannerAccr[accuracyIndex]
-     const accuracyCrements = bannerAccrCrement[accuracyIndex];
-     const accuracyNumbers = bannerAccrNumbers[accuracyIndex];
+function yesy_motion() {
+     //alert('has motion')
+}
 
-     const randomize = getRandomInt(0, 1)
-     accuracyLines.style.color = randomize === 1 ? 'hsl(89, 96%, 63%)' : 'hsl(357, 94%, 60%)'
-     accuracyCrements.innerHTML = randomize === 1 ? '&#9650;' : '&#9660;'
-     accuracyNumbers.innerHTML = `${getRandomInt(0, 35)}.${getRandomInt(0, 9)}%`.padStart(5, '0')
-} */
+function no_motion() {
+     //alert('no motion')
+}
+
+function is_motion(asdr) {
+     if (asdr.matches == true) {
+          yesy_motion()
+     } else {
+          no_motion()
+     }
+}
+
+is_motion(motionQuery)
+motionQuery.addEventListener('change', is_motion);

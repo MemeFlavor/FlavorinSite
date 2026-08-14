@@ -208,11 +208,14 @@ body {
                     }
                }
 
+               $pricetag-primary-color: plt.$flavor-quaternary-color;
+               $pricetag-secondary-color: plt.$flavor-tertiary-color;
                .pricetag {
                     user-select: none;
                     -webkit-user-select: none;
-                    display: flex;
-                    flex-direction: column;
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr;
                     grid-area: header-pricetag;
                     background-color: rgba(0, 0, 0, 0.5);
                     background-image: url(../images/backgrounds/grids.avif);
@@ -221,6 +224,16 @@ body {
                     background-position: 35%;
                     background-blend-mode: color-burn;
                     padding: 8px;
+
+                    & > * {
+                         grid-area: 1 / 1;
+                    }
+
+                    &__main {
+                         z-index: 2;
+                         display: flex;
+                         flex-direction: column;
+                    }
 
                     &__headbar {
                          display: flex;
@@ -234,15 +247,15 @@ body {
                          font-weight: 700;
                          font-stretch: expanded;
                          text-transform: uppercase;
-                         color: plt.$flavor-quaternary-color;
-                         border: 2px solid plt.$flavor-quaternary-color;
+                         color: $pricetag-primary-color;
+                         border: 2px solid $pricetag-primary-color;
                          border-left-width: 10px;
                          padding: 3px 8px;
                          width: 100%;
                     }
 
                     &__headblocks {
-                         border: 2px solid plt.$flavor-quaternary-color;
+                         border: 2px solid $pricetag-primary-color;
                          width: calc((10px + 18px) / 2);
                          height: auto;
                     }
@@ -251,7 +264,7 @@ body {
                          font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
                          font-size: 0.65rem;
                          font-weight: 800;
-                         color: plt.$flavor-quaternary-color;
+                         color: $pricetag-primary-color;
                          margin-block: 3px;
                     }
 
@@ -267,14 +280,14 @@ body {
                          font-family: 'Archivo', font.$standard-font;
                          font-size: 1.1rem;
                          font-weight: 800;
-                         color: plt.$flavor-tertiary-color;
+                         color: $pricetag-secondary-color;
                     }
 
                     &__cost {
                          font-family: 'Archivo', font.$standard-font;
                          font-size: 0.95rem;
                          font-weight: 650;
-                         color: plt.$flavor-quaternary-color;
+                         color: $pricetag-primary-color;
                          position: relative;
                          bottom: 1px;
                     }
@@ -282,6 +295,23 @@ body {
                     &__barstuff {
                          align-self: flex-end;
                          image-rendering: pixelated;
+                    }
+
+                    &__wrapper {
+                         z-index: 1;
+                         display: flex;
+                         align-items: center;
+                         justify-content: center;
+                         overflow: hidden;
+                    }
+
+                    &__character {
+                         filter: 
+                              contrast(130%) 
+                              brightness(115%) 
+                              opacity(80%)
+                              drop-shadow(5px 2px 0px color.change($pricetag-primary-color, $alpha: 20%));
+                         image-rendering: smooth;
                     }
                }
 

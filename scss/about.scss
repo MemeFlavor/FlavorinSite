@@ -37,7 +37,8 @@ body {
           grid-template-rows: 360px 1fr;
           grid-template-areas: 
                "about-profile about-a"
-               "about-b about-c"
+               "about-b about-a"
+               "about-c ."
           ;
           grid-area: flavory-about;
           background-color: plt.$flavor-content-color;
@@ -48,9 +49,9 @@ body {
           .profile {
                display: grid;
                grid-template-columns: 2fr 1fr;
-               grid-template-rows: 1fr 4fr 2fr;
+               grid-template-rows: 40px 4fr 2fr;
                grid-template-areas: 
-                    "profile-banner profile-watchmen"
+                    "profile-motivational profile-watchmen"
                     "profile-details profile-details"
                     "profile-decorations profile-decorations"
                ;
@@ -66,12 +67,57 @@ body {
                     grid-area: profile-details;
                }
 
-               &__banner {
-                    grid-area: profile-banner;
+               &__motivational {
+                    user-select: none;
+                    -webkit-user-select: none;
+                    grid-area: profile-motivational;
+                    background-image: url(https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg);
+                    background-size: 100%;
+                    background-position: center 25%;
+                    background-repeat: no-repeat;
+                    border-radius: 5px;
+                    animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+                    position: relative;
+                    padding: 1px 3px;
+
+                    @keyframes windy-sway {
+                         from { background-position-y: 25%; }
+                         to   { background-position-y: 55%; }
+                    }
+               }
+
+               &__motivational-text {
+                    font-family: 'Noto Sans Tagalog', font.$standard-font;
+                    color: honeydew;
+                    position: absolute;
+
+                    &--small {
+                         font-size: 0.875rem;
+                         text-shadow: 2px 1px 0px black;
+                    }
+
+                    &--big {
+                         font-size: 1.5625rem;
+                         text-shadow: 2px 2px 0px black;
+                         right: 3px;
+                         bottom: 0;
+                    }
                }
 
                &__watchmen {
+                    user-select: none;
+                    -webkit-user-select: none;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
                     grid-area: profile-watchmen;
+                    background-color: black;
+                    overflow: hidden;
+               }
+
+               &__allseeing {
+                    image-rendering: pixelated;
                }
 
                &__decorations {
@@ -87,6 +133,13 @@ body {
                          background-color: plt.$flavor-bento-color;
                          border-radius: 5px;
                     }
+               }
+
+               &__philosophy {
+                    background-image: url(../images/decorations/philosophy.webp);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
                }
           }
 

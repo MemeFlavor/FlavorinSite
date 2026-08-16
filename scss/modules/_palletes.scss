@@ -21,16 +21,18 @@ $flavor-scrollbar-thumb: hsl(254, 25%, 14%);
 /// Calculate the contrast ratio of text and background colors.
 /// I also stole this code from somewhere.
 /// @param {color} $color - The color to measure its contrast
+/// @param {color} $dark-color  [#000000] - The dark color to fallback to.
+/// @param {color} $light-color [#ffffff] - The light color to fallback to.
 /// @return The contrasting color, either white or black.
-@function color-contrast($color) {
+@function color-contrast($color, $dark-color: #000000, $light-color: #ffffff) {
      $r: color.channel($color, "red", $space: rgb);
      $g: color.channel($color, "green", $space: rgb);
      $b: color.channel($color, "blue", $space: rgb);
 
      $brightness: calc((($r * 299) + ($g * 587) + ($b * 114)) / 1000);
      @if ($brightness > 128) {
-          @return #000000;
+          @return $dark-color;
      } @else {
-          @return #ffffff;
+          @return $light-color;
      }
 }

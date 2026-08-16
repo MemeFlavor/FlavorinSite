@@ -33,12 +33,12 @@ body {
 
      .about {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: 360px 1fr;
-          grid-template-areas: 
-               "about-profile about-a"
-               "about-b about-a"
-               "about-c ."
+          grid-template-columns: 450px 1fr;
+          grid-template-rows: 350px 1fr 1fr;
+          grid-template-areas:
+               "about-panel about-description"
+               "about-bioinfo about-description"
+               "about-c about-d"
           ;
           grid-area: flavory-about;
           background-color: plt.$flavor-content-color;
@@ -46,16 +46,15 @@ body {
           gap: 15px;
           padding: 20px;
 
-          .profile {
+          .panel {
                display: grid;
                grid-template-columns: 2fr 1fr;
-               grid-template-rows: 40px 4fr 2fr;
-               grid-template-areas: 
-                    "profile-motivational profile-watchmen"
-                    "profile-details profile-details"
-                    "profile-decorations profile-decorations"
+               grid-template-rows: 40px 1fr;
+               grid-template-areas:
+                    "panel-motivational panel-watchmen"
+                    "panel-profile panel-profile"
                ;
-               grid-area: about-profile;
+               grid-area: about-panel;
                gap: 10px;
 
                & > * {
@@ -63,14 +62,204 @@ body {
                     border-radius: 5px;
                }
 
-               &__details {
-                    grid-area: profile-details;
+               .profile {
+                    display: grid;
+                    grid-template-columns: 4fr 1fr;
+                    grid-template-rows: 2fr 1fr;
+                    grid-template-areas: 
+                         "profile-details profile-b2"
+                         "profile-details profile-c3"
+                    ;
+                    grid-area: panel-profile;
+                    gap: 10px;
+                    background-color: transparent;
+
+                    & > * {
+                         background-color: plt.$flavor-bento-color;
+                         border-radius: 5px;
+                    }
+
+                    $details-primary-color: plt.$flavor-primary-color;
+                    .details {
+                         display: grid;
+                         grid-template-columns: auto 1fr;
+                         grid-template-rows: 125px 1fr;
+                         grid-template-areas: 
+                              "details-character details-coverage"
+                              "details-stuff details-page"
+                         ;
+                         grid-area: profile-details;
+                         gap: 10px;
+                         border-radius: 0px;
+                         padding: 8px;
+
+                         &__character {
+                              grid-area: details-character;
+                              image-rendering: smooth;
+                              border-radius: 0px;
+                         }
+
+                         &__coverage {
+                              display: flex;
+                              flex-direction: column;
+                              grid-area: details-coverage;
+                         }
+
+                         &__title {
+                              display: grid;
+                              grid-template-columns: auto 1fr;
+                              grid-template-rows: repeat(2, auto);
+                         }
+
+                         $titletext-color: azure;
+                         &__titletext-latin {
+                              font-family: 'Archivo', font.$standard-font;
+                              font-size: 1.45rem;
+                              font-weight: 900;
+                              font-stretch: expanded;
+                              text-shadow: 2px 2px 0px black;
+                              color: $titletext-color;
+                         }
+
+                         &__titletext-baybayin {
+                              font-family: 'Noto Sans Tagalog', font.$standard-font;
+                              font-size: 0.85rem;
+                              font-display: block;
+                              text-shadow: 2px 2px 0px black;
+                              color: $titletext-color;
+                         }
+
+                         &__description {
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.75rem;
+                              font-weight: 400;
+                              font-stretch: 100%;
+                              font-style: italic;
+                              margin-top: 5px;
+                         }
+
+                         &__barstuff {
+                              align-self: flex-end;
+                              image-rendering: pixelated;
+                              margin-top: auto;
+                         }
+
+                         &__page {
+                              grid-area: details-page;
+                              outline: none;
+                              overflow-y: auto;
+                              height: 150px;
+                              padding: 0px 5px 5px 0px;
+
+                              &::-webkit-scrollbar {
+                                   width: 3px;
+                              }
+                              
+                              &::-webkit-scrollbar-track {
+                                   background: plt.$flavor-scrollbar-background;
+                              }
+                              
+                              &::-webkit-scrollbar-thumb {
+                                   background: plt.$flavor-scrollbar-thumb;
+                                   border-radius: 0px;
+                              }
+                              
+                              &:focus-visible::-webkit-scrollbar-thumb {
+                                   background: color.adjust(plt.$flavor-scrollbar-thumb, $lightness: 10%);
+                              }
+                         }
+
+                         &__page-headbar {
+                              display: flex;
+                              flex-direction: row;
+                              align-items: center;
+                              column-gap: 8px;
+                              margin-bottom: 5px;
+                         }
+
+                         &__page-headtitle {
+                              user-select: all;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 1rem;
+                              font-weight: 750;
+                              font-stretch: semi-expanded;
+                              text-transform: uppercase;
+                              color: plt.color-contrast(plt.$flavor-quaternary-color);
+                              background-color: plt.$flavor-quaternary-color;
+                              width: fit-content;
+                              padding: 2px 5px 2px 3px;
+
+                              &::before {
+                                   content: '\2726';
+                                   margin-right: 3px;
+                              }
+                         }
+
+                         &__page-headsubtitle {
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.9rem;
+                              font-weight: 750;
+                              font-stretch: semi-expanded;
+                              text-transform: uppercase;
+                              width: 100%;
+                              position: relative;
+                              top: 1px;
+                         }
+
+                         &__page-headings {
+                              display: flex;
+                              align-items: center;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.8rem;
+                              font-weight: 550;
+                              font-stretch: semi-condensed;
+                              text-transform: uppercase;
+                              color: plt.color-contrast(plt.$flavor-primary-color);
+                              background-color: plt.$flavor-primary-color;
+                              padding: 3px 5px;
+
+                              &::before {
+                                   content: "\2605";
+                                   margin-right: 3px;
+                              }
+                         }
+
+                         &__page-description {
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.75rem;
+                              text-align: start;
+                              line-height: 1.2;
+                              margin-block: 8px;
+                         }
+
+                         &__page-list {
+                              list-style: disc;
+                              padding-left: 25px;
+                         }
+
+                         &__page-item {
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.75rem;
+                              font-style: italic;
+                              text-align: start;
+                              line-height: 1.2;
+                              margin-block: 8px;
+                         }
+                    }
+
+                    .b2 {
+                         grid-area: profile-b2;
+                    }
+
+                    .c3 {
+                         grid-area: profile-c3;
+                    }
                }
 
-               &__motivational {
+               .motivational {
                     user-select: none;
                     -webkit-user-select: none;
-                    grid-area: profile-motivational;
+                    grid-area: panel-motivational;
                     background-image: url(https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg);
                     background-size: 100%;
                     background-position: center 25%;
@@ -79,80 +268,63 @@ body {
                     animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
                     position: relative;
                     padding: 1px 3px;
-
+                    
+                    &__message {
+                         font-family: 'Noto Sans Tagalog', font.$standard-font;
+                         font-display: block;
+                         color: honeydew;
+                         position: absolute;
+                    
+                         &--small {
+                              font-size: 0.875rem;
+                              text-shadow: 2px 1px 0px black;
+                         }
+                    
+                         &--big {
+                              font-size: 1.5625rem;
+                              text-shadow: 2px 2px 0px black;
+                              right: 3px;
+                              bottom: 0;
+                         }
+                    }
+                    
                     @keyframes windy-sway {
                          from { background-position-y: 25%; }
                          to   { background-position-y: 55%; }
                     }
                }
 
-               &__motivational-text {
-                    font-family: 'Noto Sans Tagalog', font.$standard-font;
-                    color: honeydew;
-                    position: absolute;
-
-                    &--small {
-                         font-size: 0.875rem;
-                         text-shadow: 2px 1px 0px black;
-                    }
-
-                    &--big {
-                         font-size: 1.5625rem;
-                         text-shadow: 2px 2px 0px black;
-                         right: 3px;
-                         bottom: 0;
-                    }
-               }
-
-               &__watchmen {
+               .watchmen {
                     user-select: none;
                     -webkit-user-select: none;
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                     justify-content: center;
-                    grid-area: profile-watchmen;
+                    grid-area: panel-watchmen;
                     background-color: black;
                     overflow: hidden;
-               }
 
-               &__allseeing {
-                    image-rendering: pixelated;
-               }
-
-               &__decorations {
-                    display: grid;
-                    grid-template-columns: 90px 1fr;
-                    grid-template-rows: 90px;
-                    grid-area: profile-decorations;
-                    column-gap: 10px;
-                    background-color: transparent;
-                    border-radius: 0px;
-
-                    & > * {
-                         background-color: plt.$flavor-bento-color;
-                         border-radius: 5px;
+                    &__allseeing {
+                         image-rendering: pixelated;
                     }
                }
-
-               &__philosophy {
-                    background-image: url(../images/decorations/philosophy.webp);
-                    background-size: cover;
-                    background-position: center;
-                    image-rendering: smooth;
-               }
           }
 
-          .a {
-               grid-area: about-a;
+          .description {
+               grid-area: about-description;
           }
 
-          .b {
-               grid-area: about-b;
+          .bioinfo {
+               grid-area: about-bioinfo;
           }
 
           .c {
                grid-area: about-c;
+          }
+
+          .d {
+               grid-area: about-d;
           }
      }
 }

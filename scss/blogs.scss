@@ -305,12 +305,10 @@ body {
                          overflow: hidden;
                     }
 
+                    $character-filter-main: contrast(130%) brightness(115%) opacity(80%);
+                    $character-filter-dropshadow: drop-shadow(5px 2px 0px color.change($pricetag-primary-color, $alpha: 20%));
                     &__character {
-                         filter: 
-                              contrast(130%) 
-                              brightness(115%) 
-                              opacity(80%)
-                              drop-shadow(5px 2px 0px color.change($pricetag-primary-color, $alpha: 20%));
+                         filter: $character-filter-main $character-filter-dropshadow;
                          image-rendering: smooth;
                     }
                }
@@ -359,6 +357,7 @@ body {
                          -webkit-user-select: none;
                          font-family: 'Noto Sans Tagalog', font.$standard-font;
                          font-size: 1rem;
+                         font-display: block;
                          text-shadow: 3px 2px 0px black;
                          color: GhostWhite;
                          position: absolute;
@@ -592,8 +591,8 @@ body {
 
                          &__page {
                               grid-area: manual-page;
-                              overflow-y: auto;
                               outline: none;
+                              overflow-y: auto;
                               height: 257px;
                               padding: 0px 5px 5px 5px;
 
@@ -621,7 +620,6 @@ body {
                               align-items: center;
                               column-gap: 8px;
                               margin-bottom: 5px;
-
                          }
 
                          &__headtitle {

@@ -311,6 +311,16 @@ body {
                          filter: $character-filter-main $character-filter-dropshadow;
                          image-rendering: smooth;
                     }
+
+                    @media (prefers-reduced-transparency: reduce) {
+                         background-color: rgba(0, 0, 0, 0.3);
+
+                         $character-filter-main: contrast(130%) brightness(115%) opacity(100%);
+                         $character-filter-dropshadow: drop-shadow(5px 2px 0px color.change($pricetag-primary-color, $alpha: 70%));
+                         &__character {
+                              filter: $character-filter-main $character-filter-dropshadow;
+                         }
+                    }
                }
 
                .monachopsis {

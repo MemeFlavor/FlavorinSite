@@ -208,6 +208,8 @@ body {
                     }
                }
 
+               --pricetag-background-color: #{plt.$flavor-gridline-color};
+
                $pricetag-primary-color: plt.$flavor-quaternary-color;
                $pricetag-secondary-color: plt.$flavor-tertiary-color;
                .pricetag {
@@ -217,7 +219,7 @@ body {
                     grid-template-columns: 1fr;
                     grid-template-rows: 1fr;
                     grid-area: header-pricetag;
-                    background-color: rgba(0, 0, 0, 0.5);
+                    background-color: var(--pricetag-background-color);
                     background-image: url(../images/backgrounds/grids.avif);
                     background-attachment: local;
                     background-size: 380%;
@@ -305,21 +307,18 @@ body {
                          overflow: hidden;
                     }
 
-                    $character-filter-main: contrast(130%) brightness(115%) opacity(80%);
-                    $character-filter-dropshadow: drop-shadow(5px 2px 0px color.change($pricetag-primary-color, $alpha: 20%));
+                    --character-filter-main: contrast(130%) brightness(115%) opacity(80%);
+                    --character-filter-dropshadow: drop-shadow(5px 2px 0px #{color.change($pricetag-primary-color, $alpha: 20%)});
                     &__character {
-                         filter: $character-filter-main $character-filter-dropshadow;
+                         filter: var(--character-filter-main) var(--character-filter-dropshadow);
                          image-rendering: smooth;
                     }
 
                     @media (prefers-reduced-transparency: reduce) {
-                         background-color: rgba(0, 0, 0, 0.3);
+                         --pricetag-background-color: #{color.change(plt.$flavor-gridline-color, $alpha: 0.3)};
 
-                         $character-filter-main: contrast(130%) brightness(115%) opacity(100%);
-                         $character-filter-dropshadow: drop-shadow(5px 2px 0px color.change($pricetag-primary-color, $alpha: 70%));
-                         &__character {
-                              filter: $character-filter-main $character-filter-dropshadow;
-                         }
+                         --character-filter-main: contrast(130%) brightness(115%) opacity(100%);
+                         --character-filter-dropshadow: drop-shadow(5px 2px 0px #{color.change($pricetag-primary-color, $alpha: 70%)});
                     }
                }
 

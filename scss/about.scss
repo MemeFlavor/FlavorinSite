@@ -123,8 +123,9 @@ body {
                          outline: none;
                          overflow-y: auto;
                          height: 50px;
-                         padding-right: 3px;
+                         padding-right: 2px;
                          margin: 3px 5px;
+                         margin-right: 3px;
 
                          &::-webkit-scrollbar {
                               width: 3px;
@@ -161,11 +162,141 @@ body {
                     }
                }
 
-               .profile .summary {
-                    background-color: plt.$flavor-bento-color;
-                    padding: 8px;
+               .profile .panel {
+                    display: grid;
+                    grid-template-columns: 1fr 2fr;
+                    grid-template-rows: 150px 1fr;
+                    grid-template-areas: 
+                         "panel-bioinfo panel-bioinfo"
+                         "panel-trivia panel-fart"
+                    ;
+                    gap: 10px;
 
+                    & > * {
+                         background-color: plt.$flavor-bento-color;
+                         border-radius: 5px;
+                    }
                     
+                    --bioinfo-background-color: #{plt.$flavor-gridline-color};
+                    .bioinfo {
+                         display: flex;
+                         flex-direction: column;
+                         grid-area: panel-bioinfo;
+                         background-color: var(--bioinfo-background-color);
+                         background-image: url(../images/backgrounds/grids.avif);
+                         background-attachment: local;
+                         background-size: 250%;
+                         background-position: 43%;
+                         background-blend-mode: color-burn;
+                         height: 150px;
+                         padding: 10px;
+
+                         &__title {
+                              display: grid;
+                              grid-template-columns: auto 1fr;
+                              grid-template-rows: repeat(2, auto);
+                         }
+                    
+                         $titletext-color: azure;
+                         &__titletext-latin {
+                              font-family: 'Archivo', font.$standard-font;
+                              font-size: 1.85rem;
+                              font-weight: 900;
+                              font-stretch: expanded;
+                              text-shadow: 2px 2px 0px black;
+                              color: $titletext-color;
+                         }
+                    
+                         &__titletext-baybayin {
+                              font-family: 'Noto Sans Tagalog', font.$standard-font;
+                              font-size: 1.05rem;
+                              font-display: block;
+                              text-shadow: 2px 2px 0px black;
+                              color: $titletext-color;
+                         }
+                    
+                         &__description {
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.8rem;
+                              font-weight: 400;
+                              font-stretch: 100%;
+                              font-style: italic;
+                              margin-top: 5px;
+                         }
+
+                         &__metadata {
+                              display: flex;
+                              flex-direction: row;
+                              align-items: flex-end;
+                              justify-content: space-between;
+                              margin-top: auto;
+                         }
+
+                         $metadata-name-primary-color: plt.$flavor-quaternary-color;
+                         &__metadata-name {
+                              font-family: 'Archivo', font.$standard-font;
+                              font-size: 1.35rem;
+                              font-weight: 800;
+                              font-stretch: condensed;
+                              color: $metadata-name-primary-color;
+
+                              &::selection {
+                                   color: plt.color-contrast($metadata-name-primary-color);
+                                   background-color: $metadata-name-primary-color;
+                              }
+                         }
+
+                         $metadata-header-primary-color: plt.$flavor-secondary-color;
+                         &__metadata-header {
+                              display: flex;
+                              flex-direction: row;
+                              column-gap: 5px;
+                              margin-left: auto;
+                         }
+
+                         &__metadata-block {
+                              background-color: $metadata-header-primary-color;
+                              border: 2px solid $metadata-header-primary-color;
+                              width: 30px;
+                              height: auto;
+                         }
+
+                         &__metadata-type {
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.9rem;
+                              font-weight: 800;
+                              font-stretch: semi-expanded;
+                              color: $metadata-header-primary-color;
+                              border: 2px solid $metadata-header-primary-color;
+                              border-left-width: calc((10px + 15px) / 2);
+                              width: fit-content;
+                              padding: 3px 8px;
+
+                              &::selection {
+                                   color: plt.color-contrast($metadata-header-primary-color);
+                                   background-color: $metadata-header-primary-color;
+                              }
+                         }
+                         
+                         &__barstuff {
+                              align-self: flex-end;
+                              image-rendering: pixelated;
+                              margin-top: auto;
+                         }
+
+                         @media (prefers-reduced-transparency: reduce) {
+                              --bioinfo-background-color: #{color.change(plt.$flavor-gridline-color, $alpha: 0.3)};
+                         }
+                    }
+
+                    .trivia {
+                         grid-area: panel-trivia;
+                         padding: 8px;
+                    }
+
+                    .fartt {
+                         grid-area: panel-fart;
+                    }
                }
 
                .banner {

@@ -199,8 +199,8 @@ body {
                     grid-template-rows: 150px 50px 2fr;
                     grid-template-areas:
                          "gallery-character gallery-character"
-                         "gallery-a gallery-a"
-                         "gallery-factpad gallery-c"
+                         "gallery-status gallery-status"
+                         "gallery-triviapad gallery-vending"
                     ;
                     grid-area: profile-gallery;
                     gap: 10px;
@@ -216,22 +216,66 @@ body {
                          image-rendering: smooth;
                     }
 
-                    &__a {
-                         grid-area: gallery-a;
-                    }
-
-                    $factpad-primary-color: beige;
-                    &__factpad {
+                    &__status {
                          display: flex;
                          flex-direction: column;
-                         grid-area: gallery-factpad;
-                         background: $factpad-primary-color;
-                         background: linear-gradient(to bottom, transparent 5%, $factpad-primary-color 5%);
+                         align-items: center;
+                         justify-content: space-between;
+                         grid-area: gallery-status;
+                         padding: calc((3px + 5px) / 2);
                     }
 
-                    &__factpad-title {
+                    &__status-title {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.9rem;
+                         font-weight: bolder;
+                         text-align: center;
+                         text-transform: uppercase;
+                         color: plt.color-contrast(plt.$flavor-tertiary-color);
+                         background-color: plt.$flavor-tertiary-color;
+                         border-radius: 3px;
+                         width: 100%;
+                         padding: 1px 5px;
+                    
+                         &:not(:lang(en)) {
+                              font-size: 0.8rem;
+                         }
+                    
+                         &::before, &::after {
+                              content: '\26A0';
+                         }
+                    
+                         &::before {
+                              margin-right: 5px;
+                         }
+                    
+                         &::after {
+                              margin-left: 5px;
+                         }
+                    }
+
+                    &__status-description {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.7rem;
+                         text-align: center;
+                    
+                         &:not(:lang(en)) {
+                              font-size: calc((0.55rem + 0.60rem) / 2);
+                         }
+                    }
+
+                    $triviapad-primary-color: beige;
+                    &__triviapad {
+                         display: flex;
+                         flex-direction: column;
+                         grid-area: gallery-triviapad;
+                         background: $triviapad-primary-color;
+                         background: linear-gradient(to bottom, transparent 5%, $triviapad-primary-color 5%);
+                    }
+
+                    &__triviapad-title {
                          font-family: 'Archivo', font.$standard-font;
-                         font-size: 1rem;
+                         font-size: 0.95rem;
                          font-weight: 800;
                          font-stretch: semi-condensed;
                          text-align: center;
@@ -243,12 +287,13 @@ body {
                          padding: calc((3px + 4px) / 2.5) 5px;
                     }
 
-                    &__factpad-body {
+                    &__triviapad-body {
                          font-family: 'Trebuchet MS' font.$standard-fancy-font, font.$standard-font;
                          font-size: 0.5rem;
                          font-weight: bolder;
                          text-align: start;
                          color: black;
+                         outline: none;
                          overflow-y: hidden;
                          height: 70px;
                          padding: 5px;
@@ -272,12 +317,16 @@ body {
                          }
                          
                          &::-webkit-scrollbar-thumb {
-                              background: color.adjust($factpad-primary-color, $saturation: -30%, $lightness: -30%);
+                              background: color.adjust($triviapad-primary-color, $saturation: -30%, $lightness: -30%);
                               border-radius: 0px;
+                         }
+
+                         &:focus-visible::-webkit-scrollbar-thumb {
+                              background: color.adjust($triviapad-primary-color, $saturation: -55%, $lightness: -55%);
                          }
                     }
 
-                    &__factpad-sonic {
+                    &__triviapad-sonic {
                          user-select: none;
                          -webkit-user-select: none;
                          align-self: center;
@@ -286,8 +335,12 @@ body {
                          margin-block: auto;
                     }
 
-                    &__c {
-                         grid-area: gallery-c;
+                    &__vending {
+                         grid-area: gallery-vending;
+                         background-image: url(https://preview.redd.it/vending-machine-in-japan-that-i-shot-with-nintendo-3ds-v0-ollf4zfqrihg1.jpeg?auto=webp&s=fc92656a5ff728645111d9577b24e4d64c9e1fb6);
+                         background-size: cover;
+                         background-position: center;
+                         image-rendering: smooth;
                     }
                }
 

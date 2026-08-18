@@ -132,7 +132,7 @@ body {
 
                &__title-baybayin {
                     font-family: 'Noto Sans Tagalog', font.$standard-font;
-                    font-size: 0.75rem;
+                    font-size: 0.85rem;
                     font-display: block;
                }
 
@@ -195,12 +195,12 @@ body {
 
                .gallery {
                     display: grid;
-                    grid-template-columns: 1fr 1fr;
+                    grid-template-columns: 70px 70px;
                     grid-template-rows: 150px 50px 2fr;
                     grid-template-areas:
                          "gallery-character gallery-character"
                          "gallery-a gallery-a"
-                         "gallery-b gallery-c"
+                         "gallery-factpad gallery-c"
                     ;
                     grid-area: profile-gallery;
                     gap: 10px;
@@ -220,8 +220,70 @@ body {
                          grid-area: gallery-a;
                     }
 
-                    &__b {
-                         grid-area: gallery-b;
+                    $factpad-primary-color: beige;
+                    &__factpad {
+                         display: flex;
+                         flex-direction: column;
+                         grid-area: gallery-factpad;
+                         background: $factpad-primary-color;
+                         background: linear-gradient(to bottom, transparent 5%, $factpad-primary-color 5%);
+                    }
+
+                    &__factpad-title {
+                         font-family: 'Archivo', font.$standard-font;
+                         font-size: 1rem;
+                         font-weight: 800;
+                         font-stretch: semi-condensed;
+                         text-align: center;
+                         text-transform: uppercase;
+                         color: plt.color-contrast(plt.$flavor-primary-color);
+                         background-color: plt.$flavor-primary-color;
+                         border-top-left-radius: 5px;
+                         border-top-right-radius: 5px;
+                         padding: calc((3px + 4px) / 2.5) 5px;
+                    }
+
+                    &__factpad-body {
+                         font-family: 'Trebuchet MS' font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.5rem;
+                         font-weight: bolder;
+                         text-align: start;
+                         color: black;
+                         overflow-y: hidden;
+                         height: 70px;
+                         padding: 5px;
+                         padding-top: 2px;
+                         padding-right: 2px;
+                         margin-top: 3px;
+                         margin-right: 3px;
+
+                         &:not(:lang(en)) {
+                              overflow-y: auto;
+                              overflow-wrap: break-word;
+                              hyphens: auto;
+                         }
+
+                         &::-webkit-scrollbar {
+                              width: 3px;
+                         }
+                         
+                         &::-webkit-scrollbar-track {
+                              background: transparent;
+                         }
+                         
+                         &::-webkit-scrollbar-thumb {
+                              background: color.adjust($factpad-primary-color, $saturation: -30%, $lightness: -30%);
+                              border-radius: 0px;
+                         }
+                    }
+
+                    &__factpad-sonic {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         align-self: center;
+                         image-rendering: pixelated;
+                         width: fit-content;
+                         margin-block: auto;
                     }
 
                     &__c {

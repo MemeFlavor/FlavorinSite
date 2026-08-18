@@ -79,6 +79,9 @@ body {
 
                &__sonic {
                     grid-area: header-sonic;
+                    background-image: url(../images/decorations/gosonic.gif);
+                    background-size: cover;
+                    background-position: center;
                }
           }
 
@@ -140,7 +143,7 @@ body {
                grid-template-columns: 2fr 1fr;
                grid-template-rows: 44px;
                grid-template-areas:
-                    "banner-gallery banner-details"
+                    "banner-unseen banner-watchmen"
                ;
                grid-area: panel-banner;
                gap: 10px;
@@ -150,12 +153,52 @@ body {
                     border-radius: 5px;
                }
 
-               .gallery {
-                    grid-area: banner-gallery;
+               &__unseen {
+                    user-select: none;
+                    -webkit-user-select: none;
+                    grid-area: banner-unseen;
+                    background-image: url(https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg);
+                    background-size: 100%;
+                    background-position: center 25%;
+                    background-repeat: no-repeat;
+                    animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+                    border-radius: 5px;
+                    position: relative;
+                    height: 40px;
+                    padding: 1px 3px;
+               
+                    @keyframes windy-sway {
+                         from { background-position-y: 25%; }
+                         to   { background-position-y: 55%; }
+                    }
                }
 
-               .details {
-                    grid-area: banner-details;
+               &__unseen-baybayin {
+                    font-family: 'Noto Sans Tagalog', font.$standard-font;
+                    color: azure;
+                    position: absolute;
+
+                    &--small {
+                         font-size: 0.875rem;
+                         text-shadow: 1px 1px 0px black;
+                    }
+
+                    &--big {
+                         font-size: 1.5625rem;
+                         text-shadow: 2px 2px 0px black;
+                         right: 3px;
+                         bottom: 0;
+                    }
+               }
+
+               &__watchmen {
+                    grid-area: banner-watchmen;
+                    background-color: black;
+                    background-image: url(../images/decorations/watchman.gif);
+                    background-size: 60%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    image-rendering: pixelated;
                }
           }
      }

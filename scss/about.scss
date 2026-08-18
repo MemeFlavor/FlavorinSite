@@ -33,12 +33,12 @@ body {
 
      .about {
           display: grid;
-          grid-template-columns: 450px 1fr;
-          grid-template-rows: auto 1fr 1fr;
-          grid-template-areas:
-               "about-bio about-description"
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-template-areas: 
+               "about-panel about-description"
                "about-information about-description"
-               "about-interests about-d"
+               "about-interests about-gallery"
           ;
           grid-area: flavory-about;
           background-color: plt.$flavor-content-color;
@@ -46,342 +46,117 @@ body {
           gap: 15px;
           padding: 20px;
 
-          .bio {
-               display: flex;
-               flex-direction: column-reverse;
-               row-gap: 10px;
+          .panel {
+               display: grid;
+               grid-template-columns: 1fr;
+               grid-template-rows: 90px 350px 44px;
+               grid-template-areas:
+                    "panel-header"
+                    "panel-profile"
+                    "panel-banner"
+               ;
+               gap: 10px;
+          }
 
-               .profile {
-                    display: grid;
-                    grid-template-columns: 150px 1fr;
-                    grid-template-rows: 330px;
-                    column-gap: 10px;
+          .panel .header {
+               display: grid;
+               grid-template-columns: 1fr 90px;
+               grid-template-rows: 1fr;
+               grid-template-areas: 
+                    "header-unknown header-sonic"
+               ;
+               grid-area: panel-header;
+               gap: 10px;
+
+               & > * {
+                    background-color: plt.$flavor-bento-color;
+                    border-radius: 5px;
                }
 
-               .profile .gallery {
-                    display: flex;
-                    flex-direction: column;
-                    row-gap: 10px;
-
-                    &__character {
-                         image-rendering: smooth;
-                         border-radius: 5px;
-                    }
-                    
-                    &__stuff {
-                         display: grid;
-                         grid-template-columns: 1fr 1fr;
-                         grid-template-rows: 1fr 1fr;
-                         grid-template-areas:
-                              "stuff-notepad stuff-apartment"
-                              "stuff-sonic stuff-apartment"
-                         ;
-                         gap: 10px;
-                         height: 100%;
-
-                         & > * {
-                              background-color: plt.$flavor-bento-color;
-                              border-radius: 5px;
-                         }
-                    }
-
-                    $notepad-primary-color: beige;
-                    $notepad-scrollbar-color: color.adjust($notepad-primary-color, $saturation: -20%, $lightness: -20%);
-                    $notepad-scrollbar-focus: color.adjust($notepad-primary-color, $saturation: -30%, $lightness: -30%);
-                    &__notepad {
-                         display: flex;
-                         flex-direction: column;
-                         align-items: center;
-                         grid-area: stuff-notepad;
-                         background: $notepad-primary-color;
-                         background: linear-gradient(to bottom, plt.$flavor-bento-color 5%, $notepad-primary-color 5%);
-                         
-                    }
-
-                    &__notepad-headbar {
-                         font-family: 'Archivo', font.$standard-font;
-                         font-size: 0.8rem;
-                         font-weight: 800;
-                         font-stretch: semi-condensed;
-                         text-align: center;
-                         text-transform: uppercase;
-                         color: plt.color-contrast(plt.$flavor-primary-color);
-                         background-color: plt.$flavor-primary-color;
-                         border-radius: 5px;
-                         border-end-start-radius: 0px;
-                         border-end-end-radius: 0px;
-                         width: 100%;
-                         padding: calc((3px + 4px) / 2.5) 5px;
-                    }
-
-                    &__notepad-body {
-                         font-family: 'Trebuchet MS' font.$standard-fancy-font, font.$standard-font;
-                         font-size: calc((0.50rem + 0.55rem) / 2);
-                         font-weight: bolder;
-                         text-align: start;
-                         color: black;
-                         outline: none;
-                         overflow-y: auto;
-                         height: 50px;
-                         padding-right: 2px;
-                         margin: 3px 5px;
-                         margin-right: 3px;
-
-                         &::-webkit-scrollbar {
-                              width: 3px;
-                         }
-                    
-                         &::-webkit-scrollbar-track {
-                              background: transparent;
-                         }
-                    
-                         &::-webkit-scrollbar-thumb {
-                              background: $notepad-scrollbar-color;
-                              border-radius: 0px;
-                         }
-
-                         &:focus-visible::-webkit-scrollbar-thumb {
-                              background: $notepad-scrollbar-focus;
-                         }
-                    }
-
-                    &__apartment {
-                         grid-area: stuff-apartment;
-                         background-image: url(https://preview.redd.it/empty-apartments-v0-xu54x3g4mpjh1.jpeg?width=1080&crop=smart&auto=webp&s=5d083f6c3efc90bcbaed0e446acb7228d2dd42bc);
-                         background-size: cover;
-                         background-position: calc((25% + 50%) / 2);
-                         image-rendering: smooth;
-                    }
-
-                    &__sonic {
-                         grid-area: stuff-sonic;
-                         background-image: url(../images/decorations/gosonic.gif);
-                         background-size: cover;
-                         background-position: center;
-                         image-rendering: smooth;
-                    }
+               &__unknown {
+                    grid-area: header-unknown;
                }
 
-               .profile .panel {
+               &__sonic {
+                    grid-area: header-sonic;
+               }
+          }
+
+          .panel .profile {
+               display: grid;
+               grid-template-columns: 150px 1fr;
+               grid-template-rows: 1fr;
+               grid-template-areas: 
+                    "profile-gallery profile-details"
+               ;
+               grid-area: panel-profile;
+               gap: 10px;
+
+               .gallery {
                     display: grid;
-                    grid-template-columns: 1fr 2fr;
-                    grid-template-rows: 150px 1fr;
-                    grid-template-areas: 
-                         "panel-bioinfo panel-bioinfo"
-                         "panel-trivia panel-fart"
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 150px 50px 2fr;
+                    grid-template-areas:
+                         "gallery-character gallery-character"
+                         "gallery-a gallery-a"
+                         "gallery-b gallery-c"
                     ;
+                    grid-area: profile-gallery;
                     gap: 10px;
 
                     & > * {
                          background-color: plt.$flavor-bento-color;
                          border-radius: 5px;
                     }
-                    
-                    --bioinfo-background-color: #{plt.$flavor-gridline-color};
-                    .bioinfo {
-                         display: flex;
-                         flex-direction: column;
-                         grid-area: panel-bioinfo;
-                         background-color: var(--bioinfo-background-color);
-                         background-image: url(../images/backgrounds/grids.avif);
-                         background-attachment: local;
-                         background-size: 250%;
-                         background-position: 43%;
-                         background-blend-mode: color-burn;
-                         height: 150px;
-                         padding: 10px;
 
-                         &__title {
-                              display: grid;
-                              grid-template-columns: auto 1fr;
-                              grid-template-rows: repeat(2, auto);
-                         }
-                    
-                         $titletext-color: azure;
-                         &__titletext-latin {
-                              font-family: 'Archivo', font.$standard-font;
-                              font-size: 1.85rem;
-                              font-weight: 900;
-                              font-stretch: expanded;
-                              text-shadow: 2px 2px 0px black;
-                              color: $titletext-color;
-                         }
-                    
-                         &__titletext-baybayin {
-                              font-family: 'Noto Sans Tagalog', font.$standard-font;
-                              font-size: 1.05rem;
-                              font-display: block;
-                              text-shadow: 2px 2px 0px black;
-                              color: $titletext-color;
-                         }
-                    
-                         &__description {
-                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                              font-size: 0.8rem;
-                              font-weight: 400;
-                              font-stretch: 100%;
-                              font-style: italic;
-                              margin-top: 5px;
-                         }
-
-                         &__metadata {
-                              display: flex;
-                              flex-direction: row;
-                              align-items: flex-end;
-                              justify-content: space-between;
-                              margin-top: auto;
-                         }
-
-                         $metadata-name-primary-color: plt.$flavor-quaternary-color;
-                         &__metadata-name {
-                              font-family: 'Archivo', font.$standard-font;
-                              font-size: 1.35rem;
-                              font-weight: 800;
-                              font-stretch: condensed;
-                              color: $metadata-name-primary-color;
-
-                              &::selection {
-                                   color: plt.color-contrast($metadata-name-primary-color);
-                                   background-color: $metadata-name-primary-color;
-                              }
-                         }
-
-                         $metadata-header-primary-color: plt.$flavor-secondary-color;
-                         &__metadata-header {
-                              display: flex;
-                              flex-direction: row;
-                              column-gap: 5px;
-                              margin-left: auto;
-                         }
-
-                         &__metadata-block {
-                              background-color: $metadata-header-primary-color;
-                              border: 2px solid $metadata-header-primary-color;
-                              width: 30px;
-                              height: auto;
-                         }
-
-                         &__metadata-type {
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 0.9rem;
-                              font-weight: 800;
-                              font-stretch: semi-expanded;
-                              color: $metadata-header-primary-color;
-                              border: 2px solid $metadata-header-primary-color;
-                              border-left-width: calc((10px + 15px) / 2);
-                              width: fit-content;
-                              padding: 3px 8px;
-
-                              &::selection {
-                                   color: plt.color-contrast($metadata-header-primary-color);
-                                   background-color: $metadata-header-primary-color;
-                              }
-                         }
-                         
-                         &__barstuff {
-                              align-self: flex-end;
-                              image-rendering: pixelated;
-                              margin-top: auto;
-                         }
-
-                         @media (prefers-reduced-transparency: reduce) {
-                              --bioinfo-background-color: #{color.change(plt.$flavor-gridline-color, $alpha: 0.3)};
-                         }
+                    &__character {
+                         grid-area: gallery-character;
+                         border-radius: 0px;
+                         image-rendering: smooth;
                     }
 
-                    .trivia {
-                         grid-area: panel-trivia;
-                         padding: 8px;
+                    &__a {
+                         grid-area: gallery-a;
                     }
 
-                    .fartt {
-                         grid-area: panel-fart;
+                    &__b {
+                         grid-area: gallery-b;
+                    }
+
+                    &__c {
+                         grid-area: gallery-c;
                     }
                }
 
-               .banner {
-                    display: grid;
-                    grid-template-columns: 2fr 1fr;
-                    grid-template-rows: 40px 1fr;
-                    grid-template-areas: 
-                         "banner-motivational banner-watchmen"
-                    ;
-                    column-gap: 10px;
-
-                    & > * {
-                         background-color: plt.$flavor-bento-color;
-                         border-radius: 5px;
-                    }
-               }
-
-               .banner .motivational {
-                    user-select: none;
-                    -webkit-user-select: none;
-                    grid-area: banner-motivational;
-                    background-image: url(https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg);
-                    background-size: 100%;
-                    background-position: center 25%;
-                    background-repeat: no-repeat;
-                    animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
-                    position: relative;
-                    padding: 1px 3px;
-               
-                    &__message {
-                         font-family: 'Noto Sans Tagalog', font.$standard-font;
-                         font-display: block;
-                         color: honeydew;
-                         position: absolute;
-               
-                         &--small {
-                              font-size: 0.875rem;
-                              text-shadow: 2px 1px 0px black;
-                         }
-               
-                         &--big {
-                              font-size: 1.5625rem;
-                              text-shadow: 2px 2px 0px black;
-                              right: 3px;
-                              bottom: 0;
-                         }
-                    }
-               
-                    @keyframes windy-sway {
-                         from { background-position-y: 25%; }
-                         to   { background-position-y: 55%; }
-                    }
-               }
-
-               .banner .watchmen {
-                    user-select: none;
-                    -webkit-user-select: none;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    grid-area: banner-watchmen;
-                    background-color: black;
-                    overflow: hidden;
-               
-                    &__allseeing {
-                         image-rendering: pixelated;
-                    }
+               .details {
+                    grid-area: profile-details;
+                    background-color: plt.$flavor-bento-color;
+                    border-radius: 0px;
                }
           }
 
-          .description {
-               grid-area: about-description;
-          }
+          .panel .banner {
+               display: grid;
+               grid-template-columns: 2fr 1fr;
+               grid-template-rows: 44px;
+               grid-template-areas:
+                    "banner-gallery banner-details"
+               ;
+               grid-area: panel-banner;
+               gap: 10px;
 
-          .information {
-               grid-area: about-information;
-          }
+               & > * {
+                    background-color: plt.$flavor-bento-color;
+                    border-radius: 5px;
+               }
 
-          .interests {
-               grid-area: about-interests;
-          }
+               .gallery {
+                    grid-area: banner-gallery;
+               }
 
-          .d {
-               grid-area: about-d;
+               .details {
+                    grid-area: banner-details;
+               }
           }
      }
 }

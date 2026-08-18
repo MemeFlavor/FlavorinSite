@@ -4,6 +4,7 @@
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
+@include font.font-face-var('JetBrains Mono', 100 800, normal, normal, 1, font.$font-source-variable);
 @include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
@@ -63,7 +64,7 @@ body {
                grid-template-columns: 1fr 90px;
                grid-template-rows: 1fr;
                grid-template-areas: 
-                    "header-unknown header-sonic"
+                    "header-title header-sonic"
                ;
                grid-area: panel-header;
                gap: 10px;
@@ -73,8 +74,101 @@ body {
                     border-radius: 5px;
                }
 
-               &__unknown {
-                    grid-area: header-unknown;
+               --title-background-color: #{plt.$flavor-gridline-color};
+               &__title {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    grid-template-rows: auto auto;
+                    grid-template-areas: 
+                         "title-domain title-barstuff"
+                         "title-name title-year"
+                    ;
+                    grid-area: header-title;
+                    column-gap: 15px;
+                    background-color: var(--title-background-color);
+                    background-image: url(../images/backgrounds/grids.avif);
+                    background-attachment: local;
+                    background-size: 180%;
+                    background-position: 35%;
+                    background-blend-mode: color-burn;
+                    position: relative;
+                    height: 100%;
+                    padding: 8px;
+               }
+
+               &__title-domain {
+                    grid-area: title-domain;
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 0.7rem;
+                    font-weight: 900;
+                    font-stretch: ultra-expanded;
+                    color: plt.color-contrast(plt.$flavor-primary-color);
+                    background-color: plt.$flavor-primary-color;
+                    border-radius: 3px;
+                    width: fit-content;
+                    height: fit-content;
+                    padding: 3px 8px;
+
+                    &::selection {
+                         color: black;
+                         background-color: transparent;
+                    }
+               }
+
+               &__title-name {
+                    display: grid;
+                    align-self: flex-end;
+                    grid-template-columns: auto 1fr;
+                    grid-template-rows: auto auto;
+                    grid-area: title-name;
+               }
+
+               &__title-latin {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1.65rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+               }
+
+               &__title-baybayin {
+                    font-family: 'Noto Sans Tagalog', font.$standard-font;
+                    font-size: 0.75rem;
+                    font-display: block;
+               }
+
+               &__title-year {
+                    user-select: none;
+                    -webkit-user-select: none;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr 1fr;
+                    grid-area: title-year;
+                    width: fit-content;
+                    height: fit-content;
+                    margin-top: auto;
+                    margin-left: auto;
+                    
+                    span {
+                         display: block;
+                         font-family: 'Archivo';
+                         font-size: 1rem;
+                         font-weight: 900;
+                         font-stretch: ultra-expanded;
+                         text-align: center;
+                         padding-inline: 3px;
+
+                         &:nth-last-child(1) {
+                              color: plt.color-contrast(plt.$flavor-secondary-color);
+                              background-color: plt.$flavor-secondary-color;
+                         }
+                    }
+               }
+
+               &__title-barstuff {
+                    user-select: none;
+                    -webkit-user-select: none;
+                    grid-area: title-barstuff;
+                    image-rendering: pixelated;
                }
 
                &__sonic {
@@ -82,6 +176,10 @@ body {
                     background-image: url(../images/decorations/gosonic.gif);
                     background-size: cover;
                     background-position: center;
+               }
+
+               @media (prefers-reduced-transparency: reduce) {
+                    --title-background-color: #{color.change(plt.$flavor-gridline-color, $alpha: 0.3)};
                }
           }
 

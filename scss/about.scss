@@ -35,10 +35,9 @@ body {
      .about {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-template-rows: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
           grid-template-areas: 
                "about-panel about-information"
-               "about-description about-description"
                "about-interests about-gallery"
           ;
           grid-area: flavory-about;
@@ -219,16 +218,15 @@ body {
                     &__status {
                          display: flex;
                          flex-direction: column;
-                         align-items: center;
-                         justify-content: space-between;
                          grid-area: gallery-status;
                          padding: calc((3px + 5px) / 2);
                     }
 
                     &__status-title {
-                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-family: 'Archivo', font.$standard-font;
                          font-size: 0.9rem;
-                         font-weight: bolder;
+                         font-weight: 870;
+                         font-stretch: semi-expanded;
                          text-align: center;
                          text-transform: uppercase;
                          color: plt.color-contrast(plt.$flavor-tertiary-color);
@@ -236,11 +234,7 @@ body {
                          border-radius: 3px;
                          width: 100%;
                          padding: 1px 5px;
-                    
-                         &:not(:lang(en)) {
-                              font-size: 0.8rem;
-                         }
-                    
+               
                          &::before, &::after {
                               content: '\26A0';
                          }
@@ -256,12 +250,10 @@ body {
 
                     &__status-description {
                          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: 0.7rem;
+                         font-size: 0.65rem;
+                         font-weight: bolder;
                          text-align: center;
-                    
-                         &:not(:lang(en)) {
-                              font-size: calc((0.55rem + 0.60rem) / 2);
-                         }
+                         margin-block: auto;
                     }
 
                     $triviapad-primary-color: beige;
@@ -293,37 +285,11 @@ body {
                          font-weight: bolder;
                          text-align: start;
                          color: black;
-                         outline: none;
-                         overflow-y: hidden;
-                         height: 70px;
                          padding: 5px;
                          padding-top: 2px;
                          padding-right: 2px;
                          margin-top: 3px;
                          margin-right: 3px;
-
-                         &:not(:lang(en)) {
-                              overflow-y: auto;
-                              overflow-wrap: break-word;
-                              hyphens: auto;
-                         }
-
-                         &::-webkit-scrollbar {
-                              width: 3px;
-                         }
-                         
-                         &::-webkit-scrollbar-track {
-                              background: transparent;
-                         }
-                         
-                         &::-webkit-scrollbar-thumb {
-                              background: color.adjust($triviapad-primary-color, $saturation: -30%, $lightness: -30%);
-                              border-radius: 0px;
-                         }
-
-                         &:focus-visible::-webkit-scrollbar-thumb {
-                              background: color.adjust($triviapad-primary-color, $saturation: -55%, $lightness: -55%);
-                         }
                     }
 
                     &__triviapad-sonic {
@@ -399,18 +365,18 @@ body {
                          background-color: $headbar-primary-color;
 
                          &--pallete-1 {
-                              background-color: color.adjust($headbar-primary-color, $hue: 150, $saturation: 60%);
+                              background-color: plt.$flavor-primary-color;
                          }
 
                          &--pallete-2 {
-                              background-color: color.adjust($headbar-primary-color, $hue: 300, $saturation: 60%);
+                              background-color: plt.$flavor-secondary-color;
                          }
                     }
 
                     &__body {
                          outline: none;
                          overflow-y: auto;
-                         height: 270px;
+                         height: 275px;
                          padding: 5px;
                          padding-left: 0px;
 
@@ -464,10 +430,6 @@ body {
                          font-stretch: semi-expanded;
                          text-transform: uppercase;
                          width: 100%;
-
-                         &:not(:lang(en)) {
-                              font-size: 0.8rem;
-                         }
                     }
 
                     h3 {
@@ -481,10 +443,6 @@ body {
                          color: plt.color-contrast(plt.$flavor-primary-color);
                          background-color: plt.$flavor-primary-color;
                          padding: 3px 5px;
-
-                         &:not(:lang(en)) {
-                              font-size: 0.7rem;
-                         }
                     
                          &::before {
                               content: "\2605";
@@ -571,6 +529,146 @@ body {
                     background-repeat: no-repeat;
                     image-rendering: pixelated;
                }
+          }
+
+          .information {
+               display: grid;
+               grid-template-columns: 275px 1fr;
+               grid-template-rows: 320px;
+               grid-area: about-information;
+               gap: 10px;
+          }
+
+          .information .manual {
+               display: flex;
+               flex-direction: column;
+               gap: 5px;
+
+               &__headbar {
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 3px;
+               }
+          
+               $headtitle-primary-color: plt.$flavor-secondary-color;
+               $headtitle-starting-gradient: color.adjust($headtitle-primary-color, $lightness: -25%);
+               $headtitle-ending-gradient: color.adjust($headtitle-primary-color, $lightness: -40%);
+               &__headtitle {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    text-transform: uppercase;
+                    background: $headtitle-starting-gradient;
+                    background: linear-gradient(144deg, $headtitle-starting-gradient 0%, $headtitle-ending-gradient 95%);
+                    border: 2px solid black;
+                    padding: 5px 10px;
+                    width: 100%;
+               }
+          
+               &__headblocks {
+                    border: 2px solid black;
+                    width: calc((15px + 20px) / 2);
+                    height: auto;
+          
+                    &--pallete-1 {
+                         background-color: plt.$flavor-secondary-color;
+                    }
+          
+                    &--pallete-2 {
+                         background-color: plt.$flavor-primary-color;
+                    }
+          
+                    &--pallete-3 {
+                         background-color: plt.$flavor-quaternary-color;
+                    }
+               }
+
+               &__body {
+                    background-color: beige;
+                    background-image: url(../images/decorations/manual/sidecover.webp);
+                    background-repeat: repeat-x;
+                    background-size: 50%;
+                    background-position: 50% -73px;
+                    background-attachment: local;
+                    border: 2px solid black;
+                    height: 100%;
+                    padding: 5px 10px;
+               }
+
+               &__title {
+                    display: flex;
+                    align-items: center;
+                    font-family: 'Zalando Sans', font.$standard-font;
+                    font-size: 1.4rem;
+                    font-weight: 900;
+                    font-stretch: 120%;
+                    text-transform: uppercase;
+                    color: hsl(240, 14%, 5%);
+                    border: 2px solid hsl(240, 14%, 5%);
+                    height: fit-content;
+                    padding: 0px 8px;
+                    margin-bottom: 0.65cm;
+               
+                    &::before {
+                         content: "";
+                         display: inline-block;
+                         background-color: currentColor;
+                         border-radius: 360px;
+                         width: 15px;
+                         height: 15px;
+                         margin-right: 3px;
+                         margin-top: 1px;
+                    }
+               }
+
+               &__pages {
+                    height: 205px;
+
+                    h3 {
+                         display: flex;
+                         align-items: center;
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.8rem;
+                         font-weight: 650;
+                         font-stretch: semi-condensed;
+                         text-transform: uppercase;
+                         color: plt.color-contrast(black);
+                         background-color: black;
+                         padding: 3px 5px;
+                         margin-bottom: 5px;
+                         
+                         &::before {
+                              content: "\2605";
+                              margin-right: 3px;
+                         }
+                    }
+
+                    p {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.7rem;
+                         font-weight: bolder;
+                         text-align: justify;
+                         text-wrap: pretty;
+                         text-rendering: optimizeSpeed;
+                         line-height: 1.2;
+                         color: black;
+                         margin-block: 3px;
+                    }
+
+                    img {
+                         image-rendering: pixelated;
+                         margin-top: auto;
+                    }
+               }
+          }
+
+          .information .halls {
+               background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg);
+               background-size: cover;
+               background-position: 35%;
+               image-rendering: smooth;
+               border-radius: 5px;
           }
      }
 }

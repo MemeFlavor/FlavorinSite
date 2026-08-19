@@ -533,8 +533,8 @@ body {
 
           .information {
                display: grid;
-               grid-template-columns: 275px 1fr;
-               grid-template-rows: 320px;
+               grid-template-columns: 270px 1fr;
+               grid-template-rows: 310px;
                grid-area: about-information;
                gap: 10px;
           }
@@ -589,7 +589,7 @@ body {
                     background-image: url(../images/decorations/manual/sidecover.webp);
                     background-repeat: repeat-x;
                     background-size: 50%;
-                    background-position: 50% -73px;
+                    background-position: 50% -70px;
                     background-attachment: local;
                     border: 2px solid black;
                     height: 100%;
@@ -623,9 +623,7 @@ body {
                }
 
                &__pages {
-                    height: 205px;
-
-                    h3 {
+                    h2 {
                          display: flex;
                          align-items: center;
                          font-family: 'Zalando Sans', font.$standard-font;
@@ -650,15 +648,54 @@ body {
                          font-weight: bolder;
                          text-align: justify;
                          text-wrap: pretty;
-                         text-rendering: optimizeSpeed;
                          line-height: 1.2;
                          color: black;
                          margin-block: 3px;
                     }
+               }
 
-                    img {
+               &__pages .biography {
+                    display: grid;
+                    grid-template-columns: 1fr 90px;
+                    grid-template-rows: auto 1fr;
+                    grid-template-areas:
+                         "biography-description biography-list"
+                         "biography-rewrite biography-list"
+                    ;
+                    gap: 15px;
+               
+                    &__description {
+                         grid-area: biography-description;
+                    }
+               
+                    &__rewrite {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         place-self: center;
+                         grid-area: biography-rewrite;
                          image-rendering: pixelated;
-                         margin-top: auto;
+                    }
+               
+                    &__list {
+                         grid-area: biography-list;
+                    }
+               
+                    &__category {
+                         margin-block: 5px;
+                    }
+               
+                    &__category-type {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.7rem;
+                         font-weight: 700;
+                         text-align: center;
+                         background-color: plt.$flavor-primary-color;
+                         padding: 3px 5px;
+                    }
+               
+                    &__category-info {
+                         font-weight: bolder;
+                         font-style: italic;
                     }
                }
           }

@@ -745,152 +745,31 @@ body {
                     }
                }
 
-               &__pages .socials {
-                    display: grid;
-                    grid-template-columns: 1fr calc((140px + 145px) / 2);
-                    grid-template-rows: 1fr;
-                    gap: 10px;
-
-                    &__list {
-                         counter-reset: type-counter;
-                    }
-
-                    $item-counter-gap: 25px;
-                    &__item {
-                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: 0.75rem;
-                         font-weight: bolder;
-                         text-align: start;
-                         color: black;
-                         position: relative;
-                         margin-block: 10px;
-                         margin-left: $item-counter-gap;
-
-                         &:first-child {
-                              margin-top: 5px;
-                         }
-
-                         &:last-child {
-                              margin-bottom: 5px;
-                         }
-                    
-                         &::before {
-                              content: counter(type-counter);
-                              counter-increment: type-counter;
-                              display: inline-block;
-                              font-family: 'Zalando Sans', font.$standard-font;
-                              font-size: 0.95rem;
-                              font-weight: 600;
-                              font-stretch: condensed;
-                              text-align: center;
-                              color: black;
-                              background-color: color.adjust(plt.$flavor-secondary-color, $lightness: -10%);
-                              border-radius: 360px;
-                              position: absolute;
-                              top: -2px;
-                              left: calc($item-counter-gap * -1);
-                              width: 20px;
-                              height: 20px;
-                              padding-inline: 3px 2px;
-                         }
-                    }
-
-                    &__category {
-                         outline: none;
-                         background: color.adjust($manual-primary-color, $hue: -10, $saturation: -5%, $lightness: -5%);
-                         overflow-y: auto;
-                         height: 130px;
-                         padding-inline: 5px;
-                         
-                         &::-webkit-scrollbar {
-                              width: 3px;
-                         }
-                    
-                         &::-webkit-scrollbar-track {
-                              background: transparent;
-                         }
-                    
-                         &::-webkit-scrollbar-thumb {
-                              background: color.adjust($manual-primary-color, $hue: -10, $saturation: -20%, $lightness: -20%);
-                              border-radius: 0px;
-                         }
-                    
-                         &:focus-visible::-webkit-scrollbar-thumb {
-                              background: color.adjust($manual-primary-color, $hue: -10, $saturation: -30%, $lightness: -30%);
-                         }
-                    }
-
-                    &__category-item {
-                         display: flex;
-                         flex-direction: column;
-                         margin-block: 5px;
-                    }
-
-                    &__category-media {
-                         font-family: 'Zalando Sans', font.$standard-font;
-                         font-size: 0.75rem;
-                         font-weight: 700;
-                         text-align: center;
-                         background-color: hsl(240, 14%, 10%);
-                         padding: 2px 5px;
-                    }
-
-                    &__category-description {
-                         font-size: calc((0.70rem + 0.75rem) / 2);
-                         font-weight: bolder;
-                         text-wrap: pretty;
-                    }
-
-                    &__category-links {
-                         user-select: none;
-                         -webkit-user-select: none;
-                         outline: none;
-                         align-self: center;
-                         margin-top: 5px;
-
-                         img {
-                              image-rendering: pixelated;
-                         }
-
-                         &:focus-visible img {
-                              filter: drop-shadow(3px 3px 0px color.adjust($manual-primary-color, $saturation: -45%, $lightness: -45%))
-                         }
-                    }
-               }
-
                &__pages .facts {
                     display: grid;
                     grid-template-columns: 1fr 2fr;
                     grid-template-rows: 1fr;
                     gap: 10px;
 
-                    $factpad-starting-gradient: transparent;
-                    $factpad-ending-gradient: hsl(240, 14%, 10%);
-                    &__factpad {
-                         background: $factpad-ending-gradient;
-                         background: linear-gradient(to bottom, $factpad-starting-gradient 5%, $factpad-ending-gradient 5%);
-                         border-radius: 5px;
+                    &__extra {
                          height: 80%;
                     }
 
-                    &__factpad-title {
-                         font-family: 'Archivo', font.$standard-font;
-                         font-size: 0.95rem;
+                    &__extra-title {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.75rem;
                          font-weight: 800;
                          font-stretch: semi-condensed;
                          text-align: center;
                          text-transform: uppercase;
                          color: plt.color-contrast(plt.$flavor-tertiary-color);
                          background-color: plt.$flavor-tertiary-color;
-                         border-top-left-radius: 5px;
-                         border-top-right-radius: 5px;
-                         padding: calc((3px + 4px) / 2.5) 5px;
+                         padding: 3px 5px;
                     }
 
-                    &__factpad-description {
-                         font-size: 0.55rem;
-                         text-align: start;
-                         color: white;
+                    &__extra-description {
+                         font-size: calc((0.60rem + 0.65rem) / 2);
+                         text-align: justify;
                          padding: 3px 5px;
                          margin: 0;
                     }

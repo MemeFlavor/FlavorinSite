@@ -15,7 +15,7 @@
      <link rel="stylesheet" type="text/css" href="css/about.css">
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
      <script type="module" src="javascript/sidebar.js"></script>
-     <!-- <script type="module" src="javascript/manual.js"></script> -->
+     <script type="module" src="javascript/components/manual.js"></script>
 </head>
 <body>
      <aside class="sidebar">
@@ -246,7 +246,7 @@
                                         <li class="socials__category-item">
                                              <h4 class="socials__category-media" translate="no"> Geometry Dash </h4>
                                              <p class="socials__category-description">
-                                                  My favorite enshittified game of all time.
+                                                  Game where you jump over spikes.
                                              </p>
                                              <a class="socials__category-links" href="https://gdbrowser.com/u/MemeFlavorX" rel="noopener noreferrer">
                                                   <img width="88" height="31" alt="Geometry Dash" src="images/badges/custom/gd.png">
@@ -259,12 +259,16 @@
                               <h2> Flavory Facts! </h2>
                               <p> Extra facts to add a bit of flavor to your meal! Or maybe not, we all different taste. </p>
                               <div class="facts">
-                                   <ul>
-                                        <li>High-Functioning Autistic dumbass, you can tell by this site alone</li>
-                                        <li>Lua is my favorite programming language, yall can't change my mind </li>
-                                        <li>I love Trigonometry and Chemistry, I think their really cool</li>
-                                        <li>#1 Sinister Minds, my favorite album of all time; listen to it, it's amazing</li>
-                                        <li>Greatest Outcome Memories (RIP) player to ever exist (lying)</li>
+                                   <div class="facts__factpad">
+                                        <h1 class="facts__factpad-title" translate="no">Fact</h1>
+                                        <p class="facts__factpad-description">There is a text that says the exact same text as this one.</p>
+                                   </div>
+                                   <ul class="facts__list">
+                                        <li class="facts__item">High-Functioning Autistic dumbass, you can tell by this site alone</li>
+                                        <li class="facts__item">Lua is my favorite programming language, yall can't change my mind </li>
+                                        <li class="facts__item">I love Trigonometry and Chemistry, I think their really cool</li>
+                                        <li class="facts__item">#1 Sinister Minds, my favorite album of all time; listen to it, it's amazing</li>
+                                        <li class="facts__item">Greatest Outcome Memories (RIP) player to ever exist (lying)</li>
                                    </ul>
                               </div>
                          </section>
@@ -278,9 +282,5 @@
           <article class="interests"></article>
           <article class="gallery"></article>
      </main>
-     <script>
-          const navigation = document.querySelector('icon-wrap')
-          console.log( getComputedStyle(navigation).getPropertyValue('--navigation-icon-offset-top') )
-     </script>
 </body>
 </html>

@@ -539,6 +539,7 @@ body {
                gap: 10px;
           }
 
+          $manual-primary-color: beige;
           .information .manual {
                display: flex;
                flex-direction: column;
@@ -585,7 +586,7 @@ body {
                }
 
                &__body {
-                    background-color: beige;
+                    background-color: $manual-primary-color;
                     background-image: url(../images/decorations/manual/sidecover.webp);
                     background-repeat: repeat-x;
                     background-size: 50%;
@@ -791,11 +792,11 @@ body {
                     }
 
                     &__category {
+                         background: color.adjust($manual-primary-color, $hue: -10, $saturation: -5%, $lightness: -5%);
                          overflow-y: auto;
                          height: 130px;
                          padding-inline: 5px;
-                         background: color.adjust(beige, $hue: -10, $saturation: -5%, $lightness: -5%);
-
+                         
                          &::-webkit-scrollbar {
                               width: 3px;
                          }
@@ -805,12 +806,12 @@ body {
                          }
                     
                          &::-webkit-scrollbar-thumb {
-                              background: color.adjust(beige, $hue: -10, $saturation: -20%, $lightness: -20%);
+                              background: color.adjust($manual-primary-color, $hue: -10, $saturation: -20%, $lightness: -20%);
                               border-radius: 0px;
                          }
                     
                          &:focus-visible::-webkit-scrollbar-thumb {
-                              background: color.adjust(beige, $hue: -10, $saturation: -30%, $lightness: -30%);
+                              background: color.adjust($manual-primary-color, $hue: -10, $saturation: -30%, $lightness: -30%);
                          }
                     }
 
@@ -846,7 +847,44 @@ body {
                          }
 
                          &:focus-visible img {
-                              filter: drop-shadow(3px 3px 0px color.adjust(beige, $saturation: -45%, $lightness: -45%))
+                              filter: drop-shadow(3px 3px 0px color.adjust($manual-primary-color, $saturation: -45%, $lightness: -45%))
+                         }
+                    }
+               }
+
+               &__pages .facts {
+                    overflow-y: auto;
+                    height: 140px;
+                    padding-inline: 5px;
+                    margin-left: 15px;
+               
+                    &::-webkit-scrollbar {
+                         width: 3px;
+                    }
+               
+                    &::-webkit-scrollbar-track {
+                         background: transparent;
+                    }
+               
+                    &::-webkit-scrollbar-thumb {
+                         background: color.adjust($manual-primary-color, $hue: -10, $saturation: -20%, $lightness: -20%);
+                         border-radius: 0px;
+                    }
+               
+                    &:focus-visible::-webkit-scrollbar-thumb {
+                         background: color.adjust($manual-primary-color, $hue: -10, $saturation: -30%, $lightness: -30%);
+                    }
+
+                    ul {
+                         list-style-type: disc;
+                         padding-left: 25px;
+
+                         li {
+                              font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                              font-size: 0.68rem;
+                              font-weight: bolder;
+                              text-align: start;
+                              color: black;
                          }
                     }
                }

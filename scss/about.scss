@@ -539,7 +539,7 @@ body {
                     background-image: url(../images/decorations/manual/sidecover.webp);
                     background-repeat: repeat-x;
                     background-size: 50%;
-                    background-position: 50% -70px;
+                    background-position: 50% -65px;
                     background-attachment: local;
                     border: 2px solid black;
                     height: 100%;
@@ -551,7 +551,7 @@ body {
                     display: flex;
                     align-items: center;
                     font-family: 'Zalando Sans', font.$standard-font;
-                    font-size: 1.4rem;
+                    font-size: 1.5rem;
                     font-weight: 900;
                     font-stretch: 120%;
                     text-transform: uppercase;
@@ -559,7 +559,7 @@ body {
                     border: 2px solid hsl(240, 14%, 5%);
                     height: fit-content;
                     padding: 0px 8px;
-                    margin-bottom: 0.65cm;
+                    margin-bottom: 0.55cm;
                
                     &::before {
                          content: "";
@@ -637,16 +637,17 @@ body {
 
                &__pages .biography {
                     display: grid;
-                    grid-template-columns: 1fr 90px;
+                    grid-template-columns: 1fr 110px;
                     grid-template-rows: auto 1fr;
                     grid-template-areas:
                          "biography-description biography-category"
                          "biography-rewrite biography-category"
                     ;
-                    gap: 15px;
+                    gap: 5px 15px;
                
                     &__description {
                          grid-area: biography-description;
+                         padding-right: 5px;
                     }
                
                     &__rewrite {
@@ -655,7 +656,6 @@ body {
                          place-self: center;
                          grid-area: biography-rewrite;
                          image-rendering: pixelated;
-                         margin-bottom: 8px;
                     }
                
                     &__category {
@@ -692,11 +692,14 @@ body {
 
                &__pages .facts {
                     display: grid;
-                    grid-template-columns: 1fr 2fr;
+                    grid-template-columns: 1fr 145px;
                     grid-template-rows: 1fr;
-                    gap: 10px;
+                    gap: 5px;
+                    margin-top: 3px;
 
                     &__extra {
+                         display: flex;
+                         flex-direction: column;
                          height: 80%;
                     }
 
@@ -704,12 +707,12 @@ body {
                          @include mnl.manual__section;
                          display: block;
                          font-family: 'Zalando Sans', font.$standard-font;
-                         font-size: 0.75rem;
-                         font-weight: 800;
+                         font-size: 0.7rem;
+                         font-weight: 850;
                          font-stretch: semi-condensed;
                          text-align: center;
-                         color: plt.color-contrast(plt.$flavor-tertiary-color);
-                         background-color: plt.$flavor-tertiary-color;
+                         color: plt.color-contrast(plt.$flavor-quaternary-color);
+                         background-color: plt.$flavor-quaternary-color;
                          padding: 3px 5px;
                          margin: 0;
 
@@ -720,17 +723,27 @@ body {
                     }
 
                     &__extra-description {
-                         font-size: 0.6rem;
+                         font-size: calc((0.60rem + 0.65rem) / 2);
                          text-align: justify;
+                         text-wrap: pretty;
                          padding: 3px 5px;
                          margin: 0;
+                    }
+
+                    &__extra-huetal {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         align-self: center;
+                         border-radius: 5px;
+                         image-rendering: crisp-edges;
+                         margin-block: 5px;
                     }
                
                     &__list {
                          list-style-type: disc;
                          outline: none;
                          overflow-y: auto;
-                         height: 150px;
+                         height: 170px;
                          padding-inline: 15px 5px;
 
                          $scrollbar-background: transparent;
@@ -741,10 +754,19 @@ body {
 
                     &__item {
                          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: calc((0.65rem + 0.7rem) / 2);
+                         font-size: 0.65rem;
                          font-weight: bolder;
                          text-align: start;
                          color: black;
+                         margin-bottom: 3px;
+
+                         &:first-child {
+                              margin-top: 0px;
+                         }
+
+                         &:last-child {
+                              margin-bottom: 0px;
+                         }
                     }
                }
           }

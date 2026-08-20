@@ -404,6 +404,10 @@ body {
 
                     p {
                          @include mnl.manual__description;
+
+                         &:last-child {
+                              margin-bottom: 0px;
+                         }
                     }
                }
           }
@@ -475,7 +479,11 @@ body {
           .information {
                display: grid;
                grid-template-columns: 270px 1fr;
-               grid-template-rows: 315px;
+               grid-template-rows: 315px 1fr;
+               grid-template-areas: 
+                    "information-flavual information-halls"
+                    "information-extras information-extras"
+               ;
                grid-area: about-information;
                gap: 10px;
           }
@@ -484,6 +492,7 @@ body {
           .information .flavual {
                display: flex;
                flex-direction: column;
+               grid-area: information-flavual;
                gap: 5px;
 
                &__headbar {
@@ -741,7 +750,59 @@ body {
                }
           }
 
+          .information .extras {
+               display: grid;
+               grid-template-columns: 1fr 250px;
+               grid-template-rows: 1fr;
+               grid-template-areas:
+                    "extras-gallery extras-socials"
+               ;
+               grid-area: information-extras;
+               gap: 10px;
+
+               .gallery {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr 1fr 44px;
+                    grid-template-areas: 
+                         "gallery-a gallery-b"
+                         "gallery-a gallery-c"
+                         "gallery-d gallery-d"
+                    ;
+                    grid-area: extras-gallery;
+                    gap: 10px;
+
+                    & > * {
+                         background-color: plt.$flavor-bento-color;
+                         border-radius: 5px;
+                    }
+
+                    &__a {
+                         grid-area: gallery-a;
+                    }
+
+                    &__b {
+                         grid-area: gallery-b;
+                    }
+
+                    &__c {
+                         grid-area: gallery-c;
+                    }
+
+                    &__d {
+                         grid-area: gallery-d;
+                    }
+               }
+
+               .socials {
+                    grid-area: extras-socials;
+                    background-color: plt.$flavor-bento-color;
+                         border-radius: 5px;
+               }
+          }
+
           .information .halls {
+               grid-area: information-halls;
                background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg);
                background-size: cover;
                background-position: 35%;

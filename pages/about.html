@@ -172,26 +172,87 @@
                               <h2> Everything about me! </h2>
                               <div class="biography">
                                    <p class="biography__description">Basically everything about me, do what you will with this information.</p>
-                                   <ul class="biography__list">
-                                        <li class="biography__category">
+                                   <ul class="biography__category">
+                                        <li class="biography__category-item">
                                              <h4 class="biography__category-type" translate="no">Birthday</h4>
                                              <p class="biography__category-info">03/15/2008</p>
                                         </li>
-                                        <li class="biography__category">
+                                        <li class="biography__category-item">
                                              <h4 class="biography__category-type" translate="no">Gender</h4>
                                              <p class="biography__category-info">Male • he/him</p>
                                         </li>
-                                        <li class="biography__category">
+                                        <li class="biography__category-item">
                                              <h4 class="biography__category-type" translate="no">Sexuality</h4>
                                              <p class="biography__category-info">Heteroromantic</p>
                                         </li>
-                                        <li class="biography__category">
+                                        <li class="biography__category-item">
                                              <h4 class="biography__category-type" translate="no">Alignment</h4>
                                              <p class="biography__category-info">Chaotic Neutral</p>
                                         </li>
                                    </ul>
                                    <img class="biography__rewrite" width="110" height="100"
                                         alt="Rewrite Manual" src="images/decorations/manual/rewrite.png">
+                              </div>
+                         </section>
+                         <section class="manual__pages manual__pages--socials" aria-hidden="true" hidden>
+                              <h2> Find me everywhere! </h2>
+                              <p>
+                                   Check out my awesome socials that you should definetely, totally check out. I'm somewhat active there whenever 
+                                   I feel like it or not.
+                              </p>
+                              <div class="socials">
+                                   <ol class="socials__list" translate="no">
+                                        <li class="socials__item">Profiles</li>
+                                        <li class="socials__item">Media</li>
+                                        <li class="socials__item">Unknown</li>
+                                   </ol>
+                                   <ul class="socials__category">
+                                        <li class="socials__category-item">
+                                             <h4 class="socials__category-media" translate="no"> Github </h4>
+                                             <p class="socials__category-description">
+                                                  Check out my awesome github for any useless projects i'm making.
+                                             </p>
+                                             <a class="socials__category-links" href="https://github.com/MemeFlavor" rel="noopener noreferrer">
+                                                  <img width="88" height="31" alt="Github" src="images/badges/custom/github.png">
+                                             </a>
+                                        </li>
+                                        <li class="socials__category-item">
+                                             <h4 class="socials__category-media" translate="no"> Youtube </h4>
+                                             <p class="socials__category-description">
+                                                  My youtube account, there's nothing special there yet.
+                                             </p>
+                                             <a class="socials__category-links" href="https://www.youtube.com/@MemeFlavor" rel="noopener noreferrer">
+                                                  <img width="88" height="31" alt="Youtube" src="images/badges/custom/youtube.png">
+                                             </a>
+                                        </li>
+                                        <li class="socials__category-item">
+                                             <h4 class="socials__category-media" translate="no"> Gamebanana </h4>
+                                             <p class="socials__category-description">
+                                                  Where I post any mods I created.
+                                             </p>
+                                             <a class="socials__category-links" href="https://gamebanana.com/members/2112708" rel="noopener noreferrer">
+                                                  <img width="88" height="31" alt="Gamebanana" src="images/badges/custom/gamebanana.png">
+                                             </a>
+                                        </li>
+                                        <li class="socials__category-item">
+                                             <h4 class="socials__category-media" translate="no"> Roblox </h4>
+                                             <p class="socials__category-description">
+                                                  My favorite enshittified game of all time.
+                                             </p>
+                                             <a class="socials__category-links" href="https://www.roblox.com/users/554345988/profile" rel="noopener noreferrer">
+                                                  <img width="88" height="31" alt="Roblox" src="images/badges/custom/roblox.png">
+                                             </a>
+                                        </li>
+                                        <li class="socials__category-item">
+                                             <h4 class="socials__category-media" translate="no"> Geometry Dash </h4>
+                                             <p class="socials__category-description">
+                                                  My favorite enshittified game of all time.
+                                             </p>
+                                             <a class="socials__category-links" href="https://gdbrowser.com/u/MemeFlavorX" rel="noopener noreferrer">
+                                                  <img width="88" height="31" alt="Geometry Dash" src="images/badges/custom/gd.png">
+                                             </a>
+                                        </li>
+                                   </ul>
                               </div>
                          </section>
                          <button class="manual__navigation" type="button" aria-label="Next Page">
@@ -204,5 +265,9 @@
           <article class="interests"></article>
           <article class="gallery"></article>
      </main>
+     <script>
+          const navigation = document.querySelector('icon-wrap')
+          console.log( getComputedStyle(navigation).getPropertyValue('--navigation-icon-offset-top') )
+     </script>
 </body>
 </html>

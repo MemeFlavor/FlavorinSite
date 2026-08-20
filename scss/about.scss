@@ -623,6 +623,7 @@ body {
                     }
                }
 
+               --navigation-icon-offset-top: 0px;
                &__navigation {
                     cursor: pointer;
                     font-size: 1rem;
@@ -646,7 +647,7 @@ body {
                     icon-wrap {
                          display: block;
                          position: relative;
-                         top: -7px;
+                         top: calc(-7px + var(--navigation-icon-offset-top));
                          left: 5px;
 
                          icon-text {
@@ -698,8 +699,8 @@ body {
                     grid-template-columns: 1fr 90px;
                     grid-template-rows: auto 1fr;
                     grid-template-areas:
-                         "biography-description biography-list"
-                         "biography-rewrite biography-list"
+                         "biography-description biography-category"
+                         "biography-rewrite biography-category"
                     ;
                     gap: 15px;
                
@@ -716,11 +717,11 @@ body {
                          margin-bottom: 8px;
                     }
                
-                    &__list {
-                         grid-area: biography-list;
+                    &__category {
+                         grid-area: biography-category;
                     }
                
-                    &__category {
+                    &__category-item {
                          margin-block: 5px;
                     }
                
@@ -736,6 +737,117 @@ body {
                     &__category-info {
                          font-weight: bolder;
                          font-style: italic;
+                    }
+               }
+
+               &__pages .socials {
+                    display: grid;
+                    grid-template-columns: 1fr 140px;
+                    grid-template-rows: 1fr;
+                    gap: 10px;
+
+                    &__list {
+                         counter-reset: type-counter;
+                    }
+
+                    $item-counter-gap: 25px;
+                    &__item {
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         font-size: 0.75rem;
+                         font-weight: bolder;
+                         text-align: start;
+                         color: black;
+                         position: relative;
+                         margin-block: 10px;
+                         margin-left: $item-counter-gap;
+
+                         &:first-child {
+                              margin-top: 5px;
+                         }
+
+                         &:last-child {
+                              margin-bottom: 5px;
+                         }
+                    
+                         &::before {
+                              content: counter(type-counter);
+                              counter-increment: type-counter;
+                              display: inline-block;
+                              font-family: 'Zalando Sans', font.$standard-font;
+                              font-size: 0.95rem;
+                              font-weight: 600;
+                              font-stretch: condensed;
+                              text-align: center;
+                              color: black;
+                              background-color: color.adjust(plt.$flavor-secondary-color, $lightness: -10%);
+                              border-radius: 360px;
+                              position: absolute;
+                              top: -2px;
+                              left: calc($item-counter-gap * -1);
+                              width: 20px;
+                              height: 20px;
+                              padding-inline: 3px 2px;
+                         }
+                    }
+
+                    &__category {
+                         overflow-y: auto;
+                         height: 130px;
+                         padding-inline: 5px;
+                         background: color.adjust(beige, $hue: -10, $saturation: -5%, $lightness: -5%);
+
+                         &::-webkit-scrollbar {
+                              width: 3px;
+                         }
+                    
+                         &::-webkit-scrollbar-track {
+                              background: transparent;
+                         }
+                    
+                         &::-webkit-scrollbar-thumb {
+                              background: color.adjust(beige, $hue: -10, $saturation: -20%, $lightness: -20%);
+                              border-radius: 0px;
+                         }
+                    
+                         &:focus-visible::-webkit-scrollbar-thumb {
+                              background: color.adjust(beige, $hue: -10, $saturation: -30%, $lightness: -30%);
+                         }
+                    }
+
+                    &__category-item {
+                         display: flex;
+                         flex-direction: column;
+                         margin-block: 5px;
+                    }
+
+                    &__category-media {
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.75rem;
+                         font-weight: 700;
+                         text-align: center;
+                         background-color: plt.$flavor-quaternary-color;
+                         padding: 2px 5px;
+                    }
+
+                    &__category-description {
+                         font-weight: bolder;
+                         text-wrap: pretty;
+                    }
+
+                    &__category-links {
+                         user-select: none;
+                         -webkit-user-select: none;
+                         outline: none;
+                         align-self: center;
+                         margin-top: 5px;
+
+                         img {
+                              image-rendering: pixelated;
+                         }
+
+                         &:focus-visible img {
+                              filter: drop-shadow(3px 3px 0px color.adjust(beige, $saturation: -45%, $lightness: -45%))
+                         }
                     }
                }
           }

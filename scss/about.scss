@@ -1,5 +1,6 @@
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
+@use './modules/manual.scss' as mnl;
 @use 'sass:color';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
@@ -380,89 +381,30 @@ body {
                          padding: 5px;
                          padding-left: 0px;
 
-                         &::-webkit-scrollbar {
-                              width: 3px;
-                         }
-                    
-                         &::-webkit-scrollbar-track {
-                              background: plt.$flavor-scrollbar-background;
-                         }
-                    
-                         &::-webkit-scrollbar-thumb {
-                              background: plt.$flavor-scrollbar-thumb;
-                              border-radius: 0px;
-                         }
-                    
-                         &:focus-visible::-webkit-scrollbar-thumb {
-                              background: color.adjust(plt.$flavor-scrollbar-thumb, $lightness: 10%);
-                         }
+                         $scrollbar-background: plt.$flavor-scrollbar-background;
+                         $scrollbar-thumb: plt.$flavor-scrollbar-thumb;
+                         $scrollbar-thumb-focus: color.adjust(plt.$flavor-scrollbar-thumb, $lightness: 10%);
+                         @include mnl.manual__scrollbar($scrollbar-background, $scrollbar-thumb, $scrollbar-thumb-focus);
                     }
 
                     &__heading {
-                         display: flex;
-                         flex-direction: row;
-                         align-items: center;
-                         column-gap: 8px;
-                         margin-bottom: 5px;
+                         @include mnl.manual__heading;
                     }
 
                     &__heading-title {
-                         user-select: all;
-                         font-family: 'Zalando Sans', font.$standard-font;
-                         font-size: 1rem;
-                         font-weight: 750;
-                         font-stretch: semi-expanded;
-                         color: plt.color-contrast(plt.$flavor-quaternary-color);
-                         background-color: plt.$flavor-quaternary-color;
-                         width: fit-content;
-                         padding: 2px 5px 2px 3px;
-                              
-                         &::before {
-                              content: '\2726';
-                              margin-right: 3px;
-                         }
+                         @include mnl.manual__heading-title;
                     }
 
                     &__heading-subtitle {
-                         font-family: 'Zalando Sans', font.$standard-font;
-                         font-size: 0.9rem;
-                         font-weight: 750;
-                         font-stretch: semi-expanded;
-                         text-transform: uppercase;
-                         width: 100%;
+                         @include mnl.manual__heading-subtitle;
                     }
 
                     h3 {
-                         display: flex;
-                         align-items: center;
-                         font-family: 'Zalando Sans', font.$standard-font;
-                         font-size: 0.8rem;
-                         font-weight: 650;
-                         font-stretch: semi-condensed;
-                         text-transform: uppercase;
-                         color: plt.color-contrast(plt.$flavor-primary-color);
-                         background-color: plt.$flavor-primary-color;
-                         padding: 3px 5px;
-                    
-                         &::before {
-                              content: "\2605";
-                              margin-right: 3px;
-                         }
+                         @include mnl.manual__section;
                     }
 
                     p {
-                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: 0.78rem;
-                         text-align: start;
-                         text-wrap: pretty;
-                         text-rendering: optimizeSpeed;
-                         line-height: 1.5;
-                         padding-inline: 3px;
-                         margin-block: 10px;
-
-                         &:last-child {
-                              margin-bottom: 0px;
-                         }
+                         @include mnl.manual__description;
                     }
                }
           }
@@ -540,7 +482,7 @@ body {
           }
 
           $manual-primary-color: beige;
-          .information .manual {
+          .information .flavual {
                display: flex;
                flex-direction: column;
                gap: 5px;
@@ -669,32 +611,19 @@ body {
                     position: relative;
 
                     h2 {
-                         display: flex;
-                         align-items: center;
-                         font-family: 'Zalando Sans', font.$standard-font;
-                         font-size: 0.8rem;
-                         font-weight: 650;
-                         font-stretch: semi-condensed;
-                         text-transform: uppercase;
+                         @include mnl.manual__section;
                          color: plt.color-contrast(black);
                          background-color: black;
-                         padding: 3px 5px;
-                         margin-bottom: 5px;
-                         
-                         &::before {
-                              content: "\2605";
-                              margin-right: 3px;
-                         }
                     }
 
                     p {
-                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                         @include mnl.manual__description;
                          font-size: 0.7rem;
                          font-weight: bolder;
                          text-align: justify;
-                         text-wrap: pretty;
                          line-height: 1.2;
                          color: black;
+                         padding: 0px;
                          margin-block: 3px;
                     }
                }
@@ -731,12 +660,21 @@ body {
                     }
                
                     &__category-type {
-                         font-family: 'Zalando Sans', font.$standard-font;
+                         @include mnl.manual__section;
+                         display: block;
                          font-size: 0.7rem;
                          font-weight: 700;
                          text-align: center;
+                         text-transform: none;
+                         color: plt.color-contrast(plt.$flavor-primary-color);
                          background-color: plt.$flavor-primary-color;
                          padding: 3px 5px;
+                         margin: 0;
+
+                         &::before {
+                              content: '';
+                              margin: 0;
+                         }
                     }
                
                     &__category-info {
@@ -756,19 +694,26 @@ body {
                     }
 
                     &__extra-title {
+                         @include mnl.manual__section;
+                         display: block;
                          font-family: 'Zalando Sans', font.$standard-font;
                          font-size: 0.75rem;
                          font-weight: 800;
                          font-stretch: semi-condensed;
                          text-align: center;
-                         text-transform: uppercase;
                          color: plt.color-contrast(plt.$flavor-tertiary-color);
                          background-color: plt.$flavor-tertiary-color;
                          padding: 3px 5px;
+                         margin: 0;
+
+                         &::before {
+                              content: '';
+                              margin-right: 0;
+                         }
                     }
 
                     &__extra-description {
-                         font-size: calc((0.60rem + 0.65rem) / 2);
+                         font-size: 0.6rem;
                          text-align: justify;
                          padding: 3px 5px;
                          margin: 0;
@@ -781,27 +726,15 @@ body {
                          height: 140px;
                          padding-inline: 15px 5px;
 
-                         &::-webkit-scrollbar {
-                              width: 3px;
-                         }
-                    
-                         &::-webkit-scrollbar-track {
-                              background: transparent;
-                         }
-                    
-                         &::-webkit-scrollbar-thumb {
-                              background: color.adjust($manual-primary-color, $hue: -10, $saturation: -20%, $lightness: -20%);
-                              border-radius: 0px;
-                         }
-                    
-                         &:focus-visible::-webkit-scrollbar-thumb {
-                              background: color.adjust($manual-primary-color, $hue: -10, $saturation: -40%, $lightness: -40%);
-                         }
+                         $scrollbar-background: transparent;
+                         $scrollbar-thumb: color.adjust($manual-primary-color, $hue: -10, $saturation: -20%, $lightness: -20%);
+                         $scrollbar-thumb-focus: color.adjust($manual-primary-color, $hue: -10, $saturation: -40%, $lightness: -40%);
+                         @include mnl.manual__scrollbar($scrollbar-background, $scrollbar-thumb, $scrollbar-thumb-focus);
                     }
 
                     &__item {
                          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: 0.68rem;
+                         font-size: calc((0.65rem + 0.7rem) / 2);
                          font-weight: bolder;
                          text-align: start;
                          color: black;

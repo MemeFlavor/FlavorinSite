@@ -1,0 +1,92 @@
+@use './fonts.scss' as font;
+@use './palletes.scss' as plt;
+@use 'sass:color';
+
+@include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 2, font.$font-source-variable);
+@include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 2, font.$font-source-variable);
+@include font.font-face('Trebuchet MS', 500 700, normal, normal, 2, font.$font-source-static);
+@include font.font-face('Trebuchet MS', 500 700, normal, italic, 2, font.$font-source-static);
+
+/* Main */
+
+@mixin manual__heading {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     column-gap: 8px;
+     margin-bottom: 5px;
+}
+
+@mixin manual__heading-title {
+     user-select: all;
+     font-family: 'Zalando Sans', font.$standard-font;
+     font-size: 1rem;
+     font-weight: 750;
+     font-stretch: semi-expanded;
+     color: plt.color-contrast(plt.$flavor-secondary-color);
+     background-color: plt.$flavor-secondary-color;
+     width: fit-content;
+     padding: 2px 5px 2px 3px;
+
+     &::before {
+          content: '\2726';
+          margin-right: 3px;
+     }
+}
+
+@mixin manual__heading-subtitle {
+     font-family: 'Zalando Sans', font.$standard-font;
+     font-size: 0.9rem;
+     font-weight: 750;
+     font-stretch: semi-expanded;
+     text-transform: uppercase;
+     width: 100%;
+}
+
+@mixin manual__section {
+     display: flex;
+     align-items: center;
+     font-family: 'Zalando Sans', font.$standard-font;
+     font-size: 0.8rem;
+     font-weight: 650;
+     font-stretch: semi-condensed;
+     text-transform: uppercase;
+     color: plt.color-contrast(plt.$flavor-primary-color);
+     background-color: plt.$flavor-primary-color;
+     padding: 3px 5px;
+
+     &::before {
+          content: "\2605";
+          margin-right: 3px;
+     }
+}
+
+@mixin manual__description {
+     font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+     font-size: calc((0.75rem + 0.80rem) / 2);
+     text-align: start;
+     text-wrap: pretty;
+     text-rendering: optimizeSpeed;
+     line-height: 1.5;
+     padding-inline: 3px;
+     margin-block: 10px;
+}
+
+@mixin manual__scrollbar($background, $thumb, $thumb-focus) {
+     &::-webkit-scrollbar {
+          width: 3px;
+     }
+
+     &::-webkit-scrollbar-track {
+          background: $background;
+     }
+
+     &::-webkit-scrollbar-thumb {
+          background: $thumb;
+          border-radius: 0px;
+     }
+
+     &:focus-visible::-webkit-scrollbar-thumb {
+          background: $thumb-focus;
+     }
+}

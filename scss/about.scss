@@ -36,7 +36,7 @@ body {
      .about {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-template-rows: 1fr 1fr;
+          grid-template-rows: 1fr auto;
           grid-template-areas: 
                "about-panel about-information"
                "about-interests about-gallery"
@@ -368,7 +368,6 @@ body {
                          &--pallete-1 {
                               background-color: plt.$flavor-primary-color;
                          }
-
                          &--pallete-2 {
                               background-color: plt.$flavor-secondary-color;
                          }
@@ -476,12 +475,12 @@ body {
           .information {
                display: grid;
                grid-template-columns: 270px 1fr;
-               grid-template-rows: 310px;
+               grid-template-rows: 315px;
                grid-area: about-information;
                gap: 10px;
           }
 
-          $manual-primary-color: beige;
+          $flavual-primary-color: beige;
           .information .flavual {
                display: flex;
                flex-direction: column;
@@ -498,10 +497,10 @@ body {
                $headtitle-ending-gradient: color.adjust($headtitle-primary-color, $lightness: -40%);
                &__headtitle {
                     font-family: 'Archivo', font.$standard-font;
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     font-weight: 900;
                     font-stretch: expanded;
-                    text-transform: uppercase;
+                    text-transform: capitalize;
                     background: $headtitle-starting-gradient;
                     background: linear-gradient(144deg, $headtitle-starting-gradient 0%, $headtitle-ending-gradient 95%);
                     border: 2px solid black;
@@ -528,7 +527,7 @@ body {
                }
 
                &__body {
-                    background-color: $manual-primary-color;
+                    background-color: $flavual-primary-color;
                     background-image: url(../images/decorations/manual/sidecover.webp);
                     background-repeat: repeat-x;
                     background-size: 50%;
@@ -723,12 +722,12 @@ body {
                          list-style-type: disc;
                          outline: none;
                          overflow-y: auto;
-                         height: 140px;
+                         height: 150px;
                          padding-inline: 15px 5px;
 
                          $scrollbar-background: transparent;
-                         $scrollbar-thumb: color.adjust($manual-primary-color, $hue: -10, $saturation: -20%, $lightness: -20%);
-                         $scrollbar-thumb-focus: color.adjust($manual-primary-color, $hue: -10, $saturation: -40%, $lightness: -40%);
+                         $scrollbar-thumb: color.adjust($flavual-primary-color, $hue: -10, $saturation: -20%, $lightness: -20%);
+                         $scrollbar-thumb-focus: color.adjust($flavual-primary-color, $hue: -10, $saturation: -40%, $lightness: -40%);
                          @include mnl.manual__scrollbar($scrollbar-background, $scrollbar-thumb, $scrollbar-thumb-focus);
                     }
 
@@ -748,6 +747,124 @@ body {
                background-position: 35%;
                image-rendering: smooth;
                border-radius: 5px;
+          }
+
+          .interests {
+               grid-area: about-interests;
+          }
+
+          .interests .headbar {
+               display: flex;
+               flex-direction: row;
+               column-gap: 3px;
+          
+               $headtitle-primary-color: plt.$flavor-primary-color;
+               $headtitle-starting-gradient: $headtitle-primary-color;
+               $headtitle-ending-gradient: color.adjust($headtitle-primary-color, $saturation: -35%, $lightness: -27%);
+               &__headtitle {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1.1rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    text-transform: capitalize;
+                    background: $headtitle-starting-gradient;
+                    background: linear-gradient(144deg, $headtitle-starting-gradient 0%, $headtitle-ending-gradient 95%);
+                    border: 2px solid black;
+                    padding: 5px 10px;
+                    width: 100%;
+               }
+          
+               &__headblocks {
+                    border: 2px solid black;
+                    width: calc((15px + 20px) / 2);
+                    height: auto;
+          
+                    &--pallete-1 {
+                         background-color: plt.$flavor-primary-color;
+                    }
+          
+                    &--pallete-2 {
+                         background-color: plt.$flavor-secondary-color;
+                    }
+          
+                    &--pallete-3 {
+                         background-color: plt.$flavor-quaternary-color;
+                    }
+               }
+          }
+
+          .interests .gallery {
+               table-layout: fixed;
+               border-collapse: collapse;
+               width: 100%;
+
+               &__category {
+                    display: grid;
+                    grid-template-columns: 1fr 2fr;
+                    grid-template-rows: 1fr;
+                    column-gap: 5px;
+                    margin-block: 3px;
+               }
+
+               &__title {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                    font-size: 1.15rem;
+                    font-weight: bolder;
+                    background: hsl(240deg, 65%, 38%);
+                    background:
+                         linear-gradient(180deg,
+                              hsl(240deg, 65%, 38%) 1%,
+                              hsl(240deg, 100%, 62%) 4%,
+                              hsl(240deg, 100%, 62%) 5%,
+                              hsl(240deg, 65%, 38%) 10%,
+                              hsl(240deg, 65%, 38%) 30%,
+                              hsl(240deg, 65%, 34%) 55%,
+                              hsl(240deg, 65%, 45%) 85%,
+                              hsl(240deg, 65%, 25%) 95%,
+                         );
+                    border: 2px solid hsl(253, 67%, 10%);
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    padding: 3px 8px;
+               }
+
+               &__title-latin {
+                    font-style: italic;
+               }
+
+               &__title-baybayin {
+                    font-family: 'Noto Sans Tagalog', font.$standard-font;
+                    font-size: 0.58rem;
+               }
+
+               $list-primary-color: hsl(255, 5%, 17%);
+               &__list {
+                    font-family: 'Candy Beans', font.$standard-font;
+                    font-size: 0.85rem;
+                    line-height: 1.4;
+                    background-color: $list-primary-color;
+                    border: 2px solid black;
+               }
+
+               &__catalog {
+                    display: block;
+                    outline: none;
+                    overflow-y: auto;
+                    height: 1.7cm;
+                    padding: 5px 8px;
+
+                    $scrollbar-background: plt.$flavor-scrollbar-background;
+                    $scrollbar-thumb: color.adjust($list-primary-color, $saturation: -10%, $lightness: 10%);
+                    $scrollbar-thumb-focus: color.adjust($list-primary-color, $saturation: -10%, $lightness: 20%);
+                    @include mnl.manual__scrollbar($scrollbar-background, $scrollbar-thumb, $scrollbar-thumb-focus);
+
+                    &::-webkit-scrollbar {
+                         width: 5px;
+                    }
+               }
           }
      }
 }

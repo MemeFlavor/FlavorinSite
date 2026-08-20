@@ -438,7 +438,6 @@ body {
                     animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
                     border-radius: 5px;
                     position: relative;
-                    height: 40px;
                     padding: 1px 3px;
                
                     @keyframes windy-sway {
@@ -478,7 +477,7 @@ body {
 
           .information {
                display: grid;
-               grid-template-columns: 270px 1fr;
+               grid-template-columns: 2fr 1fr;
                grid-template-rows: 315px 1fr;
                grid-template-areas: 
                     "information-flavual information-halls"
@@ -752,7 +751,7 @@ body {
 
           .information .extras {
                display: grid;
-               grid-template-columns: 1fr 250px;
+               grid-template-columns: 130px 1fr;
                grid-template-rows: 1fr;
                grid-template-areas:
                     "extras-gallery extras-socials"
@@ -797,7 +796,7 @@ body {
                .socials {
                     grid-area: extras-socials;
                     background-color: plt.$flavor-bento-color;
-                         border-radius: 5px;
+                    border-radius: 5px;
                }
           }
 

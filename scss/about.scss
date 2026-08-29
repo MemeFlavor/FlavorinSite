@@ -49,6 +49,10 @@ body {
      margin-block: 0.5cm;
      overflow: auto;
 
+     @media screen and (width <= 845px) {
+          min-width: 845px;
+     }
+
      .sidebar {
           grid-area: flavory-sidebar;
      }
@@ -67,7 +71,7 @@ body {
           box-shadow: 5px 5px 0px 0px plt.$flavor-primary-color;
           padding: 20px;
 
-          @media screen and (width <= 1330px) {
+          @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
                grid-template-rows: auto;
                grid-template-areas:
@@ -76,10 +80,6 @@ body {
                     "about-interests"
                ;
           }
-     }
-
-     @media screen and (width <= 845px) {
-          min-width: 845px;
      }
 
      $profile-header-row: 90px;
@@ -169,6 +169,10 @@ body {
 
                     &:hover {
                          --banner-title-animation: bouncing 0.5s cubic-bezier(0.45, 0, 0.55, 1) infinite normal none;
+                    }
+
+                    @media (prefers-reduced-motion: reduce) {
+                         --banner-title-animation: none !important;
                     }
                }
 
@@ -487,6 +491,11 @@ body {
                grid-template-rows: $profile-gallery;
                grid-area: profile-gallery;
                gap: 10px;
+
+               & > * {
+                    background-color: plt.$flavor-bento-color;
+                    border-radius: 5px;
+               }
                
                &__unseen {
                     -webkit-user-select: none;
@@ -496,10 +505,12 @@ body {
                     background-position: center 25%;
                     background-repeat: no-repeat;
                     animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
-                    border-radius: 5px;
                     position: relative;
                     padding: 1px 3px;
-                    border-radius: 5px;
+
+                    @media (prefers-reduced-motion: reduce) {
+                         animation-duration: 25s;
+                    }
                }
 
                &__unseen-baybayin {
@@ -526,7 +537,6 @@ body {
                     background-size: 60%;
                     background-position: center;
                     background-repeat: no-repeat;
-                    border-radius: 5px;
                     image-rendering: pixelated;
                }
 
@@ -702,8 +712,8 @@ body {
 
           .manual .biography {
                display: grid;
-               grid-template-columns: 1fr 100px;
-               grid-template-rows: auto 1fr;
+               grid-template-columns: auto 100px;
+               grid-template-rows: auto auto;
                grid-template-areas:
                     "biography-desc biography-category"
                     "biography-rewrite biography-category"
@@ -847,13 +857,15 @@ body {
                }
           }
 
-          .halls {
+          $gallery-columns: 105px 50px;
+          $gallery-rows: 60px 245px;
+          .gallery {
                display: grid;
-               grid-template-columns: 105px 50px;
-               grid-template-rows: 60px 245px;
+               grid-template-columns: $gallery-columns;
+               grid-template-rows: $gallery-rows;
                grid-template-areas: 
-                    "a a"
-                    "b c"
+                    "information-gallery-displacement information-gallery-displacement"
+                    "information-gallery-halls information-gallery-debugmode"
                ;
                gap: 10px;
 
@@ -862,22 +874,48 @@ body {
                     border-radius: 5px;
                }
 
-               &__a {
-                    grid-area: a;
+               &__debugmode {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    grid-area: information-gallery-debugmode;
+                    background-color: hsl(230, 100%, 42%);
+                    background-image: url(../images/decorations/ezgif-5a7b5e452076d43e.gif);
+                    background-size: cover;
+                    background-position: center top;
+                    image-rendering: pixelated;
+                    animation: switch-a-roo 20s linear 0s infinite alternate both;
+
+                    @media (prefers-reduced-motion: reduce) {
+                         animation-duration: 30s;
+                    }
                }
 
-               &__b {
-                    grid-area: b;
+               &__debugmode-text {
+                    -webkit-user-select: none;
+                    user-select: none;
+               }
+
+               &__displacement {
+                    grid-area: information-gallery-displacement;
+                    background-image: url(https://preview.redd.it/photographs-by-mads-peter-iversen-v0-769lmlbz9dgh1.jpg?width=1080&crop=smart&auto=webp&s=2dbef028941ae17ca7d0395b6aedc91171686ddd);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
+               }
+
+               &__halls {
+                    grid-area: information-gallery-halls;
                     background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg);
                     background-size: cover;
                     background-position: center;
                     image-rendering: smooth;
-                    border-radius: 5px;
                }
 
-               &__c {
-                    grid-area: c;
-
+               @keyframes switch-a-roo {
+                    from { background-position: 10% top; }
+                    to   { background-position: 90% top; }
                }
           }
      }

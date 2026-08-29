@@ -11,23 +11,42 @@
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
+html {
+     scrollbar-width: auto;
+     scrollbar-color: plt.$flavor-scrollbar-thumb black;
+     scrollbar-gutter: stable;
+
+     &::-webkit-scrollbar {
+          width: auto;
+     }
+
+     &::-webkit-scrollbar-track {
+          background: black;
+     }
+
+     &::-webkit-scrollbar-thumb {
+          background: plt.$flavor-scrollbar-thumb;
+          border-radius: 0px;
+     }
+}
+
 body {
      display: grid;
      justify-content: center;
-     grid-template-columns: auto 900px;
+     grid-template-columns: auto 945px;
      grid-template-rows: 1fr;
-     grid-template-areas:
-          "flavory-sidebar flavory-about"
-     ;
+     grid-template-areas: "flavory-sidebar flavory-about";
      gap: 5px;
      font-family: font.$standard-font;
      background-image: url(../images/backgrounds/locker.avif);
      background-repeat: no-repeat;
      background-size: cover;
      background-attachment: fixed;
-     background-color: #312e3d;
+     background-color: plt.$flavor-wallpaper-color;
      background-blend-mode: color-burn;
      margin-block: 0.5cm;
+     overflow: auto;
+     min-width: 1340px;
 
      .sidebar {
           grid-area: flavory-sidebar;
@@ -35,38 +54,39 @@ body {
 
      .about {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(2, 445px);
           grid-template-rows: 1fr auto;
-          grid-template-areas: 
-               "about-panel about-information"
-               "about-interests about-gallery"
+          grid-template-areas:
+               "about-profile about-information"
+               "about-interests ."
           ;
           grid-area: flavory-about;
+          gap: 15px;
           background-color: plt.$flavor-content-color;
           box-shadow: 5px 5px 0px 0px plt.$flavor-primary-color;
-          gap: 15px;
           padding: 20px;
+     }
 
-          .panel {
-               display: grid;
-               grid-template-columns: 1fr;
-               grid-template-rows: 90px 350px 44px;
-               grid-template-areas:
-                    "panel-header"
-                    "panel-profile"
-                    "panel-banner"
-               ;
-               gap: 10px;
-          }
+     $profile-header-row: 90px;
+     $profile-details-row: 350px;
+     $profile-gallery: 44px;
+     .about .profile {
+          display: grid;
+          grid-template-columns: 150px 1fr;
+          grid-template-rows: $profile-header-row $profile-details-row $profile-gallery;
+          grid-template-areas:
+               "profile-header profile-header"
+               "profile-account profile-biography"
+               "profile-gallery profile-gallery"
+          ;
+          grid-area: about-profile;
+          gap: 10px;
 
-          .panel .header {
+          .header {
                display: grid;
-               grid-template-columns: 1fr 90px;
-               grid-template-rows: 1fr;
-               grid-template-areas: 
-                    "header-title header-sonic"
-               ;
-               grid-area: panel-header;
+               grid-template-columns: 1fr $profile-header-row;
+               grid-template-rows: $profile-header-row;
+               grid-area: profile-header;
                gap: 10px;
 
                & > * {
@@ -74,18 +94,16 @@ body {
                     border-radius: 5px;
                }
 
-               --title-background-color: #{plt.$flavor-gridline-color};
-               &__title {
+               &__banner {
                     display: grid;
                     grid-template-columns: auto 1fr;
                     grid-template-rows: auto auto;
-                    grid-template-areas: 
-                         "title-domain title-barstuff"
-                         "title-name title-year"
+                    grid-template-areas:
+                         "banner-domain banner-barstuff"
+                         "banner-title banner-year"
                     ;
-                    grid-area: header-title;
-                    column-gap: 15px;
-                    background-color: var(--title-background-color);
+                    gap: 0px 15px;
+                    background-color: plt.$flavor-gridline-color;
                     background-image: url(../images/backgrounds/grids.avif);
                     background-attachment: local;
                     background-size: 180%;
@@ -96,330 +114,137 @@ body {
                     padding: 8px;
                }
 
-               &__title-domain {
-                    grid-area: title-domain;
+               &__banner-domain {
+                    grid-area: banner-domain;
                     font-family: 'Archivo', font.$standard-font;
                     font-size: 0.7rem;
                     font-weight: 900;
                     font-stretch: ultra-expanded;
                     color: plt.color-contrast(plt.$flavor-primary-color);
                     background-color: plt.$flavor-primary-color;
-                    border-radius: 3px;
                     width: fit-content;
                     height: fit-content;
+                    position: relative;
                     padding: 3px 8px;
+                    margin-left: 8px;
 
                     &::selection {
                          color: black;
                          background-color: transparent;
                     }
+
+                    &::before {
+                         content: "\00A0";
+                         background-color: inherit;
+                         width: 5px;
+                         position: absolute;
+                         top: 0;
+                         left: -8px;
+                         padding-block: 3px;
+                    }
                }
 
-               &__title-name {
+               --banner-title-animation: none;
+               &__banner-title {
                     display: grid;
                     align-self: flex-end;
                     grid-template-columns: auto 1fr;
                     grid-template-rows: auto auto;
-                    grid-area: title-name;
+                    grid-area: banner-title;
+
+                    &:hover {
+                         --banner-title-animation: bouncing 0.5s cubic-bezier(0.45, 0, 0.55, 1) infinite normal none;
+                    }
                }
 
-               &__title-latin {
-                    font-family: 'Archivo', font.$standard-font;
-                    font-size: 1.65rem;
-                    font-weight: 900;
-                    font-stretch: expanded;
+               &__banner-title bby-char {
+                    display: inline-block;
+                    animation: var(--banner-title-animation);
+
+                    @for $chars from 1 through 6 { // due to broswer support, I can't use sibling-index for shit
+                         &:nth-child(#{$chars}) {
+                              animation-delay: calc($chars * 100ms);
+                         }
+                    }
                }
 
-               &__title-baybayin {
+               &__banner-title-baybayin {
                     font-family: 'Noto Sans Tagalog', font.$standard-font;
                     font-size: 0.85rem;
                     font-display: block;
                }
 
-               &__title-year {
-                    user-select: none;
+               &__banner-title-latin {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1.65rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+
+                    @supports (text-box: inherit) {
+                         text-box: trim-end cap alphabetic;
+                    }
+               }
+
+               &__banner-year {
                     -webkit-user-select: none;
+                    user-select: none;
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     grid-template-rows: 1fr 1fr;
-                    grid-area: title-year;
+                    grid-area: banner-year;
                     width: fit-content;
                     height: fit-content;
                     margin-top: auto;
                     margin-left: auto;
-                    
-                    span {
-                         display: block;
-                         font-family: 'Archivo';
-                         font-size: 1rem;
-                         font-weight: 900;
-                         font-stretch: ultra-expanded;
-                         text-align: center;
-                         padding-inline: 3px;
+               }
 
-                         &:nth-last-child(1) {
-                              color: plt.color-contrast(plt.$flavor-secondary-color);
-                              background-color: plt.$flavor-secondary-color;
-                         }
+               &__banner-year year-num {
+                    display: block;
+                    font-family: 'Archivo';
+                    font-size: 1rem;
+                    font-weight: 900;
+                    font-stretch: ultra-expanded;
+                    text-align: center;
+                    padding-inline: 3px;
+
+                    &:nth-last-child(1) {
+                         color: plt.color-contrast(plt.$flavor-secondary-color);
+                         background-color: plt.$flavor-secondary-color;
                     }
                }
 
-               &__title-barstuff {
-                    user-select: none;
+               &__banner-barstuff {
                     -webkit-user-select: none;
-                    grid-area: title-barstuff;
+                    user-select: none;
+                    grid-area: banner-barstuff;
                     image-rendering: pixelated;
                }
 
                &__sonic {
-                    grid-area: header-sonic;
                     background-image: url(../images/decorations/gosonic.gif);
                     background-size: cover;
                     background-position: center;
                }
 
-               @media (prefers-reduced-transparency: reduce) {
-                    --title-background-color: #{color.change(plt.$flavor-gridline-color, $alpha: 0.3)};
+               @keyframes bouncing {
+                    0%, 100%  { transform: translate(0px, 0px)  }
+                    50%       { transform: translate(0px, -5px) }
                }
           }
 
-          .panel .profile {
+          $account-avatar-row: 150px;
+          $account-status-row: 50px;
+          $account-misc-row: 130px;
+          .account {
                display: grid;
-               grid-template-columns: 150px 1fr;
-               grid-template-rows: 1fr;
+               grid-template-columns: 1fr 1fr;
+               grid-template-rows: $account-avatar-row $account-status-row $account-misc-row;
                grid-template-areas: 
-                    "profile-gallery profile-details"
+                    "account-avatar account-avatar"
+                    "account-status account-status"
+                    "account-triviapad account-vending"
                ;
-               grid-area: panel-profile;
-               gap: 10px;
-
-               .gallery {
-                    display: grid;
-                    grid-template-columns: 70px 70px;
-                    grid-template-rows: 150px 50px 2fr;
-                    grid-template-areas:
-                         "gallery-character gallery-character"
-                         "gallery-status gallery-status"
-                         "gallery-triviapad gallery-vending"
-                    ;
-                    grid-area: profile-gallery;
-                    gap: 10px;
-
-                    & > * {
-                         background-color: plt.$flavor-bento-color;
-                         border-radius: 5px;
-                    }
-
-                    &__character {
-                         grid-area: gallery-character;
-                         border-radius: 0px;
-                         image-rendering: smooth;
-                    }
-
-                    &__status {
-                         display: flex;
-                         flex-direction: column;
-                         grid-area: gallery-status;
-                         padding: calc((3px + 5px) / 2);
-                    }
-
-                    &__status-title {
-                         font-family: 'Archivo', font.$standard-font;
-                         font-size: 0.9rem;
-                         font-weight: 870;
-                         font-stretch: semi-expanded;
-                         text-align: center;
-                         text-transform: uppercase;
-                         color: plt.color-contrast(plt.$flavor-tertiary-color);
-                         background-color: plt.$flavor-tertiary-color;
-                         border-radius: 3px;
-                         width: 100%;
-                         padding: 1px 5px;
-               
-                         &::before, &::after {
-                              content: '\26A0';
-                         }
-                    
-                         &::before {
-                              margin-right: 5px;
-                         }
-                    
-                         &::after {
-                              margin-left: 5px;
-                         }
-                    }
-
-                    &__status-description {
-                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: 0.65rem;
-                         font-weight: bolder;
-                         text-align: center;
-                         margin-block: auto;
-                    }
-
-                    $triviapad-primary-color: beige;
-                    &__triviapad {
-                         display: flex;
-                         flex-direction: column;
-                         grid-area: gallery-triviapad;
-                         background: $triviapad-primary-color;
-                         background: linear-gradient(to bottom, transparent 5%, $triviapad-primary-color 5%);
-                    }
-
-                    &__triviapad-title {
-                         font-family: 'Archivo', font.$standard-font;
-                         font-size: 0.95rem;
-                         font-weight: 800;
-                         font-stretch: semi-condensed;
-                         text-align: center;
-                         text-transform: uppercase;
-                         color: plt.color-contrast(plt.$flavor-primary-color);
-                         background-color: plt.$flavor-primary-color;
-                         border-top-left-radius: 5px;
-                         border-top-right-radius: 5px;
-                         padding: calc((3px + 4px) / 2.5) 5px;
-                    }
-
-                    &__triviapad-body {
-                         font-family: 'Trebuchet MS' font.$standard-fancy-font, font.$standard-font;
-                         font-size: 0.5rem;
-                         font-weight: bolder;
-                         text-align: start;
-                         color: black;
-                         padding: 5px;
-                         padding-top: 2px;
-                         padding-right: 2px;
-                         margin-top: 3px;
-                         margin-right: 3px;
-                    }
-
-                    &__triviapad-sonic {
-                         user-select: none;
-                         -webkit-user-select: none;
-                         align-self: center;
-                         image-rendering: pixelated;
-                         width: fit-content;
-                         margin-block: auto;
-                    }
-
-                    &__vending {
-                         grid-area: gallery-vending;
-                         background-image: url(https://preview.redd.it/vending-machine-in-japan-that-i-shot-with-nintendo-3ds-v0-ollf4zfqrihg1.jpeg?auto=webp&s=fc92656a5ff728645111d9577b24e4d64c9e1fb6);
-                         background-size: cover;
-                         background-position: center;
-                         image-rendering: smooth;
-                    }
-               }
-
-               .details {
-                    grid-area: profile-details;
-                    background-color: plt.$flavor-bento-color;
-                    border-radius: 0px;
-                    padding: 8px;
-
-                    $headbar-primary-color: beige;
-                    &__headbar {
-                         display: grid;
-                         grid-template-columns: 40px 1fr;
-                         grid-template-rows: auto auto;
-                         grid-template-areas: 
-                              "headbar-blocks headbar-title"
-                              "headbar-decorations headbar-decorations"
-                         ;
-                         gap: 5px;
-                         margin-bottom: 10px;
-                    }
-
-                    &__headbar-blocks {
-                         grid-area: headbar-blocks;
-                         background-color: $headbar-primary-color;
-                    }
-
-                    &__headbar-title {
-                         grid-area: headbar-title;
-                         font-family: 'Archivo', font.$standard-font;
-                         font-size: 1.3rem;
-                         font-weight: 800;
-                         font-stretch: semi-expanded;
-                         text-transform: uppercase;
-                         color: $headbar-primary-color;
-                         border: 2px solid $headbar-primary-color;
-                         border-left-width: 10px; 
-                         padding: 3px 10px;
-
-                         &::selection {
-                              color: plt.color-contrast($headbar-primary-color);
-                              background-color: $headbar-primary-color;
-                         }
-                    }
-
-                    &__headbar-decorations {
-                         display: grid;
-                         grid-template-columns: 2fr 1fr;
-                         grid-template-rows: 10px;
-                         grid-area: headbar-decorations;
-                         column-gap: 5px;
-                         width: 100%;
-                    }
-
-                    &__headbar-decorations-bar {
-                         background-color: $headbar-primary-color;
-
-                         &--pallete-1 {
-                              background-color: plt.$flavor-primary-color;
-                         }
-                         &--pallete-2 {
-                              background-color: plt.$flavor-secondary-color;
-                         }
-                    }
-
-                    &__body {
-                         outline: none;
-                         overflow-y: auto;
-                         height: 275px;
-                         padding: 5px;
-                         padding-left: 0px;
-
-                         $scrollbar-background: plt.$flavor-scrollbar-background;
-                         $scrollbar-thumb: plt.$flavor-scrollbar-thumb;
-                         $scrollbar-thumb-focus: color.adjust(plt.$flavor-scrollbar-thumb, $lightness: 10%);
-                         @include mnl.manual__scrollbar($scrollbar-background, $scrollbar-thumb, $scrollbar-thumb-focus);
-                    }
-
-                    &__heading {
-                         @include mnl.manual__heading;
-                    }
-
-                    &__heading-title {
-                         @include mnl.manual__heading-title;
-                    }
-
-                    &__heading-subtitle {
-                         @include mnl.manual__heading-subtitle;
-                    }
-
-                    h3 {
-                         @include mnl.manual__section;
-                    }
-
-                    p {
-                         @include mnl.manual__description;
-
-                         &:last-child {
-                              margin-bottom: 0px;
-                         }
-                    }
-               }
-          }
-
-          .panel .banner {
-               display: grid;
-               grid-template-columns: 2fr 1fr;
-               grid-template-rows: 44px;
-               grid-template-areas:
-                    "banner-unseen banner-watchmen"
-               ;
-               grid-area: panel-banner;
+               grid-area: profile-account;
                gap: 10px;
 
                & > * {
@@ -427,10 +252,230 @@ body {
                     border-radius: 5px;
                }
 
-               &__unseen {
-                    user-select: none;
+               &__avatar {
+                    grid-area: account-avatar;
+                    image-rendering: smooth;
+               }
+
+               &__status {
+                    display: flex;
+                    flex-direction: column;
+                    grid-area: account-status;
+               }
+
+               &__status-title {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 0.9rem;
+                    font-weight: 870;
+                    font-stretch: semi-expanded;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: plt.color-contrast(plt.$flavor-tertiary-color);
+                    background-color: plt.$flavor-tertiary-color;
+                    border-radius: 3px 3px 0px 0px;
+                    width: 100%;
+                    padding: 1px 5px;
+               
+                    &::before, &::after {
+                         content: '\26A0';
+                    }
+               
+                    &::before {
+                         margin-right: 5px;
+                    }
+               
+                    &::after {
+                         margin-left: 5px;
+                    }
+               }
+
+               &__status-desc {
+                    font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                    font-size: 0.7rem;
+                    font-weight: bolder;
+                    text-align: center;
+                    margin-block: auto;
+               }
+
+               &__triviapad {
+                    display: flex;
+                    flex-direction: column;
+                    grid-area: account-triviapad;
+                    background: linear-gradient(to bottom, transparent 5%, beige 5%);
+               }
+
+               &__triviapad-title {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 0.95rem;
+                    font-weight: 800;
+                    font-stretch: semi-condensed;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: plt.color-contrast(plt.$flavor-primary-color);
+                    background-color: plt.$flavor-primary-color;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    padding: calc((3px + 4px) / 2.5) 5px;
+               }
+
+               &__triviapad-desc {
+                    font-family: 'Trebuchet MS' font.$standard-fancy-font, font.$standard-font;
+                    font-size: 0.5rem;
+                    font-weight: bolder;
+                    text-align: start;
+                    color: black;
+                    padding: 5px;
+                    padding-top: 2px;
+                    padding-right: 2px;
+                    margin-top: 3px;
+                    margin-right: 3px;
+               }
+
+               &__triviapad-sonic {
                     -webkit-user-select: none;
-                    grid-area: banner-unseen;
+                    user-select: none;
+                    align-self: center;
+                    image-rendering: pixelated;
+                    width: fit-content;
+                    margin-block: auto;
+               }
+
+               &__vending {
+                    grid-area: account-vending;
+                    background-image: url(https://preview.redd.it/vending-machine-in-japan-that-i-shot-with-nintendo-3ds-v0-ollf4zfqrihg1.jpeg?auto=webp&s=fc92656a5ff728645111d9577b24e4d64c9e1fb6);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
+               }
+          }
+
+          $biography-headbar-primary-color: beige;
+          $biography-scrollbar-thumb-color: plt.$flavor-scrollbar-thumb;
+          .biography {
+               grid-area: profile-biography;
+               background-color: plt.$flavor-bento-color;
+               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
+               padding: 8px;
+
+               &__headbar {
+                    display: grid;
+                    grid-template-columns: 40px 1fr;
+                    grid-template-rows: auto auto;
+                    grid-template-areas:
+                         "headbar-blocks headbar-title"
+                         "headbar-decorations headbar-decorations"
+                    ;
+                    gap: 5px;
+                    margin-bottom: 10px;
+               }
+
+               &__headbar-blocks {
+                    grid-area: headbar-blocks;
+                    background-color: $biography-headbar-primary-color;
+               }
+
+               &__headbar-title {
+                    grid-area: headbar-title;
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1.3rem;
+                    font-weight: 800;
+                    font-stretch: semi-expanded;
+                    text-transform: uppercase;
+                    color: $biography-headbar-primary-color;
+                    border: 2px solid $biography-headbar-primary-color;
+                    border-left-width: 10px;
+                    padding: 3px 10px;
+               
+                    &::selection {
+                         color: plt.color-contrast($biography-headbar-primary-color);
+                         background-color: $biography-headbar-primary-color;
+                    }
+               }
+
+               &__headbar-decorations {
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+                    grid-template-rows: 10px;
+                    grid-area: headbar-decorations;
+                    column-gap: 5px;
+                    width: 100%;
+               }
+
+               &__headbar-slabs {
+                    background-color: $biography-headbar-primary-color;
+
+                    &--pallete-1 {
+                         background-color: plt.$flavor-primary-color;
+                    }
+                    &--pallete-2 {
+                         background-color: plt.$flavor-secondary-color;
+                    }
+               }
+
+               --scrollbar-thumb: #{ $biography-scrollbar-thumb-color };
+               &__body {
+                    outline: none;
+                    overflow-y: auto;
+                    scrollbar-width: thin;
+                    scrollbar-color: var(--scrollbar-thumb) transparent;
+                    height: 275px;
+                    padding: 5px;
+                    
+                    &:focus-visible {
+                         --scrollbar-thumb: #{ color.adjust($biography-scrollbar-thumb-color, $lightness: 15%) };
+                    }
+               
+                    &::-webkit-scrollbar {
+                         width: 6px;
+                    }
+               
+                    &::-webkit-scrollbar-track {
+                         background: transparent;
+                    }
+               
+                    &::-webkit-scrollbar-thumb {
+                         background: var(--scrollbar-thumb);
+                         border-radius: 4px;
+                    }
+
+                    h3 {
+                         @include mnl.manual__section;
+                    }
+               
+                    p {
+                         @include mnl.manual__description;
+                         font-size: 0.8rem;
+                         text-wrap: pretty;
+
+                         &:last-child {
+                              margin-bottom: 0px;
+                         }
+                    }
+               }
+
+               &__heading {
+                    @include mnl.manual__heading;
+               }
+
+               &__heading-title {
+                    @include mnl.manual__heading-title;
+               }
+
+               &__heading-subtitle {
+                    @include mnl.manual__heading-subtitle;
+               }
+          }
+
+          .gallery {
+               display: grid;
+               grid-template-columns: 2fr 1fr;
+               grid-template-rows: $profile-gallery;
+               grid-area: profile-gallery;
+               gap: 10px;
+               
+               &__unseen {
+                    -webkit-user-select: none;
+                    user-select: none;
                     background-image: url(https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg);
                     background-size: 100%;
                     background-position: center 25%;
@@ -438,12 +483,9 @@ body {
                     animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
                     border-radius: 5px;
                     position: relative;
+                    height: 40px;
                     padding: 1px 3px;
-               
-                    @keyframes windy-sway {
-                         from { background-position-y: 25%; }
-                         to   { background-position-y: 55%; }
-                    }
+                    border-radius: 5px;
                }
 
                &__unseen-baybayin {
@@ -465,488 +507,27 @@ body {
                }
 
                &__watchmen {
-                    grid-area: banner-watchmen;
                     background-color: black;
                     background-image: url(../images/decorations/watchman.gif);
                     background-size: 60%;
                     background-position: center;
                     background-repeat: no-repeat;
+                    border-radius: 5px;
                     image-rendering: pixelated;
                }
-          }
 
-          .information {
-               display: grid;
-               grid-template-columns: 2fr 1fr;
-               grid-template-rows: 315px 1fr;
-               grid-template-areas: 
-                    "information-flavual information-halls"
-                    "information-extras information-extras"
-               ;
-               grid-area: about-information;
-               gap: 10px;
-          }
-
-          $flavual-primary-color: beige;
-          .information .flavual {
-               display: flex;
-               flex-direction: column;
-               grid-area: information-flavual;
-               gap: 5px;
-
-               &__headbar {
-                    display: flex;
-                    flex-direction: row;
-                    column-gap: 3px;
-               }
-          
-               $headtitle-primary-color: plt.$flavor-secondary-color;
-               $headtitle-starting-gradient: color.adjust($headtitle-primary-color, $lightness: -25%);
-               $headtitle-ending-gradient: color.adjust($headtitle-primary-color, $lightness: -40%);
-               &__headtitle {
-                    font-family: 'Archivo', font.$standard-font;
-                    font-size: 1.1rem;
-                    font-weight: 900;
-                    font-stretch: expanded;
-                    text-transform: capitalize;
-                    background: $headtitle-starting-gradient;
-                    background: linear-gradient(144deg, $headtitle-starting-gradient 0%, $headtitle-ending-gradient 95%);
-                    border: 2px solid black;
-                    padding: 5px 10px;
-                    width: 100%;
-               }
-          
-               &__headblocks {
-                    border: 2px solid black;
-                    width: calc((15px + 20px) / 2);
-                    height: auto;
-          
-                    &--pallete-1 {
-                         background-color: plt.$flavor-secondary-color;
-                    }
-          
-                    &--pallete-2 {
-                         background-color: plt.$flavor-primary-color;
-                    }
-          
-                    &--pallete-3 {
-                         background-color: plt.$flavor-quaternary-color;
-                    }
-               }
-
-               &__body {
-                    background-color: $flavual-primary-color;
-                    background-image: url(../images/decorations/manual/sidecover.webp);
-                    background-repeat: repeat-x;
-                    background-size: 50%;
-                    background-position: 50% -65px;
-                    background-attachment: local;
-                    border: 2px solid black;
-                    height: 100%;
-                    position: relative;
-                    padding: 5px 10px;
-               }
-
-               &__title {
-                    display: flex;
-                    align-items: center;
-                    font-family: 'Zalando Sans', font.$standard-font;
-                    font-size: 1.5rem;
-                    font-weight: 900;
-                    font-stretch: 120%;
-                    text-transform: uppercase;
-                    color: hsl(240, 14%, 5%);
-                    border: 2px solid hsl(240, 14%, 5%);
-                    height: fit-content;
-                    padding: 0px 8px;
-                    margin-bottom: 0.55cm;
-               
-                    &::before {
-                         content: "";
-                         display: inline-block;
-                         background-color: currentColor;
-                         border-radius: 360px;
-                         width: 15px;
-                         height: 15px;
-                         margin-right: 3px;
-                         margin-top: 1px;
-                    }
-               }
-
-               --navigation-icon-offset-top: 0px;
-               &__navigation {
-                    cursor: pointer;
-                    font-size: 1rem;
-                    outline: none;
-                    background-color: black;
-                    border: none;
-                    border-radius: 360px;
-                    position: absolute;
-                    bottom: 5px;
-                    width: 24px;
-                    height: 24px;
-
-                    &:hover {
-                         background-color: plt.$flavor-primary-color;
-                    }
-
-                    &:active, &:focus-visible {
-                         background-color: plt.$flavor-quaternary-color;
-                    }
-
-                    &::selection {
-                         background-color: transparent;
-                    }
-
-                    icon-wrap {
-                         display: block;
-                         position: relative;
-                         top: calc(-7px + var(--navigation-icon-offset-top));
-                         left: 5px;
-
-                         icon-text {
-                              display: block;
-                              line-height: 1;
-                              position: absolute;
-                              top: 0px;
-                              left: 0px;
-                         }
-                    }
-               }
-
-               &__pages {
-                    position: relative;
-
-                    h2 {
-                         @include mnl.manual__section;
-                         color: plt.color-contrast(black);
-                         background-color: black;
-                    }
-
-                    p {
-                         @include mnl.manual__description;
-                         font-size: 0.7rem;
-                         font-weight: bolder;
-                         text-align: justify;
-                         line-height: 1.2;
-                         color: black;
-                         padding: 0px;
-                         margin-block: 3px;
-                    }
-               }
-
-               &__pages .biography {
-                    display: grid;
-                    grid-template-columns: 1fr 110px;
-                    grid-template-rows: auto 1fr;
-                    grid-template-areas:
-                         "biography-description biography-category"
-                         "biography-rewrite biography-category"
-                    ;
-                    gap: 5px 15px;
-               
-                    &__description {
-                         grid-area: biography-description;
-                         padding-right: 5px;
-                    }
-               
-                    &__rewrite {
-                         user-select: none;
-                         -webkit-user-select: none;
-                         place-self: center;
-                         grid-area: biography-rewrite;
-                         image-rendering: pixelated;
-                    }
-               
-                    &__category {
-                         grid-area: biography-category;
-                    }
-               
-                    &__category-item {
-                         margin-block: 5px;
-                    }
-               
-                    &__category-type {
-                         @include mnl.manual__section;
-                         display: block;
-                         font-size: 0.7rem;
-                         font-weight: 700;
-                         text-align: center;
-                         text-transform: none;
-                         color: plt.color-contrast(plt.$flavor-primary-color);
-                         background-color: plt.$flavor-primary-color;
-                         padding: 3px 5px;
-                         margin: 0;
-
-                         &::before {
-                              content: '';
-                              margin: 0;
-                         }
-                    }
-               
-                    &__category-info {
-                         font-weight: bolder;
-                         font-style: italic;
-                    }
-               }
-
-               &__pages .facts {
-                    display: grid;
-                    grid-template-columns: 1fr 145px;
-                    grid-template-rows: 1fr;
-                    gap: 5px;
-                    margin-top: 3px;
-
-                    &__extra {
-                         display: flex;
-                         flex-direction: column;
-                         height: 80%;
-                    }
-
-                    &__extra-title {
-                         @include mnl.manual__section;
-                         display: block;
-                         font-family: 'Zalando Sans', font.$standard-font;
-                         font-size: 0.7rem;
-                         font-weight: 850;
-                         font-stretch: semi-condensed;
-                         text-align: center;
-                         color: plt.color-contrast(plt.$flavor-quaternary-color);
-                         background-color: plt.$flavor-quaternary-color;
-                         padding: 3px 5px;
-                         margin: 0;
-
-                         &::before {
-                              content: '';
-                              margin-right: 0;
-                         }
-                    }
-
-                    &__extra-description {
-                         font-size: calc((0.60rem + 0.65rem) / 2);
-                         text-align: justify;
-                         text-wrap: pretty;
-                         padding: 3px 5px;
-                         margin: 0;
-                    }
-
-                    &__extra-huetal {
-                         user-select: none;
-                         -webkit-user-select: none;
-                         align-self: center;
-                         border-radius: 5px;
-                         image-rendering: crisp-edges;
-                         margin-block: 5px;
-                    }
-               
-                    &__list {
-                         list-style-type: disc;
-                         outline: none;
-                         overflow-y: auto;
-                         height: 170px;
-                         padding-inline: 15px 5px;
-
-                         $scrollbar-background: transparent;
-                         $scrollbar-thumb: color.adjust($flavual-primary-color, $hue: -10, $saturation: -20%, $lightness: -20%);
-                         $scrollbar-thumb-focus: color.adjust($flavual-primary-color, $hue: -10, $saturation: -40%, $lightness: -40%);
-                         @include mnl.manual__scrollbar($scrollbar-background, $scrollbar-thumb, $scrollbar-thumb-focus);
-                    }
-
-                    &__item {
-                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                         font-size: 0.65rem;
-                         font-weight: bolder;
-                         text-align: start;
-                         color: black;
-                         margin-bottom: 3px;
-
-                         &:first-child {
-                              margin-top: 0px;
-                         }
-
-                         &:last-child {
-                              margin-bottom: 0px;
-                         }
-                    }
+               @keyframes windy-sway {
+                    from { background-position-y: 25%; }
+                    to   { background-position-y: 55%; }
                }
           }
+     }
 
-          .information .extras {
-               display: grid;
-               grid-template-columns: 130px 1fr;
-               grid-template-rows: 1fr;
-               grid-template-areas:
-                    "extras-gallery extras-socials"
-               ;
-               grid-area: information-extras;
-               gap: 10px;
+     .about .information {
+          grid-area: about-information;
+     }
 
-               .gallery {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    grid-template-rows: 1fr 1fr 44px;
-                    grid-template-areas: 
-                         "gallery-a gallery-b"
-                         "gallery-a gallery-c"
-                         "gallery-d gallery-d"
-                    ;
-                    grid-area: extras-gallery;
-                    gap: 10px;
-
-                    & > * {
-                         background-color: plt.$flavor-bento-color;
-                         border-radius: 5px;
-                    }
-
-                    &__a {
-                         grid-area: gallery-a;
-                    }
-
-                    &__b {
-                         grid-area: gallery-b;
-                    }
-
-                    &__c {
-                         grid-area: gallery-c;
-                    }
-
-                    &__d {
-                         grid-area: gallery-d;
-                    }
-               }
-
-               .socials {
-                    grid-area: extras-socials;
-                    background-color: plt.$flavor-bento-color;
-                    border-radius: 5px;
-               }
-          }
-
-          .information .halls {
-               grid-area: information-halls;
-               background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg);
-               background-size: cover;
-               background-position: 35%;
-               image-rendering: smooth;
-               border-radius: 5px;
-          }
-
-          .interests {
-               grid-area: about-interests;
-          }
-
-          .interests .headbar {
-               display: flex;
-               flex-direction: row;
-               column-gap: 3px;
-          
-               $headtitle-primary-color: plt.$flavor-primary-color;
-               $headtitle-starting-gradient: $headtitle-primary-color;
-               $headtitle-ending-gradient: color.adjust($headtitle-primary-color, $saturation: -35%, $lightness: -27%);
-               &__headtitle {
-                    font-family: 'Archivo', font.$standard-font;
-                    font-size: 1.1rem;
-                    font-weight: 900;
-                    font-stretch: expanded;
-                    text-transform: capitalize;
-                    background: $headtitle-starting-gradient;
-                    background: linear-gradient(144deg, $headtitle-starting-gradient 0%, $headtitle-ending-gradient 95%);
-                    border: 2px solid black;
-                    padding: 5px 10px;
-                    width: 100%;
-               }
-          
-               &__headblocks {
-                    border: 2px solid black;
-                    width: calc((15px + 20px) / 2);
-                    height: auto;
-          
-                    &--pallete-1 {
-                         background-color: plt.$flavor-primary-color;
-                    }
-          
-                    &--pallete-2 {
-                         background-color: plt.$flavor-secondary-color;
-                    }
-          
-                    &--pallete-3 {
-                         background-color: plt.$flavor-quaternary-color;
-                    }
-               }
-          }
-
-          .interests .gallery {
-               table-layout: fixed;
-               border-collapse: collapse;
-               width: 100%;
-
-               &__category {
-                    display: grid;
-                    grid-template-columns: 1fr 2fr;
-                    grid-template-rows: 1fr;
-                    column-gap: 5px;
-                    margin-block: 3px;
-               }
-
-               &__title {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                    font-size: 1.15rem;
-                    font-weight: bolder;
-                    background: hsl(240deg, 65%, 38%);
-                    background:
-                         linear-gradient(180deg,
-                              hsl(240deg, 65%, 38%) 1%,
-                              hsl(240deg, 100%, 62%) 4%,
-                              hsl(240deg, 100%, 62%) 5%,
-                              hsl(240deg, 65%, 38%) 10%,
-                              hsl(240deg, 65%, 38%) 30%,
-                              hsl(240deg, 65%, 34%) 55%,
-                              hsl(240deg, 65%, 45%) 85%,
-                              hsl(240deg, 65%, 25%) 95%,
-                         );
-                    border: 2px solid hsl(253, 67%, 10%);
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
-                    padding: 3px 8px;
-               }
-
-               &__title-latin {
-                    font-style: italic;
-               }
-
-               &__title-baybayin {
-                    font-family: 'Noto Sans Tagalog', font.$standard-font;
-                    font-size: 0.58rem;
-               }
-
-               $list-primary-color: hsl(255, 5%, 17%);
-               &__list {
-                    font-family: 'Candy Beans', font.$standard-font;
-                    font-size: 0.85rem;
-                    line-height: 1.4;
-                    background-color: $list-primary-color;
-                    border: 2px solid black;
-               }
-
-               &__catalog {
-                    display: block;
-                    outline: none;
-                    overflow-y: auto;
-                    height: 1.7cm;
-                    padding: 5px 8px;
-
-                    $scrollbar-background: plt.$flavor-scrollbar-background;
-                    $scrollbar-thumb: color.adjust($list-primary-color, $saturation: -10%, $lightness: 10%);
-                    $scrollbar-thumb-focus: color.adjust($list-primary-color, $saturation: -10%, $lightness: 20%);
-                    @include mnl.manual__scrollbar($scrollbar-background, $scrollbar-thumb, $scrollbar-thumb-focus);
-
-                    &::-webkit-scrollbar {
-                         width: 5px;
-                    }
-               }
-          }
+     .about .interests {
+          grid-area: about-interests;
      }
 }

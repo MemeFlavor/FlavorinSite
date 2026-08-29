@@ -10,6 +10,7 @@
 @include font.font-face('Trebuchet MS', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Trebuchet MS', 500 700, normal, italic, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
+@include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
 html {
@@ -568,7 +569,7 @@ body {
 
      .about .information {
           display: grid;
-          grid-template-columns: 270px 1fr;
+          grid-template-columns: 270px 165px;
           grid-template-rows: 315px;
           grid-area: about-information;
           gap: 10px;
@@ -758,10 +759,40 @@ body {
 
           .manual .facts {
                display: grid;
-               grid-template-columns: 1fr 2fr;
+               grid-template-columns: 78px auto;
                grid-template-rows: 1fr;
                gap: 10px;
                margin-top: 3px;
+
+               &__factpad {
+                   display: flex;
+                   flex-direction: column;
+               }
+
+               &__factpad-title {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 0.95rem;
+                    font-weight: 800;
+                    font-stretch: semi-condensed;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: plt.color-contrast(plt.$flavor-tertiary-color);
+                    background-color: plt.$flavor-tertiary-color;
+                    padding: calc((3px + 4px) / 2.5) 5px;
+               }
+
+               &__factpad-freedom {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    image-rendering: pixelated;
+               }
+
+               &__factpad-desc {
+                    font-family: 'MS Pixel Serif', font.$standard-font;
+                    font-size: 0.55rem;
+                    font-weight: normal;
+                    padding-inline: 3px;
+               }
 
                --scrollbar-thumb: #{ color.adjust($manual-primary-color, $saturation: -20%, $lightness: -20%) };
                &__list {
@@ -770,7 +801,7 @@ body {
                     row-gap: 3px;
                     list-style-type: disc;
                     outline: none;
-                    overflow-y: auto;
+                    overflow: hidden auto;
                     scrollbar-width: thin;
                     scrollbar-color: var(--scrollbar-thumb) transparent;
                     height: $manual-height;

@@ -15,7 +15,7 @@
      <link rel="stylesheet" type="text/css" href="css/about.css">
      <link rel="stylesheet" type="text/css" href="css/components/sidebar.css">
      <script type="module" src="javascript/sidebar.js"></script>
-     <script type="module" src="javascript/components/flavual.js"></script>
+     <script type="module" src="javascript/components/manual.js"></script>
 </head>
 <body>
      <aside class="sidebar">
@@ -168,12 +168,49 @@
                     </div>
                     <article class="manual__body">
                          <h1 class="manual__title" translate="no"> Biography </h1>
-                         <section>
-                              
+                         <section class="manual__pages manual__pages--biography" aria-hidden="true" hidden>
+                              <h2> Basic Info </h2>
+                              <div class="biography">
+                                   <p class="biography__desc">Basically everything about me, do what you will with this information.</p>
+                                   <img class="biography__rewrite" width="110" height="100"
+                                        alt="Rewrite Manual" src="images/decorations/manual/rewrite.png"
+                                   />
+                                   <ul class="biography__category">
+                                        <li class="biography__category-item">
+                                             <h4 class="biography__category-type" translate="no">Birthday</h4>
+                                             <p class="biography__category-info">03/15/2008</p>
+                                        </li>
+                                        <li class="biography__category-item">
+                                             <h4 class="biography__category-type" translate="no">Gender</h4>
+                                             <p class="biography__category-info">Male • he/him</p>
+                                        </li>
+                                        <li class="biography__category-item">
+                                             <h4 class="biography__category-type" translate="no">Sexuality</h4>
+                                             <p class="biography__category-info">Heteroromantic</p>
+                                        </li>
+                                        <li class="biography__category-item">
+                                             <h4 class="biography__category-type" translate="no">Alignment</h4>
+                                             <p class="biography__category-info">Chaotic Neutral</p>
+                                        </li>
+                                   </ul>
+                              </div>
                          </section>
-                         <section>
-
+                         <section class="manual__pages manual__pages--facts" aria-hidden="true">
+                              <h2> Flavory Facts! </h2>
+                              <div class="facts">
+                                   <div></div>
+                                   <ul class="facts__list">
+                                        <li class="facts__item">High-Functioning Autistic dumbass, you can tell by this site alone</li>
+                                        <li class="facts__item">Lua is literally my favorite programming language, yall can't change my mind </li>
+                                        <li class="facts__item">I love Trigonometry and Chemistry, I think their really cool</li>
+                                        <li class="facts__item">#1 Sinister Minds, my favorite album of all time; listen to it, it's amazing</li>
+                                        <li class="facts__item">Greatest Outcome Memories (RIP) player to ever exist (lying)</li>
+                                   </ul>
+                              </div>
                          </section>
+                         <button class="manual__navigation" type="button" aria-label="Next Page">
+                              <icon-wrap><icon-text>&#11157;</icon-text></icon-wrap>
+                         </button>
                     </article>
                </div>
                <div class="halls" aria-hidden="true">

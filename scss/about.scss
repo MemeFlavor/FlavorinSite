@@ -383,7 +383,7 @@ body {
                     flex-direction: column;
                     grid-area: account-triviapad;
                     background: $triviapad-bg-color;
-                    border-radius: $triviapad-border-radius $triviapad-border-radius 0px 0px;
+                    border-radius: $triviapad-border-radius $triviapad-border-radius 5px 5px;
                }
 
                $triviapad-title-base-color: plt.$flavor-primary-color;
@@ -409,7 +409,7 @@ body {
                     text-align: start;
                     color: $triviapad-txt-color;
                     padding: 2px 2px 5px 5px;
-                    margin: 4px 4px auto auto;
+                    margin: 4px 4px inherit inherit;
                }
 
                &__triviapad-sonic {

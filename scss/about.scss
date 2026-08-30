@@ -60,7 +60,7 @@ body {
      .about {
           display: grid;
           grid-template-columns: repeat(2, 445px);
-          grid-template-rows: 1fr auto;
+          grid-template-rows: auto 1fr;
           grid-template-areas:
                "about-profile about-information"
                "about-interests ."
@@ -523,7 +523,7 @@ body {
                          text-shadow: 1px 1px 0px black;
                     }
 
-                    &--big {
+                    &--headbars-primary-starting-gradientig {
                          font-size: 1.5625rem;
                          text-shadow: 2px 2px 0px black;
                          right: 3px;
@@ -547,15 +547,11 @@ body {
           }
      }
 
-     /// Shortcut for creating headbars.
-     /// @param {color} $pallete-primary   - The primary pallete color.
-     /// @param {color} $pallete-secondary - The secondary pallete color.
-     /// @param {color} $pallete-tertiary  - The tertiary pallete color.
-     /// @output Makes a fancy headbar, that's it.
-     @mixin headbars($pallete-primary, $pallete-secondary, $pallete-tertiary) {
-          $headbar-primary-color: $pallete-primary;
-          $headbar-primary-color-starting-gradient: color.adjust($headbar-primary-color, $lightness: -25%) 0%;
-          $headbar-primary-color-ending-gradient: color.adjust($headbar-primary-color, $lightness: -40%) 95%;
+     --headbars-primary-color: none;
+     --headbars-primary-starting-gradient: none;
+     --headbars-primary-ending-gradient: none;
+     @mixin headbars($primary, $secondary, $tertiary) {
+          --headbars-primary-color: #{ $primary };
 
           &__headbar {
                display: flex;
@@ -569,10 +565,10 @@ body {
                font-weight: 900;
                font-stretch: expanded;
                text-transform: capitalize;
-               background: linear-gradient(144deg, $headbar-primary-color-starting-gradient, $headbar-primary-color-ending-gradient);
+               background: linear-gradient(144deg, var(--headbars-primary-starting-gradient) 5%, var(--headbars-primary-ending-gradient) 95%);
                border: 2px solid black;
                padding: 5px 10px;
-               width: 100%;
+               width: 100%; 
           }
 
           &__headblocks {
@@ -580,10 +576,10 @@ body {
                width: calc((15px + 20px) / 2);
                height: auto;
 
-               $palletes: ($pallete-primary, $pallete-secondary, $pallete-tertiary);
-               @for $i from 1 through 3 {
-                    &--pallete-#{$i} {
-                         background-color: list.nth($palletes, $i);
+               $palletes: $primary, $secondary, $tertiary;
+               @for $pallete-index from 1 through 3 {
+                    &--pallete-#{$pallete-index} {
+                         background-color: list.nth($palletes, $pallete-index);
                     }
                }
           }
@@ -604,6 +600,9 @@ body {
                flex-direction: column;
                row-gap: 5px;
                position: relative;
+               
+               --headbars-primary-starting-gradient: hsl(from var(--headbars-primary-color) h s calc(l - 20));
+               --headbars-primary-ending-gradient: hsl(from var(--headbars-primary-color) h s calc(l - 40));
                @include headbars(plt.$flavor-secondary-color, plt.$flavor-primary-color, plt.$flavor-quaternary-color);
 
                &__body {
@@ -710,9 +709,10 @@ body {
                }
           }
 
+          $manual-biography-column: 100px;
           .manual .biography {
                display: grid;
-               grid-template-columns: auto 100px;
+               grid-template-columns: auto $manual-biography-column;
                grid-template-rows: auto auto;
                grid-template-areas:
                     "biography-desc biography-category"
@@ -779,10 +779,11 @@ body {
                }
           }
 
+          $facts-factpad-column: 78px;
           .manual .facts {
                display: grid;
-               grid-template-columns: 78px auto;
-               grid-template-rows: 1fr;
+               grid-template-columns: $facts-factpad-column auto;
+               grid-template-rows: auto;
                gap: 10px;
                margin-top: 3px;
 
@@ -857,15 +858,17 @@ body {
                }
           }
 
-          $gallery-columns: 105px 50px;
-          $gallery-rows: 60px 245px;
+          $gallery-halls-column: 105px;
+          $gallery-debugmode-column: 50px;
+          $gallery-displacement-row: 60px;
+          $gallery-halls-debugmode-row: 245px;
           .gallery {
                display: grid;
-               grid-template-columns: $gallery-columns;
-               grid-template-rows: $gallery-rows;
+               grid-template-columns: $gallery-halls-column $gallery-debugmode-column;
+               grid-template-rows: $gallery-displacement-row $gallery-halls-debugmode-row;
                grid-template-areas: 
-                    "information-gallery-displacement information-gallery-displacement"
-                    "information-gallery-halls information-gallery-debugmode"
+                    "gallery-displacement gallery-displacement"
+                    "gallery-halls gallery-debugmode"
                ;
                gap: 10px;
 
@@ -879,7 +882,7 @@ body {
                     flex-direction: row;
                     align-items: center;
                     justify-content: center;
-                    grid-area: information-gallery-debugmode;
+                    grid-area: gallery-debugmode;
                     background-color: hsl(230, 100%, 42%);
                     background-image: url(../images/decorations/ezgif-5a7b5e452076d43e.gif);
                     background-size: cover;
@@ -898,7 +901,7 @@ body {
                }
 
                &__displacement {
-                    grid-area: information-gallery-displacement;
+                    grid-area: gallery-displacement;
                     background-image: url(https://preview.redd.it/photographs-by-mads-peter-iversen-v0-769lmlbz9dgh1.jpg?width=1080&crop=smart&auto=webp&s=2dbef028941ae17ca7d0395b6aedc91171686ddd);
                     background-size: cover;
                     background-position: center;
@@ -906,7 +909,7 @@ body {
                }
 
                &__halls {
-                    grid-area: information-gallery-halls;
+                    grid-area: gallery-halls;
                     background-image: url(https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg);
                     background-size: cover;
                     background-position: center;
@@ -922,5 +925,9 @@ body {
 
      .about .interests {
           grid-area: about-interests;
+
+          --headbars-primary-starting-gradient: hsl(from var(--headbars-primary-color) h s calc(l + 3));
+          --headbars-primary-ending-gradient: hsl(from var(--headbars-primary-color) h calc(s - 20) calc(l - 20));
+          @include headbars(plt.$flavor-primary-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color);
      }
 }

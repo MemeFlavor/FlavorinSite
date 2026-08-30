@@ -1,3 +1,14 @@
+commit 1bdee6
+Author: MemeFlavor
+        &lt;host.name&gt;
+Date:   2026-08-30
+
+  > Updated About layout
+    > Added minor mobile support
+    > Uses the mobile standard
+      scrollbar styling
+      > Blame Firefox for this
+
 commit a00e78 
 Author: MemeFlavor
         &lt;host.name&gt;

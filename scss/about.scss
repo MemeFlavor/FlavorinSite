@@ -118,7 +118,7 @@ body {
           grid-area: flavory-about;
           gap: 15px;
           background-color: plt.$flavor-content-color;
-          box-shadow: 5px 5px 0px 0px plt.$flavor-primary-color;
+          box-shadow: 5px 5px 0px 0px hsl(from #{plt.$flavor-secondary-color} h s l / 0.75);
           padding: 20px;
 
           @media screen and (width <= 1305px) {
@@ -1038,7 +1038,7 @@ body {
                padding: 5px 8px;
 
                &:focus-visible {
-                    --catalog-scrollbar-thumb: hsl(from var(--catalog-scrollbar-base-thumb) h s calc(l + 15));
+                    --catalog-scrollbar-thumb: hsl(from var(--catalog-scrollbar-base-thumb) h calc(s - 10) calc(l + 15));
                }
           
                &::-webkit-scrollbar {

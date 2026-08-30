@@ -31,6 +31,48 @@
      --manual-scrollbar-thumb-color: hsl(from var(--manual-bg-color) h calc(s - 20) calc(l - 20));
 }
 
+/// Shorthand for creating fancy headbars.
+/// Uses CSS variables to change the main headbar graident.
+/// @param {color} $primary   - The primary pallete.
+/// @param {color} $secondary - The secondary pallete.
+/// @param {color} $tertiary  - The tertiary pallete.
+/// @output Fancy headbars, amazing right?
+@mixin headbars($primary, $secondary, $tertiary) {
+     $headbar-palletes: $primary, $secondary, $tertiary;
+     $headbar-gradient-start: var(--headbars-primary-gradient-start) 5%;
+     $headbar-gradient-end: var(--headbars-primary-gradient-end) 95%;
+
+     &__headbar {
+          display: flex;
+          flex-direction: row;
+          column-gap: 3px;
+     }
+
+     &__headtitle {
+          font-family: 'Archivo', font.$standard-font;
+          font-size: 1.1rem;
+          font-weight: 900;
+          font-stretch: expanded;
+          text-transform: capitalize;
+          background: linear-gradient(144deg, $headbar-gradient-start, $headbar-gradient-end);
+          border: 2px solid black;
+          padding: 5px 10px;
+          width: 100%;
+     }
+
+     &__headblocks {
+          border: 2px solid black;
+          width: calc((15px + 20px) / 2);
+          height: auto;
+
+          @for $pallete-index from 1 through 3 {
+               &--pallete-#{$pallete-index} {
+                    background-color: list.nth($headbar-palletes, $pallete-index);
+               }
+          }
+     }
+}
+
 html {
      overflow: auto scroll;
      scrollbar-width: auto;
@@ -55,7 +97,7 @@ body {
      display: grid;
      justify-content: center;
      grid-template-columns: auto min-content;
-     grid-template-rows: 1fr;
+     grid-template-rows: min-content;
      grid-template-areas: "flavory-sidebar flavory-about";
      gap: 5px;
      font-family: font.$standard-font;
@@ -73,6 +115,8 @@ body {
 
      .sidebar {
           grid-area: flavory-sidebar;
+          position: sticky;
+          top: 0;
      }
 
      .about {
@@ -558,45 +602,6 @@ body {
                @keyframes windy-sway {
                     from { background-position-y: 25%; }
                     to   { background-position-y: 55%; }
-               }
-          }
-     }
-
-     ///
-     /// @param {color} $primary   - 
-     /// @param {color} $secondary -
-     /// @param {color} $tertiary  -
-     /// @output
-     @mixin headbars($primary, $secondary, $tertiary) {
-          $palletes: $primary, $secondary, $tertiary;
-
-          &__headbar {
-               display: flex;
-               flex-direction: row;
-               column-gap: 3px;
-          }
-
-          &__headtitle {
-               font-family: 'Archivo', font.$standard-font;
-               font-size: 1.1rem;
-               font-weight: 900;
-               font-stretch: expanded;
-               text-transform: capitalize;
-               background: linear-gradient(144deg, var(--headbars-primary-gradient-start) 5%, var(--headbars-primary-gradient-end) 95%);
-               border: 2px solid black;
-               padding: 5px 10px;
-               width: 100%; 
-          }
-
-          &__headblocks {
-               border: 2px solid black;
-               width: calc((15px + 20px) / 2);
-               height: auto;
-
-               @for $pallete-index from 1 through 3 {
-                    &--pallete-#{$pallete-index} {
-                         background-color: list.nth($palletes, $pallete-index);
-                    }
                }
           }
      }

@@ -13,7 +13,26 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
+:root {
+     --headbars-primary-color: none;
+     --headbars-primary-gradient-start: none;
+     --headbars-primary-gradient-end: none;
+
+     --information-biography-headbar-color: beige;
+     --information-biography-scrollbar-thumb-color: #{ plt.$flavor-scrollbar-thumb };
+
+     --interests-title-bg-color: hsl(240deg 65% 38%);
+     --interests-catalog-bg-color: hsl(255deg 5% 17%);
+     --interests-catalog-scrollbar-bg-color: hsl(0deg 0% 5% / 0.5);
+     --interests-catalog-scrollbar-thumb-color: hsl(from var(--interests-catalog-bg-color) h calc(s - 10) calc(l + 15));
+
+     --manual-bg-color: beige;
+     --manual-title-color: hsl(240deg 14% 5%);
+     --manual-scrollbar-thumb-color: hsl(from var(--manual-bg-color) h calc(s - 20) calc(l - 20));
+}
+
 html {
+     overflow: auto scroll;
      scrollbar-width: auto;
      scrollbar-color: plt.$flavor-scrollbar-thumb black;
      scrollbar-gutter: stable;
@@ -47,7 +66,6 @@ body {
      background-color: plt.$flavor-wallpaper-color;
      background-blend-mode: color-burn;
      margin-block: 0.5cm;
-     overflow: auto;
 
      @media screen and (width <= 845px) {
           min-width: 845px;
@@ -368,8 +386,6 @@ body {
                }
           }
 
-          $biography-headbar-primary-color: beige;
-          $biography-scrollbar-thumb-color: plt.$flavor-scrollbar-thumb;
           .biography {
                grid-area: profile-biography;
                background-color: plt.$flavor-bento-color;
@@ -390,7 +406,7 @@ body {
 
                &__headbar-blocks {
                     grid-area: headbar-blocks;
-                    background-color: $biography-headbar-primary-color;
+                    background-color: var(--information-biography-headbar-color);
                }
 
                &__headbar-title {
@@ -400,14 +416,14 @@ body {
                     font-weight: 800;
                     font-stretch: semi-expanded;
                     text-transform: uppercase;
-                    color: $biography-headbar-primary-color;
-                    border: 2px solid $biography-headbar-primary-color;
+                    color: var(--information-biography-headbar-color);
+                    border: 2px solid var(--information-biography-headbar-color);
                     border-left-width: 10px;
                     padding: 3px 10px;
                
                     &::selection {
-                         color: plt.color-contrast($biography-headbar-primary-color);
-                         background-color: $biography-headbar-primary-color;
+                         color: black;
+                         background-color: var(--information-biography-headbar-color);
                     }
                }
 
@@ -421,7 +437,7 @@ body {
                }
 
                &__headbar-slabs {
-                    background-color: $biography-headbar-primary-color;
+                    background-color: var(--information-biography-headbar-color);
 
                     &--pallete-1 {
                          background-color: plt.$flavor-primary-color;
@@ -431,17 +447,16 @@ body {
                     }
                }
 
-               --scrollbar-thumb: #{ $biography-scrollbar-thumb-color };
                &__body {
                     outline: none;
                     overflow-y: auto;
                     scrollbar-width: thin;
-                    scrollbar-color: var(--scrollbar-thumb) transparent;
+                    scrollbar-color: var(--information-biography-scrollbar-thumb-color) transparent;
                     height: 275px;
                     padding: 5px;
                     
                     &:focus-visible {
-                         --scrollbar-thumb: #{ color.adjust($biography-scrollbar-thumb-color, $lightness: 15%) };
+                         --information-biography-scrollbar-thumb-color: hsl(from #{ plt.$flavor-scrollbar-thumb } h s calc(l + 15));
                     }
                
                     &::-webkit-scrollbar {
@@ -453,7 +468,7 @@ body {
                     }
                
                     &::-webkit-scrollbar-thumb {
-                         background: var(--scrollbar-thumb);
+                         background: var(--information-biography-scrollbar-thumb-color);
                          border-radius: 4px;
                     }
 
@@ -523,7 +538,7 @@ body {
                          text-shadow: 1px 1px 0px black;
                     }
 
-                    &--headbars-primary-starting-gradientig {
+                    &--big {
                          font-size: 1.5625rem;
                          text-shadow: 2px 2px 0px black;
                          right: 3px;
@@ -547,11 +562,13 @@ body {
           }
      }
 
-     --headbars-primary-color: none;
-     --headbars-primary-starting-gradient: none;
-     --headbars-primary-ending-gradient: none;
+     ///
+     /// @param {color} $primary   - 
+     /// @param {color} $secondary -
+     /// @param {color} $tertiary  -
+     /// @output
      @mixin headbars($primary, $secondary, $tertiary) {
-          --headbars-primary-color: #{ $primary };
+          $palletes: $primary, $secondary, $tertiary;
 
           &__headbar {
                display: flex;
@@ -565,7 +582,7 @@ body {
                font-weight: 900;
                font-stretch: expanded;
                text-transform: capitalize;
-               background: linear-gradient(144deg, var(--headbars-primary-starting-gradient) 5%, var(--headbars-primary-ending-gradient) 95%);
+               background: linear-gradient(144deg, var(--headbars-primary-gradient-start) 5%, var(--headbars-primary-gradient-end) 95%);
                border: 2px solid black;
                padding: 5px 10px;
                width: 100%; 
@@ -576,7 +593,6 @@ body {
                width: calc((15px + 20px) / 2);
                height: auto;
 
-               $palletes: $primary, $secondary, $tertiary;
                @for $pallete-index from 1 through 3 {
                     &--pallete-#{$pallete-index} {
                          background-color: list.nth($palletes, $pallete-index);
@@ -592,21 +608,19 @@ body {
           grid-area: about-information;
           gap: 10px;
 
-          $manual-primary-color: beige;
-          $manual-title-color: hsl(240, 14%, 5%);
-          $manual-height: 170px;
+          $manual-content-height: 170px;
           .manual {
+               --headbars-primary-color: #{ plt.$flavor-secondary-color };
+               --headbars-primary-gradient-start: hsl(from var(--headbars-primary-color) h s calc(l - 20));
+               --headbars-primary-gradient-end: hsl(from var(--headbars-primary-color) h s calc(l - 40));
                display: flex;
                flex-direction: column;
                row-gap: 5px;
                position: relative;
-               
-               --headbars-primary-starting-gradient: hsl(from var(--headbars-primary-color) h s calc(l - 20));
-               --headbars-primary-ending-gradient: hsl(from var(--headbars-primary-color) h s calc(l - 40));
                @include headbars(plt.$flavor-secondary-color, plt.$flavor-primary-color, plt.$flavor-quaternary-color);
 
                &__body {
-                    background-color: $manual-primary-color;
+                    background-color: var(--manual-bg-color);
                     background-image: url(../images/decorations/manual/sidecover.webp);
                     background-repeat: repeat-x;
                     background-size: 50%;
@@ -625,8 +639,8 @@ body {
                     font-weight: 900;
                     font-stretch: 120%;
                     text-transform: uppercase;
-                    color: $manual-title-color;
-                    border: 2px solid $manual-title-color;
+                    color: var(--manual-title-color);
+                    border: 2px solid var(--manual-title-color);
                     height: fit-content;
                     padding: 0px 8px;
                     margin-bottom: 0.65cm;
@@ -709,10 +723,9 @@ body {
                }
           }
 
-          $manual-biography-column: 100px;
           .manual .biography {
                display: grid;
-               grid-template-columns: auto $manual-biography-column;
+               grid-template-columns: auto 100px;
                grid-template-rows: auto auto;
                grid-template-areas:
                     "biography-desc biography-category"
@@ -739,10 +752,10 @@ body {
                     outline: none;
                     overflow-y: auto;
                     scrollbar-width: none;
-                    height: $manual-height;
+                    height: $manual-content-height;
 
                     &:focus-visible {
-                         background-color: color.adjust($manual-primary-color, $saturation: -8%, $lightness: -8%);
+                         background-color: hsl(from var(--manual-bg-color) h calc(s - 8) calc(l - 8));
                     }
                }
           
@@ -779,10 +792,9 @@ body {
                }
           }
 
-          $facts-factpad-column: 78px;
           .manual .facts {
                display: grid;
-               grid-template-columns: $facts-factpad-column auto;
+               grid-template-columns: 78px auto;
                grid-template-rows: auto;
                gap: 10px;
                margin-top: 3px;
@@ -817,7 +829,6 @@ body {
                     padding-inline: 3px;
                }
 
-               --scrollbar-thumb: #{ color.adjust($manual-primary-color, $saturation: -20%, $lightness: -20%) };
                &__list {
                     display: flex;
                     flex-direction: column;
@@ -826,12 +837,12 @@ body {
                     outline: none;
                     overflow: hidden auto;
                     scrollbar-width: thin;
-                    scrollbar-color: var(--scrollbar-thumb) transparent;
-                    height: $manual-height;
+                    scrollbar-color: var(--manual-scrollbar-thumb-color) transparent;
+                    height: $manual-content-height;
                     padding-left: 15px;
 
                     &:focus-visible {
-                         --scrollbar-thumb: #{ color.adjust($manual-primary-color, $saturation: -35%, $lightness: -35%) };
+                         --manual-scrollbar-thumb-color: hsl(from var(--manual-bg-color) h calc(s - 35) calc(l - 35));
                     }
                
                     &::-webkit-scrollbar {
@@ -843,7 +854,7 @@ body {
                     }
                
                     &::-webkit-scrollbar-thumb {
-                         background: var(--scrollbar-thumb);
+                         background: var(--manual-scrollbar-thumb-color);
                          border-radius: 4px;
                     }
                }
@@ -858,14 +869,10 @@ body {
                }
           }
 
-          $gallery-halls-column: 105px;
-          $gallery-debugmode-column: 50px;
-          $gallery-displacement-row: 60px;
-          $gallery-halls-debugmode-row: 245px;
           .gallery {
                display: grid;
-               grid-template-columns: $gallery-halls-column $gallery-debugmode-column;
-               grid-template-rows: $gallery-displacement-row $gallery-halls-debugmode-row;
+               grid-template-columns: 1fr 50px;
+               grid-template-rows: 60px 1fr;
                grid-template-areas: 
                     "gallery-displacement gallery-displacement"
                     "gallery-halls gallery-debugmode"
@@ -883,7 +890,7 @@ body {
                     align-items: center;
                     justify-content: center;
                     grid-area: gallery-debugmode;
-                    background-color: hsl(230, 100%, 42%);
+                    background-color: hsl(230deg 100% 42%);
                     background-image: url(../images/decorations/ezgif-5a7b5e452076d43e.gif);
                     background-size: cover;
                     background-position: center top;
@@ -924,10 +931,10 @@ body {
      }
 
      .about .interests {
+          --headbars-primary-color: #{ plt.$flavor-primary-color };
+          --headbars-primary-gradient-start: hsl(from var(--headbars-primary-color) h s calc(l + 3));
+          --headbars-primary-gradient-end: hsl(from var(--headbars-primary-color) h calc(s - 20) calc(l - 20));
           grid-area: about-interests;
-          
-          --headbars-primary-starting-gradient: hsl(from var(--headbars-primary-color) h s calc(l + 3));
-          --headbars-primary-ending-gradient: hsl(from var(--headbars-primary-color) h calc(s - 20) calc(l - 20));
           @include headbars(plt.$flavor-primary-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color);
 
           &__inventory {
@@ -951,22 +958,26 @@ body {
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: 1.15rem;
                font-weight: bolder;
-               background: hsl(240deg, 65%, 38%);
+               text-shadow: 2px 2px 0px hsl(from black h s l / 1);
                background:
                     linear-gradient(180deg,
-                         hsl(240deg, 65%, 38%) 1%,
-                         hsl(240deg, 100%, 62%) 4%,
-                         hsl(240deg, 100%, 62%) 5%,
-                         hsl(240deg, 65%, 38%) 10%,
-                         hsl(240deg, 65%, 38%) 30%,
-                         hsl(240deg, 65%, 34%) 55%,
-                         hsl(240deg, 65%, 45%) 85%,
-                         hsl(240deg, 65%, 25%) 95%,
+                         hsl(from var(--interests-title-bg-color) h s l) 1%,
+                         hsl(from var(--interests-title-bg-color) h calc(s + 35) calc(l + 24)) 4%,
+                         hsl(from var(--interests-title-bg-color) h calc(s + 35) calc(l + 24)) 5%,
+                         hsl(from var(--interests-title-bg-color) h s l) 10%,
+                         hsl(from var(--interests-title-bg-color) h s l) 30%,
+                         hsl(from var(--interests-title-bg-color) h s calc(l - 2)) 55%,
+                         hsl(from var(--interests-title-bg-color) h s calc(l + 7)) 85%,
+                         hsl(from var(--interests-title-bg-color) h s calc(l - 13)) 95%,
                     );
-               border: 2px solid hsl(253, 67%, 10%);
+               border: 2px solid hsl(from var(--interests-title-bg-color) calc(h - 13) calc(s + 2) calc(l - 28));
                border-top-left-radius: 5px;
                border-bottom-left-radius: 5px;
                padding: 3px 8px;
+
+               & > *::selection {
+                    background-color: black;
+               }
           }
 
           &__title-latin {
@@ -975,30 +986,33 @@ body {
      
           &__title-baybayin {
                font-family: 'Noto Sans Tagalog', font.$standard-font;
-               font-size: 0.58rem;
+               font-size: 0.6rem;
           }
 
-          $list-primary-color: hsl(255, 5%, 17%);
           &__catalog {
                font-family: 'Candy Beans', font.$standard-font;
                font-size: 0.85rem;
                line-height: 1.4;
-               background-color: $list-primary-color;
+               background-color: var(--interests-catalog-bg-color);
                border: 2px solid black;
+
+               &:not(:lang(en)) {
+                    line-height: normal;
+               }
           }
 
-          --scrollbar-thumb: #{ color.adjust($list-primary-color, $saturation: -10%, $lightness: 15%) };
           &__catalog-list {
                display: block;
                outline: none;
-               overflow-y: auto;
-               scrollbar-width: thin;
-               scrollbar-color: var(--scrollbar-thumb) transparent;
+               overflow-y: scroll;
+               scrollbar-width: thin; 
+               scrollbar-color: var(--interests-catalog-scrollbar-thumb-color) var(--interests-catalog-scrollbar-bg-color);
+               scrollbar-gutter: stable;
                height: 1.7cm;
                padding: 5px 8px;
 
                &:focus-visible {
-                    --scrollbar-thumb: #{ color.adjust($list-primary-color, $saturation: -10%, $lightness: 25%) };
+                    --interests-catalog-scrollbar-thumb-color: hsl(from var(--interests-catalog-bg-color) h calc(s - 10) calc(l + 35));
                }
           
                &::-webkit-scrollbar {
@@ -1006,11 +1020,11 @@ body {
                }
           
                &::-webkit-scrollbar-track {
-                    background: transparent;
+                    background: var(--interests-catalog-scrollbar-bg-color);
                }
           
                &::-webkit-scrollbar-thumb {
-                    background: var(--scrollbar-thumb);
+                    background: var(--interests-catalog-scrollbar-thumb-color);
                     border-radius: 4px;
                }
           }

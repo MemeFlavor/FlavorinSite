@@ -1,7 +1,6 @@
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
 @use './modules/manual.scss' as mnl;
-@use 'sass:color';
 @use 'sass:list';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
@@ -118,7 +117,7 @@ body {
           grid-area: flavory-about;
           gap: 15px;
           background-color: plt.$flavor-content-color;
-          box-shadow: 5px 5px 0px 0px hsl(from #{plt.$flavor-secondary-color} h s l / 0.75);
+          box-shadow: 5px 5px 0px 0px hsl(from plt.$flavor-secondary-color h s l / 0.75);
           padding: 20px;
 
           @media screen and (width <= 1305px) {
@@ -434,7 +433,7 @@ body {
           .biography {
                grid-area: profile-biography;
                background-color: plt.$flavor-bento-color;
-               box-shadow: 3px 3px 0px 0px hsl(from var(--flavor-quaternary-color) h s l / 0.75);
+               box-shadow: 3px 3px 0px 0px hsl(from plt.$flavor-quaternary-color h s l / 0.75);
                padding: 8px;
 
                $headbar-base-color: beige;
@@ -768,7 +767,7 @@ body {
                     height: $manual-content-height;
 
                     &:focus-visible {
-                         background-color: hsl(from #{$manual-base-color} h calc(s - 20) calc(l - 15));
+                         background-color: hsl(from $manual-base-color h calc(s - 20) calc(l - 15));
                     }
                }
           
@@ -993,7 +992,7 @@ body {
                          hsl(from #{$title-base-color} h s calc(l + 7)) 85%,
                          hsl(from #{$title-base-color} h s calc(l - 13)) 95%,
                     );
-               border: 2px solid hsl(from #{$title-base-color} calc(h - 13) calc(s + 2) calc(l - 28));
+               border: 2px solid hsl(from $title-base-color calc(h - 13) calc(s + 2) calc(l - 28));
                border-top-left-radius: 5px;
                border-bottom-left-radius: 5px;
                padding: 3px 8px;

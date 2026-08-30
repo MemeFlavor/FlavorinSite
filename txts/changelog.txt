@@ -1,7 +1,15 @@
+commit 83f56d
+Author: MemeFlavor
+        &lt;host.name&gt;
+Date:   2026-08-30 7:47:30
+
+  > New About box shadow color
+  > Adjust the Sidebar to be sticky
+
 commit 1bdee6
 Author: MemeFlavor
         &lt;host.name&gt;
-Date:   2026-08-30
+Date:   2026-08-30 7:40:00
 
   > Updated About layout
     > Added minor mobile support

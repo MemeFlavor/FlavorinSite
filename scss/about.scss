@@ -17,18 +17,6 @@
      --headbars-primary-color: none;
      --headbars-primary-gradient-start: none;
      --headbars-primary-gradient-end: none;
-
-     --information-biography-headbar-color: beige;
-     --information-biography-scrollbar-thumb-color: #{ plt.$flavor-scrollbar-thumb };
-
-     --interests-title-bg-color: hsl(240deg 65% 38%);
-     --interests-catalog-bg-color: hsl(255deg 5% 17%);
-     --interests-catalog-scrollbar-bg-color: hsl(0deg 0% 5% / 0.5);
-     --interests-catalog-scrollbar-thumb-color: hsl(from var(--interests-catalog-bg-color) h calc(s - 10) calc(l + 15));
-
-     --manual-bg-color: beige;
-     --manual-title-color: hsl(240deg 14% 5%);
-     --manual-scrollbar-thumb-color: hsl(from var(--manual-bg-color) h calc(s - 20) calc(l - 20));
 }
 
 /// Shorthand for creating fancy headbars.
@@ -144,13 +132,10 @@ body {
           }
      }
 
-     $profile-header-row: 90px;
-     $profile-details-row: 350px;
-     $profile-gallery: 44px;
      .about .profile {
           display: grid;
           grid-template-columns: 150px 1fr;
-          grid-template-rows: $profile-header-row $profile-details-row $profile-gallery;
+          grid-template-rows: 90px 350px 44px;
           grid-template-areas:
                "profile-header profile-header"
                "profile-account profile-biography"
@@ -161,8 +146,8 @@ body {
 
           .header {
                display: grid;
-               grid-template-columns: 1fr $profile-header-row;
-               grid-template-rows: $profile-header-row;
+               grid-template-columns: 1fr 90px;
+               grid-template-rows: 90px;
                grid-area: profile-header;
                gap: 10px;
 
@@ -171,6 +156,7 @@ body {
                     border-radius: 5px;
                }
 
+               --banner-bg-color: #{ plt.$flavor-gridline-color };
                &__banner {
                     display: grid;
                     grid-template-columns: auto 1fr;
@@ -180,7 +166,7 @@ body {
                          "banner-title banner-year"
                     ;
                     gap: 0px 15px;
-                    background-color: plt.$flavor-gridline-color;
+                    background-color: var(--banner-bg-color);
                     background-image: url(../images/backgrounds/grids.avif);
                     background-attachment: local;
                     background-size: 180%;
@@ -189,16 +175,23 @@ body {
                     position: relative;
                     height: 100%;
                     padding: 8px;
+
+                    @media (prefers-reduced-transparency: reduce) {
+                         --banner-bg-color: hsl(from var(--banner-bg-color) h s l / 0.3);
+                    }
                }
 
+               $banner-domain-base-color: plt.$flavor-primary-color;
+               $banner-domain-bg-color: $banner-domain-base-color;
+               $banner-domain-text-color: plt.color-contrast($banner-domain-base-color);
                &__banner-domain {
                     grid-area: banner-domain;
                     font-family: 'Archivo', font.$standard-font;
                     font-size: 0.7rem;
                     font-weight: 900;
                     font-stretch: ultra-expanded;
-                    color: plt.color-contrast(plt.$flavor-primary-color);
-                    background-color: plt.$flavor-primary-color;
+                    color: $banner-domain-text-color;
+                    background-color: $banner-domain-bg-color;
                     width: fit-content;
                     height: fit-content;
                     position: relative;
@@ -234,7 +227,7 @@ body {
                     }
 
                     @media (prefers-reduced-motion: reduce) {
-                         --banner-title-animation: none !important;
+                         --banner-title-animation: none;
                     }
                }
 
@@ -279,6 +272,9 @@ body {
                     margin-left: auto;
                }
 
+               $banner-year-special-base-color: plt.$flavor-secondary-color;
+               $banner-year-special-bg-color: $banner-year-special-base-color;
+               $banner-year-special-txt-color: plt.color-contrast($banner-year-special-base-color);
                &__banner-year year-num {
                     display: block;
                     font-family: 'Archivo';
@@ -289,8 +285,8 @@ body {
                     padding-inline: 3px;
 
                     &:nth-last-child(1) {
-                         color: plt.color-contrast(plt.$flavor-secondary-color);
-                         background-color: plt.$flavor-secondary-color;
+                         color: $banner-year-special-txt-color;
+                         background-color: $banner-year-special-bg-color;
                     }
                }
 
@@ -313,13 +309,10 @@ body {
                }
           }
 
-          $account-avatar-row: 150px;
-          $account-status-row: 50px;
-          $account-misc-row: 130px;
           .account {
                display: grid;
                grid-template-columns: 1fr 1fr;
-               grid-template-rows: $account-avatar-row $account-status-row $account-misc-row;
+               grid-template-rows: 150px 50px 130px;
                grid-template-areas: 
                     "account-avatar account-avatar"
                     "account-status account-status"
@@ -344,6 +337,9 @@ body {
                     grid-area: account-status;
                }
 
+               $status-title-base-color: plt.$flavor-tertiary-color;
+               $status-title-bg-color: $status-title-base-color;
+               $status-title-txt-color: plt.color-contrast($status-title-base-color);
                &__status-title {
                     font-family: 'Archivo', font.$standard-font;
                     font-size: 0.9rem;
@@ -351,8 +347,8 @@ body {
                     font-stretch: semi-expanded;
                     text-align: center;
                     text-transform: uppercase;
-                    color: plt.color-contrast(plt.$flavor-tertiary-color);
-                    background-color: plt.$flavor-tertiary-color;
+                    color: $status-title-txt-color;
+                    background-color: $status-title-bg-color;
                     border-radius: 3px 3px 0px 0px;
                     width: 100%;
                     padding: 1px 5px;
@@ -378,13 +374,22 @@ body {
                     margin-block: auto;
                }
 
+               $triviapad-base-color: beige;
+               $triviapad-bg-color: $triviapad-base-color;
+               $triviapad-txt-color: plt.color-contrast($triviapad-base-color);
+               $triviapad-border-radius: 10px;
+               $triviapad-title-border-radius: calc($triviapad-border-radius / 2);
                &__triviapad {
                     display: flex;
                     flex-direction: column;
                     grid-area: account-triviapad;
-                    background: linear-gradient(to bottom, transparent 5%, beige 5%);
+                    background: $triviapad-bg-color;
+                    border-radius: $triviapad-border-radius $triviapad-border-radius 0px 0px;
                }
 
+               $triviapad-title-base-color: plt.$flavor-primary-color;
+               $triviapad-title-bg-color: $triviapad-title-base-color;
+               $triviapad-title-txt-color: plt.color-contrast($triviapad-title-base-color);
                &__triviapad-title {
                     font-family: 'Archivo', font.$standard-font;
                     font-size: 0.95rem;
@@ -392,10 +397,9 @@ body {
                     font-stretch: semi-condensed;
                     text-align: center;
                     text-transform: uppercase;
-                    color: plt.color-contrast(plt.$flavor-primary-color);
-                    background-color: plt.$flavor-primary-color;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
+                    color: $triviapad-title-txt-color;
+                    background-color: $triviapad-title-bg-color;
+                    border-radius: $triviapad-title-border-radius $triviapad-title-border-radius 0px 0px;
                     padding: calc((3px + 4px) / 2.5) 5px;
                }
 
@@ -404,12 +408,9 @@ body {
                     font-size: 0.5rem;
                     font-weight: bolder;
                     text-align: start;
-                    color: black;
-                    padding: 5px;
-                    padding-top: 2px;
-                    padding-right: 2px;
-                    margin-top: 3px;
-                    margin-right: 3px;
+                    color: $triviapad-txt-color;
+                    padding: 2px 2px 5px 5px;
+                    margin: 4px 4px auto auto;
                }
 
                &__triviapad-sonic {
@@ -433,9 +434,11 @@ body {
           .biography {
                grid-area: profile-biography;
                background-color: plt.$flavor-bento-color;
-               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
+               box-shadow: 3px 3px 0px 0px hsl(from var(--flavor-quaternary-color) h s l / 0.75);
                padding: 8px;
 
+               $headbar-base-color: beige;
+               $headbar-txt-color-selection: plt.color-contrast($headbar-base-color);
                &__headbar {
                     display: grid;
                     grid-template-columns: 40px 1fr;
@@ -450,7 +453,7 @@ body {
 
                &__headbar-blocks {
                     grid-area: headbar-blocks;
-                    background-color: var(--information-biography-headbar-color);
+                    background-color: $headbar-base-color;
                }
 
                &__headbar-title {
@@ -460,14 +463,14 @@ body {
                     font-weight: 800;
                     font-stretch: semi-expanded;
                     text-transform: uppercase;
-                    color: var(--information-biography-headbar-color);
-                    border: 2px solid var(--information-biography-headbar-color);
+                    color: $headbar-base-color;
+                    border: 2px solid $headbar-base-color;
                     border-left-width: 10px;
                     padding: 3px 10px;
                
                     &::selection {
-                         color: black;
-                         background-color: var(--information-biography-headbar-color);
+                         color: $headbar-txt-color-selection;
+                         background-color: $headbar-base-color;
                     }
                }
 
@@ -481,7 +484,7 @@ body {
                }
 
                &__headbar-slabs {
-                    background-color: var(--information-biography-headbar-color);
+                    background-color: $headbar-base-color;
 
                     &--pallete-1 {
                          background-color: plt.$flavor-primary-color;
@@ -491,16 +494,19 @@ body {
                     }
                }
 
+               --biography-scrollbar-base-thumb: #{plt.$flavor-scrollbar-thumb};
+               --biography-scrollbar-thumb: var(--biography-scrollbar-base-thumb);
+               --biography-scrollbar-track: transparent;
                &__body {
                     outline: none;
                     overflow-y: auto;
                     scrollbar-width: thin;
-                    scrollbar-color: var(--information-biography-scrollbar-thumb-color) transparent;
+                    scrollbar-color: var(--biography-scrollbar-thumb) var(--biography-scrollbar-track);
                     height: 275px;
                     padding: 5px;
                     
                     &:focus-visible {
-                         --information-biography-scrollbar-thumb-color: hsl(from #{ plt.$flavor-scrollbar-thumb } h s calc(l + 15));
+                         --biography-scrollbar-thumb: hsl(from var(--biography-scrollbar-base-thumb) h s calc(l + 15));
                     }
                
                     &::-webkit-scrollbar {
@@ -508,11 +514,11 @@ body {
                     }
                
                     &::-webkit-scrollbar-track {
-                         background: transparent;
+                         background: var(--biography-scrollbar-track);
                     }
                
                     &::-webkit-scrollbar-thumb {
-                         background: var(--information-biography-scrollbar-thumb-color);
+                         background: var(--biography-scrollbar-thumb);
                          border-radius: 4px;
                     }
 
@@ -547,7 +553,7 @@ body {
           .gallery {
                display: grid;
                grid-template-columns: 2fr 1fr;
-               grid-template-rows: $profile-gallery;
+               grid-template-rows: 44px;
                grid-area: profile-gallery;
                gap: 10px;
 
@@ -613,6 +619,7 @@ body {
           grid-area: about-information;
           gap: 10px;
 
+          $manual-base-color: beige;
           $manual-content-height: 170px;
           .manual {
                --headbars-primary-color: #{ plt.$flavor-secondary-color };
@@ -625,7 +632,7 @@ body {
                @include headbars(plt.$flavor-secondary-color, plt.$flavor-primary-color, plt.$flavor-quaternary-color);
 
                &__body {
-                    background-color: var(--manual-bg-color);
+                    background-color: $manual-base-color;
                     background-image: url(../images/decorations/manual/sidecover.webp);
                     background-repeat: repeat-x;
                     background-size: 50%;
@@ -636,6 +643,7 @@ body {
                     padding: 5px 10px;
                }
 
+               $title-base-color: hsl(240deg 14% 5%);
                &__title {
                     display: flex;
                     align-items: center;
@@ -644,8 +652,8 @@ body {
                     font-weight: 900;
                     font-stretch: 120%;
                     text-transform: uppercase;
-                    color: var(--manual-title-color);
-                    border: 2px solid var(--manual-title-color);
+                    color: $title-base-color;
+                    border: 2px solid $title-base-color;
                     height: fit-content;
                     padding: 0px 8px;
                     margin-bottom: 0.65cm;
@@ -760,7 +768,7 @@ body {
                     height: $manual-content-height;
 
                     &:focus-visible {
-                         background-color: hsl(from var(--manual-bg-color) h calc(s - 8) calc(l - 8));
+                         background-color: hsl(from #{$manual-base-color} h calc(s - 20) calc(l - 15));
                     }
                }
           
@@ -772,6 +780,9 @@ body {
                     }
                }
           
+               $category-type-base-color: plt.$flavor-primary-color;
+               $category-type-bg-color: $category-type-base-color;
+               $category-type-txt-color: plt.color-contrast($category-type-base-color);     
                &__category-type {
                     @include mnl.manual__section;
                     display: block;
@@ -779,8 +790,8 @@ body {
                     font-weight: 700;
                     text-align: center;
                     text-transform: none;
-                    color: plt.color-contrast(plt.$flavor-primary-color);
-                    background-color: plt.$flavor-primary-color;
+                    color: $category-type-txt-color;
+                    background-color: $category-type-bg-color;
                     padding: 3px 5px;
                     margin: 0;
           
@@ -809,6 +820,9 @@ body {
                    flex-direction: column;
                }
 
+               $factpad-title-base-color: plt.$flavor-tertiary-color;
+               $factpad-title-bg-color: $factpad-title-base-color;
+               $factpad-title-txt-color: plt.color-contrast($factpad-title-base-color);
                &__factpad-title {
                     font-family: 'Archivo', font.$standard-font;
                     font-size: 0.95rem;
@@ -816,8 +830,8 @@ body {
                     font-stretch: semi-condensed;
                     text-align: center;
                     text-transform: uppercase;
-                    color: plt.color-contrast(plt.$flavor-tertiary-color);
-                    background-color: plt.$flavor-tertiary-color;
+                    color: $factpad-title-txt-color;
+                    background-color: $factpad-title-bg-color;
                     padding: calc((3px + 4px) / 2.5) 5px;
                }
 
@@ -834,6 +848,9 @@ body {
                     padding-inline: 3px;
                }
 
+               --facts-list-scrollbar-base-thumb: #{$manual-base-color};
+               --facts-list-scrollbar-thumb: hsl(from var(--facts-list-scrollbar-base-thumb) h calc(s - 25) calc(l - 20));
+               --facts-list-scrollbar-track: transparent;
                &__list {
                     display: flex;
                     flex-direction: column;
@@ -842,12 +859,12 @@ body {
                     outline: none;
                     overflow: hidden auto;
                     scrollbar-width: thin;
-                    scrollbar-color: var(--manual-scrollbar-thumb-color) transparent;
+                    scrollbar-color: var(--facts-list-scrollbar-thumb) var(--facts-list-scrollbar-track);
                     height: $manual-content-height;
                     padding-left: 15px;
 
                     &:focus-visible {
-                         --manual-scrollbar-thumb-color: hsl(from var(--manual-bg-color) h calc(s - 35) calc(l - 35));
+                         --facts-list-scrollbar-thumb: hsl(from var(--facts-list-scrollbar-base-thumb) h calc(s - 40) calc(l - 35));
                     }
                
                     &::-webkit-scrollbar {
@@ -855,11 +872,11 @@ body {
                     }
                
                     &::-webkit-scrollbar-track {
-                         background: transparent;
+                         background: var(--facts-list-scrollbar-track);
                     }
                
                     &::-webkit-scrollbar-thumb {
-                         background: var(--manual-scrollbar-thumb-color);
+                         background: var(--facts-list-scrollbar-thumb);
                          border-radius: 4px;
                     }
                }
@@ -937,7 +954,7 @@ body {
 
      .about .interests {
           --headbars-primary-color: #{ plt.$flavor-primary-color };
-          --headbars-primary-gradient-start: hsl(from var(--headbars-primary-color) h s calc(l + 3));
+          --headbars-primary-gradient-start: hsl(from var(--headbars-primary-color) h s calc(l + 2));
           --headbars-primary-gradient-end: hsl(from var(--headbars-primary-color) h calc(s - 20) calc(l - 20));
           grid-area: about-interests;
           @include headbars(plt.$flavor-primary-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color);
@@ -956,6 +973,7 @@ body {
                margin-block: 3px;
           }
 
+          $title-base-color: hsl(240deg 65% 38%);
           &__title {
                display: flex;
                flex-direction: column;
@@ -966,16 +984,16 @@ body {
                text-shadow: 2px 2px 0px hsl(from black h s l / 1);
                background:
                     linear-gradient(180deg,
-                         hsl(from var(--interests-title-bg-color) h s l) 1%,
-                         hsl(from var(--interests-title-bg-color) h calc(s + 35) calc(l + 24)) 4%,
-                         hsl(from var(--interests-title-bg-color) h calc(s + 35) calc(l + 24)) 5%,
-                         hsl(from var(--interests-title-bg-color) h s l) 10%,
-                         hsl(from var(--interests-title-bg-color) h s l) 30%,
-                         hsl(from var(--interests-title-bg-color) h s calc(l - 2)) 55%,
-                         hsl(from var(--interests-title-bg-color) h s calc(l + 7)) 85%,
-                         hsl(from var(--interests-title-bg-color) h s calc(l - 13)) 95%,
+                         hsl(from #{$title-base-color} h s l) 1%,
+                         hsl(from #{$title-base-color} h calc(s + 35) calc(l + 24)) 4%,
+                         hsl(from #{$title-base-color} h calc(s + 35) calc(l + 24)) 5%,
+                         hsl(from #{$title-base-color} h s l) 10%,
+                         hsl(from #{$title-base-color} h s l) 30%,
+                         hsl(from #{$title-base-color} h s calc(l - 2)) 55%,
+                         hsl(from #{$title-base-color} h s calc(l + 7)) 85%,
+                         hsl(from #{$title-base-color} h s calc(l - 13)) 95%,
                     );
-               border: 2px solid hsl(from var(--interests-title-bg-color) calc(h - 13) calc(s + 2) calc(l - 28));
+               border: 2px solid hsl(from #{$title-base-color} calc(h - 13) calc(s + 2) calc(l - 28));
                border-top-left-radius: 5px;
                border-bottom-left-radius: 5px;
                padding: 3px 8px;
@@ -994,11 +1012,14 @@ body {
                font-size: 0.6rem;
           }
 
+          --catalog-scrollbar-base-thumb: hsl(255deg 5% 17%);
+          --catalog-scrollbar-thumb: hsl(from var(--catalog-scrollbar-base-thumb) h calc(s - 10) calc(l + 20));
+          --catalog-scrollbar-track: hsl(0deg 0% 5% / 0.5);
           &__catalog {
                font-family: 'Candy Beans', font.$standard-font;
                font-size: 0.85rem;
                line-height: 1.4;
-               background-color: var(--interests-catalog-bg-color);
+               background-color: var(--catalog-scrollbar-base-thumb);
                border: 2px solid black;
 
                &:not(:lang(en)) {
@@ -1011,13 +1032,13 @@ body {
                outline: none;
                overflow-y: scroll;
                scrollbar-width: thin; 
-               scrollbar-color: var(--interests-catalog-scrollbar-thumb-color) var(--interests-catalog-scrollbar-bg-color);
+               scrollbar-color: var(--catalog-scrollbar-thumb) var(--catalog-scrollbar-track);
                scrollbar-gutter: stable;
                height: 1.7cm;
                padding: 5px 8px;
 
                &:focus-visible {
-                    --interests-catalog-scrollbar-thumb-color: hsl(from var(--interests-catalog-bg-color) h calc(s - 10) calc(l + 35));
+                    --catalog-scrollbar-thumb: hsl(from var(--catalog-scrollbar-base-thumb) h s calc(l + 15));
                }
           
                &::-webkit-scrollbar {
@@ -1025,11 +1046,11 @@ body {
                }
           
                &::-webkit-scrollbar-track {
-                    background: var(--interests-catalog-scrollbar-bg-color);
+                    background: var(--catalog-scrollbar-track);
                }
           
                &::-webkit-scrollbar-thumb {
-                    background: var(--interests-catalog-scrollbar-thumb-color);
+                    background: var(--catalog-scrollbar-thumb);
                     border-radius: 4px;
                }
           }

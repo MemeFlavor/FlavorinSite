@@ -2,21 +2,20 @@
 
 /* Main Flavors */
 
-$flavor-primary-color: hsl(240, 100%, 65%);
-$flavor-secondary-color: hsl(89, 96%, 63%);
-$flavor-tertiary-color: hsl(42, 100%, 53%);
-$flavor-quaternary-color: hsl(357, 94%, 60%);
+$flavor-primary-color: hsl(240deg 100% 65%);
+$flavor-secondary-color: hsl(89deg 96% 63%);
+$flavor-tertiary-color: hsl(42deg 100% 53%);
+$flavor-quaternary-color: hsl(357deg 94% 60%);
 
 /* Side Flavors */
 
 $flavor-wallpaper-color: hsl(252deg 14% 21%);
-$flavor-content-color: hsl(0, 3%, 10%);
-$flavor-bento-color: hsl(0, 0%, 5%);
-$flavor-gridline-color: hsl(0, 0%, 0%, 0.5);
+$flavor-content-color: hsl(0deg 3% 10%);
+$flavor-bento-color: hsl(0deg 0% 5%);
+$flavor-gridline-color: hsl(0deg 0% 0% / 0.5);
 
-$flavor-scrollbar-background: hsl(0, 0%, 0%);
-$flavor-scrollbar-thumb: hsl(254, 25%, 15%);
-$flavor-scrollbar-thumb-focus: hsl(254, 25%, 28%);
+$flavor-scrollbar-background: hsl(0deg 0% 0%);
+$flavor-scrollbar-thumb: hsl(254deg 25% 15%);
 
 /* Extra Flavors */
 

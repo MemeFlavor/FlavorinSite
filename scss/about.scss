@@ -925,9 +925,94 @@ body {
 
      .about .interests {
           grid-area: about-interests;
-
+          
           --headbars-primary-starting-gradient: hsl(from var(--headbars-primary-color) h s calc(l + 3));
           --headbars-primary-ending-gradient: hsl(from var(--headbars-primary-color) h calc(s - 20) calc(l - 20));
           @include headbars(plt.$flavor-primary-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color);
+
+          &__inventory {
+               table-layout: fixed;
+               border-collapse: collapse;
+               width: 100%;
+          }
+
+          &__category {
+               display: grid;
+               grid-template-columns: 1fr 2fr;
+               grid-template-rows: 1fr;
+               gap: 5px;
+               margin-block: 3px;
+          }
+
+          &__title {
+               display: flex;
+               flex-direction: column;
+               justify-content: flex-end;
+               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+               font-size: 1.15rem;
+               font-weight: bolder;
+               background: hsl(240deg, 65%, 38%);
+               background:
+                    linear-gradient(180deg,
+                         hsl(240deg, 65%, 38%) 1%,
+                         hsl(240deg, 100%, 62%) 4%,
+                         hsl(240deg, 100%, 62%) 5%,
+                         hsl(240deg, 65%, 38%) 10%,
+                         hsl(240deg, 65%, 38%) 30%,
+                         hsl(240deg, 65%, 34%) 55%,
+                         hsl(240deg, 65%, 45%) 85%,
+                         hsl(240deg, 65%, 25%) 95%,
+                    );
+               border: 2px solid hsl(253, 67%, 10%);
+               border-top-left-radius: 5px;
+               border-bottom-left-radius: 5px;
+               padding: 3px 8px;
+          }
+
+          &__title-latin {
+               font-style: italic;
+          }
+     
+          &__title-baybayin {
+               font-family: 'Noto Sans Tagalog', font.$standard-font;
+               font-size: 0.58rem;
+          }
+
+          $list-primary-color: hsl(255, 5%, 17%);
+          &__catalog {
+               font-family: 'Candy Beans', font.$standard-font;
+               font-size: 0.85rem;
+               line-height: 1.4;
+               background-color: $list-primary-color;
+               border: 2px solid black;
+          }
+
+          --scrollbar-thumb: #{ color.adjust($list-primary-color, $saturation: -10%, $lightness: 15%) };
+          &__catalog-list {
+               display: block;
+               outline: none;
+               overflow-y: auto;
+               scrollbar-width: thin;
+               scrollbar-color: var(--scrollbar-thumb) transparent;
+               height: 1.7cm;
+               padding: 5px 8px;
+
+               &:focus-visible {
+                    --scrollbar-thumb: #{ color.adjust($list-primary-color, $saturation: -10%, $lightness: 25%) };
+               }
+          
+               &::-webkit-scrollbar {
+                    width: 6px;
+               }
+          
+               &::-webkit-scrollbar-track {
+                    background: transparent;
+               }
+          
+               &::-webkit-scrollbar-thumb {
+                    background: var(--scrollbar-thumb);
+                    border-radius: 4px;
+               }
+          }
      }
 }

@@ -89,7 +89,7 @@ body {
           grid-template-columns: 245px 1fr;
           grid-template-rows: 165px 85px;
           grid-template-areas: 
-               "gallery-a gallery-b"
+               "gallery-windowsXP gallery-b"
                "gallery-c gallery-b"
           ;
           grid-area: blogs-gallery;
@@ -100,8 +100,126 @@ body {
                border-radius: 5px;
           }
 
-          .a {
-               grid-area: gallery-a;
+          .windowsXP {
+               grid-area: gallery-windowsXP;
+               background-image: url(https://static.wikitide.net/windowswallpaperwiki/c/cf/Bliss.jpg);
+               background-size: cover;
+               background-position: center;
+               background-blend-mode: exclusion;
+               image-rendering: -moz-crisp-edges;
+               image-rendering: crisp-edges;
+
+               &__wrapper, &__subwrapper {
+                    width: 100%;
+                    height: 100%;
+               }
+
+               $window-main-color: hsl(0, 0%, 75%);
+               $window-outer-border-color: hsl(0, 0%, 0%);
+               $window-inner-border-color: hsl(0, 0%, 100%);
+               &__prompt {
+                    background-color: $window-main-color;
+                    border: 1px solid $window-main-color;
+                    border-bottom-color: $window-outer-border-color;
+                    border-right-color: $window-outer-border-color;
+                    position: relative;
+                    width: 150px;
+                    height: 80px;
+
+                    &::before {
+                         content: '';
+                         border-width: 1px;
+                         border-style: solid;
+                         border-top-color: $window-inner-border-color;
+                         border-left-color: $window-inner-border-color;
+                         border-bottom-color: color.change($window-inner-border-color, $lightness: 50%);
+                         border-right-color: color.change($window-inner-border-color, $lightness: 50%);
+                         position: absolute;
+                         width: 100%;
+                         height: 100%;
+                    }
+               }
+
+               $window-headbar-starting-color: hsl(240, 100%, 25%);
+               $window-headbar-ending-color: hsl(204, 70%, 56%);
+               &__title {
+                    -webkit-user-select: none;
+                    user-select: none;     
+                    font-family: 'MS Pixel Serif', font.$standard-font;
+                    font-size: 0.65rem;
+                    font-weight: bold;
+                    background: linear-gradient(to right, $window-headbar-starting-color 20%, $window-headbar-ending-color 100%);
+                    padding-block: 3px 1px;
+                    padding-inline: 5px;
+               }
+
+               &__body {
+                    padding: 5px;
+               }
+
+               &__body p {
+                    font-family: 'MS Pixel Serif', font.$standard-font;
+                    font-size: 0.55rem;
+                    color: plt.color-contrast($window-main-color);
+                    position: relative;
+                    top: 4px;
+                    left: 2px;
+               
+                    &::selection {
+                         background-color: hsla(219, 79%, 66%, 0.8);
+                    }
+               }
+
+               &__body button-group {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    display: inline-block;
+                    position: absolute;
+                    right: 8px;
+                    bottom: 8px;
+               }
+
+               &__body button {
+                    font-family: 'MS Pixel Serif', font.$standard-font;
+                    font-size: 0.55rem;
+                    color: plt.color-contrast($window-main-color);
+                    background-color: $window-main-color;
+                    border: 1px solid $window-main-color;
+                    border-bottom-color: $window-outer-border-color;
+                    border-right-color: $window-outer-border-color;
+                    position: relative;
+                    width: 55px;
+                    height: 18px;
+               
+                    @supports (text-box: inherit) {
+                         text-box: trim-both cap alphabet;
+                    }
+               
+                    &:hover {
+                         cursor: pointer;
+                         border-color: black;
+                    }
+               
+                    &:active button-text {
+                         display: inline-block;
+                         border: 1px dotted black;
+                         width: calc(55px * 0.85);
+                    }
+               
+                    &::before {
+                         content: '';
+                         border-width: 1px;
+                         border-style: solid;
+                         border-top-color: $window-inner-border-color;
+                         border-left-color: $window-inner-border-color;
+                         border-bottom-color: color.change($window-inner-border-color, $lightness: 50%);
+                         border-right-color: color.change($window-inner-border-color, $lightness: 50%);
+                         position: absolute;
+                         inset: 0;
+                         width: 100%;
+                         height: 100%;
+                    }
+               }
           }
 
           .b {

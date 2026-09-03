@@ -114,14 +114,16 @@ body {
                     height: 100%;
                }
 
-               $window-main-color: hsl(0, 0%, 75%);
-               $window-outer-border-color: hsl(0, 0%, 0%);
-               $window-inner-border-color: hsl(0, 0%, 100%);
+               $prompt-base-color: silver;
+               $prompt-text-color: plt.color-contrast($prompt-base-color);
+               $prompt-border-color: black;
+               $prompt-border-inner-left-color: white;
+               $prompt-border-inner-right-color: gray;
                &__prompt {
-                    background-color: $window-main-color;
-                    border: 1px solid $window-main-color;
-                    border-bottom-color: $window-outer-border-color;
-                    border-right-color: $window-outer-border-color;
+                    background-color: $prompt-base-color;
+                    border: 1px solid $prompt-base-color;
+                    border-bottom-color: $prompt-border-color;
+                    border-right-color: $prompt-border-color;
                     position: relative;
                     width: 150px;
                     height: 80px;
@@ -130,25 +132,25 @@ body {
                          content: '';
                          border-width: 1px;
                          border-style: solid;
-                         border-top-color: $window-inner-border-color;
-                         border-left-color: $window-inner-border-color;
-                         border-bottom-color: color.change($window-inner-border-color, $lightness: 50%);
-                         border-right-color: color.change($window-inner-border-color, $lightness: 50%);
+                         border-top-color: $prompt-border-inner-left-color;
+                         border-left-color: $prompt-border-inner-left-color;
+                         border-bottom-color: $prompt-border-inner-right-color;
+                         border-right-color: $prompt-border-inner-right-color;
                          position: absolute;
                          width: 100%;
                          height: 100%;
                     }
                }
 
-               $window-headbar-starting-color: hsl(240, 100%, 25%);
-               $window-headbar-ending-color: hsl(204, 70%, 56%);
+               $title-gradient-start: hsl(240deg, 100%, 25%);
+               $title-gradient-end: hsl(204deg, 70%, 56%);
                &__title {
                     -webkit-user-select: none;
                     user-select: none;     
                     font-family: 'MS Pixel Serif', font.$standard-font;
                     font-size: 0.65rem;
                     font-weight: bold;
-                    background: linear-gradient(to right, $window-headbar-starting-color 20%, $window-headbar-ending-color 100%);
+                    background: linear-gradient(to right, $title-gradient-start 20%, $title-gradient-end 100%);
                     padding-block: 3px 1px;
                     padding-inline: 5px;
                }
@@ -160,13 +162,13 @@ body {
                &__body p {
                     font-family: 'MS Pixel Serif', font.$standard-font;
                     font-size: 0.55rem;
-                    color: plt.color-contrast($window-main-color);
+                    color: $prompt-text-color;
                     position: relative;
                     top: 4px;
                     left: 2px;
                
                     &::selection {
-                         background-color: hsla(219, 79%, 66%, 0.8);
+                         background-color: hsl(219deg, 79%, 66%, 0.8);
                     }
                }
 
@@ -182,11 +184,11 @@ body {
                &__body button {
                     font-family: 'MS Pixel Serif', font.$standard-font;
                     font-size: 0.55rem;
-                    color: plt.color-contrast($window-main-color);
-                    background-color: $window-main-color;
-                    border: 1px solid $window-main-color;
-                    border-bottom-color: $window-outer-border-color;
-                    border-right-color: $window-outer-border-color;
+                    color: $prompt-text-color;
+                    background-color: $prompt-base-color;
+                    border: 1px solid $prompt-base-color;
+                    border-bottom-color: $prompt-border-color;
+                    border-right-color: $prompt-border-color;
                     position: relative;
                     width: 55px;
                     height: 18px;
@@ -210,10 +212,10 @@ body {
                          content: '';
                          border-width: 1px;
                          border-style: solid;
-                         border-top-color: $window-inner-border-color;
-                         border-left-color: $window-inner-border-color;
-                         border-bottom-color: color.change($window-inner-border-color, $lightness: 50%);
-                         border-right-color: color.change($window-inner-border-color, $lightness: 50%);
+                         border-top-color: $prompt-border-inner-left-color;
+                         border-left-color: $prompt-border-inner-left-color;
+                         border-bottom-color: $prompt-border-inner-right-color;
+                         border-right-color: $prompt-border-inner-right-color;
                          position: absolute;
                          inset: 0;
                          width: 100%;
@@ -229,7 +231,7 @@ body {
                flex-direction: column;
                justify-content: center;
                grid-area: gallery-windowsERR;
-               background-color: hsl(240, 100%, 25%);
+               background-color: hsl(240deg, 100%, 25%);
                padding: 8px 10px;
           
                p {

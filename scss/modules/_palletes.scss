@@ -26,6 +26,7 @@ $flavor-scrollbar-thumb: hsl(254deg, 25%, 15%);
 /// @param {color} $light-color [#ffffff] - The light color to fallback to.
 /// @return The contrasting color, either white or black.
 @function color-contrast($color, $dark-color: #000000, $light-color: #ffffff) {
+     $color: color.to-space($color, rgb);
      $r: color.channel($color, "red", $space: rgb);
      $g: color.channel($color, "green", $space: rgb);
      $b: color.channel($color, "blue", $space: rgb);

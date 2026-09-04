@@ -1,0 +1,82 @@
+@use './palletes.scss' as plt;
+@use 'sass:list';
+
+/// Shorthand for creating fancy headbars.
+/// @param {color} $primary   - The primary pallete.
+/// @param {color} $secondary - The secondary pallete.
+/// @param {color} $tertiary  - The tertiary pallete.
+/// @param {list}  $gradients - The starting and ending gradient colors.
+/// @output Fancy headbars, amazing right?
+@mixin headbars($primary, $secondary, $tertiary, $gradients) {
+     $headbar-palletes: $primary, $secondary, $tertiary;
+     $headbar-gradient-start: list.nth($gradients, 1) 5%;
+     $headbar-gradient-end: list.nth($gradients, 2) 95%;
+
+     &__headbar {
+          display: flex;
+          flex-direction: row;
+          column-gap: 3px;
+     }
+
+     &__headtitle {
+          font-family: 'Archivo';
+          font-size: 1.1rem;
+          font-weight: 900;
+          font-stretch: expanded;
+          text-transform: capitalize;
+          background: linear-gradient(144deg, $headbar-gradient-start, $headbar-gradient-end);
+          border: 2px solid black;
+          padding: 5px 10px;
+          width: 100%;
+     }
+
+     &__headblocks {
+          border: 2px solid black;
+          width: calc((15px + 20px) / 2);
+          height: auto;
+
+          @for $pallete-index from 1 through 3 {
+               &--pallete-#{$pallete-index} {
+                    background-color: list.nth($headbar-palletes, $pallete-index);
+               }
+          }
+     }
+}
+
+/// Shorthand for creating custom lame scrollbars.
+/// @param {color} $track       - The track color.
+/// @param {color} $thumb       - The thumb color.
+/// @param {color} $thumb-focus - The thumb color, when it's focused.
+/// @output Lame scrollbar, blame my strict accessibility rules.
+@mixin scrollbar($track, $thumb, $thumb-focus) {
+     --scrollbar-thumb: #{$thumb};
+     --scrollbar-track: #{$track};
+     scrollbar-width: thin;
+     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+
+     &:focus-visible {
+          --scrollbar-thumb: #{$thumb-focus};
+     }
+
+     &::-webkit-scrollbar {
+          width: 6px;
+     }
+
+     &::-webkit-scrollbar-track {
+          background: var(--scrollbar-track);
+     }
+
+     &::-webkit-scrollbar-thumb {
+          background: var(--scrollbar-thumb);
+          border-radius: 4px;
+     }
+}
+
+/// Shorthand for applying default styling for bento boxes.
+/// @output That do you even expect!?!?!?
+@mixin bento-boxes {
+     & > * {
+          background-color: plt.$flavor-bento-color;
+          border-radius: 5px;
+     }
+}

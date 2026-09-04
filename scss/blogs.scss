@@ -1,5 +1,6 @@
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
+@use './modules/structure.scss' as sct;
 @use 'sass:color';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
@@ -94,11 +95,7 @@ body {
           ;
           grid-area: blogs-gallery;
           gap: 10px;
-
-          & > * {
-               background-color: plt.$flavor-bento-color;
-               border-radius: 5px;
-          }
+          @include sct.bento-boxes;
 
           .windowsXP {
                grid-area: gallery-windowsXP;
@@ -108,10 +105,13 @@ body {
                background-blend-mode: exclusion;
                image-rendering: -moz-crisp-edges;
                image-rendering: crisp-edges;
+               padding: 0;
 
                &__wrapper, &__subwrapper {
                     width: 100%;
                     height: 100%;
+                    padding: 0;
+                    margin: 0;
                }
 
                $prompt-base-color: silver;
@@ -245,39 +245,42 @@ body {
                }
           }
 
-          .b {
+          .shelf {
                display: grid;
                grid-template-columns: 1fr 2fr;
                grid-template-rows: 60px 2fr 1fr;
                grid-template-areas: 
-                    "b-q b-q"
-                    "b-w b-e"
-                    "b-w b-r"
+                    "shelf-sidewalk shelf-sidewalk"
+                    "shelf-monachopsis shelf-e"
+                    "shelf-monachopsis shelf-r"
                ;
                grid-area: gallery-b;
                gap: 10px;
                background-color: transparent;
-               border-radius: 5px;
-
-               & > * {
-                    background-color: plt.$flavor-bento-color;
-                    border-radius: 5px;
-               }
-
-               .q {
-                    grid-area: b-q;
-               }
-
-               .w {
-                    grid-area: b-w;
-               }
+               @include sct.bento-boxes;
 
                .e {
-                    grid-area: b-e;
+                    grid-area: shelf-e;
                }
 
                .r {
-                    grid-area: b-r;
+                    grid-area: shelf-r;
+               }
+
+               &__sidewalk {
+                    grid-area: shelf-sidewalk;
+                    background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
+                    background-size: cover;
+                    background-position: center;
+                    position: relative;
+               }
+
+               &__monachopsis {
+                    grid-area: shelf-monachopsis;
+                    background-image: url(https://preview.redd.it/japanese-subway-stations-v0-5p1icvffsifh1.jpeg?width=1080&crop=smart&auto=webp&s=d98bfc013d99e61d78d1037507247c31dd7a950e);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
                }
           }
      }
@@ -297,11 +300,7 @@ body {
                grid-area: coverage-a;
                gap: 10px;
                border-radius: 5px;
-
-               & > * {
-                    background-color: plt.$flavor-bento-color;
-                    border-radius: 5px;
-               }
+               @include sct.bento-boxes;
           }
 
           .b {

@@ -1,5 +1,6 @@
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
+@use './modules/structure.scss' as sct;
 @use './modules/manual.scss' as mnl;
 @use 'sass:color';
 @use 'sass:list';
@@ -12,72 +13,6 @@
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
-
-/// Shorthand for creating fancy headbars.
-/// Uses CSS variables to change the main headbar graident.
-/// @param {color} $primary   - The primary pallete.
-/// @param {color} $secondary - The secondary pallete.
-/// @param {color} $tertiary  - The tertiary pallete.
-/// @output Fancy headbars, amazing right?
-@mixin headbars($primary, $secondary, $tertiary, $gradients) {
-     $headbar-palletes: $primary, $secondary, $tertiary;
-     $headbar-gradient-start: list.nth($gradients, 1) 5%;
-     $headbar-gradient-end: list.nth($gradients, 2) 95%;
-
-     &__headbar {
-          display: flex;
-          flex-direction: row;
-          column-gap: 3px;
-     }
-
-     &__headtitle {
-          font-family: 'Archivo';
-          font-size: 1.1rem;
-          font-weight: 900;
-          font-stretch: expanded;
-          text-transform: capitalize;
-          background: linear-gradient(144deg, $headbar-gradient-start, $headbar-gradient-end);
-          border: 2px solid black;
-          padding: 5px 10px;
-          width: 100%;
-     }
-
-     &__headblocks {
-          border: 2px solid black;
-          width: calc((15px + 20px) / 2);
-          height: auto;
-
-          @for $pallete-index from 1 through 3 {
-               &--pallete-#{$pallete-index} {
-                    background-color: list.nth($headbar-palletes, $pallete-index);
-               }
-          }
-     }
-}
-
-@mixin scrollbar($track, $thumb, $thumb-focus) {
-     --scrollbar-thumb: #{$thumb};
-     --scrollbar-track: #{$track};
-     scrollbar-width: thin;
-     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-
-     &:focus-visible {
-          --scrollbar-thumb: #{$thumb-focus};
-     }
-
-     &::-webkit-scrollbar {
-          width: 6px;
-     }
-
-     &::-webkit-scrollbar-track {
-          background: var(--scrollbar-track);
-     }
-
-     &::-webkit-scrollbar-thumb {
-          background: var(--scrollbar-thumb);
-          border-radius: 4px;
-     }
-}
 
 html {
      overflow: auto scroll;
@@ -169,11 +104,7 @@ body {
                grid-template-rows: 90px;
                grid-area: profile-header;
                gap: 10px;
-
-               & > * {
-                    background-color: plt.$flavor-bento-color;
-                    border-radius: 5px;
-               }
+               @include sct.bento-boxes;
 
                $banner-bg-color: plt.$flavor-gridline-color;
                &__banner {
@@ -339,11 +270,7 @@ body {
                ;
                grid-area: profile-account;
                gap: 10px;
-
-               & > * {
-                    background-color: plt.$flavor-bento-color;
-                    border-radius: 5px;
-               }
+               @include sct.bento-boxes;
 
                &__avatar {
                     grid-area: account-avatar;
@@ -521,7 +448,7 @@ body {
                     overflow-y: auto;
                     height: 275px;
                     padding: 5px;
-                    @include scrollbar($biography-scrollbar-track, $biography-scrollbar-thumb, $biography-scrollbar-thumb-focus);
+                    @include sct.scrollbar($biography-scrollbar-track, $biography-scrollbar-thumb, $biography-scrollbar-thumb-focus);
 
                     h3 {
                          @include mnl.manual__section;
@@ -557,11 +484,7 @@ body {
                grid-template-rows: 44px;
                grid-area: profile-gallery;
                gap: 10px;
-
-               & > * {
-                    background-color: plt.$flavor-bento-color;
-                    border-radius: 5px;
-               }
+               @include sct.bento-boxes;
                
                &__unseen {
                     -webkit-user-select: none;
@@ -628,7 +551,7 @@ body {
                flex-direction: column;
                row-gap: 5px;
                position: relative;
-               @include headbars($manual-headbar-base-color, plt.$flavor-primary-color, plt.$flavor-quaternary-color, (
+               @include sct.headbars($manual-headbar-base-color, plt.$flavor-primary-color, plt.$flavor-quaternary-color, (
                     color.adjust($manual-headbar-base-color, $lightness: -20%),
                     color.adjust($manual-headbar-base-color, $lightness: -40%)
                ));
@@ -863,7 +786,7 @@ body {
                     overflow: hidden auto;
                     height: $manual-content-height;
                     padding-left: 15px;
-                    @include scrollbar($list-scrollbar-track, $list-scrollbar-thumb, $list-scrollbar-thumb-focus);
+                    @include sct.scrollbar($list-scrollbar-track, $list-scrollbar-thumb, $list-scrollbar-thumb-focus);
                }
           
                &__item {
@@ -885,11 +808,7 @@ body {
                     "gallery-halls gallery-debugmode"
                ;
                gap: 10px;
-
-               & > * {
-                    background-color: plt.$flavor-bento-color;
-                    border-radius: 5px;
-               }
+               @include sct.bento-boxes;
 
                &__debugmode {
                     display: flex;
@@ -940,7 +859,7 @@ body {
      $interests-headbar-base-color: plt.$flavor-primary-color;
      .about .interests {
           grid-area: about-interests;
-          @include headbars($interests-headbar-base-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color, (
+          @include sct.headbars($interests-headbar-base-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color, (
                color.adjust($interests-headbar-base-color, $lightness: -2%),
                color.adjust($interests-headbar-base-color, $saturation: -20%, $lightness: -20%)
           ));
@@ -1020,7 +939,7 @@ body {
                overflow-y: scroll;
                height: 1.7cm;
                padding: 5px 8px;
-               @include scrollbar($catalog-list-scrollbar-track, $catalog-list-scrollbar-thumb, $catalog-list-scrollbar-thumb-focus);
+               @include sct.scrollbar($catalog-list-scrollbar-track, $catalog-list-scrollbar-thumb, $catalog-list-scrollbar-thumb-focus);
           }
      }
 }

@@ -105,15 +105,113 @@ body {
                grid-area: coverage-information;
                gap: 10px;
                @include sct.bentobox(all);
+          }
 
-               &__manual {
-                    flex-grow: 5;
-                    border-radius: 0px;
+          .information .manual {
+               flex-grow: 5;
+               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
+               border-radius: 0px;
+               padding: 8px;
+
+               $headbar-base-color: beige;
+               $headbar-txt-color-selection: plt.color-contrast($headbar-base-color);
+               &__headbar {
+                    display: grid;
+                    grid-template-columns: 20px 1fr;
+                    grid-template-rows: auto auto;
+                    grid-template-areas:
+                         "headbar-blocks headbar-title"
+                         "headbar-decorations headbar-decorations"
+                    ;
+                    gap: 5px;
+                    margin-bottom: 10px;
                }
 
-               &__footer {
-                    flex-grow: 1;
+               &__headbar-blocks {
+                    grid-area: headbar-blocks;
+                    background-color: $headbar-base-color;
                }
+
+               &__headbar-title {
+                    grid-area: headbar-title;
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1.3rem;
+                    font-weight: 800;
+                    font-stretch: semi-expanded;
+                    text-transform: uppercase;
+                    color: $headbar-base-color;
+                    border: 2px solid $headbar-base-color;
+                    border-left-width: 10px;
+                    padding: 3px 10px;
+               
+                    &::selection {
+                         color: $headbar-txt-color-selection;
+                         background-color: $headbar-base-color;
+                    }
+               }
+
+               &__headbar-decorations {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    display: flex;
+                    flex-direction: column;
+                    grid-area: headbar-decorations;
+                    width: 100%;
+               }
+
+               &__headbar-decorations code-lines {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+                    font-size: 0.7rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+
+                    & > * {
+                         padding-block: 1px;
+                    }
+               }
+
+               &__headbar-decorations code-heading {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 3px;
+               }
+
+               $code-title-base-color: hsl(0deg, 81%, 61%);
+               &__headbar-decorations code-title {
+                    color: plt.color-contrast($code-title-base-color);
+                    background-color: $code-title-base-color;
+                    padding-inline: 6px;
+               }
+
+               &__headbar-decorations code-block {
+                    flex-basis: 5px;
+                    flex-shrink: 0;
+                    background-color: $code-title-base-color;
+                    width: 10px;
+               }
+
+               &__headbar-decorations code-plt-red {
+                    color: plt.$flavor-code-red;
+               }
+
+               &__headbar-decorations code-plt-blue {
+                    color: plt.$flavor-code-blue;
+               }
+
+               &__headbar-decorations code-plt-yellow {
+                    color: plt.$flavor-code-yellow;
+               }
+
+               &__headbar-decorations code-plt-green {
+                    color: plt.$flavor-code-green;
+               }
+          }
+
+          .information .footer {
+               flex-grow: 1;
           }
 
           .extra {
@@ -122,21 +220,20 @@ body {
                grid-template-rows: 1fr 72px;
                grid-template-areas: 
                     "extra-highway extra-remindpad"
-                    "extra-floccinaucinihilipilification extra-remindpad"
+                    "extra-flocci extra-remindpad"
                ;
                grid-area: coverage-extra;
                gap: 10px;
                @include sct.bentobox(all);
 
-               $remindpad-bg-color: color.adjust(plt.$flavor-scrollbar-thumb, $hue: 3deg, $chroma: -3%, $lightness: calc(((6% + 12%) / 2) * -1), $space: oklch);
-               $remindpad-border-radius: 10px;
-               $remindpad-title-border-radius: calc($remindpad-border-radius / 2);
+               $remindpad-bg-color-lightness: calc(((6% + 12%) / 2) * -1);
+               $remindpad-bg-color: color.adjust(plt.$flavor-scrollbar-thumb, $hue: 3deg, $chroma: -3%, $lightness: $remindpad-bg-color-lightness, $space: oklch);
                &__remindpad {
                     display: flex;
                     flex-direction: column;
                     grid-area: extra-remindpad;
                     background: $remindpad-bg-color;
-                    border-radius: $remindpad-border-radius $remindpad-border-radius 5px 5px;
+                    border-radius: 0px;
                }
 
                $remindpad-title-base-color: plt.$flavor-tertiary-color;
@@ -151,7 +248,6 @@ body {
                     text-transform: uppercase;
                     color: $remindpad-title-txt-color;
                     background-color: $remindpad-title-bg-color;
-                    border-radius: $remindpad-title-border-radius $remindpad-title-border-radius 0px 0px;
                     padding: calc((3px + 7px) / 2.5) 5px;
 
                     @supports (text-box: inherit) {
@@ -224,9 +320,9 @@ body {
                     image-rendering: smooth;
                }
 
-               &__floccinaucinihilipilification {
-                    grid-area: extra-floccinaucinihilipilification;
-                    background-image: url(../images/decorations/floccinaucinihilipilification.webp);
+               &__flocci {
+                    grid-area: extra-flocci;
+                    background-image: url(../images/decorations/flocci.webp);
                     background-size: cover;
                     background-position: left;
                     image-rendering: smooth;

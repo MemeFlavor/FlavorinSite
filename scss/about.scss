@@ -421,21 +421,24 @@ body {
                }
 
                &__headbar-decorations {
-                    display: grid;
-                    grid-template-columns: 2fr 1fr;
-                    grid-template-rows: 10px;
+                    display: flex;
+                    flex-direction: row;
                     grid-area: headbar-decorations;
-                    column-gap: 5px;
+                    gap: 5px;
                     width: 100%;
                }
 
                &__headbar-slabs {
                     background-color: $headbar-base-color;
+                    height: 10px;
 
                     &--pallete-1 {
+                         flex-grow: 2;
                          background-color: plt.$flavor-primary-color;
                     }
+                    
                     &--pallete-2 {
+                         flex-grow: 1;
                          background-color: plt.$flavor-secondary-color;
                     }
                }

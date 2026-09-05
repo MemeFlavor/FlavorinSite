@@ -14,8 +14,26 @@ $flavor-content-color: hsl(0deg, 3%, 10%);
 $flavor-bento-color: hsl(0deg, 0%, 5%);
 $flavor-gridline-color: hsl(0deg, 0%, 0%, 0.5);
 
-$flavor-scrollbar-background: hsl(0deg, 0%, 0%); // TODO: Name change
+$flavor-scrollbar-track: hsl(0deg, 0%, 0%);
 $flavor-scrollbar-thumb: hsl(254deg, 25%, 15%);
+
+/* Code Flavors */
+
+$flavor-code-blue:   hsl(208deg, 100%, 78%);
+$flavor-code-red:    hsl(1deg, 100%, 79%);
+$flavor-code-purple: hsl(270deg, 100%, 86%);
+$flavor-code-green:  hsl(118deg, 100%, 78%);
+$flavor-code-aqua:   hsl(168deg, 55%, 54%);
+$flavor-code-yellow: hsl(34deg, 100%, 65%);
+$flavor-code-grey:   hsl(212deg, 13%, 77%);
+$flavor-code-white:  hsl(0deg, 0%, 100%);
+
+$flavor-code-nest-1: hsl(208deg, 100%, 78%);
+$flavor-code-nest-2: hsl(132deg, 73%, 57%);
+$flavor-code-nest-3: hsl(46deg, 93%, 58%);
+$flavor-code-nest-4: hsl(2deg, 62%, 76%);
+$flavor-code-nest-5: hsl(331deg, 80%, 80%);
+$flavor-code-nest-6: hsl(271deg, 88%, 84%);
 
 /* Extra Flavors */
 

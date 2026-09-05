@@ -121,23 +121,115 @@ body {
                grid-template-columns: 1fr 88px;
                grid-template-rows: 1fr 72px;
                grid-template-areas: 
-                    "extra-a extra-b"
-                    "extra-c extra-b"
+                    "extra-highway extra-remindpad"
+                    "extra-floccinaucinihilipilification extra-remindpad"
                ;
                grid-area: coverage-extra;
                gap: 10px;
                @include sct.bentobox(all);
 
-               &__a {
-                    grid-area: extra-a;
+               $remindpad-bg-color: color.adjust(plt.$flavor-scrollbar-thumb, $hue: 3deg, $chroma: -3%, $lightness: calc(((6% + 12%) / 2) * -1), $space: oklch);
+               $remindpad-border-radius: 10px;
+               $remindpad-title-border-radius: calc($remindpad-border-radius / 2);
+               &__remindpad {
+                    display: flex;
+                    flex-direction: column;
+                    grid-area: extra-remindpad;
+                    background: $remindpad-bg-color;
+                    border-radius: $remindpad-border-radius $remindpad-border-radius 5px 5px;
                }
 
-               &__b {
-                    grid-area: extra-b;
+               $remindpad-title-base-color: plt.$flavor-tertiary-color;
+               $remindpad-title-bg-color: $remindpad-title-base-color;
+               $remindpad-title-txt-color: plt.color-contrast($remindpad-title-base-color);
+               &__remindpad-title {
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1rem;
+                    font-weight: 800;
+                    font-stretch: semi-condensed;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: $remindpad-title-txt-color;
+                    background-color: $remindpad-title-bg-color;
+                    border-radius: $remindpad-title-border-radius $remindpad-title-border-radius 0px 0px;
+                    padding: calc((3px + 7px) / 2.5) 5px;
+
+                    @supports (text-box: inherit) {
+                         text-box: trim-both cap alphabet;
+                    }
                }
 
-               &__c {
-                    grid-area: extra-c;
+               &__remindpad-desc {
+                    font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+                    font-size: calc((0.5rem + 0.6rem) / 2);
+                    font-weight: bolder;
+                    text-align: justify;
+                    text-justify: inter-word;
+                    outline: none;
+                    overflow-y: auto;
+                    scrollbar-width: none;
+                    height: 65px;
+                    padding: 8px;
+
+                    &:not(:lang(en)) {
+                         font-size: 0.5rem;
+                    }
+
+                    &:focus-visible {
+                         background-color: color.adjust($remindpad-bg-color, $lightness: 3%);
+                    }
+               }
+
+               &__remindpad-rewrite {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    align-self: center;
+                    image-rendering: pixelated;
+                    margin-block: 5px;
+               }
+
+               &__remindpad-decorations {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                    padding: 5px;
+               }
+
+               &__remindpad-blocks {
+                    font-size: 0.75rem;
+                    font-weight: bolder;
+                    color: black;
+                    background-color: inherit;
+                    height: 15px;
+                    padding-left: 3px;
+               
+                    &--pallete-1 {
+                         background-color: plt.$flavor-primary-color;
+                    }
+               
+                    &--pallete-2 {
+                         background-color: plt.$flavor-secondary-color;
+                    }
+               
+                    &--pallete-3 {
+                         background-color: plt.$flavor-quaternary-color;
+                    }
+               }
+
+               &__highway {
+                    grid-area: extra-highway;
+                    background-image: url(https://preview.redd.it/ive-been-waiting-a-long-time-v0-9qjeevz93rmh1.jpeg?width=1080&crop=smart&auto=webp&s=61efc5dac2ecb932d26d7de90d9fffdf7f45d2fc);
+                    background-size: 450%;
+                    background-position: calc((45% + 53%) / 2) center;
+                    image-rendering: smooth;
+               }
+
+               &__floccinaucinihilipilification {
+                    grid-area: extra-floccinaucinihilipilification;
+                    background-image: url(../images/decorations/floccinaucinihilipilification.webp);
+                    background-size: cover;
+                    background-position: left;
+                    image-rendering: smooth;
                }
           }
 
@@ -194,27 +286,27 @@ body {
                }
           }
 
-          .other {
+          .shelf {
                display: grid;
                grid-template-columns: 70px 2fr;
                grid-template-rows: 2fr 1fr;
                grid-template-areas: 
-                    "other-a other-b"
-                    "other-c other-c"
+                    "shelf-a shelf-b"
+                    "shelf-c shelf-c"
                ;
                gap: 10px;
                @include sct.bentobox(all);
 
                &__a {
-                    grid-area: other-a;
+                    grid-area: shelf-a;
                }
 
                &__b {
-                    grid-area: other-b;
+                    grid-area: shelf-b;
                }
 
                &__c {
-                    grid-area: other-c;
+                    grid-area: shelf-c;
                }
           }
      }

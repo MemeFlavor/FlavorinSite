@@ -62,9 +62,9 @@ body {
      .blogs {
           display: grid;
           grid-template-columns: repeat(2, 445px);
-          grid-template-rows: auto 1fr;
+          grid-template-rows: 200px 1fr;
           grid-template-areas: 
-               "blogs-gallery blogs-weblogs"
+               "blogs-coverage blogs-heading"
                "blogs-coverage blogs-weblogs"
           ;
           grid-area: flavory-blogs;
@@ -72,241 +72,103 @@ body {
           background-color: plt.$flavor-content-color;
           box-shadow: 5px 5px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
           padding: 20px;
+          @include sct.bentobox;
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
                grid-template-rows: 1fr;
                grid-template-areas:
-                    "blogs-coverage"
+                    "blogs-heading"
                     "blogs-weblogs"
-                    "blogs-gallery"
+                    "blogs-coverage"
                ;
                gap: 10px;
-          }
-     }
-
-     .blogs .gallery {
-          display: grid;
-          grid-template-columns: 245px 1fr;
-          grid-template-rows: 165px 85px;
-          grid-template-areas: 
-               "gallery-windowsXP gallery-b"
-               "gallery-windowsERR gallery-b"
-          ;
-          grid-area: blogs-gallery;
-          gap: 10px;
-          @include sct.bento-boxes;
-
-          .windowsXP {
-               grid-area: gallery-windowsXP;
-               background-image: url(https://static.wikitide.net/windowswallpaperwiki/c/cf/Bliss.jpg);
-               background-size: cover;
-               background-position: center;
-               background-blend-mode: exclusion;
-               image-rendering: -moz-crisp-edges;
-               image-rendering: crisp-edges;
-               padding: 0;
-
-               &__wrapper, &__subwrapper {
-                    width: 100%;
-                    height: 100%;
-                    padding: 0;
-                    margin: 0;
-               }
-
-               $prompt-base-color: silver;
-               $prompt-text-color: plt.color-contrast($prompt-base-color);
-               $prompt-border-color: black;
-               $prompt-border-inner-left-color: white;
-               $prompt-border-inner-right-color: gray;
-               &__prompt {
-                    background-color: $prompt-base-color;
-                    border: 1px solid $prompt-base-color;
-                    border-bottom-color: $prompt-border-color;
-                    border-right-color: $prompt-border-color;
-                    position: relative;
-                    width: 150px;
-                    height: 80px;
-
-                    &::before {
-                         content: '';
-                         border-width: 1px;
-                         border-style: solid;
-                         border-top-color: $prompt-border-inner-left-color;
-                         border-left-color: $prompt-border-inner-left-color;
-                         border-bottom-color: $prompt-border-inner-right-color;
-                         border-right-color: $prompt-border-inner-right-color;
-                         position: absolute;
-                         width: 100%;
-                         height: 100%;
-                    }
-               }
-
-               $title-gradient-start: hsl(240deg, 100%, 25%);
-               $title-gradient-end: hsl(204deg, 70%, 56%);
-               &__title {
-                    -webkit-user-select: none;
-                    user-select: none;     
-                    font-family: 'MS Pixel Serif', font.$standard-font;
-                    font-size: 0.65rem;
-                    font-weight: bold;
-                    background: linear-gradient(to right, $title-gradient-start 20%, $title-gradient-end 100%);
-                    padding-block: 3px 1px;
-                    padding-inline: 5px;
-               }
-
-               &__body {
-                    padding: 5px;
-               }
-
-               &__body p {
-                    font-family: 'MS Pixel Serif', font.$standard-font;
-                    font-size: 0.55rem;
-                    color: $prompt-text-color;
-                    position: relative;
-                    top: 4px;
-                    left: 2px;
-               
-                    &::selection {
-                         background-color: hsl(219deg, 79%, 66%, 0.8);
-                    }
-               }
-
-               &__body button-group {
-                    -webkit-user-select: none;
-                    user-select: none;
-                    display: inline-block;
-                    position: absolute;
-                    right: 8px;
-                    bottom: 8px;
-               }
-
-               &__body button {
-                    font-family: 'MS Pixel Serif', font.$standard-font;
-                    font-size: 0.55rem;
-                    color: $prompt-text-color;
-                    background-color: $prompt-base-color;
-                    border: 1px solid $prompt-base-color;
-                    border-bottom-color: $prompt-border-color;
-                    border-right-color: $prompt-border-color;
-                    position: relative;
-                    width: 55px;
-                    height: 18px;
-               
-                    @supports (text-box: inherit) {
-                         text-box: trim-both cap alphabet;
-                    }
-               
-                    &:hover {
-                         cursor: pointer;
-                         border-color: black;
-                    }
-               
-                    &:active button-text {
-                         display: inline-block;
-                         border: 1px dotted black;
-                         width: calc(55px * 0.85);
-                    }
-               
-                    &::before {
-                         content: '';
-                         border-width: 1px;
-                         border-style: solid;
-                         border-top-color: $prompt-border-inner-left-color;
-                         border-left-color: $prompt-border-inner-left-color;
-                         border-bottom-color: $prompt-border-inner-right-color;
-                         border-right-color: $prompt-border-inner-right-color;
-                         position: absolute;
-                         inset: 0;
-                         width: 100%;
-                         height: 100%;
-                    }
-               }
-          }
-
-          .windowsERR {
-               -webkit-user-select: none;
-               user-select: none;
-               display: flex;
-               flex-direction: column;
-               justify-content: center;
-               grid-area: gallery-windowsERR;
-               background-color: hsl(240deg, 100%, 25%);
-               padding: 8px 10px;
-          
-               p {
-                    font-family: 'MS Pixel Serif', font.$standard-font;
-                    font-size: calc((0.55rem + 0.60rem) / 2);
-                    line-height: 1.3;
-          
-                    &:nth-child(1) {
-                         margin-bottom: 10px;
-                    }
-               }
-          }
-
-          .shelf {
-               display: grid;
-               grid-template-columns: 1fr 2fr;
-               grid-template-rows: 60px 2fr 1fr;
-               grid-template-areas: 
-                    "shelf-sidewalk shelf-sidewalk"
-                    "shelf-monachopsis shelf-e"
-                    "shelf-monachopsis shelf-r"
-               ;
-               grid-area: gallery-b;
-               gap: 10px;
-               background-color: transparent;
-               @include sct.bento-boxes;
-
-               .e {
-                    grid-area: shelf-e;
-               }
-
-               .r {
-                    grid-area: shelf-r;
-               }
-
-               &__sidewalk {
-                    grid-area: shelf-sidewalk;
-                    background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
-                    background-size: cover;
-                    background-position: center;
-                    position: relative;
-               }
-
-               &__monachopsis {
-                    grid-area: shelf-monachopsis;
-                    background-image: url(https://preview.redd.it/japanese-subway-stations-v0-5p1icvffsifh1.jpeg?width=1080&crop=smart&auto=webp&s=d98bfc013d99e61d78d1037507247c31dd7a950e);
-                    background-size: cover;
-                    background-position: center;
-                    image-rendering: smooth;
-               }
           }
      }
 
      .blogs .coverage {
           display: grid;
-          grid-template-columns: 1fr 340px;
-          grid-template-rows: 1fr;
-          grid-template-areas: "coverage-a coverage-b";
+          grid-template-columns: 1fr 265px;
+          grid-template-rows: 1fr 1fr;
+          grid-template-areas: 
+               "coverage-banner coverage-information"
+               "coverage-misc coverage-information"
+          ;
           grid-area: blogs-coverage;
           gap: 10px;
+          height: 400px;
+          @include sct.bentobox(all);
 
-          .a {
-               display: grid;
-               grid-template-columns: 1fr;
-               grid-template-rows: 95px 1fr;
-               grid-area: coverage-a;
+          .information {
+               display: flex;
+               flex-direction: column;
+               grid-area: coverage-information;
                gap: 10px;
-               border-radius: 5px;
-               @include sct.bento-boxes;
+               @include sct.bentobox(all);
+
+               &__manual {
+                    flex-grow: 5;
+                    border-radius: 0px;
+               }
+
+               &__footer {
+                    flex-grow: 1;
+               }
           }
 
-          .b {
-               grid-area: coverage-b;
-               background-color: plt.$flavor-bento-color;
+          .banner {
+               display: grid;
+               grid-template-columns: 1fr 88px;
+               grid-template-rows: 1fr 72px;
+               grid-template-areas: 
+                    "banner-a banner-b"
+                    "banner-c banner-b"
+               ;
+               grid-area: coverage-banner;
+               gap: 10px;
+               @include sct.bentobox(all);
+
+               &__a {
+                    grid-area: banner-a;
+               }
+
+               &__b {
+                    grid-area: banner-b;
+               }
+
+               &__c {
+                    grid-area: banner-c;
+               }
           }
+
+          .misc {
+               display: grid;
+               grid-template-columns: 3fr 2fr;
+               grid-template-rows: 1fr 2fr;
+               grid-template-areas: 
+                    "misc-a misc-a"
+                    "misc-b misc-c"
+               ;
+               grid-area: coverage-misc;
+               gap: 10px;
+               @include sct.bentobox(all);
+
+               &__a {
+                    grid-area: misc-a;
+               }
+
+               &__b {
+                    grid-area: misc-b;
+               }
+
+               &__c {
+                    grid-area: misc-c;
+               }
+          }
+     }
+
+     .blogs .heading {
+          grid-area: blogs-heading;
      }
 
      .blogs .weblogs {

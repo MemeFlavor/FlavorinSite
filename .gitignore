@@ -1,6 +1,11 @@
+# Stupid Metadata MacOS files
 .DS_Store
 **/.DS_Store
 
+# CSS & SCSS Map files
 *.css.map
 *.sass.map
 *.scss.map
+
+# Folders
+unused/

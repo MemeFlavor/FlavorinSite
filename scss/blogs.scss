@@ -91,8 +91,8 @@ body {
           grid-template-columns: 1fr 265px;
           grid-template-rows: 1fr 1fr;
           grid-template-areas: 
-               "coverage-banner coverage-information"
-               "coverage-misc coverage-information"
+               "coverage-extra coverage-information"
+               "coverage-shelf coverage-information"
           ;
           grid-area: blogs-coverage;
           gap: 10px;
@@ -116,59 +116,107 @@ body {
                }
           }
 
-          .banner {
+          .extra {
                display: grid;
                grid-template-columns: 1fr 88px;
                grid-template-rows: 1fr 72px;
                grid-template-areas: 
-                    "banner-a banner-b"
-                    "banner-c banner-b"
+                    "extra-a extra-b"
+                    "extra-c extra-b"
                ;
-               grid-area: coverage-banner;
+               grid-area: coverage-extra;
                gap: 10px;
                @include sct.bentobox(all);
 
                &__a {
-                    grid-area: banner-a;
+                    grid-area: extra-a;
                }
 
                &__b {
-                    grid-area: banner-b;
+                    grid-area: extra-b;
                }
 
                &__c {
-                    grid-area: banner-c;
+                    grid-area: extra-c;
                }
           }
 
-          .misc {
+          .shelf {
                display: grid;
                grid-template-columns: 3fr 2fr;
-               grid-template-rows: 1fr 2fr;
+               grid-template-rows: 50px 2fr;
                grid-template-areas: 
-                    "misc-a misc-a"
-                    "misc-b misc-c"
+                    "shelf-a shelf-a"
+                    "shelf-b shelf-c"
                ;
-               grid-area: coverage-misc;
+               grid-area: coverage-shelf;
                gap: 10px;
                @include sct.bentobox(all);
 
                &__a {
-                    grid-area: misc-a;
+                    grid-area: shelf-a;
                }
 
                &__b {
-                    grid-area: misc-b;
+                    grid-area: shelf-b;
                }
 
                &__c {
-                    grid-area: misc-c;
+                    grid-area: shelf-c;
                }
           }
      }
 
      .blogs .heading {
+          display: grid;
+          grid-template-columns: 3fr 4fr;
+          grid-template-rows: 1fr;
           grid-area: blogs-heading;
+          gap: 10px;
+          @include sct.bentobox(all);
+
+          $interests-headbar-base-color: plt.$flavor-quaternary-color;
+          .notice {
+               display: flex;
+               flex-direction: column;
+               gap: 5px;
+               @include sct.bentobox(self-ignore);
+               @include sct.headbars($interests-headbar-base-color, plt.$flavor-primary-color, plt.$flavor-secondary-color, (
+                    color.adjust($interests-headbar-base-color, $lightness: -2%),
+                    color.adjust($interests-headbar-base-color, $saturation: -20%, $lightness: -20%)
+               ));
+
+               &__body {
+                    background-color: plt.$flavor-bento-color;
+                    border: 2px solid black;
+                    border-radius: 0px;
+                    height: 100%;
+               }
+          }
+
+          .other {
+               display: grid;
+               grid-template-columns: 70px 2fr;
+               grid-template-rows: 2fr 1fr;
+               grid-template-areas: 
+                    "other-a other-b"
+                    "other-c other-c"
+               ;
+               gap: 10px;
+               @include sct.bentobox(all);
+
+               &__a {
+                    grid-area: other-a;
+               }
+
+               &__b {
+                    grid-area: other-b;
+               }
+
+               &__c {
+                    grid-area: other-c;
+               }
+          }
      }
 
      .blogs .weblogs {

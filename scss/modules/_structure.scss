@@ -72,30 +72,39 @@
      }
 }
 
-/// Helper function for bentobox, ignores the styling.
+/// Helper function for bentobox, ignores the styling from itself.
 /// @access private
 /// @output Self-explanatory.
-@mixin _bentobox-self {
+@mixin _bentobox-self-ignore {
      background-color: transparent;
      border-radius: 0px;
+}
+
+/// Helper function for bentobox, applies the styling from itself.
+/// @access private
+/// @output Self-explanatory.
+@mixin _bentobox-self-apply {
+     background-color: plt.$flavor-bento-color;
+     border-radius: 5px;
 }
 
 /// Helper function for bentobox, applies the styling to the child elements.
 /// @access private
 /// @output Self-explanatory.
-@mixin _bentobox-other { & > * {
-     background-color: plt.$flavor-bento-color;
-     border-radius: 5px;
-} }
+@mixin _bentobox-other { 
+     & > * { @include _bentobox-self-apply }
+}
 
 /// Shorthand for applying default styling for bento boxes.
 /// @param {bool} $boxtype - Styling type, can be either: all, self, or no argument.
 /// @output Bento box default styling, no shit sherlock!
 @mixin bentobox($boxtype: null) {
      @if ($boxtype == 'all') {
-          @include _bentobox-self; @include _bentobox-other;
-     } @else if ($boxtype == 'self') {
-          @include _bentobox-self;
+          @include _bentobox-self-ignore; @include _bentobox-other;
+     } @else if ($boxtype == 'self-ignore') {
+          @include _bentobox-self-ignore;
+     } @else if ($boxtype =='self-apply') {
+          @include _bentobox-self-apply;
      } @else {
           @include _bentobox-other;
      }

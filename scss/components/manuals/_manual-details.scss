@@ -6,11 +6,11 @@
 $manual-scrollbar-track: transparent;
 $manual-scrollbar-thumb: plt.$flavor-scrollbar-thumb;
 $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 15%);
-.about {
+.details {
      &__body {
           outline: none;
           overflow-y: auto;
-          height: 240px;
+          height: 220px;
           padding: 5px 5px 5px 0px;
           @include sct.scrollbar($manual-scrollbar-track, $manual-scrollbar-thumb, $manual-scrollbar-thumb-focus);
 
@@ -34,7 +34,7 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
 
           p {
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-               font-size: 0.8rem;
+               font-size: calc((0.75rem + 0.8rem) / 2);
                text-align: start;
                text-wrap: pretty;
                text-rendering: optimizeSpeed;
@@ -78,16 +78,16 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
                     margin-right: 5px;
                }
 
-               &[data-catgeory="causual"]::before {
+               &[data-category="casual"]::before {
                     background-color: plt.$flavor-primary-color;
                }
-               &[data-catgeory="updates"]::before {
+               &[data-category="updates"]::before {
                     background-color: plt.$flavor-secondary-color;
                }
-               &[data-catgeory="technical"]::before {
+               &[data-category="technical"]::before {
                     background-color: plt.$flavor-tertiary-color;
                }
-               &[data-catgeory="archaic"]::before {
+               &[data-category="archaic"]::before {
                     background-color: plt.$flavor-quaternary-color;
                }
           }
@@ -115,12 +115,13 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
 
           &::before {
                content: '\279C';
+               margin-right: 2px;
           }
      }
 
      &__heading-subtitle {
           font-family: 'Zalando Sans', font.$standard-font;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 750;
           font-stretch: semi-expanded;
           text-transform: uppercase;

@@ -105,6 +105,129 @@ body {
                grid-area: coverage-details;
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
                border-radius: 0px;
+               padding: 8px;
+
+               $headbar-base-color: beige;
+               $headbar-txt-color-selection: plt.color-contrast($headbar-base-color);
+               &__headbar {
+                    display: grid;
+                    grid-template-columns: 25px 1fr;
+                    grid-template-rows: auto auto auto;
+                    grid-template-areas:
+                         "headbar-blocks headbar-title"
+                         "headbar-decorations headbar-decorations"
+                         "headbar-psuedocode headbar-psuedocode"
+                    ;
+                    gap: 5px;
+                    margin-bottom: 3px;
+               }
+
+               &__headbar-blocks {
+                    grid-area: headbar-blocks;
+                    background-color: $headbar-base-color;
+               }
+
+               &__headbar-title {
+                    grid-area: headbar-title;
+                    font-family: 'Archivo', font.$standard-font;
+                    font-size: 1.3rem;
+                    font-weight: 800;
+                    font-stretch: semi-expanded;
+                    text-transform: uppercase;
+                    color: $headbar-base-color;
+                    border: 2px solid $headbar-base-color;
+                    border-left-width: 10px;
+                    padding: 3px 10px;
+               
+                    &::selection {
+                         color: $headbar-txt-color-selection;
+                         background-color: $headbar-base-color;
+                    }
+               }
+
+               &__headbar-decorations {
+                    display: flex;
+                    flex-direction: row;
+                    grid-area: headbar-decorations;
+                    gap: 5px;
+                    width: 100%;
+               }
+
+               &__headbar-slabs {
+                    background-color: $headbar-base-color;
+                    height: 10px;
+
+                    &--pallete-1 {
+                         flex-grow: 7;
+                         background-color: plt.$flavor-primary-color;
+                    }
+                    
+                    &--pallete-2 {
+                         flex-grow: 4;
+                         background-color: plt.$flavor-quaternary-color;
+                    }
+               }
+
+               &__headbar-psuedocode {
+                    user-select: none;
+                    -webkit-user-select: none;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr 1fr;
+                    grid-area: headbar-psuedocode;
+                    font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+                    font-size: 0.65rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    color: white;
+                    width: 100%;
+
+                    & > * {
+                         display: block;
+                    }
+                    
+                    & > *:nth-child(even) {
+                         text-align: right
+                    }
+
+                    code-title {
+                         display: flex;
+                         flex-direction: row;
+                         gap: 2px;
+                    }
+
+                    $code-title-bg-color: plt.$flavor-quaternary-color;
+                    code-title code-txt {
+                         background-color: $code-title-bg-color;
+                         padding-inline: 5px;
+                    }
+
+                    code-title code-blocks {
+                         background-color: $code-title-bg-color;
+                         width: 3px;
+                    }
+
+                    code-txt {
+                         padding-block: 1px;
+                    }
+
+                    code-plt-red {
+                         color: plt.$flavor-code-red;
+                    }
+
+                    code-plt-blu {
+                         color: plt.$flavor-code-blue;
+                    }
+
+                    code-plt-ylw {
+                         color: plt.$flavor-code-yellow;
+                    }
+
+                    code-plt-grn {
+                         color: plt.$flavor-code-green;
+                    }
+               }
+               @include meta.load-css('./components/manuals/manual-details.scss');
           }
 
           .poster {
@@ -153,7 +276,7 @@ body {
                     filter: contrast(100%);
                     grid-area: r;
                     background-image: url(../images/decorations/greenzone.webp);
-                    background-size: 100%;
+                    background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;
                     image-rendering: pixelated;
@@ -183,7 +306,6 @@ body {
                     grid-template-columns: 1fr;
                     grid-template-rows: 1fr;
                     grid-area: t;
-                    box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
                     border-radius: 0px;
                     overflow: hidden;
                     height: 150px;

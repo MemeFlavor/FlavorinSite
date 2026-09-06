@@ -67,7 +67,7 @@ body {
           grid-template-areas: 
                "blogs-coverage blogs-misc"
                "blogs-coverage blogs-weblogs"
-               ". blogs-weblogs"
+               "blogs-gallery blogs-weblogs"
           ;
           grid-area: flavory-blogs;
           gap: 10px 15px;
@@ -78,12 +78,11 @@ body {
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
-               grid-template-rows: auto 400px 220px 250px;
+               grid-template-rows: auto 400px 220px; // 250px;
                grid-template-areas:
                     "blogs-coverage"
                     "blogs-weblogs"
                     "blogs-misc"
-                    "."
                ;
                gap: 10px;
           }
@@ -91,11 +90,11 @@ body {
 
      .blogs .coverage {
           display: grid;
-          grid-template-columns: 285px 1fr;
+          grid-template-columns: 150px 45px 230px;
           grid-template-rows: 1fr 44px;
           grid-template-areas: 
-               "coverage-a coverage-b"
-               "coverage-c coverage-b"
+               "coverage-b coverage-d coverage-a"
+               "coverage-b coverage-d coverage-c"
           ;
           grid-area: blogs-coverage;
           gap: 10px;
@@ -146,6 +145,27 @@ body {
           .c {
                grid-area: coverage-c;
           }
+
+          .d {
+               display: flex;
+               flex-direction: column;
+               grid-area: coverage-d;
+               gap: 10px;
+               @include sct.bentobox(all);
+
+               .g {
+                    flex-grow: 3;
+               }
+
+               .h {
+                    flex-grow: 4;
+               }
+          }
+     }
+
+     .blogs .gallery {
+          display: none;
+          grid-area: blogs-gallery;
      }
 
      .blogs .misc {

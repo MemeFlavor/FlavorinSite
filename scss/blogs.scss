@@ -65,9 +65,9 @@ body {
           grid-template-columns: repeat(2, 445px);
           grid-template-rows: 220px auto 250px;
           grid-template-areas: 
-               "blogs-coverage blogs-misc"
                "blogs-coverage blogs-weblogs"
-               "blogs-gallery blogs-weblogs"
+               "blogs-coverage blogs-weblogs"
+               "blogs-misc blogs-weblogs"
           ;
           grid-area: flavory-blogs;
           gap: 10px 15px;
@@ -78,7 +78,7 @@ body {
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
-               grid-template-rows: auto 400px 220px; // 250px;
+               grid-template-rows: auto 500px 220px; // 250px;
                grid-template-areas:
                     "blogs-coverage"
                     "blogs-weblogs"
@@ -400,10 +400,5 @@ body {
                     grid-area: p;
                }
           }
-     }
-
-     .blogs .gallery {
-          display: none;
-          grid-area: blogs-gallery;
      }
 }

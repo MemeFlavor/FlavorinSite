@@ -260,10 +260,27 @@ body {
 
                .g {
                     flex-grow: 3;
+                    flex-shrink: 0;
                }
 
-               .h {
+               &__funinfinite {
+                    display: flex;
+                    flex-direction: row;
                     flex-grow: 4;
+                    flex-shrink: 0;
+                    justify-content: center;
+                    overflow: hidden;
+                    height: 45px;
+
+                    marquee {
+                         font-family: font.$standard-font;
+                         font-size: 0.9rem;
+                         font-weight: 900;
+                         writing-mode: vertical-rl;
+                         text-orientation: upright;
+                         height: max-content;
+                         width: 1ch;
+                    }
                }
           } 
 

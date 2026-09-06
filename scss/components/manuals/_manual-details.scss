@@ -10,7 +10,7 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
      &__body {
           outline: none;
           overflow-y: auto;
-          height: 220px;
+          height: 210px;
           padding: 5px 5px 5px 0px;
           @include sct.scrollbar($manual-scrollbar-track, $manual-scrollbar-thumb, $manual-scrollbar-thumb-focus);
 

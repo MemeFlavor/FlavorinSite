@@ -91,7 +91,7 @@ body {
      .blogs .coverage {
           display: grid;
           grid-template-columns: 150px 45px 230px;
-          grid-template-rows: 1fr 44px;
+          grid-template-rows: 1fr 55px;
           grid-template-areas: 
                "coverage-gallery coverage-banner coverage-details"
                "coverage-gallery coverage-banner coverage-poster"
@@ -232,6 +232,23 @@ body {
 
           .poster {
                grid-area: coverage-poster;
+               background-image: url(https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220);
+               background-size: cover;
+               background-position: center;
+               position: relative;
+          
+               &__message {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    font-family: 'Noto Sans Tagalog', font.$standard-font;
+                    font-size: 1rem;
+                    font-display: block;
+                    text-shadow: 3px 2px 0px black;
+                    color: GhostWhite;
+                    position: absolute;
+                    right: 5px;
+                    bottom: 3px;
+               }
           }
 
           .banner {

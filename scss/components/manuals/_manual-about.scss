@@ -1,0 +1,157 @@
+@use '../../modules/fonts.scss' as font;
+@use '../../modules/palletes.scss' as plt;
+@use '../../modules/structure.scss' as sct;
+@use 'sass:color';
+
+$manual-scrollbar-track: transparent;
+$manual-scrollbar-thumb: plt.$flavor-scrollbar-thumb;
+$manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 15%);
+.about {
+     &__body {
+          outline: none;
+          overflow-y: auto;
+          height: 240px;
+          padding: 5px 5px 5px 0px;
+          @include sct.scrollbar($manual-scrollbar-track, $manual-scrollbar-thumb, $manual-scrollbar-thumb-focus);
+
+          h3 {
+               display: flex;
+               align-items: center;
+               font-family: 'Zalando Sans', font.$standard-font;
+               font-size: 0.8rem;
+               font-weight: 650;
+               font-stretch: semi-condensed;
+               text-transform: uppercase;
+               color: plt.color-contrast(plt.$flavor-primary-color);
+               background-color: plt.$flavor-primary-color;
+               padding: 3px 5px;
+
+               &::before {
+                    content: "\2605";
+                    margin-right: 3px;
+               }
+          }
+
+          p {
+               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+               font-size: 0.8rem;
+               text-align: start;
+               text-wrap: pretty;
+               text-rendering: optimizeSpeed;
+               line-height: normal;
+               padding-inline: 3px;
+               margin-block: 10px;
+
+               &:last-child {
+                    margin-bottom: 0px;
+               }
+          }
+
+          ol {
+               counter-reset: type-counter;
+          }
+     
+          ol li {
+               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+               font-size: 0.75rem;
+               font-weight: bolder;
+               text-align: start;
+               margin-block: 5px;
+
+               &:last-child {
+                    margin-bottom: 0px;
+               }
+     
+               &::before {
+                    content: counter(type-counter);
+                    counter-increment: type-counter;
+                    display: inline-block;
+                    font-family: 'Zalando Sans', font.$standard-font;
+                    font-size: 0.95rem;
+                    font-weight: 600;
+                    font-stretch: condensed;
+                    text-align: center;
+                    color: black;
+                    border-radius: 360px;
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 5px;
+               }
+
+               &[data-catgeory="causual"]::before {
+                    background-color: plt.$flavor-primary-color;
+               }
+               &[data-catgeory="updates"]::before {
+                    background-color: plt.$flavor-secondary-color;
+               }
+               &[data-catgeory="technical"]::before {
+                    background-color: plt.$flavor-tertiary-color;
+               }
+               &[data-catgeory="archaic"]::before {
+                    background-color: plt.$flavor-quaternary-color;
+               }
+          }
+     }
+
+     &__heading {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 5px;
+     }
+
+     &__heading-title {
+          -webkit-user-select: all;
+          user-select: all;
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 1rem;
+          font-weight: 750;
+          font-stretch: semi-expanded;
+          color: plt.color-contrast(plt.$flavor-secondary-color);
+          background-color: plt.$flavor-secondary-color;
+          width: fit-content;
+          padding: 2px 5px 2px 3px;
+
+          &::before {
+               content: '\279C';
+          }
+     }
+
+     &__heading-subtitle {
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 0.9rem;
+          font-weight: 750;
+          font-stretch: semi-expanded;
+          text-transform: uppercase;
+     }
+
+     &__heading-section {
+          display: flex;
+          align-items: center;
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 0.8rem;
+          font-weight: 650;
+          font-stretch: semi-condensed;
+          text-transform: uppercase;
+          color: plt.color-contrast(plt.$flavor-primary-color);
+          background-color: plt.$flavor-primary-color;
+          padding: 3px 5px;
+
+          &::before {
+               content: "\2605";
+               margin-right: 3px;
+          }
+     }
+
+     &__heading-desc {
+          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+          font-size: calc((0.75rem + 0.80rem) / 2);
+          text-align: start;
+          text-wrap: pretty;
+          text-rendering: optimizeSpeed;
+          line-height: normal;
+          padding-inline: 3px;
+          margin-block: 10px;
+     }
+}

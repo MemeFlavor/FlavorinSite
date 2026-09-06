@@ -1,9 +1,9 @@
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
 @use './modules/structure.scss' as sct;
-@use './modules/manual.scss' as mnl;
 @use 'sass:color';
 @use 'sass:list';
+@use 'sass:meta';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
@@ -442,43 +442,7 @@ body {
                          background-color: plt.$flavor-secondary-color;
                     }
                }
-
-               $biography-scrollbar-track: transparent;
-               $biography-scrollbar-thumb: plt.$flavor-scrollbar-thumb;
-               $biography-scrollbar-thumb-focus: color.scale($biography-scrollbar-thumb, $lightness: 15%);
-               &__body {
-                    outline: none;
-                    overflow-y: auto;
-                    height: 275px;
-                    padding: 5px;
-                    @include sct.scrollbar($biography-scrollbar-track, $biography-scrollbar-thumb, $biography-scrollbar-thumb-focus);
-
-                    h3 {
-                         @include mnl.manual__section;
-                    }
-               
-                    p {
-                         @include mnl.manual__description;
-                         font-size: 0.8rem;
-                         text-wrap: pretty;
-
-                         &:last-child {
-                              margin-bottom: 0px;
-                         }
-                    }
-               }
-
-               &__heading {
-                    @include mnl.manual__heading;
-               }
-
-               &__heading-title {
-                    @include mnl.manual__heading-title;
-               }
-
-               &__heading-subtitle {
-                    @include mnl.manual__heading-subtitle;
-               }
+               @include meta.load-css('./components/manuals/manual-biography.scss');
           }
 
           .gallery {
@@ -646,19 +610,32 @@ body {
                     position: relative;
 
                     h2 {
-                         @include mnl.manual__section;
+                         display: flex;
+                         align-items: center;
+                         font-family: 'Zalando Sans', font.$standard-font;
+                         font-size: 0.8rem;
+                         font-weight: 650;
+                         font-stretch: semi-condensed;
+                         text-transform: uppercase;
                          color: white;
                          background-color: black;
+                         padding: 3px 5px;
+                    
+                         &::before {
+                              content: "\2605";
+                              margin-right: 3px;
+                         }
                     }
-
+               
                     p {
-                         @include mnl.manual__description;
+                         font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                          font-size: 0.65rem;
                          font-weight: bolder;
-                         text-align: justify;
-                         line-height: 1.2;
+                         text-align: start;
+                         text-wrap: pretty;
+                         text-rendering: optimizeSpeed;
+                         line-height: normal;
                          color: black;
-                         padding: 0px;
                          margin-block: 3px;
                     }
                }
@@ -712,21 +689,17 @@ body {
                $category-type-bg-color: $category-type-base-color;
                $category-type-txt-color: plt.color-contrast($category-type-base-color);     
                &__category-type {
-                    @include mnl.manual__section;
                     display: block;
+                    font-family: 'Zalando Sans', font.$standard-font;
                     font-size: 0.7rem;
-                    font-weight: 700;
+                    font-weight: 650;
+                    font-stretch: semi-condensed;
+                    text-transform: capitalize;
                     text-align: center;
-                    text-transform: none;
                     color: $category-type-txt-color;
                     background-color: $category-type-bg-color;
                     padding: 3px 5px;
                     margin: 0;
-          
-                    &::before {
-                         content: '';
-                         margin: 0;
-                    }
                }
           
                &__category-info {

@@ -2,6 +2,7 @@
 @use './modules/palletes.scss' as plt;
 @use './modules/structure.scss' as sct;
 @use 'sass:color';
+@use 'sass:meta';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
@@ -100,15 +101,15 @@ body {
           @include sct.bentobox(all);
 
           .information {
-               display: flex;
-               flex-direction: column;
+               display: grid;
+               grid-template-columns: 1fr;
+               grid-template-rows: 330px 60px;
                grid-area: coverage-information;
                gap: 10px;
                @include sct.bentobox(all);
           }
 
-          .information .manual {
-               flex-grow: 5;
+          .information .about {
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
                border-radius: 0px;
                padding: 8px;
@@ -121,10 +122,10 @@ body {
                     grid-template-rows: auto auto;
                     grid-template-areas:
                          "headbar-blocks headbar-title"
-                         "headbar-decorations headbar-decorations"
+                         "headbar-psuedocode headbar-psuedocode"
                     ;
-                    gap: 5px;
-                    margin-bottom: 10px;
+                    gap: 3px 5px;
+                    margin-bottom: 5px;
                }
 
                &__headbar-blocks {
@@ -150,68 +151,70 @@ body {
                     }
                }
 
-               &__headbar-decorations {
+               &__headbar-psuedocode {
                     -webkit-user-select: none;
                     user-select: none;
                     display: flex;
                     flex-direction: column;
-                    grid-area: headbar-decorations;
-                    width: 100%;
-               }
+                    grid-area: headbar-psuedocode;
+                    
+                    code-lines {
+                         display: flex;
+                         flex-direction: row;
+                         justify-content: space-between;
+                         font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+                         font-size: 0.7rem;
+                         font-weight: 800;
+                         text-transform: uppercase;
+               
+                         & > * {
+                              padding-block: 1px;
+                         }
+                    }
+               
+                    code-heading {
+                         display: flex;
+                         flex-direction: row;
+                         gap: 3px;
+                    }
 
-               &__headbar-decorations code-lines {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
-                    font-size: 0.7rem;
-                    font-weight: 800;
-                    text-transform: uppercase;
+                    $code-title-base-color: hsl(0deg, 81%, 61%);
+                    $code-title-bg-color: $code-title-base-color;
+                    $code-title-txt-color: plt.color-contrast($code-title-base-color);
+                    code-title {
+                         color: $code-title-txt-color;
+                         background-color: $code-title-bg-color;
+                         padding-inline: 6px;
+                    }
 
-                    & > * {
-                         padding-block: 1px;
+                    code-block {
+                         flex-basis: 5px;
+                         flex-shrink: 0;
+                         background-color: $code-title-bg-color;
+                         width: 10px;
+                    }
+
+                    code-plt-red {
+                         color: plt.$flavor-code-red;
+                    }
+
+                    code-plt-blue {
+                         color: plt.$flavor-code-blue;
+                    }
+
+                    code-plt-yellow {
+                         color: plt.$flavor-code-yellow;
+                    }
+
+                    code-plt-green {
+                         color: plt.$flavor-code-green;
                     }
                }
-
-               &__headbar-decorations code-heading {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 3px;
-               }
-
-               $code-title-base-color: hsl(0deg, 81%, 61%);
-               &__headbar-decorations code-title {
-                    color: plt.color-contrast($code-title-base-color);
-                    background-color: $code-title-base-color;
-                    padding-inline: 6px;
-               }
-
-               &__headbar-decorations code-block {
-                    flex-basis: 5px;
-                    flex-shrink: 0;
-                    background-color: $code-title-base-color;
-                    width: 10px;
-               }
-
-               &__headbar-decorations code-plt-red {
-                    color: plt.$flavor-code-red;
-               }
-
-               &__headbar-decorations code-plt-blue {
-                    color: plt.$flavor-code-blue;
-               }
-
-               &__headbar-decorations code-plt-yellow {
-                    color: plt.$flavor-code-yellow;
-               }
-
-               &__headbar-decorations code-plt-green {
-                    color: plt.$flavor-code-green;
-               }
+               @include meta.load-css('./components/manuals/manual-about.scss');
           }
 
           .information .footer {
-               flex-grow: 1;
+
           }
 
           .extra {
@@ -226,14 +229,13 @@ body {
                gap: 10px;
                @include sct.bentobox(all);
 
-               $remindpad-bg-color-lightness: calc(((6% + 12%) / 2) * -1);
-               $remindpad-bg-color: color.adjust(plt.$flavor-scrollbar-thumb, $hue: 3deg, $chroma: -3%, $lightness: $remindpad-bg-color-lightness, $space: oklch);
+               $remindpad-border-radius: 10px;
+               $remindpad-title-border-radius: calc($remindpad-border-radius / 2);
                &__remindpad {
                     display: flex;
                     flex-direction: column;
                     grid-area: extra-remindpad;
-                    background: $remindpad-bg-color;
-                    border-radius: 0px;
+                    border-radius: $remindpad-border-radius $remindpad-border-radius 5px 5px;
                }
 
                $remindpad-title-base-color: plt.$flavor-tertiary-color;
@@ -248,6 +250,7 @@ body {
                     text-transform: uppercase;
                     color: $remindpad-title-txt-color;
                     background-color: $remindpad-title-bg-color;
+                    border-radius: $remindpad-title-border-radius $remindpad-title-border-radius 0px 0px;
                     padding: calc((3px + 7px) / 2.5) 5px;
 
                     @supports (text-box: inherit) {
@@ -257,9 +260,10 @@ body {
 
                &__remindpad-desc {
                     font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                    font-size: calc((0.5rem + 0.6rem) / 2);
+                    font-size: calc((0.5rem + 0.60rem) / 2);
                     font-weight: bolder;
                     text-align: justify;
+                    -webkit-text-stroke: 0.3px currentColor;
                     text-justify: inter-word;
                     outline: none;
                     overflow-y: auto;
@@ -272,7 +276,7 @@ body {
                     }
 
                     &:focus-visible {
-                         background-color: color.adjust($remindpad-bg-color, $lightness: 3%);
+                         background-color: color.adjust(plt.$flavor-bento-color, $lightness: 3%);
                     }
                }
 

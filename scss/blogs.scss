@@ -63,13 +63,13 @@ body {
      .blogs {
           display: grid;
           grid-template-columns: repeat(2, 445px);
-          grid-template-rows: 200px 1fr;
+          grid-template-rows: 220px 1fr;
           grid-template-areas: 
-               "blogs-coverage blogs-heading"
+               "blogs-coverage blogs-gallery"
                "blogs-coverage blogs-weblogs"
           ;
           grid-area: flavory-blogs;
-          gap: 15px;
+          gap: 10px 15px;
           background-color: plt.$flavor-content-color;
           box-shadow: 5px 5px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
           padding: 20px;
@@ -77,11 +77,11 @@ body {
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
-               grid-template-rows: 1fr;
+               grid-template-rows: 1fr 400px 220px;
                grid-template-areas:
-                    "blogs-heading"
-                    "blogs-weblogs"
                     "blogs-coverage"
+                    "blogs-weblogs"
+                    "blogs-gallery"
                ;
                gap: 10px;
           }
@@ -89,324 +89,115 @@ body {
 
      .blogs .coverage {
           display: grid;
-          grid-template-columns: 1fr 265px;
-          grid-template-rows: 1fr 1fr;
+          grid-template-columns: 285px 1fr;
+          grid-template-rows: 1fr 44px;
           grid-template-areas: 
-               "coverage-extra coverage-information"
-               "coverage-shelf coverage-information"
+               "coverage-a coverage-b"
+               "coverage-c coverage-b"
           ;
           grid-area: blogs-coverage;
           gap: 10px;
-          height: 400px;
+          height: 380px;
           @include sct.bentobox(all);
 
-          .information {
-               display: grid;
-               grid-template-columns: 1fr;
-               grid-template-rows: 330px 60px;
-               grid-area: coverage-information;
-               gap: 10px;
-               @include sct.bentobox(all);
-          }
-
-          .information .about {
+          .a {
+               grid-area: coverage-a;
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
                border-radius: 0px;
-               padding: 8px;
-
-               $headbar-base-color: beige;
-               $headbar-txt-color-selection: plt.color-contrast($headbar-base-color);
-               &__headbar {
-                    display: grid;
-                    grid-template-columns: 20px 1fr;
-                    grid-template-rows: auto auto;
-                    grid-template-areas:
-                         "headbar-blocks headbar-title"
-                         "headbar-psuedocode headbar-psuedocode"
-                    ;
-                    gap: 3px 5px;
-                    margin-bottom: 5px;
-               }
-
-               &__headbar-blocks {
-                    grid-area: headbar-blocks;
-                    background-color: $headbar-base-color;
-               }
-
-               &__headbar-title {
-                    grid-area: headbar-title;
-                    font-family: 'Archivo', font.$standard-font;
-                    font-size: 1.3rem;
-                    font-weight: 800;
-                    font-stretch: semi-expanded;
-                    text-transform: uppercase;
-                    color: $headbar-base-color;
-                    border: 2px solid $headbar-base-color;
-                    border-left-width: 10px;
-                    padding: 3px 10px;
-               
-                    &::selection {
-                         color: $headbar-txt-color-selection;
-                         background-color: $headbar-base-color;
-                    }
-               }
-
-               &__headbar-psuedocode {
-                    -webkit-user-select: none;
-                    user-select: none;
-                    display: flex;
-                    flex-direction: column;
-                    grid-area: headbar-psuedocode;
-                    
-                    code-lines {
-                         display: flex;
-                         flex-direction: row;
-                         justify-content: space-between;
-                         font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
-                         font-size: 0.7rem;
-                         font-weight: 800;
-                         text-transform: uppercase;
-               
-                         & > * {
-                              padding-block: 1px;
-                         }
-                    }
-               
-                    code-heading {
-                         display: flex;
-                         flex-direction: row;
-                         gap: 3px;
-                    }
-
-                    $code-title-base-color: hsl(0deg, 81%, 61%);
-                    $code-title-bg-color: $code-title-base-color;
-                    $code-title-txt-color: plt.color-contrast($code-title-base-color);
-                    code-title {
-                         color: $code-title-txt-color;
-                         background-color: $code-title-bg-color;
-                         padding-inline: 6px;
-                    }
-
-                    code-block {
-                         flex-basis: 5px;
-                         flex-shrink: 0;
-                         background-color: $code-title-bg-color;
-                         width: 10px;
-                    }
-
-                    code-plt-red {
-                         color: plt.$flavor-code-red;
-                    }
-
-                    code-plt-blue {
-                         color: plt.$flavor-code-blue;
-                    }
-
-                    code-plt-yellow {
-                         color: plt.$flavor-code-yellow;
-                    }
-
-                    code-plt-green {
-                         color: plt.$flavor-code-green;
-                    }
-               }
-               @include meta.load-css('./components/manuals/manual-about.scss');
           }
 
-          .information .footer {
-               color: auto;
-          }
-
-          .extra {
+          .b {
                display: grid;
-               grid-template-columns: 1fr 88px;
-               grid-template-rows: 1fr 72px;
+               grid-template-columns: 1fr 1fr;
+               grid-template-rows: 70px 1fr 70px 150px;
                grid-template-areas: 
-                    "extra-highway extra-remindpad"
-                    "extra-flocci extra-remindpad"
+                    "w r"
+                    "w e"
+                    "q e"
+                    "t t"
                ;
-               grid-area: coverage-extra;
+               grid-area: coverage-b;
                gap: 10px;
                @include sct.bentobox(all);
 
-               $remindpad-border-radius: 10px;
-               $remindpad-title-border-radius: calc($remindpad-border-radius / 2);
-               &__remindpad {
-                    display: flex;
-                    flex-direction: column;
-                    grid-area: extra-remindpad;
-                    border-radius: $remindpad-border-radius $remindpad-border-radius 5px 5px;
+               .q {
+                    grid-area: q;
                }
 
-               $remindpad-title-base-color: plt.$flavor-tertiary-color;
-               $remindpad-title-bg-color: $remindpad-title-base-color;
-               $remindpad-title-txt-color: plt.color-contrast($remindpad-title-base-color);
-               &__remindpad-title {
-                    font-family: 'Archivo', font.$standard-font;
-                    font-size: 1rem;
-                    font-weight: 800;
-                    font-stretch: semi-condensed;
-                    text-align: center;
-                    text-transform: uppercase;
-                    color: $remindpad-title-txt-color;
-                    background-color: $remindpad-title-bg-color;
-                    border-radius: $remindpad-title-border-radius $remindpad-title-border-radius 0px 0px;
-                    padding: calc((3px + 7px) / 2.5) 5px;
-
-                    @supports (text-box: inherit) {
-                         text-box: trim-both cap alphabet;
-                    }
+               .w {
+                    grid-area: w;
                }
 
-               &__remindpad-desc {
-                    font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                    font-size: calc((0.5rem + 0.60rem) / 2);
-                    font-weight: bolder;
-                    text-align: justify;
-                    -webkit-text-stroke: 0.3px currentColor;
-                    text-justify: inter-word;
-                    outline: none;
-                    overflow-y: auto;
-                    scrollbar-width: none;
-                    height: 65px;
-                    padding: 8px;
-
-                    &:not(:lang(en)) {
-                         font-size: 0.5rem;
-                    }
-
-                    &:focus-visible {
-                         background-color: color.adjust(plt.$flavor-bento-color, $lightness: 3%);
-                    }
+               .e {
+                    grid-area: e;
                }
 
-               &__remindpad-rewrite {
-                    -webkit-user-select: none;
-                    user-select: none;
-                    align-self: center;
-                    image-rendering: pixelated;
-                    margin-block: 5px;
+               .r {
+                    grid-area: r;
                }
 
-               &__remindpad-decorations {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 3px;
-                    padding: 5px;
-               }
-
-               &__remindpad-blocks {
-                    font-size: 0.75rem;
-                    font-weight: bolder;
-                    color: black;
-                    background-color: inherit;
-                    height: 15px;
-                    padding-left: 3px;
-               
-                    &--pallete-1 {
-                         background-color: plt.$flavor-primary-color;
-                    }
-               
-                    &--pallete-2 {
-                         background-color: plt.$flavor-secondary-color;
-                    }
-               
-                    &--pallete-3 {
-                         background-color: plt.$flavor-quaternary-color;
-                    }
-               }
-
-               &__highway {
-                    grid-area: extra-highway;
-                    background-image: url(https://preview.redd.it/ive-been-waiting-a-long-time-v0-9qjeevz93rmh1.jpeg?width=1080&crop=smart&auto=webp&s=61efc5dac2ecb932d26d7de90d9fffdf7f45d2fc);
-                    background-size: 450%;
-                    background-position: calc((45% + 53%) / 2) center;
-                    image-rendering: smooth;
-               }
-
-               &__flocci {
-                    grid-area: extra-flocci;
-                    background-image: url(../images/decorations/flocci.webp);
-                    background-size: cover;
-                    background-position: left;
-                    image-rendering: smooth;
+               .t {
+                    grid-area: t;
                }
           }
 
-          .shelf {
-               display: grid;
-               grid-template-columns: 3fr 2fr;
-               grid-template-rows: 50px 2fr;
-               grid-template-areas: 
-                    "shelf-a shelf-a"
-                    "shelf-b shelf-c"
-               ;
-               grid-area: coverage-shelf;
-               gap: 10px;
-               @include sct.bentobox(all);
-
-               &__a {
-                    grid-area: shelf-a;
-               }
-
-               &__b {
-                    grid-area: shelf-b;
-               }
-
-               &__c {
-                    grid-area: shelf-c;
-               }
+          .c {
+               grid-area: coverage-c;
           }
      }
 
-     .blogs .heading {
+     .blogs .gallery {
           display: grid;
-          grid-template-columns: 3fr 4fr;
-          grid-template-rows: 1fr;
-          grid-area: blogs-heading;
+          grid-template-columns: 220px 1fr;
+          grid-template-rows: 2fr 1fr;
+          grid-template-areas: 
+               "gallery-a gallery-c"
+               "gallery-b gallery-c"
+          ;
+          grid-area: blogs-gallery;
           gap: 10px;
           @include sct.bentobox(all);
 
-          $interests-headbar-base-color: plt.$flavor-quaternary-color;
-          .notice {
-               display: flex;
-               flex-direction: column;
-               gap: 5px;
-               @include sct.bentobox(self-ignore);
-               @include sct.headbars($interests-headbar-base-color, plt.$flavor-primary-color, plt.$flavor-secondary-color, (
-                    color.adjust($interests-headbar-base-color, $lightness: -2%),
-                    color.adjust($interests-headbar-base-color, $saturation: -20%, $lightness: -20%)
-               ));
-
-               &__body {
-                    background-color: plt.$flavor-bento-color;
-                    border: 2px solid black;
-                    border-radius: 0px;
-                    height: 100%;
-               }
+          .a {
+               grid-area: gallery-a;
           }
 
-          .shelf {
+          .b {
+               grid-area: gallery-b;
+          }
+
+          .c {
                display: grid;
-               grid-template-columns: 70px 2fr;
-               grid-template-rows: 2fr 1fr;
-               grid-template-areas: 
-                    "shelf-a shelf-b"
-                    "shelf-c shelf-c"
+               grid-template-columns: 1fr 2fr;
+               grid-template-rows: 44px 44px 1fr;
+               grid-template-areas:
+                    "z x"
+                    "z n"
+                    "z v"
                ;
+               grid-area: gallery-c;
                gap: 10px;
                @include sct.bentobox(all);
 
-               &__a {
-                    grid-area: shelf-a;
+               .z {
+                    grid-area: z;
                }
 
-               &__b {
-                    grid-area: shelf-b;
+               .x {
+                    grid-area: x;
                }
 
-               &__c {
-                    grid-area: shelf-c;
+               .n {
+                    grid-area: n;
+               }
+
+               .v {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr;
+                    grid-area: v;
+                    gap: 10px;
+                    @include sct.bentobox(all);
                }
           }
      }

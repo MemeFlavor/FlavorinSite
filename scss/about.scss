@@ -69,7 +69,7 @@ body {
                "about-interests ."
           ;
           grid-area: flavory-about;
-          gap: 15px;
+          gap: 10px 15px;
           background-color: plt.$flavor-content-color;
           box-shadow: 5px 5px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
           padding: 20px;

@@ -63,10 +63,11 @@ body {
      .blogs {
           display: grid;
           grid-template-columns: repeat(2, 445px);
-          grid-template-rows: 220px 1fr;
+          grid-template-rows: 220px auto 250px;
           grid-template-areas: 
-               "blogs-coverage blogs-gallery"
+               "blogs-coverage blogs-misc"
                "blogs-coverage blogs-weblogs"
+               ". blogs-weblogs"
           ;
           grid-area: flavory-blogs;
           gap: 10px 15px;
@@ -77,11 +78,12 @@ body {
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
-               grid-template-rows: 1fr 400px 220px;
+               grid-template-rows: auto 400px 220px 250px;
                grid-template-areas:
                     "blogs-coverage"
                     "blogs-weblogs"
-                    "blogs-gallery"
+                    "blogs-misc"
+                    "."
                ;
                gap: 10px;
           }
@@ -146,58 +148,48 @@ body {
           }
      }
 
-     .blogs .gallery {
+     .blogs .misc {
           display: grid;
           grid-template-columns: 220px 1fr;
           grid-template-rows: 2fr 1fr;
           grid-template-areas: 
-               "gallery-a gallery-c"
-               "gallery-b gallery-c"
+               "misc-a misc-c"
+               "misc-b misc-c"
           ;
-          grid-area: blogs-gallery;
+          grid-area: blogs-misc;
           gap: 10px;
           @include sct.bentobox(all);
 
           .a {
-               grid-area: gallery-a;
+               grid-area: misc-a;
           }
 
           .b {
-               grid-area: gallery-b;
+               grid-area: misc-b;
           }
 
           .c {
                display: grid;
-               grid-template-columns: 1fr 2fr;
-               grid-template-rows: 44px 44px 1fr;
-               grid-template-areas:
-                    "z x"
-                    "z n"
-                    "z v"
+               grid-template-columns: 140px 1fr;
+               grid-template-rows: 1fr 1fr;
+               grid-template-areas: 
+                    "i o"
+                    "i p"
                ;
-               grid-area: gallery-c;
+               grid-area: misc-c;
                gap: 10px;
                @include sct.bentobox(all);
 
-               .z {
-                    grid-area: z;
+               .i {
+                    grid-area: i;
                }
 
-               .x {
-                    grid-area: x;
+               .o {
+                    grid-area: o;
                }
 
-               .n {
-                    grid-area: n;
-               }
-
-               .v {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    grid-template-rows: 1fr;
-                    grid-area: v;
-                    gap: 10px;
-                    @include sct.bentobox(all);
+               .p {
+                    grid-area: p;
                }
           }
      }

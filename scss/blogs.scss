@@ -93,63 +93,28 @@ body {
           grid-template-columns: 150px 45px 230px;
           grid-template-rows: 1fr 44px;
           grid-template-areas: 
-               "coverage-b coverage-d coverage-a"
-               "coverage-b coverage-d coverage-c"
+               "coverage-gallery coverage-banner coverage-details"
+               "coverage-gallery coverage-banner coverage-poster"
           ;
           grid-area: blogs-coverage;
           gap: 10px;
           height: 380px;
           @include sct.bentobox(all);
 
-          .a {
-               grid-area: coverage-a;
+          .details {
+               grid-area: coverage-details;
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
                border-radius: 0px;
           }
 
-          .b {
-               display: grid;
-               grid-template-columns: 1fr 1fr;
-               grid-template-rows: 70px 1fr 70px 150px;
-               grid-template-areas: 
-                    "w r"
-                    "w e"
-                    "q e"
-                    "t t"
-               ;
-               grid-area: coverage-b;
-               gap: 10px;
-               @include sct.bentobox(all);
-
-               .q {
-                    grid-area: q;
-               }
-
-               .w {
-                    grid-area: w;
-               }
-
-               .e {
-                    grid-area: e;
-               }
-
-               .r {
-                    grid-area: r;
-               }
-
-               .t {
-                    grid-area: t;
-               }
+          .poster {
+               grid-area: coverage-poster;
           }
 
-          .c {
-               grid-area: coverage-c;
-          }
-
-          .d {
+          .banner {
                display: flex;
                flex-direction: column;
-               grid-area: coverage-d;
+               grid-area: coverage-banner;
                gap: 10px;
                @include sct.bentobox(all);
 
@@ -160,15 +125,99 @@ body {
                .h {
                     flex-grow: 4;
                }
+          } 
+
+          .gallery {
+               display: grid;
+               grid-template-columns: 1fr 1fr;
+               grid-template-rows: 70px 1fr 70px 150px;
+               grid-template-areas: 
+                    "w r"
+                    "w e"
+                    "q e"
+                    "t t"
+               ;
+               grid-area: coverage-gallery;
+               gap: 10px;
+               @include sct.bentobox(all);
+
+               &__flocci {
+                    grid-area: q;
+                    background-image: url(../images/decorations/flocci.webp);
+                    background-size: cover;
+                    background-position: left;
+                    image-rendering: smooth;
+               }
+
+               &__dejavu {
+                    filter: contrast(100%);
+                    grid-area: r;
+                    background-image: url(../images/decorations/greenzone.webp);
+                    background-size: 100%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    image-rendering: pixelated;
+                    animation: contrasting 3s ease-in-out 0s infinite;
+               }
+
+               &__anemoia {
+                    grid-area: w;
+                    background-image: url(https://preview.redd.it/the-place-i-grew-up-western-kansas-v0-tjco5q3lnvfh1.jpeg?width=1080&crop=smart&auto=webp&s=4d29488dd5dd37c50cacdea61680123f2dd3e925);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
+               }
+
+               &__monachopsis {
+                    grid-area: e;
+                    background-image: url(https://preview.redd.it/japanese-subway-stations-v0-5p1icvffsifh1.jpeg?width=1080&crop=smart&auto=webp&s=d98bfc013d99e61d78d1037507247c31dd7a950e);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
+               }
+
+               &__emulator {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr;
+                    grid-area: t;
+                    box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
+                    border-radius: 0px;
+                    overflow: hidden;
+                    height: 150px;
+
+                    & > * {
+                         image-rendering: pixelated;
+                         grid-area: 1 / 1;
+                    }
+               }
+
+               &__emulator-background {
+                    z-index: 1;
+               }
+
+               &__emulator-layout {
+                    z-index: 3;
+               }
+
+               &__emulator-sonic {
+                    z-index: 2;
+               }
+
+               @keyframes contrasting {
+                    0%, 100% { filter: contrast(100%); }
+                    50%      { filter: contrast(200%); }
+               }
           }
      }
 
-     .blogs .gallery {
-          display: none;
-          grid-area: blogs-gallery;
+     .blogs .weblogs {
+          grid-area: blogs-weblogs;
      }
 
-     .blogs .misc {
+     .blogs .sundries {
           display: grid;
           grid-template-columns: 220px 1fr;
           grid-template-rows: 2fr 1fr;
@@ -214,7 +263,8 @@ body {
           }
      }
 
-     .blogs .weblogs {
-          grid-area: blogs-weblogs;
+     .blogs .gallery {
+          display: none;
+          grid-area: blogs-gallery;
      }
 }

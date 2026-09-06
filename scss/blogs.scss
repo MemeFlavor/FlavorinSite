@@ -253,20 +253,20 @@ body {
 
           .banner {
                display: flex;
-               flex-direction: column;
+               flex-direction: column-reverse;
                grid-area: coverage-banner;
                gap: 10px;
                @include sct.bentobox(all);
 
                .g {
-                    flex-grow: 3;
+                    flex-grow: 1;
                     flex-shrink: 0;
                }
 
                &__funinfinite {
                     display: flex;
                     flex-direction: row;
-                    flex-grow: 4;
+                    flex-grow: 2;
                     flex-shrink: 0;
                     justify-content: center;
                     overflow: hidden;

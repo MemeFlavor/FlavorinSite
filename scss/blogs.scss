@@ -417,17 +417,17 @@ body {
                grid-template-columns: 1fr 1fr;
                grid-template-rows: 70px 1fr 70px 150px;
                grid-template-areas: 
-                    "w r"
-                    "w e"
-                    "q e"
-                    "t t"
+                    "gallery-anemoia gallery-dejavu"
+                    "gallery-anemoia gallery-monachopsis"
+                    "gallery-flocci gallery-monachopsis"
+                    "gallery-emulator gallery-emulator"
                ;
                grid-area: coverage-gallery;
                gap: 10px;
                @include sct.bentobox(all);
 
                &__flocci {
-                    grid-area: q;
+                    grid-area: gallery-flocci;
                     background-image: url(../images/decorations/flocci.webp);
                     background-size: cover;
                     background-position: left;
@@ -436,7 +436,7 @@ body {
 
                &__dejavu {
                     filter: contrast(100%);
-                    grid-area: r;
+                    grid-area: gallery-dejavu;
                     background-image: url(../images/decorations/greenzone.webp);
                     background-size: cover;
                     background-position: center;
@@ -446,7 +446,7 @@ body {
                }
 
                &__anemoia {
-                    grid-area: w;
+                    grid-area: gallery-anemoia;
                     background-image: url(https://preview.redd.it/the-place-i-grew-up-western-kansas-v0-tjco5q3lnvfh1.jpeg?width=1080&crop=smart&auto=webp&s=4d29488dd5dd37c50cacdea61680123f2dd3e925);
                     background-size: cover;
                     background-position: center;
@@ -454,7 +454,7 @@ body {
                }
 
                &__monachopsis {
-                    grid-area: e;
+                    grid-area: gallery-monachopsis;
                     background-image: url(https://preview.redd.it/japanese-subway-stations-v0-5p1icvffsifh1.jpeg?width=1080&crop=smart&auto=webp&s=d98bfc013d99e61d78d1037507247c31dd7a950e);
                     background-size: cover;
                     background-position: center;
@@ -467,7 +467,7 @@ body {
                     display: grid;
                     grid-template-columns: 1fr;
                     grid-template-rows: 1fr;
-                    grid-area: t;
+                    grid-area: gallery-emulator;
                     overflow: hidden;
                     height: 150px;
 
@@ -496,12 +496,73 @@ body {
           }
      }
 
+     $weblogs-headbar-base-color: plt.$flavor-primary-color;
      .blogs .weblogs {
           grid-area: blogs-weblogs;
+          @include sct.headbars($weblogs-headbar-base-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color, (
+               color.adjust($weblogs-headbar-base-color, $lightness: -2%),
+               color.adjust($weblogs-headbar-base-color, $saturation: -20%, $lightness: -20%)
+          ));
+          @include sct.bentobox(self-ignore);
      }
 
      .blogs .sundries {
           display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr;
+          gap: 10px;
+          @include sct.bentobox(all);
+
+          .a {
+               display: grid;
+               grid-template-columns: 1fr 88px;
+               grid-template-rows: 44px 1fr;
+               grid-template-areas: 
+                    "b b"
+                    "d c"
+               ;
+               gap: 10px;
+               @include sct.bentobox(all);
+
+               .b {
+                    grid-area: b;
+               }
+
+               .c {
+                    grid-area: c;
+               }
+
+               .d {
+                    grid-area: d;
+               }
+          }
+
+          .e {
+               display: grid;
+               grid-template-columns: 70px 1fr;
+               grid-template-rows: 1fr 1fr;
+               grid-template-areas: 
+                    "g f"
+                    "h f"
+               ;
+               gap: 10px;
+               @include sct.bentobox(all);
+
+               .f {
+                    grid-area: f;
+               }
+
+               .g {
+                    grid-area: g;
+               }
+
+               .h {
+                    grid-area: h;
+               }
+          }
+
+
+          /* display: grid;
           grid-template-columns: 220px 1fr;
           grid-template-rows: 2fr 1fr;
           grid-template-areas: 
@@ -543,6 +604,6 @@ body {
                .p {
                     grid-area: p;
                }
-          }
+          } */
      }
 }

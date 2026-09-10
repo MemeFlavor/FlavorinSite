@@ -343,32 +343,37 @@ body {
                     }
                }
 
-               &__dj {
+               $batch-base-color: plt.$flavor-tertiary-color;
+               $batch-bg-color: $batch-base-color;
+               $batch-txt-color: plt.color-contrast($batch-base-color);
+               &__batch {
+                    -webkit-user-select: none;
+                    user-select: none;
                     display: flex;
                     flex-direction: column;
                     gap: 3px;
                     margin-bottom: auto;
                }
 
-               &__dj-1 {
+               &__batch-main {
                     display: flex;
-                    background-color: plt.$flavor-quaternary-color;
+                    background-color: $batch-base-color;
                     height: 1cm;
                }
 
-               h3 {
+               &__batch-title {
                     font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
                     font-size: 0.75rem;
                     font-weight: 800;
                     text-align: start;
-                    color: ghostwhite;
+                    color: $batch-txt-color;
                     padding: 1px 3px;
                     margin-top: auto;
                     margin-left: auto;
                }
 
-               &__dj-2 {
-                    background-color: plt.$flavor-quaternary-color;
+               &__batch-slabs {
+                    background-color: $batch-base-color;
                     height: 5px;
                }
           }

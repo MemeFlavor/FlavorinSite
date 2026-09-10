@@ -253,34 +253,64 @@ body {
 
           .banner {
                display: flex;
-               flex-direction: column-reverse;
+               flex-direction: column;
                grid-area: coverage-banner;
                gap: 10px;
                @include sct.bentobox(all);
 
+               &__subdetails {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    flex-grow: 2;
+                    flex-shrink: 0;
+                    gap: 5px;
+                    border-radius: 0px;
+                    box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
+                    padding: 5px;
+
+                    
+               }
+
+               &__subdetails-headbar {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+               }
+
+               &__subdetails-title {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: 'Noto Sans Tagalog', font.$standard-font;
+                    font-size: 1.35rem;
+                    -webkit-text-stroke-width: 1px;
+                    color: beige;
+                    border: 2px solid beige;
+                    border-bottom-width: 15px;
+                    padding: 3px 5px;
+               }
+
+               &__subdetails-title chars-bbyn {
+                    line-height: 1rlh;
+
+                    @for $chars from 1 through 4 {
+                         &:nth-child(#{$chars}) {
+                              margin-bottom: if($chars % 2 == 0, 8px, 1px);
+                         }
+                    }
+               }
+
+               &__subdetails-blocks {
+                    background-color: beige;
+                    height: 15px;
+               }
+
                .g {
                     flex-grow: 1;
                     flex-shrink: 0;
-               }
-
-               &__funinfinite {
-                    display: flex;
-                    flex-direction: row;
-                    flex-grow: 2;
-                    flex-shrink: 0;
-                    justify-content: center;
-                    overflow: hidden;
-                    height: 45px;
-
-                    marquee {
-                         font-family: font.$standard-font;
-                         font-size: 0.9rem;
-                         font-weight: 900;
-                         writing-mode: vertical-rl;
-                         text-orientation: upright;
-                         height: max-content;
-                         width: 1ch;
-                    }
                }
           } 
 

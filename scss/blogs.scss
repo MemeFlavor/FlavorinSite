@@ -1,7 +1,7 @@
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
 @use './modules/structure.scss' as sct;
-@use 'sass:math';
+@use 'sass:list';
 @use 'sass:color';
 @use 'sass:meta';
 
@@ -356,13 +356,13 @@ body {
                }
           }
 
-          .banner .g {
+          .banner .sticker {
                display: grid;
                grid-template-columns: 5px 3px 1fr;
                grid-template-rows: 3fr 2fr;
                grid-template-areas: 
-                    "q r s"
-                    "w r s"
+                    "sticker-blocks-1 sticker-blocks-3 sticker-title"
+                    "sticker-blocks-2 sticker-blocks-3 sticker-title"
                ;
                gap: 5px;
                flex: 1 1 0;
@@ -370,23 +370,8 @@ body {
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
                padding: 5px;
 
-               .q {
-                    grid-area: q;
-                    background-color: plt.$flavor-primary-color;
-               }
-
-               .w {
-                    grid-area: w;
-                    background-color: plt.$flavor-secondary-color;
-               }
-
-               .r {
-                    grid-area: r;
-                    background-color: plt.$flavor-quaternary-color;
-               }
-
-               .s {
-                    grid-area: s;
+               &__title {
+                    grid-area: sticker-title;
                     font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
                     font-size: calc((0.55rem + 0.60rem) / 2);
                     font-weight: 800;
@@ -395,6 +380,14 @@ body {
                     writing-mode: vertical-lr;
                     color: $details-headbar-bg-color;
                     padding-block: 3px;
+               }
+
+               $palletes: (plt.$flavor-primary-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color);
+               @for $blocks from 1 through 3 {
+                    &__blocks-#{$blocks} {
+                         grid-area: sticker-blocks-#{$blocks};
+                         background-color: list.nth($palletes, $blocks);
+                    }
                }
           }
 

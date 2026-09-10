@@ -235,6 +235,8 @@ body {
           }
 
           .banner {
+               -webkit-user-select: none;
+               user-select: none;
                display: flex;
                flex-direction: column-reverse;
                grid-area: coverage-banner;
@@ -248,7 +250,7 @@ body {
                flex-direction: column-reverse;
                gap: 5px;
                border-radius: 0px;
-               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
+               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
                padding: 5px;
           
                &__headbar {
@@ -264,8 +266,6 @@ body {
                }
           
                &__headbar-title {
-                    -webkit-user-select: none;
-                    user-select: none;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -323,8 +323,6 @@ body {
                $batch-bg-color: $batch-base-color;
                $batch-txt-color: plt.color-contrast($batch-base-color);
                &__batch {
-                    -webkit-user-select: none;
-                    user-select: none;
                     display: flex;
                     flex-direction: column;
                     gap: 3px;
@@ -351,13 +349,53 @@ body {
                &__batch-slabs {
                     background-color: $batch-base-color;
                     height: 5px;
+
+                    &:last-child {
+                         height: calc(5px * 0.75);
+                    }
                }
           }
 
           .banner .g {
+               display: grid;
+               grid-template-columns: 5px 3px 1fr;
+               grid-template-rows: 3fr 2fr;
+               grid-template-areas: 
+                    "q r s"
+                    "w r s"
+               ;
+               gap: 5px;
                flex: 1 1 0;
                border-radius: 0px;
-               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
+               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
+               padding: 5px;
+
+               .q {
+                    grid-area: q;
+                    background-color: plt.$flavor-primary-color;
+               }
+
+               .w {
+                    grid-area: w;
+                    background-color: plt.$flavor-secondary-color;
+               }
+
+               .r {
+                    grid-area: r;
+                    background-color: plt.$flavor-quaternary-color;
+               }
+
+               .s {
+                    grid-area: s;
+                    font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+                    font-size: calc((0.55rem + 0.60rem) / 2);
+                    font-weight: 800;
+                    font-style: italic;
+                    line-height: 0;
+                    writing-mode: vertical-lr;
+                    color: $details-headbar-bg-color;
+                    padding-block: 3px;
+               }
           }
 
           .poster {
@@ -437,7 +475,6 @@ body {
                     grid-template-columns: 1fr;
                     grid-template-rows: 1fr;
                     grid-area: t;
-                    border-radius: 0px;
                     overflow: hidden;
                     height: 150px;
 

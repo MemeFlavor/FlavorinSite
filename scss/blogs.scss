@@ -262,22 +262,21 @@ body {
                     display: flex;
                     flex-direction: column-reverse;
                     flex-grow: 2;
-                    flex-shrink: 0;
+                    flex-basis: 0;
                     gap: 5px;
                     border-radius: 0px;
                     box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
                     padding: 5px;
-
-                    
                }
 
+               $headbar-base-color: beige;
                &__subdetails-headbar {
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
                }
 
-               &__subdetails-title {
+               &__subdetails-headbar-title {
                     -webkit-user-select: none;
                     user-select: none;
                     display: flex;
@@ -287,13 +286,13 @@ body {
                     font-family: 'Noto Sans Tagalog', font.$standard-font;
                     font-size: 1.35rem;
                     -webkit-text-stroke-width: 1px;
-                    color: beige;
-                    border: 2px solid beige;
+                    color: $headbar-base-color;
+                    border: 2px solid $headbar-base-color;
                     border-bottom-width: 15px;
                     padding: 3px 5px;
                }
 
-               &__subdetails-title chars-bbyn {
+               &__subdetails-headbar-title chars-bbyn {
                     line-height: 1rlh;
 
                     @for $chars from 1 through 4 {
@@ -303,14 +302,37 @@ body {
                     }
                }
 
-               &__subdetails-blocks {
-                    background-color: beige;
+               &__subdetails-headbar-blocks {
+                    background-color: $headbar-base-color;
                     height: 15px;
+               }
+
+               &__subdetails-headbar-decorations {
+                    display: flex;
+                    flex-direction: row;
+                    grid-area: headbar-decorations;
+                    gap: calc((3px + 4px) / 2);
+                    width: 100%;
+               }
+
+               &__subdetails-headbar-slabs {
+                    background-color: $headbar-base-color;
+                    height: 10px;
+
+                    &--pallete-1 {
+                         flex-grow: 3;
+                         background-color: plt.$flavor-secondary-color;
+                    }
+                    
+                    &--pallete-2 {
+                         flex-grow: 4;
+                         background-color: plt.$flavor-primary-color;
+                    }
                }
 
                .g {
                     flex-grow: 1;
-                    flex-shrink: 0;
+                    flex-basis: 0;
                }
           } 
 

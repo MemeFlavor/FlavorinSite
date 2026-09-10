@@ -1,6 +1,7 @@
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
 @use './modules/structure.scss' as sct;
+@use 'sass:math';
 @use 'sass:color';
 @use 'sass:meta';
 
@@ -258,31 +259,42 @@ body {
                gap: 10px;
                @include sct.bentobox(all);
 
-               &__subdetails {
-                    display: flex;
-                    flex-direction: column-reverse;
-                    flex-grow: 2;
+               .g {
+                    flex-grow: 1;
                     flex-basis: 0;
-                    gap: 5px;
-                    border-radius: 0px;
-                    box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
-                    padding: 5px;
                }
+          }
 
+          .banner .subdetails {
+               display: flex;
+               flex: 2 1 0;
+               flex-direction: column-reverse;
+               gap: 5px;
+               border-radius: 0px;
+               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
+               padding: 5px;
+          
                $headbar-base-color: beige;
-               &__subdetails-headbar {
-                    display: flex;
-                    flex-direction: column;
+               &__headbar {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: auto auto auto;
+                    grid-template-areas:
+                         "headbar-decorations" 
+                         "headbar-title"
+                         "headbar-blocks"
+                    ;
                     gap: 5px;
                }
-
-               &__subdetails-headbar-title {
+          
+               &__headbar-title {
                     -webkit-user-select: none;
                     user-select: none;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+                    grid-area: headbar-title;
                     font-family: 'Noto Sans Tagalog', font.$standard-font;
                     font-size: 1.35rem;
                     -webkit-text-stroke-width: 1px;
@@ -291,50 +303,75 @@ body {
                     border-bottom-width: 15px;
                     padding: 3px 5px;
                }
-
-               &__subdetails-headbar-title chars-bbyn {
-                    line-height: 1rlh;
-
+          
+               &__headbar-title chars-bbyn {
+                    line-height: 1;
+          
                     @for $chars from 1 through 4 {
                          &:nth-child(#{$chars}) {
-                              margin-bottom: if($chars % 2 == 0, 8px, 1px);
+                              margin-bottom: if($chars % 2==0, 8px, 1px);
                          }
                     }
                }
-
-               &__subdetails-headbar-blocks {
+          
+               &__headbar-blocks {
+                    grid-area: headbar-blocks;
                     background-color: $headbar-base-color;
                     height: 15px;
                }
-
-               &__subdetails-headbar-decorations {
+          
+               &__headbar-decorations {
                     display: flex;
                     flex-direction: row;
                     grid-area: headbar-decorations;
                     gap: calc((3px + 4px) / 2);
                     width: 100%;
                }
-
-               &__subdetails-headbar-slabs {
+          
+               &__headbar-slabs {
                     background-color: $headbar-base-color;
                     height: 10px;
-
+          
                     &--pallete-1 {
                          flex-grow: 3;
                          background-color: plt.$flavor-secondary-color;
                     }
-                    
+          
                     &--pallete-2 {
                          flex-grow: 4;
                          background-color: plt.$flavor-primary-color;
                     }
                }
 
-               .g {
-                    flex-grow: 1;
-                    flex-basis: 0;
+               &__dj {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                    margin-bottom: auto;
                }
-          } 
+
+               &__dj-1 {
+                    display: flex;
+                    background-color: plt.$flavor-quaternary-color;
+                    height: 1cm;
+               }
+
+               h3 {
+                    font-family: 'Fira Code', font.$standard-code-font, font.$standard-font;
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    text-align: start;
+                    color: ghostwhite;
+                    padding: 1px 3px;
+                    margin-top: auto;
+                    margin-left: auto;
+               }
+
+               &__dj-2 {
+                    background-color: plt.$flavor-quaternary-color;
+                    height: 5px;
+               }
+          }
 
           .gallery {
                display: grid;

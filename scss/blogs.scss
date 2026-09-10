@@ -64,9 +64,8 @@ body {
      .blogs {
           display: grid;
           grid-template-columns: repeat(2, 445px);
-          grid-template-rows: 220px auto 250px;
+          grid-template-rows: 380px 250px;
           grid-template-areas: 
-               "blogs-coverage blogs-weblogs"
                "blogs-coverage blogs-weblogs"
                "blogs-misc blogs-weblogs"
           ;
@@ -79,7 +78,7 @@ body {
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
-               grid-template-rows: auto 500px 220px; // 250px;
+               grid-template-rows: 380px clamp(100px, 500px, 800px) 220px; // 250px;
                grid-template-areas:
                     "blogs-coverage"
                     "blogs-weblogs"
@@ -553,6 +552,8 @@ body {
 
                .f {
                     grid-area: f;
+                    border-radius: 0px;
+                    box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-tertiary-color, $alpha: 0.75);
                }
 
                .g {

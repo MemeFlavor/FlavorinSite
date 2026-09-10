@@ -91,11 +91,11 @@ body {
 
      .blogs .coverage {
           display: grid;
-          grid-template-columns: 150px 45px 230px;
+          grid-template-columns: 150px 230px 45px;
           grid-template-rows: 1fr 55px;
           grid-template-areas: 
-               "coverage-gallery coverage-banner coverage-details"
-               "coverage-gallery coverage-banner coverage-poster"
+               "coverage-gallery coverage-details coverage-banner"
+               "coverage-gallery coverage-poster coverage-banner"
           ;
           grid-area: blogs-coverage;
           gap: 10px;
@@ -254,7 +254,7 @@ body {
 
           .banner {
                display: flex;
-               flex-direction: column;
+               flex-direction: column-reverse;
                grid-area: coverage-banner;
                gap: 10px;
                @include sct.bentobox(all);
@@ -489,11 +489,11 @@ body {
 
           .c {
                display: grid;
-               grid-template-columns: 140px 1fr;
+               grid-template-columns: 1fr 140px;
                grid-template-rows: 1fr 1fr;
                grid-template-areas: 
-                    "i o"
-                    "i p"
+                    "o i"
+                    "p i"
                ;
                grid-area: misc-c;
                gap: 10px;

@@ -510,17 +510,19 @@ body {
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr;
+          grid-template-areas: "b a";
           gap: 10px;
           @include sct.bentobox(all);
 
           .a {
                display: grid;
-               grid-template-columns: 1fr 88px;
+               grid-template-columns: 88px 1fr;
                grid-template-rows: 44px 1fr;
                grid-template-areas: 
                     "b b"
-                    "d c"
+                    "c d"
                ;
+               grid-area: a;
                gap: 10px;
                @include sct.bentobox(all);
 
@@ -539,12 +541,13 @@ body {
 
           .e {
                display: grid;
-               grid-template-columns: 70px 1fr;
+               grid-template-columns: 1fr 70px;
                grid-template-rows: 1fr 1fr;
                grid-template-areas: 
-                    "g f"
-                    "h f"
+                    "f g"
+                    "f h"
                ;
+               grid-area: b;
                gap: 10px;
                @include sct.bentobox(all);
 
@@ -560,50 +563,5 @@ body {
                     grid-area: h;
                }
           }
-
-
-          /* display: grid;
-          grid-template-columns: 220px 1fr;
-          grid-template-rows: 2fr 1fr;
-          grid-template-areas: 
-               "misc-a misc-c"
-               "misc-b misc-c"
-          ;
-          grid-area: blogs-misc;
-          gap: 10px;
-          @include sct.bentobox(all);
-
-          .a {
-               grid-area: misc-a;
-          }
-
-          .b {
-               grid-area: misc-b;
-          }
-
-          .c {
-               display: grid;
-               grid-template-columns: 1fr 140px;
-               grid-template-rows: 1fr 1fr;
-               grid-template-areas: 
-                    "o i"
-                    "p i"
-               ;
-               grid-area: misc-c;
-               gap: 10px;
-               @include sct.bentobox(all);
-
-               .i {
-                    grid-area: i;
-               }
-
-               .o {
-                    grid-area: o;
-               }
-
-               .p {
-                    grid-area: p;
-               }
-          } */
      }
 }

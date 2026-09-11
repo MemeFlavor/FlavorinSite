@@ -76,6 +76,14 @@ body {
           padding: 20px;
           @include sct.bentobox;
 
+          & > * {
+               content-visibility: auto;
+               
+               @supports (overflow-clip-margin: 3px) {
+                    overflow-clip-margin: 3px;
+               }
+          }
+
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
                grid-template-rows: 380px clamp(100px, 500px, 800px) 250px; // 250px;
@@ -549,8 +557,53 @@ body {
                     }
                }
 
-               &__d {
+               &__bluescreen {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    display: flex;
+                    flex-direction: column;
                     grid-area: d;
+                    font-family: 'MS Pixel Serif', font.$standard-font;
+                    font-size: 0.7rem;
+                    background-color: hsl(240deg, 100%, 25%);
+                    padding: 8px;
+
+                    h3 {
+                         display: block;
+                         font-weight: 700;
+                         text-align: center;
+                         color: hsl(240deg, 100%, 25%);
+                         margin-bottom: 10px;
+                    }
+
+                    h3 h3-text {
+                         background-color: silver;
+                         padding: 1px 8px;
+                    }
+
+                    p, li {
+                         font-size: calc((0.55rem + 0.60rem) / 2);
+                         text-align: justify;
+                         color: white;
+                    }
+
+                    p {
+                         padding-inline: 5px;
+
+                         &:last-of-type {
+                              text-align: center;
+                              margin-top: auto;
+                         }
+                    }
+
+                    ul {
+                         padding-inline: 25px 5px;
+                    }
+
+                    li {
+                         list-style-type: disc;
+                         margin-block: 3px;
+                    }
                }
           }
 
@@ -566,7 +619,7 @@ body {
                gap: 10px;
                @include sct.bentobox(all);
 
-               &__f {
+               &__blue {
                     grid-area: f;
                }
 

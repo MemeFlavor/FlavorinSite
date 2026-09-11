@@ -78,7 +78,7 @@ body {
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
-               grid-template-rows: 380px clamp(100px, 500px, 800px) 220px; // 250px;
+               grid-template-rows: 380px clamp(100px, 500px, 800px) 250px; // 250px;
                grid-template-areas:
                     "blogs-coverage"
                     "blogs-weblogs"
@@ -525,15 +525,31 @@ body {
                gap: 10px;
                @include sct.bentobox(all);
 
-               .b {
+               &__tunnel {
                     grid-area: b;
+                    background-image: url(https://preview.redd.it/haafb182aooh1.jpeg?width=1080&crop=smart&auto=webp&s=37f1b2e830c6d1ce22129b78e50266aeef63f688);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
                }
 
-               .c {
+               &__collection {
+                    display: flex;
+                    flex-direction: column;
                     grid-area: c;
+                    gap: 5px;
+                    @include sct.bentobox(self-ignore);
                }
 
-               .d {
+               &__collection-badges {
+                    image-rendering: pixelated;
+
+                    &:nth-last-child(2) {
+                         margin-top: auto;
+                    }
+               }
+
+               &__d {
                     grid-area: d;
                }
           }
@@ -550,18 +566,24 @@ body {
                gap: 10px;
                @include sct.bentobox(all);
 
-               .f {
+               &__f {
                     grid-area: f;
-                    border-radius: 0px;
-                    box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-tertiary-color, $alpha: 0.75);
                }
 
-               .g {
+               &__tripwire {
                     grid-area: g;
+                    background-image: url(https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif);
+                    background-size: cover;
+                    background-position: 65%;
+                    image-rendering: smooth;
                }
 
-               .h {
+               &__picnic {
                     grid-area: h;
+                    background-image: url(https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
                }
           }
      }

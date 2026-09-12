@@ -14,6 +14,11 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
+$FOLLY-GRASSLANDS: 'https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg';
+$FOLLY-STORES:     'https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg';
+$FOLLY-HILLS:      'https://preview.redd.it/photographs-by-mads-peter-iversen-v0-769lmlbz9dgh1.jpg?width=1080&crop=smart&auto=webp&s=2dbef028941ae17ca7d0395b6aedc91171686ddd';
+$FOLLY-VENDING:    'https://preview.redd.it/vending-machine-in-japan-that-i-shot-with-nintendo-3ds-v0-ollf4zfqrihg1.jpeg?auto=webp&s=fc92656a5ff728645111d9577b24e4d64c9e1fb6';
+
 html {
      overflow: auto scroll;
      scrollbar-width: auto;

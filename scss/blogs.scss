@@ -14,6 +14,13 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 
+$FOLLY-TRIPWIRE:  'https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif';
+$FOLLY-LONGHALLS: 'https://preview.redd.it/haafb182aooh1.jpeg?width=1080&crop=smart&auto=webp&s=37f1b2e830c6d1ce22129b78e50266aeef63f688';
+$FOLLY-PICNICS:   'https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa';
+$FOLLY-SUBWAY:    'https://preview.redd.it/japanese-subway-stations-v0-5p1icvffsifh1.jpeg?width=1080&crop=smart&auto=webp&s=d98bfc013d99e61d78d1037507247c31dd7a950e';
+$FOLLY-FIELDS:    'https://preview.redd.it/the-place-i-grew-up-western-kansas-v0-tjco5q3lnvfh1.jpeg?width=1080&crop=smart&auto=webp&s=4d29488dd5dd37c50cacdea61680123f2dd3e925';
+$FOLLY-STREETS:   'https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220';
+
 html {
      overflow: auto scroll;
      scrollbar-width: auto;

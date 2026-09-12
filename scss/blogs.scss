@@ -521,7 +521,40 @@ body {
           gap: 10px;
           @include sct.bentobox(all);
 
-          .a {
+          .gallery-1 {
+               display: grid;
+               grid-template-columns: 1fr 70px;
+               grid-template-rows: 1fr 1fr;
+               grid-template-areas:
+                    "f g"
+                    "f h"
+               ;
+               grid-area: b;
+               gap: 10px;
+               @include sct.bentobox(all);
+     
+               &__wip {
+                    grid-area: f;
+               }
+     
+               &__tripwire {
+                    grid-area: g;
+                    background-image: url(https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif);
+                    background-size: cover;
+                    background-position: 65%;
+                    image-rendering: smooth;
+               }
+     
+               &__picnic {
+                    grid-area: h;
+                    background-image: url(https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa);
+                    background-size: cover;
+                    background-position: center;
+                    image-rendering: smooth;
+               }
+          }
+
+          .gallery-2 {
                display: grid;
                grid-template-columns: 88px 1fr;
                grid-template-rows: 44px 1fr;
@@ -532,6 +565,55 @@ body {
                grid-area: a;
                gap: 10px;
                @include sct.bentobox(all);
+
+               &__bluescreen {
+                    -webkit-user-select: none;
+                    user-select: none;
+                    display: flex;
+                    flex-direction: column;
+                    grid-area: d;
+                    font-family: 'MS Pixel Serif', font.$standard-font;
+                    font-size: 0.7rem;
+                    background-color: hsl(240deg, 96%, 20%);
+                    padding: 8px;
+          
+                    h3 {
+                         display: block;
+                         font-weight: 700;
+                         text-align: center;
+                         color: hsl(240deg, 96%, 20%);
+                         margin-bottom: 10px;
+                    }
+          
+                    h3 h3-text {
+                         background-color: silver;
+                         padding: 1px 8px;
+                    }
+          
+                    p, li {
+                         font-size: calc((0.55rem + 0.60rem) / 2);
+                         text-align: justify;
+                         color: white;
+                    }
+          
+                    p {
+                         padding-inline: 5px;
+          
+                         &:last-of-type {
+                              text-align: center;
+                              margin-top: auto;
+                         }
+                    }
+          
+                    ul {
+                         padding-inline: 25px 5px;
+                    }
+          
+                    ul li {
+                         list-style-type: disc;
+                         margin-block: 3px;
+                    }
+               }
 
                &__tunnel {
                     grid-area: b;
@@ -555,88 +637,6 @@ body {
                     &:nth-last-child(2) {
                          margin-top: auto;
                     }
-               }
-
-               &__bluescreen {
-                    -webkit-user-select: none;
-                    user-select: none;
-                    display: flex;
-                    flex-direction: column;
-                    grid-area: d;
-                    font-family: 'MS Pixel Serif', font.$standard-font;
-                    font-size: 0.7rem;
-                    background-color: hsl(240deg, 100%, 25%);
-                    padding: 8px;
-
-                    h3 {
-                         display: block;
-                         font-weight: 700;
-                         text-align: center;
-                         color: hsl(240deg, 100%, 25%);
-                         margin-bottom: 10px;
-                    }
-
-                    h3 h3-text {
-                         background-color: silver;
-                         padding: 1px 8px;
-                    }
-
-                    p, li {
-                         font-size: calc((0.55rem + 0.60rem) / 2);
-                         text-align: justify;
-                         color: white;
-                    }
-
-                    p {
-                         padding-inline: 5px;
-
-                         &:last-of-type {
-                              text-align: center;
-                              margin-top: auto;
-                         }
-                    }
-
-                    ul {
-                         padding-inline: 25px 5px;
-                    }
-
-                    li {
-                         list-style-type: disc;
-                         margin-block: 3px;
-                    }
-               }
-          }
-
-          .e {
-               display: grid;
-               grid-template-columns: 1fr 70px;
-               grid-template-rows: 1fr 1fr;
-               grid-template-areas: 
-                    "f g"
-                    "f h"
-               ;
-               grid-area: b;
-               gap: 10px;
-               @include sct.bentobox(all);
-
-               &__blue {
-                    grid-area: f;
-               }
-
-               &__tripwire {
-                    grid-area: g;
-                    background-image: url(https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif);
-                    background-size: cover;
-                    background-position: 65%;
-                    image-rendering: smooth;
-               }
-
-               &__picnic {
-                    grid-area: h;
-                    background-image: url(https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa);
-                    background-size: cover;
-                    background-position: center;
-                    image-rendering: smooth;
                }
           }
      }

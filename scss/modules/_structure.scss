@@ -1,6 +1,8 @@
 @use './palletes.scss' as plt;
 @use 'sass:list';
 
+/* Structure & Adjustments Methods  */
+
 /// Shorthand for creating fancy headbars.
 /// @param {color} $primary   - The primary pallete.
 /// @param {color} $secondary - The secondary pallete.
@@ -72,6 +74,17 @@
      }
 }
 
+/// Helper function for calculating the precise midpoint values, useful for font sizes.
+/// @param {number} $start     - The starting value, must be the smallest one.
+/// @param {number} $end       - The ending value, must be the biggest one.
+/// @param {number} $point [2] - The point value.
+/// @return Precise midpoint value, big shocker I know.
+@function midpoint($start, $end, $point: 2) {
+     @return calc(($start + $end) / $point);
+}
+
+/* BentoBox Methods  */
+
 /// Helper function for bentobox, ignores the styling from itself.
 /// @access private
 /// @output Self-explanatory.
@@ -93,6 +106,19 @@
 /// @output Self-explanatory.
 @mixin _bentobox-other { 
      & > * { @include _bentobox-self-apply }
+}
+
+/// Shorthand for applying background filler images for bento boxes.
+/// @param {string} $img - The image url reference to display.
+/// @param {string} $size      ['cover']  - The image preferred size.
+/// @param {string} $position  ['center'] - The image preferred position.
+/// @param {string} $rendering ['smooth'] - The image preferred rendering type.
+/// @output Bento box filled images, no shit sherlock!
+@mixin bentobox-img($img, $size: cover, $position: center, $rendering: smooth) {
+     background-image: url(https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif);
+     background-size: cover;
+     background-position: 65%;
+     image-rendering: smooth;
 }
 
 /// Shorthand for applying default styling for bento boxes.

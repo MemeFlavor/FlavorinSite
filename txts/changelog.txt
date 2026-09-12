@@ -1,3 +1,10 @@
+commit b7f94f
+Author: MemeFlavor
+        &lt;host.name&gt;
+Date:   2026-09-12
+
+  > New About layout (W.I.P)
+
 commit 83f56d
 Author: MemeFlavor
         &lt;host.name&gt;

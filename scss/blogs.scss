@@ -3,7 +3,6 @@
 @use './modules/structure.scss' as sct;
 @use 'sass:list';
 @use 'sass:color';
-@use 'sass:meta';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);

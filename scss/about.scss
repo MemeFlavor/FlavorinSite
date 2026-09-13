@@ -14,11 +14,6 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
-$FOLLY-GRASSLANDS: 'https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg';
-$FOLLY-STORES:     'https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg';
-$FOLLY-HILLS:      'https://preview.redd.it/photographs-by-mads-peter-iversen-v0-769lmlbz9dgh1.jpg?width=1080&crop=smart&auto=webp&s=2dbef028941ae17ca7d0395b6aedc91171686ddd';
-$FOLLY-VENDING:    'https://preview.redd.it/vending-machine-in-japan-that-i-shot-with-nintendo-3ds-v0-ollf4zfqrihg1.jpeg?auto=webp&s=fc92656a5ff728645111d9577b24e4d64c9e1fb6';
-
 html {
      overflow: auto scroll;
      scrollbar-width: auto;
@@ -47,7 +42,8 @@ body {
      grid-template-areas: "flavory-sidebar flavory-about";
      gap: 5px;
      font-family: font.$standard-font;
-     background: plt.$flavor-wallpaper-color url(../images/backgrounds/locker.avif) 0% 0% / cover no-repeat fixed;
+     background: plt.$flavor-wallpaper-color 0% 0% / cover no-repeat fixed;
+     background-image: url(../images/backgrounds/locker.avif);
      background-blend-mode: color-burn;
      margin-block: 0.5cm;
 
@@ -117,7 +113,8 @@ body {
                          "banner-title banner-year"
                     ;
                     gap: 0px 15px;
-                    background: $banner-bg-color url(../images/backgrounds/grids.avif) 35% / 180% no-repeat local;
+                    background: $banner-bg-color 35% / 180% no-repeat local;
+                    background-image: url(../images/backgrounds/grids.avif);
                     background-blend-mode: color-burn;
                     position: relative;
                     height: 100%;
@@ -245,7 +242,8 @@ body {
                }
 
                &__sonic {
-                    background: plt.$flavor-bento-color url(../images/decorations/x17_dance.gif) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url(../images/decorations/x17_dance.gif);
                }
 
                @keyframes bouncing {
@@ -324,7 +322,7 @@ body {
                     display: flex;
                     flex-direction: column;
                     grid-area: account-triviapad;
-                    background: $triviapad-bg-color;
+                    background-color: $triviapad-bg-color;
                     border-radius: $triviapad-border-radius $triviapad-border-radius 5px 5px;
                }
 
@@ -365,7 +363,8 @@ body {
 
                &__vending {
                     grid-area: account-vending;
-                    background: plt.$flavor-bento-color url($FOLLY-VENDING) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url('https://preview.redd.it/vending-machine-in-japan-that-i-shot-with-nintendo-3ds-v0-ollf4zfqrihg1.jpeg?auto=webp&s=fc92656a5ff728645111d9577b24e4d64c9e1fb6');
                     image-rendering: smooth;
                }
           }
@@ -449,7 +448,8 @@ body {
                &__unseen {
                     -webkit-user-select: none;
                     user-select: none;
-                    background: plt.$flavor-bento-color url($FOLLY-GRASSLANDS) center 25% / 100% no-repeat scroll;
+                    background: plt.$flavor-bento-color center 25% / 100% no-repeat scroll;
+                    background-image: url('https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg');
                     animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
                     position: relative;
                     padding: 1px 3px;
@@ -478,7 +478,8 @@ body {
                }
 
                &__watchmen {
-                    background: black url(../images/decorations/sprites/watchman.gif) center / 60% no-repeat scroll;
+                    background: black center / 60% no-repeat scroll;
+                    background-image: url(../images/decorations/sprites/watchman.gif);
                     image-rendering: pixelated;
                }
 
@@ -510,7 +511,8 @@ body {
                ));
 
                &__body {
-                    background: $manual-base-color url(../images/decorations/manual/sidecover.png) 50% -70px / 50% repeat-x local;
+                    background: $manual-base-color 50% -70px / 50% repeat-x local;
+                    background-image: url(../images/decorations/manual/sidecover.png);
                     border: 2px solid black;
                     height: 100%;
                     padding: 5px 10px;
@@ -773,7 +775,8 @@ body {
                     align-items: center;
                     justify-content: center;
                     grid-area: gallery-debugmode;
-                    background: hsl(230deg, 100%, 42%) url(../images/decorations/sprites/debugs/bg.gif) center top / cover no-repeat scroll;
+                    background: hsl(230deg, 100%, 42%) center top / cover no-repeat scroll;
+                    background-image: url(../images/decorations/sprites/debugs/bg.gif);
                     image-rendering: pixelated;
                     animation: switch-a-roo 20s linear 0s infinite alternate both;
 
@@ -789,13 +792,15 @@ body {
 
                &__displacement {
                     grid-area: gallery-displacement;
-                    background: plt.$flavor-bento-color url($FOLLY-HILLS) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url('https://preview.redd.it/photographs-by-mads-peter-iversen-v0-769lmlbz9dgh1.jpg?width=1080&crop=smart&auto=webp&s=2dbef028941ae17ca7d0395b6aedc91171686ddd');
                     image-rendering: smooth;
                }
 
                &__halls {
                     grid-area: gallery-halls;
-                    background: plt.$flavor-bento-color url($FOLLY-STORES) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url('https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg');
                     image-rendering: smooth;
                }
 

@@ -14,13 +14,6 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 
-$FOLLY-TRIPWIRE:  'https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif';
-$FOLLY-LONGHALLS: 'https://preview.redd.it/haafb182aooh1.jpeg?width=1080&crop=smart&auto=webp&s=37f1b2e830c6d1ce22129b78e50266aeef63f688';
-$FOLLY-PICNIC:    'https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa';
-$FOLLY-SUBWAY:    'https://preview.redd.it/japanese-subway-stations-v0-5p1icvffsifh1.jpeg?width=1080&crop=smart&auto=webp&s=d98bfc013d99e61d78d1037507247c31dd7a950e';
-$FOLLY-FIELDS:    'https://preview.redd.it/the-place-i-grew-up-western-kansas-v0-tjco5q3lnvfh1.jpeg?width=1080&crop=smart&auto=webp&s=4d29488dd5dd37c50cacdea61680123f2dd3e925';
-$FOLLY-STREETS:   'https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220';
-
 html {
      overflow: auto scroll;
      scrollbar-width: auto;
@@ -402,7 +395,8 @@ body {
 
           .poster {
                grid-area: coverage-poster;
-               background: plt.$flavor-bento-color url($FOLLY-STREETS) center / cover no-repeat scroll;
+               background: plt.$flavor-bento-color center / cover no-repeat scroll;
+               background-image: url('https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220');
                position: relative;
           
                &__message {
@@ -449,13 +443,15 @@ body {
 
                &__anemoia {
                     grid-area: gallery-anemoia;
-                    background: plt.$flavor-bento-color url($FOLLY-FIELDS) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url('https://preview.redd.it/the-place-i-grew-up-western-kansas-v0-tjco5q3lnvfh1.jpeg?width=1080&crop=smart&auto=webp&s=4d29488dd5dd37c50cacdea61680123f2dd3e925');
                     image-rendering: smooth;
                }
 
                &__monachopsis {
                     grid-area: gallery-monachopsis;
-                    background: plt.$flavor-bento-color url($FOLLY-SUBWAY) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url('https://preview.redd.it/japanese-subway-stations-v0-5p1icvffsifh1.jpeg?width=1080&crop=smart&auto=webp&s=d98bfc013d99e61d78d1037507247c31dd7a950e');
                     image-rendering: smooth;
                }
 
@@ -530,13 +526,15 @@ body {
      
                &__tripwire {
                     grid-area: g;
-                    background: plt.$flavor-bento-color url($FOLLY-TRIPWIRE) 65% / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color 65% / cover no-repeat scroll;
+                    background-image: url('https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif');
                     image-rendering: smooth;
                }
      
                &__picnic {
                     grid-area: h;
-                    background: plt.$flavor-bento-color url($FOLLY-PICNIC) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url('https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa');
                     image-rendering: smooth;
                }
           }
@@ -604,7 +602,8 @@ body {
 
                &__tunnel {
                     grid-area: b;
-                    background: plt.$flavor-bento-color url($FOLLY-LONGHALLS) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url('https://preview.redd.it/haafb182aooh1.jpeg?width=1080&crop=smart&auto=webp&s=37f1b2e830c6d1ce22129b78e50266aeef63f688');
                     image-rendering: smooth;
                }
 

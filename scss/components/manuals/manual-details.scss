@@ -1,6 +1,7 @@
 @use '../../modules/fonts.scss' as font;
 @use '../../modules/palletes.scss' as plt;
 @use '../../modules/structure.scss' as sct;
+@use 'sass:list';
 @use 'sass:color';
 
 $color-palletes-primary: plt.$flavor-primary-color;
@@ -318,7 +319,11 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
      }
 }
 
-.blogs .coverage .banner .subdetails {
+.blogs .coverage .details-extension .stylistic {
+     display: flex;
+     flex-direction: column-reverse;
+     gap: 5px;
+     
      &__headbar {
           display: grid;
           grid-template-columns: 1fr;
@@ -417,4 +422,39 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
                height: calc(5px * 0.75);
           }
      }
+}
+
+.blogs .coverage .details-extension .questioning {
+     display: grid;
+     grid-template-columns: 5px 3px 1fr;
+     grid-template-rows: 3fr 2fr;
+     grid-template-areas:
+          "sticker-blocks-1 sticker-blocks-3 sticker-title"
+          "sticker-blocks-2 sticker-blocks-3 sticker-title"
+     ;
+     gap: 5px;
+
+     &__title {
+          grid-area: sticker-title;
+          font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
+          font-size: sct.midpoint(0.55rem, 0.60rem);
+          font-weight: 800;
+          font-style: italic;
+          line-height: 0;
+          writing-mode: vertical-lr;
+          color: $color-details-headbar-base;
+          padding-block: 3px;
+     }
+     
+     $palletes: (plt.$flavor-primary-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color);
+     @for $blocks from 1 through 3 {
+          &__blocks-#{$blocks} {
+               grid-area: sticker-blocks-#{$blocks};
+               background-color: list.nth($palletes, $blocks);
+          }
+     }
+}
+
+.blogs .sundries .gallery-1 {
+
 }

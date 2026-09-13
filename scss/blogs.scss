@@ -1,7 +1,6 @@
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
 @use './modules/structure.scss' as sct;
-@use 'sass:list';
 @use 'sass:color';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
@@ -21,7 +20,8 @@ body {
      grid-template-areas: "flavory-sidebar flavory-blogs";
      gap: 5px;
      font-family: font.$standard-font;
-     background: plt.$flavor-wallpaper-color url(../images/backgrounds/locker.avif) 0% 0% / cover no-repeat fixed;
+     background: plt.$flavor-wallpaper-color 0% 0% / cover no-repeat fixed;
+     background-image: url(../images/backgrounds/locker.avif);
      background-blend-mode: color-burn;
      margin-block: 0.5cm;
 
@@ -75,8 +75,8 @@ body {
           grid-template-columns: 150px 230px 45px;
           grid-template-rows: 1fr 55px;
           grid-template-areas: 
-               "coverage-gallery coverage-details coverage-banner"
-               "coverage-gallery coverage-poster coverage-banner"
+               "coverage-gallery coverage-details coverage-details-extension"
+               "coverage-gallery coverage-poster coverage-details-extension"
           ;
           grid-area: blogs-coverage;
           gap: 10px;
@@ -93,59 +93,33 @@ body {
                padding: 8px;
           }
 
-          .banner {
+          .details-extension {
                -webkit-user-select: none;
                user-select: none;
-               display: flex;
-               flex-direction: column-reverse;
-               grid-area: coverage-banner;
+               display: grid;
+               grid-template-columns: 1fr;
+               grid-template-rows: 1fr 2fr;
+               grid-template-areas: 
+                    "banner-questioning"
+                    "banner-stylistic"
+               ;
+               grid-area: coverage-details-extension;
                gap: 10px;
                @include sct.bentobox(all);
           }
 
-          .banner .subdetails {
-               display: flex;
-               flex: 2 1 0;
-               flex-direction: column-reverse;
-               gap: 5px;
+          .details-extension .stylistic {
+               grid-area: banner-stylistic;
                border-radius: 0px;
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
                padding: 5px;
           }
 
-          .banner .sticker {
-               display: grid;
-               grid-template-columns: 5px 3px 1fr;
-               grid-template-rows: 3fr 2fr;
-               grid-template-areas: 
-                    "sticker-blocks-1 sticker-blocks-3 sticker-title"
-                    "sticker-blocks-2 sticker-blocks-3 sticker-title"
-               ;
-               gap: 5px;
-               flex: 1 1 0;
+          .details-extension .questioning {
+               grid-area: banner-questioning;
                border-radius: 0px;
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
                padding: 5px;
-
-               &__title {
-                    grid-area: sticker-title;
-                    font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
-                    font-size: sct.midpoint(0.55rem, 0.60rem);
-                    font-weight: 800;
-                    font-style: italic;
-                    line-height: 0;
-                    writing-mode: vertical-lr;
-                    color: $details-headbar-bg-color;
-                    padding-block: 3px;
-               }
-
-               $palletes: (plt.$flavor-primary-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color);
-               @for $blocks from 1 through 3 {
-                    &__blocks-#{$blocks} {
-                         grid-area: sticker-blocks-#{$blocks};
-                         background-color: list.nth($palletes, $blocks);
-                    }
-               }
           }
 
           .poster {
@@ -184,14 +158,16 @@ body {
 
                &__flocci {
                     grid-area: gallery-flocci;
-                    background: plt.$flavor-bento-color url(../images/decorations/vapor.png) left / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color left / cover no-repeat scroll;
+                    background-image: url(../images/decorations/vapor.png);
                     image-rendering: smooth;
                }
 
                &__dejavu {
                     filter: contrast(100%);
                     grid-area: gallery-dejavu;
-                    background: plt.$flavor-bento-color url(../images/decorations/sprites/greenzone.png) center / cover no-repeat scroll;
+                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background-image: url(../images/decorations/sprites/greenzone.png);
                     image-rendering: pixelated;
                     animation: contrasting 3s ease-in-out 0s infinite;
                }
@@ -263,44 +239,44 @@ body {
           gap: 10px;
           @include sct.bentobox(all);
 
-          .gallery-1 {
+          .booklet {
                display: grid;
                grid-template-columns: 1fr 70px;
                grid-template-rows: 1fr 1fr;
                grid-template-areas:
-                    "f g"
-                    "f h"
+                    "booklet-wip booklet-tripwire"
+                    "booklet-wip booklet-picnic"
                ;
                grid-area: b;
                gap: 10px;
                @include sct.bentobox(all);
      
                &__wip {
-                    grid-area: f;
+                    grid-area: booklet-wip;
                }
      
                &__tripwire {
-                    grid-area: g;
+                    grid-area: booklet-tripwire;
                     background: plt.$flavor-bento-color 65% / cover no-repeat scroll;
                     background-image: url('https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif');
                     image-rendering: smooth;
                }
      
                &__picnic {
-                    grid-area: h;
+                    grid-area: booklet-picnic;
                     background: plt.$flavor-bento-color center / cover no-repeat scroll;
                     background-image: url('https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa');
                     image-rendering: smooth;
                }
           }
 
-          .gallery-2 {
+          .assemblage {
                display: grid;
                grid-template-columns: 88px 1fr;
                grid-template-rows: 44px 1fr;
                grid-template-areas: 
-                    "b b"
-                    "c d"
+                    "assemblage-tunnel assemblage-tunnel"
+                    "assemblage-collection assemblage-bluescreen"
                ;
                grid-area: a;
                gap: 10px;
@@ -311,7 +287,7 @@ body {
                     user-select: none;
                     display: flex;
                     flex-direction: column;
-                    grid-area: d;
+                    grid-area: assemblage-bluescreen;
                     font-family: 'MS Pixel Serif', font.$standard-font;
                     font-display: block;
                     font-size: 0.7rem;
@@ -357,7 +333,7 @@ body {
                }
 
                &__tunnel {
-                    grid-area: b;
+                    grid-area: assemblage-tunnel;
                     background: plt.$flavor-bento-color center / cover no-repeat scroll;
                     background-image: url('https://preview.redd.it/haafb182aooh1.jpeg?width=1080&crop=smart&auto=webp&s=37f1b2e830c6d1ce22129b78e50266aeef63f688');
                     image-rendering: smooth;
@@ -366,7 +342,7 @@ body {
                &__collection {
                     display: flex;
                     flex-direction: column;
-                    grid-area: c;
+                    grid-area: assemblage-collection;
                     gap: 5px;
                     @include sct.bentobox(self-ignore);
                }

@@ -81,7 +81,7 @@ body {
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
-               grid-template-rows: 380px clamp(100px, 500px, 800px) 250px; // 250px;
+               grid-template-rows: 380px clamp(100px, 500px, 800px) 250px;
                grid-template-areas:
                     "blogs-coverage"
                     "blogs-weblogs"
@@ -287,7 +287,7 @@ body {
           
                     @for $chars from 1 through 4 {
                          &:nth-child(#{$chars}) {
-                              margin-bottom: if($chars % 2 == 0, 8px, 1px);
+                              margin-bottom: if(sass($chars % 2 == 0): 10px; else: 15px);
                          }
                     }
                }
@@ -302,7 +302,7 @@ body {
                     display: flex;
                     flex-direction: row;
                     grid-area: headbar-decorations;
-                    gap: calc((3px + 4px) / 2);
+                    gap: sct.midpoint(3px, 4px);
                     width: 100%;
                }
           
@@ -375,7 +375,7 @@ body {
                &__title {
                     grid-area: sticker-title;
                     font-family: 'JetBrains Mono', font.$standard-code-font, font.$standard-font;
-                    font-size: calc((0.55rem + 0.60rem) / 2);
+                    font-size: sct.midpoint(0.55rem, 0.60rem);
                     font-weight: 800;
                     font-style: italic;
                     line-height: 0;
@@ -576,7 +576,7 @@ body {
                     }
           
                     p, li {
-                         font-size: calc((0.55rem + 0.60rem) / 2);
+                         font-size: sct.midpoint(0.55rem, 0.60rem);
                          text-align: justify;
                          color: white;
                     }

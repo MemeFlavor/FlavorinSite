@@ -3,12 +3,23 @@
 @use '../../modules/structure.scss' as sct;
 @use 'sass:color';
 
-$manual-scrollbar-track: transparent;
-$manual-scrollbar-thumb: plt.$flavor-scrollbar-thumb;
-$manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 15%);
-.biography {
-     $headbar-base-color: beige;
-     $headbar-txt-color-selection: plt.color-contrast($headbar-base-color);
+$color-palletes-primary: plt.$flavor-primary-color;
+$color-palletes-secondary: plt.$flavor-secondary-color;
+$color-palletes-primary-contrast: plt.color-contrast(plt.$flavor-primary-color);
+$color-palletes-secondary-contrast: plt.color-contrast(plt.$flavor-secondary-color);
+
+$color-biography-headbar-base: beige;
+$color-biography-headbar-text-select: plt.color-contrast($color-biography-headbar-base);
+
+$color-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
+$color-scrollbar-track-base: plt.$flavor-scrollbar-track;
+
+:root {
+     --color-scrollbar-thumb-base: #{ $color-scrollbar-thumb-base };
+     --color-scrollbar-track-base: #{ $color-scrollbar-track-base };
+}
+
+.about .profile .biography {
      &__headbar {
           display: grid;
           grid-template-columns: 40px 1fr;
@@ -23,7 +34,7 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: $headbar-base-color;
+          background-color: $color-biography-headbar-base;
      }
 
      &__headbar-title {
@@ -33,14 +44,14 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: $headbar-base-color;
-          border: 2px solid $headbar-base-color;
+          color: $color-biography-headbar-base;
+          border: 2px solid $color-biography-headbar-base;
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: $headbar-txt-color-selection;
-               background-color: $headbar-base-color;
+               color: $color-biography-headbar-text-select;
+               background-color: $color-biography-headbar-base;
           }
      }
 
@@ -53,26 +64,46 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
      }
 
      &__headbar-slabs {
-          background-color: $headbar-base-color;
+          background-color: $color-biography-headbar-base;
           height: 10px;
 
           &--pallete-1 {
                flex-grow: 2;
-               background-color: plt.$flavor-primary-color;
+               background-color: $color-palletes-primary;
           }
 
           &--pallete-2 {
                flex-grow: 1;
-               background-color: plt.$flavor-secondary-color;
+               background-color: $color-palletes-secondary;
           }
      }
-     
+
      &__body {
+          --color-scrollbar-thumb: var(--color-scrollbar-thumb-base);
+          --color-scrollbar-track: var(--color-scrollbar-track-base);
           outline: none;
           overflow-y: auto;
           height: 275px;
+          scrollbar-width: thin;
+          scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
           padding: 5px 5px 5px 0px;
-          @include sct.scrollbar($manual-scrollbar-track, $manual-scrollbar-thumb, $manual-scrollbar-thumb-focus);
+
+          &:focus-visible {
+               --color-scrollbar-thumb: #{ color.adjust($color-scrollbar-thumb-base, $lightness: 13%) };
+          }
+          
+          &::-webkit-scrollbar {
+               width: 6px;
+          }
+          
+          &::-webkit-scrollbar-track {
+               background: var(--color-scrollbar-track);
+          }
+          
+          &::-webkit-scrollbar-thumb {
+               background: var(--color-scrollbar-thumb);
+               border-radius: 4px;
+          }
 
           h3 {
                display: flex;
@@ -82,8 +113,8 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: plt.color-contrast(plt.$flavor-primary-color);
-               background-color: plt.$flavor-primary-color;
+               color: $color-palletes-primary-contrast;
+               background-color: $color-palletes-primary;
                padding: 3px 5px;
 
                &::before {
@@ -94,13 +125,16 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
 
           p {
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-               font-size: calc((0.75rem + 0.9rem) / 2);
+               font-size: sct.midpoint(0.75rem, 0.90rem);
                text-align: start;
-               text-wrap: pretty;
                text-rendering: optimizeSpeed;
                line-height: 1rlh;
                padding-inline: 3px;
                margin-block: 10px;
+
+               @supports (text-wrap: pretty) {
+                    text-wrap: pretty;
+               }
           }
      }
 
@@ -119,8 +153,8 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
           font-size: 1rem;
           font-weight: 750;
           font-stretch: semi-expanded;
-          color: plt.color-contrast(plt.$flavor-secondary-color);
-          background-color: plt.$flavor-secondary-color;
+          color: $color-palletes-secondary-contrast;
+          background-color: $color-palletes-secondary;
           width: fit-content;
           padding: 2px 5px 2px 3px;
 
@@ -146,8 +180,8 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
           font-weight: 650;
           font-stretch: semi-condensed;
           text-transform: uppercase;
-          color: plt.color-contrast(plt.$flavor-primary-color);
-          background-color: plt.$flavor-primary-color;
+          color: $color-palletes-primary-contrast;
+          background-color: $color-palletes-primary;
           padding: 3px 5px;
 
           &::before {
@@ -160,10 +194,13 @@ $manual-scrollbar-thumb-focus: color.scale($manual-scrollbar-thumb, $lightness: 
           font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
           font-size: calc((0.75rem + 0.80rem) / 2);
           text-align: start;
-          text-wrap: pretty;
           text-rendering: optimizeSpeed;
           line-height: normal;
           padding-inline: 3px;
           margin-block: 10px;
+
+          @supports (text-wrap: pretty) {
+               text-wrap: pretty;
+          }
      }
 }

@@ -235,7 +235,7 @@ body {
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr;
-          grid-template-areas: "b a";
+          grid-template-areas: "sundries-booklet sundries-assemblage";
           gap: 10px;
           @include sct.bentobox(all);
 
@@ -244,30 +244,33 @@ body {
                grid-template-columns: 1fr 70px;
                grid-template-rows: 1fr 1fr;
                grid-template-areas:
-                    "booklet-wip booklet-tripwire"
-                    "booklet-wip booklet-picnic"
+                    "booklet-warning booklet-tripwire"
+                    "booklet-warning booklet-picnic"
                ;
-               grid-area: b;
+               grid-area: sundries-booklet;
                gap: 10px;
                @include sct.bentobox(all);
-     
-               &__wip {
-                    grid-area: booklet-wip;
-               }
-     
-               &__tripwire {
-                    grid-area: booklet-tripwire;
-                    background: plt.$flavor-bento-color 65% / cover no-repeat scroll;
-                    background-image: url('https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif');
-                    image-rendering: smooth;
-               }
-     
-               &__picnic {
-                    grid-area: booklet-picnic;
-                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
-                    background-image: url('https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa');
-                    image-rendering: smooth;
-               }
+          }
+
+          .booklet .warning {
+               grid-area: booklet-warning;
+               border-radius: 0px;
+               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-tertiary-color, $alpha: 0.75);
+               padding: 5px;
+          }
+
+          .booklet .tripwire {
+               grid-area: booklet-tripwire;
+               background: plt.$flavor-bento-color 65% / cover no-repeat scroll;
+               background-image: url('https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif');
+               image-rendering: smooth;
+          }
+
+          .booklet .picnic {
+               grid-area: booklet-picnic;
+               background: plt.$flavor-bento-color center / cover no-repeat scroll;
+               background-image: url('https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa');
+               image-rendering: smooth;
           }
 
           .assemblage {
@@ -276,78 +279,75 @@ body {
                grid-template-rows: 44px 1fr;
                grid-template-areas: 
                     "assemblage-tunnel assemblage-tunnel"
-                    "assemblage-collection assemblage-bluescreen"
+                    "assemblage-badges assemblage-bluescreen"
                ;
-               grid-area: a;
+               grid-area: sundries-assemblage;
                gap: 10px;
                @include sct.bentobox(all);
+          }
 
-               &__bluescreen {
-                    -webkit-user-select: none;
-                    user-select: none;
-                    display: flex;
-                    flex-direction: column;
-                    grid-area: assemblage-bluescreen;
-                    font-family: 'MS Pixel Serif', font.$standard-font;
-                    font-display: block;
+          .assemblage .bluescreen {
+               -webkit-user-select: none;
+               user-select: none;
+               display: flex;
+               flex-direction: column;
+               grid-area: assemblage-bluescreen;
+               font-family: 'MS Pixel Serif', font.$standard-font;
+               font-display: block;
+               font-size: sct.midpoint(0.55rem, 0.60rem);
+               text-align: justify;
+               color: plt.color-contrast(hsl(240deg, 96%, 20%));
+               background-color: hsl(240deg, 96%, 20%);
+               padding: 8px;
+          
+               h3 {
+                    display: block;
                     font-size: 0.7rem;
-                    background-color: hsl(240deg, 96%, 20%);
-                    padding: 8px;
+                    font-weight: 700;
+                    text-align: center;
+                    color: hsl(240deg, 96%, 20%);
+                    margin-bottom: 10px;
+               }
           
-                    h3 {
-                         display: block;
-                         font-weight: 700;
+               h3 h3-text {
+                    background-color: silver;
+                    padding: 1px 8px;
+               }
+          
+               p {
+                    padding-inline: 5px;
+          
+                    &:last-of-type {
                          text-align: center;
-                         color: hsl(240deg, 96%, 20%);
-                         margin-bottom: 10px;
-                    }
-          
-                    h3 h3-text {
-                         background-color: silver;
-                         padding: 1px 8px;
-                    }
-          
-                    p, li {
-                         font-size: sct.midpoint(0.55rem, 0.60rem);
-                         text-align: justify;
-                         color: white;
-                    }
-          
-                    p {
-                         padding-inline: 5px;
-          
-                         &:last-of-type {
-                              text-align: center;
-                              margin-top: auto;
-                         }
-                    }
-          
-                    ul {
-                         padding-inline: 25px 5px;
-                    }
-          
-                    ul li {
-                         list-style-type: disc;
-                         margin-block: 3px;
+                         margin-top: auto;
                     }
                }
-
-               &__tunnel {
-                    grid-area: assemblage-tunnel;
-                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
-                    background-image: url('https://preview.redd.it/haafb182aooh1.jpeg?width=1080&crop=smart&auto=webp&s=37f1b2e830c6d1ce22129b78e50266aeef63f688');
-                    image-rendering: smooth;
+          
+               ul {
+                    padding-inline: 25px 5px;
                }
-
-               &__collection {
-                    display: flex;
-                    flex-direction: column;
-                    grid-area: assemblage-collection;
-                    gap: 5px;
-                    @include sct.bentobox(self-ignore);
+          
+               ul li {
+                    list-style-type: disc;
+                    margin-block: 3px;
                }
+          }
 
-               &__collection-badges {
+          .assemblage .tunnel {
+               grid-area: assemblage-tunnel;
+               background: plt.$flavor-bento-color center / cover no-repeat scroll;
+               background-image: url('https://preview.redd.it/haafb182aooh1.jpeg?width=1080&crop=smart&auto=webp&s=37f1b2e830c6d1ce22129b78e50266aeef63f688');
+               image-rendering: smooth;
+          }
+
+          .assemblage .badges {
+               display: flex;
+               flex-direction: column;
+               grid-area: assemblage-badges;
+               gap: 5px;
+               @include sct.bentobox(self-ignore);
+
+               img {
                     image-rendering: pixelated;
 
                     &:nth-last-child(2) {

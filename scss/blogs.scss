@@ -241,11 +241,11 @@ body {
 
           .booklet {
                display: grid;
-               grid-template-columns: 1fr 70px;
+               grid-template-columns: 70px 1fr;
                grid-template-rows: 1fr 1fr;
                grid-template-areas:
-                    "booklet-warning booklet-tripwire"
-                    "booklet-warning booklet-picnic"
+                    "booklet-tripwire booklet-warning"
+                    "booklet-picnic booklet-warning"
                ;
                grid-area: sundries-booklet;
                gap: 10px;

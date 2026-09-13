@@ -284,10 +284,10 @@ body {
           
                &__headbar-title chars-bbyn {
                     line-height: 1;
-          
+
                     @for $chars from 1 through 4 {
                          &:nth-child(#{$chars}) {
-                              margin-bottom: if(sass($chars % 2 == 0): 10px; else: 15px);
+                              margin-bottom: if(sass($chars % 2 == 0): 5px; else: 0px);
                          }
                     }
                }

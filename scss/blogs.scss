@@ -20,8 +20,8 @@ body {
      grid-template-areas: "flavory-sidebar flavory-blogs";
      gap: 5px;
      font-family: font.$standard-font;
-     background: plt.$flavor-wallpaper-color 0% 0% / cover no-repeat fixed;
-     background-image: url(../images/backgrounds/locker.avif);
+     background: plt.$flavor-wallpaper-color center / cover no-repeat fixed;
+     background-image: url(../images/backgrounds/apartment.avif);
      background-blend-mode: color-burn;
      margin-block: 0.5cm;
 

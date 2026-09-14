@@ -214,6 +214,13 @@ body {
                     z-index: 2;
                }
 
+               @media (prefers-reduced-motion: reduce) {
+                    &__emulator-sonic {
+                         opacity: 0;
+                         content-visibility: hidden;
+                    }
+               }
+
                @keyframes contrasting {
                     0%, 100% { filter: contrast(100%); }
                     50%      { filter: contrast(200%); }

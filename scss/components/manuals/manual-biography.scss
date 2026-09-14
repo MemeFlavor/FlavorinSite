@@ -127,14 +127,11 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: sct.midpoint(0.75rem, 0.90rem);
                text-align: start;
+               text-wrap: pretty;
                text-rendering: optimizeSpeed;
                line-height: 1rlh;
                padding-inline: 3px;
                margin-block: 10px;
-
-               @supports (text-wrap: pretty) {
-                    text-wrap: pretty;
-               }
           }
      }
 
@@ -192,15 +189,12 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
      &__heading-desc {
           font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-          font-size: calc((0.75rem + 0.80rem) / 2);
+          font-size: sct.midpoint(0.75rem, 0.80rem);
           text-align: start;
+          text-wrap: pretty;
           text-rendering: optimizeSpeed;
           line-height: normal;
           padding-inline: 3px;
           margin-block: 10px;
-
-          @supports (text-wrap: pretty) {
-               text-wrap: pretty;
-          }
      }
 }

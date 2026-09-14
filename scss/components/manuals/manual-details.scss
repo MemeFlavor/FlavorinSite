@@ -22,6 +22,9 @@ $color-details-psuedocode-blue: plt.$flavor-code-blue;
 $color-details-psuedocode-green: plt.$flavor-code-green;
 $color-details-psuedocode-yellow: plt.$flavor-code-yellow;
 
+$color-warning-headbar-base: color.adjust($color-palletes-tertiary, $hue: -10deg, $saturation: -20%);
+$color-warning-headbar-text-select: plt.color-contrast($color-warning-headbar-base);
+
 $color-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
 $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
@@ -456,5 +459,95 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
 }
 
 .blogs .sundries .booklet .warning {
+     display: flex;
+     flex-direction: column;
+     gap: 0px;
+
+     &__headbar {
+          display: grid;
+          grid-template-columns: 1fr 15px;
+          grid-template-rows: auto auto;
+          grid-template-areas:
+               "headbar-title headbar-blocks"
+               "headbar-slab headbar-slab"
+          ;
+          gap: 3px 5px;
+          margin-bottom: 3px;
+     }
+
+     &__headbar-blocks {
+          grid-area: headbar-blocks;
+          background-color: $color-warning-headbar-base;
+     }
+
+     &__headbar-title {
+          grid-area: headbar-title;
+          font-family: 'Archivo', font.$standard-font;
+          font-size: 1.3rem;
+          font-weight: 800;
+          font-stretch: semi-expanded;
+          text-transform: uppercase;
+          color: $color-warning-headbar-base;
+          border: 2px solid $color-warning-headbar-base;
+          border-left-width: 10px;
+          padding: 3px 10px;
+
+          &::selection {
+               color: $color-warning-headbar-text-select;
+               background-color: $color-warning-headbar-base;
+          }
+     }
+
+     &__headbar-slab {
+          grid-area: headbar-slab;
+          background-color: $color-warning-headbar-base;
+          height: 3px;
+     }
+
+     &__body {
+          --color-scrollbar-thumb: var(--color-scrollbar-thumb-base);
+          --color-scrollbar-track: var(--color-scrollbar-track-base);
+          outline: none;
+          overflow-y: auto;
+          height: 190px;
+          scrollbar-width: thin;
+          scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+          padding: 5px 5px 5px 0px;
      
+          &:focus-visible {
+               --color-scrollbar-thumb: #{ color.adjust($color-scrollbar-thumb-base, $lightness: 13%) };
+          }
+     
+          &::-webkit-scrollbar {
+               width: 6px;
+          }
+     
+          &::-webkit-scrollbar-track {
+               background: var(--color-scrollbar-track);
+          }
+     
+          &::-webkit-scrollbar-thumb {
+               background: var(--color-scrollbar-thumb);
+               border-radius: 4px;
+          }
+     
+          p {
+               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+               font-size: sct.midpoint(0.55rem, 0.65rem);
+               text-align: start;
+               text-wrap: pretty;
+               text-rendering: optimizeSpeed;
+               line-height: normal;
+               padding-inline: 3px;
+               margin-block: 10px;
+               
+               &:first-of-type {
+                    margin-top: 0px;
+               }
+
+               &:last-of-type {
+                    margin-bottom: 0px;
+               }
+          }
+     }
 }

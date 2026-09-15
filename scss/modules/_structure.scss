@@ -83,42 +83,65 @@
      @return calc(($start + $end) / $point);
 }
 
-/* BentoBox Methods  */
+/* Bento Box Methods  */
 
-/// Helper function for bentobox, ignores the styling from itself.
+/// Ignores the bento box parent styling.
 /// @access private
 /// @output Self-explanatory.
-@mixin _bentobox-self-ignore {
+@mixin _bentobox-grid-parent-ignore {
      background-color: transparent;
      border-radius: 0px;
 }
 
-/// Helper function for bentobox, applies the styling from itself.
+/// Applies the bento box parent styling.
 /// @access private
 /// @output Self-explanatory.
-@mixin _bentobox-self-apply {
+@mixin _bentobox-grid-parent-apply {
      background-color: plt.$flavor-bento-color;
      border-radius: 5px;
 }
 
-/// Helper function for bentobox, applies the styling to the child elements.
+/// Ignores the bento box children styling.
 /// @access private
 /// @output Self-explanatory.
-@mixin _bentobox-other { 
-     & > * { @include _bentobox-self-apply }
+@mixin _bentobox-grid-child-ignore { 
+     & > * { @include _bentobox-grid-parent-ignore }
 }
 
-/// Shorthand for applying default styling for bento boxes.
-/// @param {bool} $boxtype - Styling type, can be either: all, self, or no argument.
-/// @output Bento box default styling, no shit sherlock!
-@mixin bentobox($boxtype: null) {
-     @if ($boxtype == 'all') {
-          @include _bentobox-self-ignore; @include _bentobox-other;
-     } @else if ($boxtype == 'self-ignore') {
-          @include _bentobox-self-ignore;
-     } @else if ($boxtype =='self-apply') {
-          @include _bentobox-self-apply;
-     } @else {
-          @include _bentobox-other;
+/// Applies the bento box children styling.
+/// @access private
+/// @output Self-explanatory.
+@mixin _bentobox-grid-child-apply { 
+     & > * { @include _bentobox-grid-parent-apply  }
+}
+
+/// Applies specific styling type to bento box grids.
+/// Styling types include: parent-apply, parent-ignore, child-apply, child-ignore, child-only.
+/// @param {string} $grid-style [child-apply] - The specific styling to apply with.
+/// @output Adds the specific styling type to that bento box.
+@mixin bentobox-grid($grid-style: child-apply) {
+     @if ($grid-style == 'child-only') {
+          @include _bentobox-grid-parent-ignore;
+          @include _bentobox-grid-child-apply;
+     } @else if ($grid-style == 'child-apply')   {
+          @include _bentobox-grid-child-apply;
+     } @else if ($grid-style == 'child-ignore')  {
+          @include _bentobox-grid-child-ignore;
+     } @else if ($grid-style == 'parent-apply')  {
+          @include _bentobox-grid-parent-apply;
+     } @else if ($grid-style == 'parent-ignore') {
+          @include _bentobox-grid-parent-ignore;
+     }
+}
+
+/// Applies content rendering optimization to the bento box groups.
+/// Must be only be applied by the main container box (e.g. about, blogs, etc).
+/// @output Adds the content rendering optimization properties while also checkiing for browser support.
+@mixin bentobox-rendering {
+     @supports (content-visibility: auto) and (overflow-clip-margin: 5px) {
+          & > * {
+               content-visibility: auto;
+               overflow-clip-margin: 5px;
+          }
      }
 }

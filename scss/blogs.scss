@@ -48,17 +48,8 @@ body {
           background-color: plt.$flavor-content-color;
           box-shadow: 5px 5px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
           padding: 20px;
-          @include sct.bentobox;
-
-          & > * {
-               @supports (content-visibility: auto) {
-                    content-visibility: auto;
-               }
-               
-               @supports (overflow-clip-margin: 5px) {
-                    overflow-clip-margin: 5px;
-               }
-          }
+          @include sct.bentobox-grid;
+          @include sct.bentobox-rendering;
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
@@ -83,7 +74,7 @@ body {
           grid-area: blogs-coverage;
           gap: 10px;
           height: 380px;
-          @include sct.bentobox(all);
+          @include sct.bentobox-grid(child-only);
 
           $details-headbar-base-color: beige;
           $details-headbar-bg-color: $details-headbar-base-color;
@@ -107,7 +98,7 @@ body {
                ;
                grid-area: coverage-details-extension;
                gap: 10px;
-               @include sct.bentobox(all);
+               @include sct.bentobox-grid(child-only);
           }
 
           .details-extension .stylistic {
@@ -156,7 +147,7 @@ body {
                ;
                grid-area: coverage-gallery;
                gap: 10px;
-               @include sct.bentobox(all);
+               @include sct.bentobox-grid(child-only);
 
                &__flocci {
                     grid-area: gallery-flocci;
@@ -237,7 +228,7 @@ body {
                color.adjust($weblogs-headbar-base-color, $lightness: -2%),
                color.adjust($weblogs-headbar-base-color, $saturation: -20%, $lightness: -20%)
           ));
-          @include sct.bentobox(self-ignore);
+          @include sct.bentobox-grid(parent-ignore);
      }
 
      .blogs .sundries {
@@ -246,7 +237,7 @@ body {
           grid-template-rows: 1fr;
           grid-template-areas: "sundries-booklet sundries-assemblage";
           gap: 10px;
-          @include sct.bentobox(all);
+          @include sct.bentobox-grid(child-only);
 
           .booklet {
                display: grid;
@@ -258,7 +249,7 @@ body {
                ;
                grid-area: sundries-booklet;
                gap: 10px;
-               @include sct.bentobox(all);
+               @include sct.bentobox-grid(child-only);
           }
 
           .booklet .warning {
@@ -292,7 +283,7 @@ body {
                ;
                grid-area: sundries-assemblage;
                gap: 10px;
-               @include sct.bentobox(all);
+               @include sct.bentobox-grid(child-only);
           }
 
           .assemblage .bluescreen {
@@ -354,7 +345,7 @@ body {
                flex-direction: column;
                grid-area: assemblage-badges;
                gap: 5px;
-               @include sct.bentobox(self-ignore);
+               @include sct.bentobox-grid(parent-ignore);
 
                img {
                     image-rendering: pixelated;

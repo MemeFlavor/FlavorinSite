@@ -49,16 +49,7 @@ body {
           background-color: plt.$flavor-content-color;
           box-shadow: 5px 5px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
           padding: 20px;
-
-          & > * {
-               @supports (content-visibility: auto) {
-                    content-visibility: auto;
-               }
-               
-               @supports (overflow-clip-margin: 5px) {
-                    overflow-clip-margin: 5px;
-               }
-          }
+          @include sct.bentobox-rendering;
 
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
@@ -90,7 +81,7 @@ body {
                grid-template-rows: 90px;
                grid-area: profile-header;
                gap: 10px;
-               @include sct.bentobox;
+               @include sct.bentobox-grid;
 
                $banner-bg-color: plt.$flavor-gridline-color;
                &__banner {
@@ -252,7 +243,7 @@ body {
                ;
                grid-area: profile-account;
                gap: 10px;
-               @include sct.bentobox;
+               @include sct.bentobox-grid;
 
                &__avatar {
                     grid-area: account-avatar;
@@ -371,7 +362,7 @@ body {
                grid-template-rows: 44px;
                grid-area: profile-gallery;
                gap: 10px;
-               @include sct.bentobox;
+               @include sct.bentobox-grid;
                
                &__unseen {
                     -webkit-user-select: none;
@@ -695,7 +686,7 @@ body {
                     "gallery-halls gallery-debugmode"
                ;
                gap: 10px;
-               @include sct.bentobox;
+               @include sct.bentobox-grid;
 
                &__debugmode {
                     display: flex;

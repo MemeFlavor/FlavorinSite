@@ -1,3 +1,4 @@
+@use './modules/built-in/math.scss' as ex-math;
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
 @use './modules/structure.scss' as sct;
@@ -294,7 +295,7 @@ body {
                grid-area: assemblage-bluescreen;
                font-family: 'MS Pixel Serif', font.$standard-font;
                font-display: block;
-               font-size: sct.midpoint(0.55rem, 0.60rem);
+               font-size: ex-math.midpoint(0.55rem, 0.60rem);
                text-align: justify;
                color: plt.color-contrast(hsl(240deg, 96%, 20%));
                background-color: hsl(240deg, 96%, 20%);

@@ -1,0 +1,5 @@
+@use 'sass:math';
+
+@function midpoint($start, $end, $point: 2) {
+     @return calc(($start + $end) / $point);
+}

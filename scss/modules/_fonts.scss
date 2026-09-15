@@ -1,9 +1,9 @@
+@use './built-in/list' as ex-list;
+@use './built-in/string' as ex-string;
 @use 'sass:string';
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:meta';
-@use './built-in/list' as exlist;
-@use './built-in/string' as exstring;
 
 /* Helpers */
 
@@ -59,7 +59,7 @@ $_widths: (
 @function _font-sources($path, $sources) {
      $result: ();
      @each $type, $format in $sources {
-          $result: list.append($result, url("#{exstring.replace($path, ' ', '_')}.#{$type}") $format, $separator: comma);
+          $result: list.append($result, url("#{ex-string.replace($path, ' ', '_')}.#{$type}") $format, $separator: comma);
      }
      @return $result;
 }
@@ -104,9 +104,9 @@ $_widths: (
           $font-width-subfolder: '#{list.nth($font-path, $font-path-length)}';
      }
 
-     $path-remove-last: exlist.remove($font-path, $font-path-length);
+     $path-remove-last: ex-list.remove($font-path, $font-path-length);
      $path-new-last: string.split($font-width-subfolder, '/');
-     @return exlist.list-to-string(list.join($path-remove-last, $path-new-last, $separator: slash), '/');
+     @return ex-list.join(list.join($path-remove-last, $path-new-last, $separator: slash), '/');
 }
 
 /* Main */

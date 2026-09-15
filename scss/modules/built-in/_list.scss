@@ -1,15 +1,5 @@
 @use 'sass:list';
 
-@function remove-value($list, $value) {
-     $result: ();
-     @each $item in $list {
-          @if $item != $value {
-               $result: list.append($result, $item, list.separator($list));
-          }
-     }
-     @return $result;
-}
-
 @function remove($list, $index) {
      $result: ();
      @for $i from 1 through list.length($list) {
@@ -20,7 +10,17 @@
      @return $result;
 }
 
-@function list-to-string($list, $glue: "") {
+@function remove-value($list, $value) {
+     $result: ();
+     @each $item in $list {
+          @if $item != $value {
+               $result: list.append($result, $item, list.separator($list));
+          }
+     }
+     @return $result;
+}
+
+@function join($list, $glue: "") {
      $result: "";
      @for $i from 1 through list.length($list) {
           $e: list.nth($list, $i);

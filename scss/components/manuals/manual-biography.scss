@@ -1,3 +1,4 @@
+@use '../../modules/built-in/math.scss' as ex-math;
 @use '../../modules/fonts.scss' as font;
 @use '../../modules/palletes.scss' as plt;
 @use '../../modules/structure.scss' as sct;
@@ -125,7 +126,7 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
           p {
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-               font-size: sct.midpoint(0.75rem, 0.90rem);
+               font-size: ex-math.midpoint(0.75rem, 0.90rem);
                text-align: start;
                text-wrap: pretty;
                text-rendering: optimizeSpeed;
@@ -189,7 +190,7 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
      &__heading-desc {
           font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-          font-size: sct.midpoint(0.75rem, 0.80rem);
+          font-size: ex-math.midpoint(0.75rem, 0.80rem);
           text-align: start;
           text-wrap: pretty;
           text-rendering: optimizeSpeed;

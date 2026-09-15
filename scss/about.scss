@@ -319,7 +319,7 @@ body {
                     color: $triviapad-title-txt-color;
                     background-color: $triviapad-title-bg-color;
                     border-radius: $triviapad-title-border-radius $triviapad-title-border-radius 0px 0px;
-                    padding: sct.midpoint(3px, 4px, 2.5) 5px;
+                    padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
                }
 
                &__triviapad-desc {
@@ -635,7 +635,7 @@ body {
                     text-transform: uppercase;
                     color: $factpad-title-txt-color;
                     background-color: $factpad-title-bg-color;
-                    padding: sct.midpoint(3px, 4px, 2.5) 5px;
+                    padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
                }
 
                &__factpad-freedom {
@@ -669,7 +669,7 @@ body {
           
                &__item {
                     font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-                    font-size: sct.midpoint(0.65rem, 0.70rem);
+                    font-size: ex-math.midpoint(0.65rem, 0.70rem);
                     font-weight: bolder;
                     text-align: start;
                     text-wrap: stable;

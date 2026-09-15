@@ -74,15 +74,6 @@
      }
 }
 
-/// Helper function for calculating the precise midpoint values, useful for font sizes.
-/// @param {number} $start     - The starting value, must be the smallest one.
-/// @param {number} $end       - The ending value, must be the biggest one.
-/// @param {number} $point [2] - The point value.
-/// @return Precise midpoint value, big shocker I know.
-@function midpoint($start, $end, $point: 2) {
-     @return calc(($start + $end) / $point);
-}
-
 /* Bento Box Methods  */
 
 /// Ignores the bento box parent styling.

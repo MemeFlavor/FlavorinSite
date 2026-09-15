@@ -1,4 +1,4 @@
-@use '../../modules/built-in/math' as ex-math;
+@use '../../modules/built-in/math.scss' as ex-math;
 @use '../../modules/fonts.scss' as font;
 @use '../../modules/palletes.scss' as plt;
 @use '../../modules/structure.scss' as sct;
@@ -360,7 +360,11 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
           @for $chars from 1 through 4 {
                &:nth-child(#{$chars}) {
-                    margin-bottom: if(sass($chars % 2 == 0): 5px; else: 0px);
+                    @if ($chars % 2 == 0) {
+                         margin-bottom: 5px;
+                    } @else {
+                         margin-bottom: 0px;
+                    }
                }
           }
      }

@@ -51,10 +51,12 @@ body {
           @include sct.bentobox;
 
           & > * {
-               content-visibility: auto;
+               @supports (content-visibility: auto) {
+                    content-visibility: auto;
+               }
                
-               @supports (overflow-clip-margin: 3px) {
-                    overflow-clip-margin: 3px;
+               @supports (overflow-clip-margin: 5px) {
+                    overflow-clip-margin: 5px;
                }
           }
 

@@ -50,6 +50,16 @@ body {
           box-shadow: 5px 5px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
           padding: 20px;
 
+          & > * {
+               @supports (content-visibility: auto) {
+                    content-visibility: auto;
+               }
+               
+               @supports (overflow-clip-margin: 5px) {
+                    overflow-clip-margin: 5px;
+               }
+          }
+
           @media screen and (width <= 1305px) {
                grid-template-columns: 445px;
                grid-template-rows: 1fr;

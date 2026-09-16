@@ -90,7 +90,7 @@ $color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --color-scrollbar-thumb: #{ color.adjust($color-scrollbar-thumb-base, $lightness: 13%) };
+               --color-scrollbar-thumb: #{ color.adjust($color-biography-scrollbar-thumb-base, $lightness: 13%) };
           }
           
           &::-webkit-scrollbar {

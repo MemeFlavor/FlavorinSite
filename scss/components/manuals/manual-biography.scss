@@ -12,12 +12,12 @@ $color-palletes-secondary-contrast: plt.color-contrast(plt.$flavor-secondary-col
 $color-biography-headbar-base: beige;
 $color-biography-headbar-text-select: plt.color-contrast($color-biography-headbar-base);
 
-$color-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
-$color-scrollbar-track-base: plt.$flavor-scrollbar-track;
+$color-biography-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
+$color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
 :root {
-     --color-scrollbar-thumb-base: #{ $color-scrollbar-thumb-base };
-     --color-scrollbar-track-base: #{ $color-scrollbar-track-base };
+     --color-biography-scrollbar-thumb-base: #{ $color-biography-scrollbar-thumb-base };
+     --color-biography-scrollbar-track-base: #{ $color-biography-scrollbar-track-base };
 }
 
 .about .profile .biography {
@@ -80,8 +80,8 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
      }
 
      &__body {
-          --color-scrollbar-thumb: var(--color-scrollbar-thumb-base);
-          --color-scrollbar-track: var(--color-scrollbar-track-base);
+          --color-scrollbar-thumb: var(--color-biography-scrollbar-thumb-base);
+          --color-scrollbar-track: var(--color-biography-scrollbar-track-base);
           outline: none;
           overflow-y: auto;
           height: 275px;

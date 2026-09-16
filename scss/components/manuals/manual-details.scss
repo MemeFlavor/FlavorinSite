@@ -23,15 +23,20 @@ $color-details-psuedocode-blue: plt.$flavor-code-blue;
 $color-details-psuedocode-green: plt.$flavor-code-green;
 $color-details-psuedocode-yellow: plt.$flavor-code-yellow;
 
+$color-details-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
+$color-details-scrollbar-track-base: plt.$flavor-scrollbar-track;
+
 $color-warning-headbar-base: color.adjust($color-palletes-tertiary, $hue: -10deg, $saturation: -20%);
 $color-warning-headbar-text-select: plt.color-contrast($color-warning-headbar-base);
 
-$color-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
-$color-scrollbar-track-base: plt.$flavor-scrollbar-track;
+$color-warning-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
+$color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
 :root {
-     --color-scrollbar-thumb-base: #{ $color-scrollbar-thumb-base };
-     --color-scrollbar-track-base: #{ $color-scrollbar-track-base };
+     --color-details-scrollbar-thumb-base: #{ $color-details-scrollbar-thumb-base };
+     --color-details-scrollbar-track-base: #{ $color-details-scrollbar-track-base };
+     --color-warning-scrollbar-thumb-base: #{ $color-warning-scrollbar-thumb-base };
+     --color-warning-scrollbar-track-base: #{ $color-warning-scrollbar-track-base };
 }
 
 .blogs .coverage .details {
@@ -154,8 +159,8 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
      }
 
      &__body {
-          --color-scrollbar-thumb: var(--color-scrollbar-thumb-base);
-          --color-scrollbar-track: var(--color-scrollbar-track-base);
+          --color-scrollbar-thumb: var(--color-details-scrollbar-thumb-base);
+          --color-scrollbar-track: var(--color-details-scrollbar-track-base);
           outline: none;
           overflow-y: auto;
           height: 210px;
@@ -164,7 +169,7 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --color-scrollbar-thumb: #{ color.adjust($color-scrollbar-thumb-base, $lightness: 13%) };
+               --color-scrollbar-thumb: #{ color.adjust($color-details-scrollbar-thumb-base, $lightness: 13%) };
           }
 
           &::-webkit-scrollbar {
@@ -510,8 +515,8 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
      }
 
      &__body {
-          --color-scrollbar-thumb: var(--color-scrollbar-thumb-base);
-          --color-scrollbar-track: var(--color-scrollbar-track-base);
+          --color-scrollbar-thumb: var(--color-warning-scrollbar-thumb-base);
+          --color-scrollbar-track: var(--color-warning-scrollbar-track-base);
           outline: none;
           overflow-y: auto;
           height: 195px;
@@ -520,7 +525,7 @@ $color-scrollbar-track-base: plt.$flavor-scrollbar-track;
           padding: 5px 5px 5px 0px;
      
           &:focus-visible {
-               --color-scrollbar-thumb: #{ color.adjust($color-scrollbar-thumb-base, $lightness: 13%) };
+               --color-scrollbar-thumb: #{ color.adjust($color-details-scrollbar-thumb-base, $lightness: 13%) };
           }
      
           &::-webkit-scrollbar {

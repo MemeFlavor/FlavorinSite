@@ -70,7 +70,7 @@ body {
           grid-template-rows: 90px 350px 44px;
           grid-template-areas:
                "profile-header profile-header"
-               "profile-account profile-biography"
+               "profile-account profile-autobiography"
                "profile-gallery profile-gallery"
           ;
           grid-area: about-profile;
@@ -350,8 +350,8 @@ body {
                }
           }
 
-          .biography {
-               grid-area: profile-biography;
+          .autobiography {
+               grid-area: profile-autobiography;
                background-color: plt.$flavor-bento-color;
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
                padding: 8px;

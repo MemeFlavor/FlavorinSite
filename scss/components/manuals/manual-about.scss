@@ -13,10 +13,28 @@ $clr-palettes-primary-contrast:   map.get(flv.$palettes-contrast, 'primary');
 $clr-palettes-secondary-contrast: map.get(flv.$palettes-contrast, 'secondary');
 $clr-palettes-quaternary-contrast: map.get(flv.$palettes-contrast, 'quaternary');
 
-$clr-biography-headbar: beige;
-$clr-biography-headbar-contrast: ex-color.contrast($clr-biography-headbar);
-$clr-biography-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
-$clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
+$clr-autobiography-headbar: beige;
+$clr-autobiography-headbar-contrast: ex-color.contrast($clr-autobiography-headbar);
+$clr-autobiography-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
+$clr-autobiography-scrollbar-track: map.get(flv.$scrollbar, 'track');
+
+$clr-manual: beige;
+$clr-manual-contrast: ex-color.contrast($clr-manual);
+$clr-manual-title: hsl(240deg, 14%, 5%);
+$clr-manual-border: hsl(0deg, 0%, 0%);
+$clr-manual-navig: hsl(0deg, 0%, 0%);
+$clr-manual-navig-hover: color.scale($clr-palettes-primary, $saturation: 5%);
+$clr-manual-navig-focus: color.scale($clr-palettes-quaternary, $saturation: 5%);
+$clr-manual-heading: black;
+$clr-manual-heading-contrast: ex-color.contrast($clr-manual-heading);
+
+$clr-biography-category-type: $clr-palettes-primary;
+$clr-biography-category-type-contrast: ex-color.contrast($clr-biography-category-type);
+
+$clr-fact-factpad: $clr-palettes-primary;
+$clr-fact-factpad-contrast: ex-color.contrast($clr-fact-factpad);
+$clr-fact-list-scrollbar-thumb: color.scale($clr-manual, $saturation: -25%, $lightness: -20%);
+$clr-fact-list-scrollbar-track: transparent;
 :root {
      --clr-palettes-primary:   #{ $clr-palettes-primary };
      --clr-palettes-secondary: #{ $clr-palettes-secondary };
@@ -24,11 +42,11 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
      --clr-palettes-secondary-contrast: #{ $clr-palettes-secondary-contrast };
 }
 
-.about .profile .biography {
-     --clr-biography-headbar:          #{ $clr-biography-headbar };
-     --clr-biography-headbar-contrast: #{ $clr-biography-headbar-contrast };
-     --clr-biography-scrollbar-thumb: #{ $clr-biography-scrollbar-thumb };
-     --clr-biography-scrollbar-track: #{ $clr-biography-scrollbar-track };
+.about .profile .autobiography {
+     --clr-autobiography-headbar:          #{ $clr-autobiography-headbar };
+     --clr-autobiography-headbar-contrast: #{ $clr-autobiography-headbar-contrast };
+     --clr-autobiography-scrollbar-thumb: #{ $clr-autobiography-scrollbar-thumb };
+     --clr-autobiography-scrollbar-track: #{ $clr-autobiography-scrollbar-track };
 
      &__headbar {
           display: grid;
@@ -44,7 +62,7 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: var(--clr-biography-headbar);
+          background-color: var(--clr-autobiography-headbar);
      }
 
      &__headbar-title {
@@ -54,14 +72,14 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: var(--clr-biography-headbar);
-          border: 2px solid var(--clr-biography-headbar);
+          color: var(--clr-autobiography-headbar);
+          border: 2px solid var(--clr-autobiography-headbar);
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: var(--clr-biography-headbar-contrast);
-               background-color: var(--clr-biography-headbar);
+               color: var(--clr-autobiography-headbar-contrast);
+               background-color: var(--clr-autobiography-headbar);
           }
      }
 
@@ -74,7 +92,7 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
      }
 
      &__headbar-slabs {
-          background-color: var(--clr-biography-headbar);
+          background-color: var(--clr-autobiography-headbar);
           height: 10px;
 
           &--palette-1 {
@@ -89,8 +107,8 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
      }
 
      &__body {
-          --clr-scrollbar-thumb: var(--clr-biography-scrollbar-thumb);
-          --clr-scrollbar-track: var(--clr-biography-scrollbar-track);
+          --clr-scrollbar-thumb: var(--clr-autobiography-scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-autobiography-scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 275px;
@@ -99,7 +117,7 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --clr-scrollbar-thumb: #{ color.adjust($clr-biography-scrollbar-thumb, $lightness: 13%) };
+               --clr-scrollbar-thumb: #{ color.adjust($clr-autobiography-scrollbar-thumb, $lightness: 13%) };
           }
           
           &::-webkit-scrollbar {
@@ -209,19 +227,26 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
      }
 }
 
-$manual-base-color: beige;
-$manual-headbar-base-color: $clr-palettes-secondary;
 $manual-content-height: 170px;
 .about .information .manual {
+     --clr-manual:          #{ $clr-manual };
+     --clr-manual-contrast: #{ $clr-manual-contrast };
+     --clr-manual-title:    #{ $clr-manual-title };
+     --clr-manual-border:   #{ $clr-manual-border };
+     --clr-manual-navig:       #{ $clr-manual-navig };
+     --clr-manual-navig-hover: #{ $clr-manual-navig-hover };
+     --clr-manual-navig-focus: #{ $clr-manual-navig-focus };
+     --clr-manual-heading:          #{ $clr-manual-heading };
+     --clr-manual-heading-contrast: #{ $clr-manual-heading-contrast };
+
      &__body {
-          background: $manual-base-color 50% -70px / 50% repeat-x local;
+          background: var(--clr-manual) 50% -70px / 50% repeat-x local;
           background-image: url(../../../images/decorations/manual/sidecover.png);
-          border: 2px solid black;
+          border: 2px solid var(--clr-manual-border);
           height: 100%;
           padding: 5px 10px;
      }
 
-     $title-base-color: hsl(240deg, 14%, 5%);
      &__title {
           display: flex;
           align-items: center;
@@ -230,8 +255,8 @@ $manual-content-height: 170px;
           font-weight: 900;
           font-stretch: 120%;
           text-transform: uppercase;
-          color: $title-base-color;
-          border: 2px solid $title-base-color;
+          color: var(--clr-manual-title);
+          border: 2px solid var(--clr-manual-title);
           height: fit-content;
           padding: 0px 8px;
           margin-bottom: 0.65cm;
@@ -252,7 +277,7 @@ $manual-content-height: 170px;
           cursor: pointer;
           font-size: 1rem;
           outline: none;
-          background-color: black;
+          background-color: var(--clr-manual-navig);
           border: none;
           border-radius: 360px;
           position: absolute;
@@ -261,11 +286,11 @@ $manual-content-height: 170px;
           height: 24px;
 
           &:hover {
-               background-color: $clr-palettes-primary;
+               background-color: var(--clr-manual-navig-hover);
           }
 
           &:active, &:focus-visible {
-               background-color: $clr-palettes-quaternary;
+               background-color: var(--clr-manual-navig-focus);
           }
 
           &::selection {
@@ -303,8 +328,8 @@ $manual-content-height: 170px;
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: white;
-               background-color: black;
+               color: var(--clr-manual-heading-contrast);
+               background-color: var(--clr-manual-heading);
                padding: 3px 5px;
 
                &::before {
@@ -321,12 +346,14 @@ $manual-content-height: 170px;
                text-wrap: pretty;
                text-rendering: optimizeSpeed;
                line-height: normal;
-               color: black;
+               color: var(--clr-manual-contrast);
                margin-block: 3px;
           }
      }
 
      .biography {
+          --clr-biography-category-type: #{ $clr-biography-category-type };
+          --clr-biography-category-type-contrast: #{ $clr-biography-category-type-contrast };
           display: grid;
           grid-template-columns: auto 100px;
           grid-template-rows: auto auto;
@@ -358,7 +385,8 @@ $manual-content-height: 170px;
                height: $manual-content-height;
      
                &:focus-visible {
-                    background: color.adjust($manual-base-color, $saturation: -20%, $lightness: -15%);
+                    --clr-manual: #{ color.scale($clr-manual, $saturation: -20%, $lightness: -15%) };
+                    background: var(--clr-manual);
                }
           }
      
@@ -370,9 +398,6 @@ $manual-content-height: 170px;
                }
           }
      
-          $category-type-base-color: $clr-palettes-primary;
-          $category-type-bg-color: $category-type-base-color;
-          $category-type-txt-color: ex-color.contrast($category-type-base-color);
           &__category-type {
                display: block;
                font-family: 'Zalando Sans', font.$standard-font;
@@ -381,8 +406,8 @@ $manual-content-height: 170px;
                font-stretch: semi-condensed;
                text-transform: capitalize;
                text-align: center;
-               color: $category-type-txt-color;
-               background-color: $category-type-bg-color;
+               color: var(--clr-biography-category-type-contrast);
+               background-color: var(--clr-biography-category-type);
                padding: 3px 5px;
                margin: 0;
           }
@@ -395,7 +420,11 @@ $manual-content-height: 170px;
      }
 
      .facts {
-     display: grid;
+          --clr-fact-factpad:          #{ $clr-fact-factpad };
+          --clr-fact-factpad-contrast: #{ $clr-fact-factpad-contrast };
+          --clr-fact-list-scrollbar-thumb: #{ $clr-fact-list-scrollbar-thumb };
+          --clr-fact-list-scrollbar-track: #{ $clr-fact-list-scrollbar-track };
+          display: grid;
           grid-template-columns: 78px auto;
           grid-template-rows: auto;
           gap: 10px;
@@ -406,9 +435,6 @@ $manual-content-height: 170px;
                flex-direction: column;
           }
      
-          $factpad-title-base-color: $clr-palettes-primary;
-          $factpad-title-bg-color: $factpad-title-base-color;
-          $factpad-title-txt-color: ex-color.contrast($factpad-title-base-color);
           &__factpad-title {
                font-family: 'Archivo', font.$standard-font;
                font-size: 0.95rem;
@@ -416,8 +442,8 @@ $manual-content-height: 170px;
                font-stretch: semi-condensed;
                text-align: center;
                text-transform: uppercase;
-               color: $factpad-title-txt-color;
-               background-color: $factpad-title-bg-color;
+               color: var(--clr-fact-factpad-contrast);
+               background-color: var(--clr-fact-factpad);
                padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
           }
      
@@ -429,25 +455,42 @@ $manual-content-height: 170px;
      
           &__factpad-desc {
                font-family: 'MS Pixel Serif', font.$standard-font;
+               font-display: block;
                font-size: 0.55rem;
                font-weight: normal;
                padding-inline: 3px;
           }
      
-          $list-scrollbar-base-color: $manual-base-color;
-          $list-scrollbar-track: transparent;
-          $list-scrollbar-thumb: color.scale($list-scrollbar-base-color, $saturation: -25%, $lightness: -20%);
-          $list-scrollbar-thumb-focus: color.scale($list-scrollbar-base-color, $saturation: -40%, $lightness: -35%);
           &__list {
+               --clr-scrollbar-thumb: var(--clr-fact-list-scrollbar-thumb);
+               --clr-scrollbar-track: var(--clr-fact-list-scrollbar-track);
                display: flex;
                flex-direction: column;
                row-gap: 3px;
                list-style-type: disc;
                outline: none;
                overflow: hidden auto;
+               scrollbar-width: thin;
+               scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
                height: $manual-content-height;
                padding-left: 15px;
-               @include sct.scrollbar($list-scrollbar-track, $list-scrollbar-thumb, $list-scrollbar-thumb-focus);
+
+               &:focus-visible {
+                    --clr-scrollbar-thumb: #{ color.scale($clr-fact-list-scrollbar-thumb, $saturation: -30%, $lightness: -25%) };
+               }
+          
+               &::-webkit-scrollbar {
+                    width: 6px;
+               }
+          
+               &::-webkit-scrollbar-track {
+                    background: var(--clr-scrollbar-track);
+               }
+          
+               &::-webkit-scrollbar-thumb {
+                    background: var(--clr-scrollbar-thumb);
+                    border-radius: 4px;
+               }
           }
      
           &__item {
@@ -456,7 +499,7 @@ $manual-content-height: 170px;
                font-weight: bolder;
                text-align: start;
                text-wrap: stable;
-               color: black;
+               color: var(--clr-manual-contrast);
           }
      }
 }

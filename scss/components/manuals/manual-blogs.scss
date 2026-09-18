@@ -19,7 +19,7 @@ $clr-palettes-quaternary-contrast: map.get(flv.$palettes-contrast, 'quaternary')
 $clr-coverage-headbar: beige;
 $clr-coverage-headbar-contrast: ex-color.contrast($clr-coverage-headbar);
 
-$clr-details-psuedocode-title: map.get(flv.$palettes, 'quaternary');
+$clr-details-psuedocode-title: $clr-palettes-quaternary;
 $clr-details-psuedocode-red: map.get(flv.$syntax, 'red');
 $clr-details-psuedocode-blue: map.get(flv.$syntax, 'blue');
 $clr-details-psuedocode-green: map.get(flv.$syntax, 'green');

@@ -16,14 +16,14 @@ $clr-biography-headbar-contrast: ex-color.contrast($clr-biography-headbar);
 $clr-biography-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
 $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
 :root {
-     --clr-palettes-primary: #{ $clr-palettes-primary };
+     --clr-palettes-primary:   #{ $clr-palettes-primary };
      --clr-palettes-secondary: #{ $clr-palettes-secondary };
-     --clr-palettes-primary-contrast: #{ $clr-palettes-primary-contrast };
+     --clr-palettes-primary-contrast:   #{ $clr-palettes-primary-contrast };
      --clr-palettes-secondary-contrast: #{ $clr-palettes-secondary-contrast };
 }
 
 .about .profile .biography {
-     --clr-biography-headbar: #{ $clr-biography-headbar };
+     --clr-biography-headbar:          #{ $clr-biography-headbar };
      --clr-biography-headbar-contrast: #{ $clr-biography-headbar-contrast };
      --clr-biography-scrollbar-thumb: #{ $clr-biography-scrollbar-thumb };
      --clr-biography-scrollbar-track: #{ $clr-biography-scrollbar-track };

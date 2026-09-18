@@ -41,7 +41,7 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
      --clr-palettes-tertiary-contrast:   #{ $clr-palettes-tertiary-contrast };
      --clr-palettes-quaternary-contrast: #{ $clr-palettes-quaternary-contrast };
 
-     --clr-coverage-headbar: #{ $clr-coverage-headbar };
+     --clr-coverage-headbar:          #{ $clr-coverage-headbar };
      --clr-coverage-headbar-contrast: #{ $clr-coverage-headbar-contrast };
 }
 

@@ -1,7 +1,11 @@
 @use './modules/built-in/math.scss' as ex-math;
+@use './modules/built-in/color.scss' as ex-color;
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
+@use './modules/flavors.scss' as flv;
 @use './modules/structure.scss' as sct;
+@use 'sass:list';
+@use 'sass:map';
 @use 'sass:color';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
@@ -13,6 +17,42 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 
+$clr-palettes-primary: map.get(flv.$palettes, 'primary');
+$clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
+$clr-palettes-tertiary: map.get(flv.$palettes, 'tertiary');
+$clr-palettes-quaternary: map.get(flv.$palettes, 'quaternary');
+$clr-palettes-primary-shadow: map.get(flv.$palettes-shadow, 'primary');
+$clr-palettes-secondary-shadow: map.get(flv.$palettes-shadow, 'secondary');
+$clr-palettes-tertiary-shadow: map.get(flv.$palettes-shadow, 'tertiary');
+$clr-palettes-quaternary-shadow: map.get(flv.$palettes-shadow, 'quaternary');
+
+$clr-components-wallpaper: map.get(flv.$components, 'wallpaper');
+$clr-components-page: map.get(flv.$components, 'page');
+$clr-components-bento: map.get(flv.$components, 'bento');
+
+$clr-weblogs-captionbar: map.get(flv.$palettes, 'primary');
+$clr-weblogs-captionbar-grad-start: color.scale($clr-weblogs-captionbar, $lightness: -2%);
+$clr-weblogs-captionbar-grad-end: color.scale($clr-weblogs-captionbar, $saturation: -20%, $lightness: -20%);
+$clr-weblogs-captionbar-border: black;
+
+$clr-bluescreen: hsl(240deg, 96%, 20%);
+$clr-bluescreen-contrast: ex-color.contrast($clr-bluescreen);
+$clr-bluescreen-title: silver;
+:root {
+     --clr-palettes-primary:    #{ $clr-palettes-primary };
+     --clr-palettes-secondary:  #{ $clr-palettes-secondary };
+     --clr-palettes-tertiary:   #{ $clr-palettes-tertiary };
+     --clr-palettes-quaternary: #{ $clr-palettes-quaternary };
+     --clr-palettes-primary-shadow:    #{ $clr-palettes-primary-shadow };
+     --clr-palettes-secondary-shadow:  #{ $clr-palettes-secondary-shadow };
+     --clr-palettes-tertiary-shadow:   #{ $clr-palettes-tertiary-shadow };
+     --clr-palettes-quaternary-shadow: #{ $clr-palettes-quaternary-shadow };
+
+     --clr-components-wallpaper: #{ $clr-components-wallpaper };
+     --clr-components-page:      #{ $clr-components-page };
+     --clr-components-bento:     #{ $clr-components-bento };
+}
+
 body {
      display: grid;
      justify-content: center;
@@ -21,7 +61,7 @@ body {
      grid-template-areas: "flavory-sidebar flavory-blogs";
      gap: 5px;
      font-family: font.$standard-font;
-     background: plt.$flavor-wallpaper-color center / cover no-repeat fixed;
+     background: var(--clr-components-wallpaper) center / cover no-repeat fixed;
      background-image: url(../images/backgrounds/apartment.avif);
      background-blend-mode: color-burn;
      margin-block: 0.5cm;
@@ -46,8 +86,8 @@ body {
           ;
           grid-area: flavory-blogs;
           gap: 10px 15px;
-          background-color: plt.$flavor-content-color;
-          box-shadow: 5px 5px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
+          background-color: var(--clr-components-page);
+          box-shadow: 5px 5px 0px 0px var(--clr-palettes-quaternary-shadow);
           padding: 20px;
           @include sct.bentobox-grid;
           @include sct.bentobox-rendering;
@@ -77,12 +117,9 @@ body {
           height: 380px;
           @include sct.bentobox-grid(child-only);
 
-          $details-headbar-base-color: beige;
-          $details-headbar-bg-color: $details-headbar-base-color;
-          $details-headbar-txt-color: plt.color-contrast($details-headbar-base-color);
           .details {
                grid-area: coverage-details;
-               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-secondary-shadow);
                border-radius: 0px;
                padding: 8px;
           }
@@ -105,20 +142,20 @@ body {
           .details-extension .stylistic {
                grid-area: banner-stylistic;
                border-radius: 0px;
-               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-quaternary-shadow);
                padding: 5px;
           }
 
           .details-extension .questioning {
                grid-area: banner-questioning;
                border-radius: 0px;
-               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-primary-color, $alpha: 0.75);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-primary-shadow);
                padding: 5px;
           }
 
           .poster {
                grid-area: coverage-poster;
-               background: plt.$flavor-bento-color center / cover no-repeat scroll;
+               background: var(--clr-components-bento) center / cover no-repeat scroll;
                background-image: url('https://preview.redd.it/more-uncanny-feelings-in-my-photography-v0-7jgm0ul78i5h1.jpg?width=1080&crop=smart&auto=webp&s=890800af6260bd717c7edc76a3095687a749c220');
                position: relative;
           
@@ -152,7 +189,7 @@ body {
 
                &__flocci {
                     grid-area: gallery-flocci;
-                    background: plt.$flavor-bento-color left / cover no-repeat scroll;
+                    background: var(--clr-components-bento) left / cover no-repeat scroll;
                     background-image: url(../images/decorations/vapor.png);
                     image-rendering: smooth;
                }
@@ -160,7 +197,7 @@ body {
                &__dejavu {
                     filter: contrast(100%);
                     grid-area: gallery-dejavu;
-                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background: var(--clr-components-bento) center / cover no-repeat scroll;
                     background-image: url(../images/decorations/sprites/greenzone.png);
                     image-rendering: pixelated;
                     animation: contrasting 3s ease-in-out 0s infinite;
@@ -168,14 +205,14 @@ body {
 
                &__anemoia {
                     grid-area: gallery-anemoia;
-                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background: var(--clr-components-bento) center / cover no-repeat scroll;
                     background-image: url('https://preview.redd.it/the-place-i-grew-up-western-kansas-v0-tjco5q3lnvfh1.jpeg?width=1080&crop=smart&auto=webp&s=4d29488dd5dd37c50cacdea61680123f2dd3e925');
                     image-rendering: smooth;
                }
 
                &__monachopsis {
                     grid-area: gallery-monachopsis;
-                    background: plt.$flavor-bento-color 70% / cover no-repeat scroll;
+                    background: var(--clr-components-bento) 70% / cover no-repeat scroll;
                     background-image: url('https://preview.redd.it/japanese-countryside-v0-4i7x35aoo6xe1.jpeg?auto=webp&s=d866e3c7e0b6c3d630c8b25e736860460cd9259f');
                     image-rendering: smooth;
                }
@@ -222,14 +259,47 @@ body {
           }
      }
 
-     $weblogs-headbar-base-color: plt.$flavor-primary-color;
      .blogs .weblogs {
+          --clr-weblogs-captionbar:            #{ $clr-weblogs-captionbar };
+          --clr-weblogs-captionbar-border:     #{ $clr-weblogs-captionbar-border };
+          --clr-weblogs-captionbar-grad-start: #{ $clr-weblogs-captionbar-grad-start };
+          --clr-weblogs-captionbar-grad-end:   #{ $clr-weblogs-captionbar-grad-end };
           grid-area: blogs-weblogs;
-          @include sct.headbars($weblogs-headbar-base-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color, (
-               color.adjust($weblogs-headbar-base-color, $lightness: -2%),
-               color.adjust($weblogs-headbar-base-color, $saturation: -20%, $lightness: -20%)
-          ));
           @include sct.bentobox-grid(parent-ignore);
+
+          &__captionbar {
+               display: flex;
+               flex-direction: row;
+               column-gap: 3px;
+          }
+     
+          &__captiontitle {
+               font-family: 'Archivo';
+               font-size: 1.1rem;
+               font-weight: 900;
+               font-stretch: expanded;
+               text-transform: capitalize;
+               background: var(--clr-weblogs-captionbar);
+               background: linear-gradient(144deg, 
+                    var(--clr-weblogs-captionbar-grad-start) 5%, 
+                    var(--clr-weblogs-captionbar-grad-end) 95%
+               );
+               border: 2px solid var(--clr-weblogs-captionbar-border);
+               padding: 5px 10px;
+               width: 100%;
+          }
+     
+          &__captionblocks {
+               border: 2px solid var(--clr-weblogs-captionbar-border);
+               width: ex-math.midpoint(15px, 20px);
+               height: auto;
+
+               @for $blocks from 1 through 3 {
+                    &--palette-#{$blocks} {
+                         background-color: list.nth(map.values(map.remove(flv.$palettes, 'tertiary')), $blocks);
+                    }
+               }
+          }
      }
 
      .blogs .sundries {
@@ -256,20 +326,20 @@ body {
           .booklet .warning {
                grid-area: booklet-warning;
                border-radius: 0px;
-               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-tertiary-color, $alpha: 0.75);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-tertiary-shadow);
                padding: 5px;
           }
 
           .booklet .tripwire {
                grid-area: booklet-tripwire;
-               background: plt.$flavor-bento-color 65% / cover no-repeat scroll;
+               background: var(--clr-components-bento) 65% / cover no-repeat scroll;
                background-image: url('https://media1.tenor.com/m/ZSwhMgCRR0oAAAAd/tripwire-banjo.gif');
                image-rendering: smooth;
           }
 
           .booklet .picnic {
                grid-area: booklet-picnic;
-               background: plt.$flavor-bento-color center / cover no-repeat scroll;
+               background: var(--clr-components-bento) center / cover no-repeat scroll;
                background-image: url('https://preview.redd.it/picnic-now-or-else-v0-0i6uqmau06oh1.jpeg?width=1080&crop=smart&auto=webp&s=60363d0b942694a15dc4f217a4dbd809ea7abbaa');
                image-rendering: smooth;
           }
@@ -288,6 +358,9 @@ body {
           }
 
           .assemblage .bluescreen {
+               --clr-bluescreen:          #{ $clr-bluescreen };
+               --clr-bluescreen-contrast: #{ $clr-bluescreen-contrast };
+               --clr-bluescreen-title:    #{ $clr-bluescreen-title };
                -webkit-user-select: none;
                user-select: none;
                display: flex;
@@ -297,8 +370,8 @@ body {
                font-display: block;
                font-size: ex-math.midpoint(0.55rem, 0.60rem);
                text-align: justify;
-               color: plt.color-contrast(hsl(240deg, 96%, 20%));
-               background-color: hsl(240deg, 96%, 20%);
+               color: var(--clr-bluescreen-contrast);
+               background-color: var(--clr-bluescreen);
                padding: 8px;
           
                h3 {
@@ -306,12 +379,12 @@ body {
                     font-size: 0.7rem;
                     font-weight: 700;
                     text-align: center;
-                    color: hsl(240deg, 96%, 20%);
+                    color: var(--clr-bluescreen);
                     margin-bottom: 10px;
                }
           
-               h3 h3-text {
-                    background-color: silver;
+               h3 em {
+                    background-color: var(--clr-bluescreen-title);
                     padding: 1px 8px;
                }
           
@@ -336,7 +409,7 @@ body {
 
           .assemblage .tunnel {
                grid-area: assemblage-tunnel;
-               background: plt.$flavor-bento-color center / cover no-repeat scroll;
+               background: var(--clr-components-bento) center / cover no-repeat scroll;
                background-image: url('https://preview.redd.it/haafb182aooh1.jpeg?width=1080&crop=smart&auto=webp&s=37f1b2e830c6d1ce22129b78e50266aeef63f688');
                image-rendering: smooth;
           }

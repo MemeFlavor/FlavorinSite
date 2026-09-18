@@ -1,0 +1,57 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:color';
+
+/// Calculate the contrast ratio of text and background colors.
+/// I also stole this code from somewhere.
+/// @param {color} $color - The color to measure its contrast
+/// @param {color} $dark-color  [#000000] - The dark color to fallback to.
+/// @param {color} $light-color [#ffffff] - The light color to fallback to.
+/// @return The contrasting color, either white or black.
+@function contrast($color, $dark-color: #000000, $light-color: #ffffff) {
+     $rgb: color.to-space($color, rgb);
+     $r: color.channel($rgb, "red", $space: rgb);
+     $g: color.channel($rgb, "green", $space: rgb);
+     $b: color.channel($rgb, "blue", $space: rgb);
+
+     $brightness: calc((($r * 299) + ($g * 587) + ($b * 114)) / 1000);
+     @if ($brightness > 128) {
+          @return $dark-color;
+     } @else {
+          @return $light-color;
+     }
+}
+
+/// Calculates an average colors between each other accurately.
+/// This time I actually made this function by hand.
+/// @param {list} $colors - The colors given to get an accurate average value.
+/// @return The color space depends on the first argument itself.
+@function average($colors...) {
+     $channel-r: (); $channel-g: (); $channel-b: ();
+     @each $color-values in $colors {
+          $rgb: color.to-space($color-values, rgb);
+          $channel-r: list.append($channel-r, color.channel($rgb, "red",   $space: rgb), $separator: comma);
+          $channel-g: list.append($channel-g, color.channel($rgb, "green", $space: rgb), $separator: comma);
+          $channel-b: list.append($channel-b, color.channel($rgb, "blue",  $space: rgb), $separator: comma);
+     }
+
+     $channels: ('r': $channel-r, 'g': $channel-g, 'b': $channel-b);
+     $averages: ('r': 0, 'g': 0, 'b': 0);
+     @each $channel-name, $channel-values in $channels {
+          $channel-length: list.length($channel-values);
+          $channel-average: 0;
+          @for $i from 1 through $channel-length {
+               $v: list.nth($channel-values, $i);
+               $channel-average: $channel-average + math.pow($v, 2);
+
+               @if ($i == $channel-length) { // Performance reasons
+                    $calculation: math.round(math.sqrt(math.div($channel-average, 2)));
+                    $averages: map.set($averages, $channel-name, $calculation)
+               }
+          }
+     }
+
+     $color: rgb(map.values($averages)...);
+     @return color.to-space($color, color.space(list.nth($colors, 1)));
+}

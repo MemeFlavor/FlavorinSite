@@ -8,8 +8,10 @@
 
 $clr-palettes-primary:   map.get(flv.$palettes, 'primary');
 $clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
+$clr-palettes-quaternary: map.get(flv.$palettes, 'quaternary');
 $clr-palettes-primary-contrast:   map.get(flv.$palettes-contrast, 'primary');
 $clr-palettes-secondary-contrast: map.get(flv.$palettes-contrast, 'secondary');
+$clr-palettes-quaternary-contrast: map.get(flv.$palettes-contrast, 'quaternary');
 
 $clr-biography-headbar: beige;
 $clr-biography-headbar-contrast: ex-color.contrast($clr-biography-headbar);
@@ -204,5 +206,257 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
           line-height: normal;
           padding-inline: 3px;
           margin-block: 10px;
+     }
+}
+
+$manual-base-color: beige;
+$manual-headbar-base-color: $clr-palettes-secondary;
+$manual-content-height: 170px;
+.about .information .manual {
+     &__body {
+          background: $manual-base-color 50% -70px / 50% repeat-x local;
+          background-image: url(../../../images/decorations/manual/sidecover.png);
+          border: 2px solid black;
+          height: 100%;
+          padding: 5px 10px;
+     }
+
+     $title-base-color: hsl(240deg, 14%, 5%);
+     &__title {
+          display: flex;
+          align-items: center;
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 1.4rem;
+          font-weight: 900;
+          font-stretch: 120%;
+          text-transform: uppercase;
+          color: $title-base-color;
+          border: 2px solid $title-base-color;
+          height: fit-content;
+          padding: 0px 8px;
+          margin-bottom: 0.65cm;
+
+          &::before {
+               content: "";
+               display: inline-block;
+               background-color: currentColor;
+               border-radius: 360px;
+               width: 15px;
+               height: 15px;
+               margin-right: 3px;
+               margin-top: 1px;
+          }
+     }
+
+     &__navigation {
+          cursor: pointer;
+          font-size: 1rem;
+          outline: none;
+          background-color: black;
+          border: none;
+          border-radius: 360px;
+          position: absolute;
+          bottom: 8px;
+          width: 24px;
+          height: 24px;
+
+          &:hover {
+               background-color: $clr-palettes-primary;
+          }
+
+          &:active, &:focus-visible {
+               background-color: $clr-palettes-quaternary;
+          }
+
+          &::selection {
+               background-color: transparent;
+          }
+     }
+
+     &__navigation icon-wrap {
+          display: block;
+          position: relative;
+          top: -5px;
+          left: 5px;
+     }
+
+     &__navigation icon-text {
+          display: block;
+          line-height: 1;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+
+          @supports (text-box: inherit) {
+               text-box: trim-both cap text;
+          }
+     }
+
+     &__pages {
+          position: relative;
+
+          h2 {
+               display: flex;
+               align-items: center;
+               font-family: 'Zalando Sans', font.$standard-font;
+               font-size: 0.8rem;
+               font-weight: 650;
+               font-stretch: semi-condensed;
+               text-transform: uppercase;
+               color: white;
+               background-color: black;
+               padding: 3px 5px;
+
+               &::before {
+                    content: "\2605";
+                    margin-right: 3px;
+               }
+          }
+
+          p {
+               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+               font-size: 0.65rem;
+               font-weight: bolder;
+               text-align: start;
+               text-wrap: pretty;
+               text-rendering: optimizeSpeed;
+               line-height: normal;
+               color: black;
+               margin-block: 3px;
+          }
+     }
+
+     .biography {
+          display: grid;
+          grid-template-columns: auto 100px;
+          grid-template-rows: auto auto;
+          grid-template-areas:
+               "biography-desc biography-category"
+               "biography-rewrite biography-category"
+          ;
+          gap: 10px;
+          margin-top: 3px;
+     
+          &__desc {
+               grid-area: biography-desc;
+          }
+     
+          &__rewrite {
+               -webkit-user-select: none;
+               user-select: none;
+               place-self: center;
+               grid-area: biography-rewrite;
+               image-rendering: pixelated;
+               margin-bottom: 8px;
+          }
+     
+          &__category {
+               grid-area: biography-category;
+               outline: none;
+               overflow-y: auto;
+               scrollbar-width: none;
+               height: $manual-content-height;
+     
+               &:focus-visible {
+                    background: color.adjust($manual-base-color, $saturation: -20%, $lightness: -15%);
+               }
+          }
+     
+          &__category-item {
+               margin-block: 5px;
+     
+               &:first-child {
+                    margin-top: 0px
+               }
+          }
+     
+          $category-type-base-color: $clr-palettes-primary;
+          $category-type-bg-color: $category-type-base-color;
+          $category-type-txt-color: ex-color.contrast($category-type-base-color);
+          &__category-type {
+               display: block;
+               font-family: 'Zalando Sans', font.$standard-font;
+               font-size: 0.7rem;
+               font-weight: 650;
+               font-stretch: semi-condensed;
+               text-transform: capitalize;
+               text-align: center;
+               color: $category-type-txt-color;
+               background-color: $category-type-bg-color;
+               padding: 3px 5px;
+               margin: 0;
+          }
+     
+          &__category-info {
+               font-weight: bolder;
+               font-style: italic;
+               text-align: start;
+          }
+     }
+
+     .facts {
+     display: grid;
+          grid-template-columns: 78px auto;
+          grid-template-rows: auto;
+          gap: 10px;
+          margin-top: 3px;
+     
+          &__factpad {
+               display: flex;
+               flex-direction: column;
+          }
+     
+          $factpad-title-base-color: $clr-palettes-primary;
+          $factpad-title-bg-color: $factpad-title-base-color;
+          $factpad-title-txt-color: ex-color.contrast($factpad-title-base-color);
+          &__factpad-title {
+               font-family: 'Archivo', font.$standard-font;
+               font-size: 0.95rem;
+               font-weight: 800;
+               font-stretch: semi-condensed;
+               text-align: center;
+               text-transform: uppercase;
+               color: $factpad-title-txt-color;
+               background-color: $factpad-title-bg-color;
+               padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
+          }
+     
+          &__factpad-freedom {
+               -webkit-user-select: none;
+               user-select: none;
+               image-rendering: pixelated;
+          }
+     
+          &__factpad-desc {
+               font-family: 'MS Pixel Serif', font.$standard-font;
+               font-size: 0.55rem;
+               font-weight: normal;
+               padding-inline: 3px;
+          }
+     
+          $list-scrollbar-base-color: $manual-base-color;
+          $list-scrollbar-track: transparent;
+          $list-scrollbar-thumb: color.scale($list-scrollbar-base-color, $saturation: -25%, $lightness: -20%);
+          $list-scrollbar-thumb-focus: color.scale($list-scrollbar-base-color, $saturation: -40%, $lightness: -35%);
+          &__list {
+               display: flex;
+               flex-direction: column;
+               row-gap: 3px;
+               list-style-type: disc;
+               outline: none;
+               overflow: hidden auto;
+               height: $manual-content-height;
+               padding-left: 15px;
+               @include sct.scrollbar($list-scrollbar-track, $list-scrollbar-thumb, $list-scrollbar-thumb-focus);
+          }
+     
+          &__item {
+               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+               font-size: ex-math.midpoint(0.65rem, 0.70rem);
+               font-weight: bolder;
+               text-align: start;
+               text-wrap: stable;
+               color: black;
+          }
      }
 }

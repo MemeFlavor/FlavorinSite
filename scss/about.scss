@@ -1,9 +1,12 @@
 @use './modules/built-in/math.scss' as ex-math;
+@use './modules/built-in/color.scss' as ex-color;
 @use './modules/fonts.scss' as font;
 @use './modules/palletes.scss' as plt;
+@use './modules/flavors.scss' as flv;
 @use './modules/structure.scss' as sct;
-@use 'sass:color';
 @use 'sass:list';
+@use 'sass:map';
+@use 'sass:color';
 
 @include font.font-face-var('Archivo', 100 900, 62% 125%, normal, 1, font.$font-source-variable);
 @include font.font-face-var('Zalando Sans', 200 900, 75% 125%, normal, 1, font.$font-source-variable);
@@ -14,6 +17,60 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
+$clr-palettes-primary: map.get(flv.$palettes, 'primary');
+$clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
+$clr-palettes-secondary-shadow: map.get(flv.$palettes-shadow, 'secondary');
+$clr-palettes-tertiary: map.get(flv.$palettes, 'tertiary');
+$clr-palettes-quaternary: map.get(flv.$palettes, 'quaternary');
+
+$clr-components-wallpaper: map.get(flv.$components, 'wallpaper');
+$clr-components-page: map.get(flv.$components, 'page');
+$clr-components-bento: map.get(flv.$components, 'bento');
+$clr-components-gridline: map.get(flv.$components, 'gridline');
+
+$clr-header-banner-domain: $clr-palettes-primary;
+$clr-header-banner-domain-contrast: ex-color.contrast($clr-header-banner-domain);
+$clr-header-banner-domain-selection: black;
+$clr-header-banner-year: $clr-palettes-secondary;
+$clr-header-banner-year-contrast: ex-color.contrast($clr-header-banner-year);
+
+$clr-manual-captionbar: $clr-palettes-secondary;
+$clr-manual-captionbar-grad-start: color.scale($clr-manual-captionbar, $lightness: -35%);
+$clr-manual-captionbar-grad-end: color.scale($clr-manual-captionbar, $lightness: -65%);
+$clr-manual-captionbar-border: black;
+$clr-manual-captionbar-block: $clr-palettes-secondary, $clr-palettes-primary, $clr-palettes-quaternary;
+
+$clr-interests-captionbar: $clr-palettes-primary;
+$clr-interests-captionbar-grad-start: color.scale($clr-interests-captionbar, $lightness: -2%);
+$clr-interests-captionbar-grad-end: color.scale($clr-interests-captionbar, $saturation: -20%, $lightness: -20%);
+$clr-interests-captionbar-border: black;
+$clr-interests-captionbar-block: $clr-palettes-primary, $clr-palettes-secondary, $clr-palettes-quaternary;
+$clr-interests-title: hsl(240deg, 65%, 38%);
+$clr-interests-title-s35-l24: color.adjust($clr-interests-title, $saturation: 35%, $lightness: 24%);
+$clr-interests-title-ln2: color.adjust($clr-interests-title, $lightness: -2%);
+$clr-interests-title-l7: color.adjust($clr-interests-title, $lightness: 7%);
+$clr-interests-title-ln13: color.adjust($clr-interests-title, $lightness: -13%);
+$clr-interests-title-shadow: black;
+$clr-interests-title-border: color.adjust($clr-interests-title, $hue: -13, $saturation: 2%, $lightness: -28%);
+$clr-interests-catalog: hsl(255deg, 5%, 17%);
+$clr-interests-catalog-border: black;
+$clr-interests-catalog-list-scrollbar-thumb: color.scale($clr-interests-catalog, $saturation: -10%, $lightness: 20%);
+$clr-interests-catalog-list-scrollbar-track: hsl(0deg, 0%, 0%, 0.5);
+
+$clr-debugmode: hsl(230deg, 100%, 42%);
+:root {
+     --clr-palettes-primary: #{ $clr-palettes-primary };
+     --clr-palettes-secondary: #{ $clr-palettes-secondary };
+     --clr-palettes-secondary-shadow: #{ $clr-palettes-secondary-shadow };
+     --clr-palettes-tertiary: #{ $clr-palettes-tertiary };
+     --clr-palettes-quaternary: #{ $clr-palettes-quaternary };
+
+     --clr-components-wallpaper: #{ $clr-components-wallpaper };
+     --clr-components-page: #{ $clr-components-page };
+     --clr-components-bento: #{ $clr-components-bento };
+     --clr-components-gridline: #{ $clr-components-gridline };
+}
+
 body {
      display: grid;
      justify-content: center;
@@ -22,7 +79,7 @@ body {
      grid-template-areas: "flavory-sidebar flavory-about";
      gap: 5px;
      font-family: font.$standard-font;
-     background: plt.$flavor-wallpaper-color center / cover no-repeat fixed;
+     background: var(--clr-components-wallpaper) center / cover no-repeat fixed;
      background-image: url(../images/backgrounds/locker.avif);
      background-blend-mode: color-burn;
      margin-block: 0.5cm;
@@ -47,9 +104,10 @@ body {
           ;
           grid-area: flavory-about;
           gap: 10px 15px;
-          background-color: plt.$flavor-content-color;
-          box-shadow: 5px 5px 0px 0px color.change(plt.$flavor-secondary-color, $alpha: 0.75);
+          background-color: var(--clr-components-page);
+          box-shadow: 5px 5px 0px 0px var(--clr-palettes-secondary-shadow);
           padding: 20px;
+          @include sct.bentobox-grid(child-ignore);
           @include sct.bentobox-rendering;
 
           @media screen and (width <= 1305px) {
@@ -77,6 +135,12 @@ body {
           gap: 10px;
 
           .header {
+               --clr-header-banner-domain:           #{ $clr-header-banner-domain };
+               --clr-header-banner-domain-contrast:  #{ $clr-header-banner-domain-contrast };
+               --clr-header-banner-domain-selection: #{ $clr-header-banner-domain-selection };
+               --clr-header-banner-year:          #{ $clr-header-banner-year };
+               --clr-header-banner-year-contrast: #{ $clr-header-banner-year-contrast };
+               --ani-header-banner-title: none;
                display: grid;
                grid-template-columns: 1fr 90px;
                grid-template-rows: 90px;
@@ -84,7 +148,6 @@ body {
                gap: 10px;
                @include sct.bentobox-grid;
 
-               $banner-bg-color: plt.$flavor-gridline-color;
                &__banner {
                     display: grid;
                     grid-template-columns: auto 1fr;
@@ -94,7 +157,7 @@ body {
                          "banner-title banner-year"
                     ;
                     gap: 0px 15px;
-                    background: $banner-bg-color 35% / 180% no-repeat local;
+                    background: var(--clr-components-gridline) 35% / 180% no-repeat local;
                     background-image: url(../images/backgrounds/grids.avif);
                     background-blend-mode: color-burn;
                     position: relative;
@@ -102,21 +165,18 @@ body {
                     padding: 8px;
 
                     @media (prefers-reduced-transparency: reduce) {
-                         background-color: color.change($banner-bg-color, $alpha: 0.3);
+                         --clr-components-gridline: #{ color.change($clr-components-gridline, $alpha: 0.3) };
                     }
                }
 
-               $banner-domain-base-color: plt.$flavor-primary-color;
-               $banner-domain-bg-color: $banner-domain-base-color;
-               $banner-domain-text-color: plt.color-contrast($banner-domain-base-color);
                &__banner-domain {
                     grid-area: banner-domain;
                     font-family: 'Archivo', font.$standard-font;
                     font-size: 0.7rem;
                     font-weight: 900;
                     font-stretch: ultra-expanded;
-                    color: $banner-domain-text-color;
-                    background-color: $banner-domain-bg-color;
+                    color: var(--clr-header-banner-domain-contrast);
+                    background-color: var(--clr-header-banner-domain);
                     width: fit-content;
                     height: fit-content;
                     position: relative;
@@ -124,7 +184,7 @@ body {
                     margin-left: 8px;
 
                     &::selection {
-                         color: black;
+                         color: var(--clr-header-banner-domain-selection);
                          background-color: transparent;
                     }
 
@@ -140,7 +200,6 @@ body {
                }
 
                &__banner-title {
-                    --banner-title-animation: none;
                     display: grid;
                     align-self: flex-end;
                     grid-template-columns: auto 1fr;
@@ -148,17 +207,17 @@ body {
                     grid-area: banner-title;
 
                     &:hover {
-                         --banner-title-animation: bouncing 0.5s cubic-bezier(0.45, 0, 0.55, 1) infinite normal none;
+                         --ani-header-banner-title: bouncing 0.5s cubic-bezier(0.45, 0, 0.55, 1) infinite normal none;
                     }
 
                     @media (prefers-reduced-motion: reduce) {
-                         --banner-title-animation: none;
+                         --ani-header-banner-title: none;
                     }
                }
 
                &__banner-title bby-char {
                     display: inline-block;
-                    animation: var(--banner-title-animation);
+                    animation: var(--ani-header-banner-title);
 
                     @for $chars from 1 through 6 { // due to broswer support, I can't use sibling-index for shit
                          &:nth-child(#{$chars}) {
@@ -197,9 +256,6 @@ body {
                     margin-left: auto;
                }
 
-               $banner-year-special-base-color: plt.$flavor-secondary-color;
-               $banner-year-special-bg-color: $banner-year-special-base-color;
-               $banner-year-special-txt-color: plt.color-contrast($banner-year-special-base-color);
                &__banner-year year-num {
                     display: block;
                     font-family: 'Archivo';
@@ -210,8 +266,8 @@ body {
                     padding-inline: 3px;
 
                     &:nth-last-child(1) {
-                         color: $banner-year-special-txt-color;
-                         background-color: $banner-year-special-bg-color;
+                         color: var(--clr-header-banner-year-contrast);
+                         background-color: var(--clr-header-banner-year);
                     }
                }
 
@@ -223,7 +279,7 @@ body {
                }
 
                &__sonic {
-                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background: var(--clr-components-bento) center / cover no-repeat scroll;
                     background-image: url(../images/decorations/x17_dance.gif);
                }
 
@@ -344,7 +400,7 @@ body {
 
                &__vending {
                     grid-area: account-vending;
-                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background: var(--clr-components-bento) center / cover no-repeat scroll;
                     background-image: url('https://preview.redd.it/vending-machine-in-japan-that-i-shot-with-nintendo-3ds-v0-ollf4zfqrihg1.jpeg?auto=webp&s=fc92656a5ff728645111d9577b24e4d64c9e1fb6');
                     image-rendering: smooth;
                }
@@ -352,7 +408,7 @@ body {
 
           .autobiography {
                grid-area: profile-autobiography;
-               background-color: plt.$flavor-bento-color;
+               background-color: var(--clr-components-bento);
                box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
                padding: 8px;
           }
@@ -368,7 +424,7 @@ body {
                &__unseen {
                     -webkit-user-select: none;
                     user-select: none;
-                    background: plt.$flavor-bento-color center 25% / 100% no-repeat scroll;
+                    background: var(--clr-components-bento) center 25% / 100% no-repeat scroll;
                     background-image: url('https://i.kym-cdn.com/photos/images/original/003/171/650/073.jpeg');
                     animation: windy-sway 10s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
                     position: relative;
@@ -417,18 +473,49 @@ body {
           grid-area: about-information;
           gap: 10px;
 
-          $manual-base-color: beige;
-          $manual-headbar-base-color: plt.$flavor-secondary-color;
-          $manual-content-height: 170px;
           .manual {
+               --clr-manual-captionbar: #{ $clr-manual-captionbar };
+               --clr-manual-captionbar-grad-start: #{ $clr-manual-captionbar-grad-start };
+               --clr-manual-captionbar-grad-end:   #{ $clr-manual-captionbar-grad-end };
+               --clr-manual-captionbar-border:     #{ $clr-manual-captionbar-border };
                display: flex;
                flex-direction: column;
                row-gap: 5px;
                position: relative;
-               @include sct.headbars($manual-headbar-base-color, plt.$flavor-primary-color, plt.$flavor-quaternary-color, (
-                    color.adjust($manual-headbar-base-color, $lightness: -20%),
-                    color.adjust($manual-headbar-base-color, $lightness: -40%)
-               ));
+
+               &__captionbar {
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 3px;
+               }
+          
+               &__captiontitle {
+                    font-family: 'Archivo';
+                    font-size: 1.1rem;
+                    font-weight: 900;
+                    font-stretch: expanded;
+                    text-transform: capitalize;
+                    background: var(--clr-manual-captionbar);
+                    background: linear-gradient(144deg,
+                         var(--clr-manual-captionbar-grad-start) 5%,
+                         var(--clr-manual-captionbar-grad-end) 95%
+                    );
+                    border: 2px solid var(--clr-manual-captionbar-border);
+                    padding: 5px 10px;
+                    width: 100%;
+               }
+          
+               &__captionblocks {
+                    border: 2px solid var(--clr-manual-captionbar-border);
+                    width: ex-math.midpoint(15px, 20px);
+                    height: auto;
+          
+                    @for $blocks from 1 through 3 {
+                         &--palette-#{$blocks} {
+                              background-color: list.nth($clr-manual-captionbar-block, $blocks);
+                         }
+                    }
+               }
           }
 
           .gallery {
@@ -443,12 +530,13 @@ body {
                @include sct.bentobox-grid;
 
                &__debugmode {
+                    --clr-debugmode: #{ $clr-debugmode };
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                     justify-content: center;
                     grid-area: gallery-debugmode;
-                    background: hsl(230deg, 100%, 42%) center top / cover no-repeat scroll;
+                    background: var(--clr-debugmode) center top / cover no-repeat scroll;
                     background-image: url(../images/decorations/sprites/debugs/bg.gif);
                     image-rendering: pixelated;
                     animation: switch-a-roo 20s linear 0s infinite alternate both;
@@ -465,14 +553,14 @@ body {
 
                &__displacement {
                     grid-area: gallery-displacement;
-                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background: var(--clr-components-bento) center / cover no-repeat scroll;
                     background-image: url('https://preview.redd.it/photographs-by-mads-peter-iversen-v0-769lmlbz9dgh1.jpg?width=1080&crop=smart&auto=webp&s=2dbef028941ae17ca7d0395b6aedc91171686ddd');
                     image-rendering: smooth;
                }
 
                &__halls {
                     grid-area: gallery-halls;
-                    background: plt.$flavor-bento-color center / cover no-repeat scroll;
+                    background: var(--clr-components-bento) center / cover no-repeat scroll;
                     background-image: url('https://i.kym-cdn.com/photos/images/original/002/933/366/2f4.jpg');
                     image-rendering: smooth;
                }
@@ -484,13 +572,57 @@ body {
           }
      }
 
-     $interests-headbar-base-color: plt.$flavor-primary-color;
      .about .interests {
+          --clr-interests-captionbar:            #{ $clr-interests-captionbar };
+          --clr-interests-captionbar-grad-start: #{ $clr-interests-captionbar-grad-start };
+          --clr-interests-captionbar-grad-end:   #{ $clr-interests-captionbar-grad-end };
+          --clr-interests-captionbar-border:     #{ $clr-interests-captionbar-border };
+          --clr-interests-title:         #{ $clr-interests-title };
+          --clr-interests-title-s35-l24: #{ $clr-interests-title-s35-l24 };
+          --clr-interests-title-ln2:     #{ $clr-interests-title-ln2 };
+          --clr-interests-title-l7:      #{ $clr-interests-title-l7 };
+          --clr-interests-title-ln13:    #{ $clr-interests-title-ln13 };
+          --clr-interests-title-shadow:  #{ $clr-interests-title-shadow };
+          --clr-interests-title-border:  #{ $clr-interests-title-border };
+          --clr-interests-catalog:        #{ $clr-interests-catalog };
+          --clr-interests-catalog-border: #{ $clr-interests-catalog-border };
+          --clr-interests-catalog-list-scrollbar-thumb: #{ $clr-interests-catalog-list-scrollbar-thumb };
+          --clr-interests-catalog-list-scrollbar-track: #{ $clr-interests-catalog-list-scrollbar-track };
           grid-area: about-interests;
-          @include sct.headbars($interests-headbar-base-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color, (
-               color.adjust($interests-headbar-base-color, $lightness: -2%),
-               color.adjust($interests-headbar-base-color, $saturation: -20%, $lightness: -20%)
-          ));
+
+          &__captionbar {
+               display: flex;
+               flex-direction: row;
+               column-gap: 3px;
+          }
+     
+          &__captiontitle {
+               font-family: 'Archivo';
+               font-size: 1.1rem;
+               font-weight: 900;
+               font-stretch: expanded;
+               text-transform: capitalize;
+               background: var(--clr-interests-captionbar);
+               background: linear-gradient(144deg,
+                    var(--clr-interests-captionbar-grad-start) 5%,
+                    var(--clr-interests-captionbar-grad-end) 95%
+               );
+               border: 2px solid var(--clr-interests-captionbar-border);
+               padding: 5px 10px;
+               width: 100%;
+          }
+     
+          &__captionblocks {
+               border: 2px solid var(--clr-interests-captionbar-border);
+               width: ex-math.midpoint(15px, 20px);
+               height: auto;
+     
+               @for $blocks from 1 through 3 {
+                    &--palette-#{$blocks} {
+                         background-color: list.nth($clr-interests-captionbar-block, $blocks);
+                    }
+               }
+          }
 
           &__inventory {
                table-layout: fixed;
@@ -506,7 +638,6 @@ body {
                margin-block: 3px;
           }
 
-          $title-base-color: hsl(240deg, 65%, 38%);
           &__title {
                display: flex;
                flex-direction: column;
@@ -514,26 +645,21 @@ body {
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: 1.15rem;
                font-weight: bolder;
-               text-shadow: 2px 2px 0px black;
-               background:
-                    linear-gradient(180deg,
-                         $title-base-color 1%,
-                         color.adjust($title-base-color, $saturation: 35%, $lightness: 24%) 4%,
-                         color.adjust($title-base-color, $saturation: 35%, $lightness: 24%) 5%,
-                         $title-base-color 10%,
-                         $title-base-color 30%,
-                         color.adjust($title-base-color, $lightness: -2%) 55%,
-                         color.adjust($title-base-color, $lightness: 7%) 85%,
-                         color.adjust($title-base-color, $lightness: -13%) 95%
-                    );
-               border: 2px solid color.adjust($title-base-color, $hue: -13, $saturation: 2%, $lightness: -28%);
+               text-shadow: 2px 2px 0px var(--clr-interests-title-shadow);
+               background: linear-gradient(180deg,
+                    var(--clr-interests-title) 1%,
+                    var(--clr-interests-title-s35-l24) 4%,
+                    var(--clr-interests-title-s35-l24) 5%,
+                    var(--clr-interests-title) 10%,
+                    var(--clr-interests-title) 30%,
+                    var(--clr-interests-title-ln2) 55%,
+                    var(--clr-interests-title-l7) 85%,
+                    var(--clr-interests-title-ln13) 95%
+               );
+               border: 2px solid var(--clr-interests-title-border);
                border-top-left-radius: 5px;
                border-bottom-left-radius: 5px;
                padding: 3px 8px;
-
-               & > *::selection {
-                    background-color: black;
-               }
           }
 
           &__title-latin {
@@ -545,29 +671,45 @@ body {
                font-size: 0.6rem;
           }
 
-          $catalog-base-color: hsl(255deg, 5%, 17%);
           &__catalog {
                font-family: 'Candy Beans', font.$standard-font;
                font-size: 0.85rem;
                line-height: 1.4;
-               background-color: $catalog-base-color;
-               border: 2px solid black;
+               background-color: var(--clr-interests-catalog);
+               border: 2px solid var(--clr-interests-catalog-border);
 
                &:not(:lang(en)) {
                     line-height: normal;
                }
           }
 
-          $catalog-list-scrollbar-track: hsl(0deg, 0%, 0%, 0.5);
-          $catalog-list-scrollbar-thumb: color.scale($catalog-base-color, $saturation: -10%, $lightness: 20%);
-          $catalog-list-scrollbar-thumb-focus: color.scale($catalog-base-color, $saturation: -10%, $lightness: 35%);
           &__catalog-list {
+               --clr-scrollbar-thumb: var(--clr-interests-catalog-list-scrollbar-thumb);
+               --clr-scrollbar-track: var(--clr-interests-catalog-list-scrollbar-track);
                display: block;
                outline: none;
                overflow-y: scroll;
+               scrollbar-width: thin;
+               scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
                height: 1.7cm;
                padding: 5px 8px;
-               @include sct.scrollbar($catalog-list-scrollbar-track, $catalog-list-scrollbar-thumb, $catalog-list-scrollbar-thumb-focus);
+
+               &:focus-visible {
+                    --clr-scrollbar-thumb: #{ color.scale($clr-interests-catalog-list-scrollbar-thumb, $saturation: -10%, $lightness: 35%) };
+               }
+          
+               &::-webkit-scrollbar {
+                    width: 6px;
+               }
+          
+               &::-webkit-scrollbar-track {
+                    background: var(--clr-scrollbar-track);
+               }
+          
+               &::-webkit-scrollbar-thumb {
+                    background: var(--clr-scrollbar-thumb);
+                    border-radius: 4px;
+               }
           }
      }
 }

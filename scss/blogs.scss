@@ -30,10 +30,11 @@ $clr-components-wallpaper: map.get(flv.$components, 'wallpaper');
 $clr-components-page: map.get(flv.$components, 'page');
 $clr-components-bento: map.get(flv.$components, 'bento');
 
-$clr-weblogs-captionbar: map.get(flv.$palettes, 'primary');
+$clr-weblogs-captionbar: $clr-palettes-primary;
 $clr-weblogs-captionbar-grad-start: color.scale($clr-weblogs-captionbar, $lightness: -2%);
 $clr-weblogs-captionbar-grad-end: color.scale($clr-weblogs-captionbar, $saturation: -20%, $lightness: -20%);
 $clr-weblogs-captionbar-border: black;
+$clr-weblogs-captionbar-block: $clr-palettes-primary, $clr-palettes-secondary, $clr-palettes-quaternary;
 
 $clr-bluescreen: hsl(240deg, 96%, 20%);
 $clr-bluescreen-contrast: ex-color.contrast($clr-bluescreen);
@@ -248,7 +249,6 @@ body {
                @media (prefers-reduced-motion: reduce) {
                     &__emulator-sonic {
                          opacity: 0;
-                         content-visibility: hidden;
                     }
                }
 
@@ -261,9 +261,9 @@ body {
 
      .blogs .weblogs {
           --clr-weblogs-captionbar:            #{ $clr-weblogs-captionbar };
-          --clr-weblogs-captionbar-border:     #{ $clr-weblogs-captionbar-border };
           --clr-weblogs-captionbar-grad-start: #{ $clr-weblogs-captionbar-grad-start };
           --clr-weblogs-captionbar-grad-end:   #{ $clr-weblogs-captionbar-grad-end };
+          --clr-weblogs-captionbar-border:     #{ $clr-weblogs-captionbar-border };
           grid-area: blogs-weblogs;
           @include sct.bentobox-grid(parent-ignore);
 
@@ -296,7 +296,7 @@ body {
 
                @for $blocks from 1 through 3 {
                     &--palette-#{$blocks} {
-                         background-color: list.nth(map.values(map.remove(flv.$palettes, 'tertiary')), $blocks);
+                         background-color: list.nth($clr-weblogs-captionbar-block, $blocks);
                     }
                }
           }

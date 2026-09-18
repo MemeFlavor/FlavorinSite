@@ -15,13 +15,14 @@ $clr-biography-headbar: beige;
 $clr-biography-headbar-contrast: ex-color.contrast($clr-biography-headbar);
 $clr-biography-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
 $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
-
-.about .profile .biography {
+:root {
      --clr-palettes-primary: #{ $clr-palettes-primary };
      --clr-palettes-secondary: #{ $clr-palettes-secondary };
      --clr-palettes-primary-contrast: #{ $clr-palettes-primary-contrast };
      --clr-palettes-secondary-contrast: #{ $clr-palettes-secondary-contrast };
+}
 
+.about .profile .biography {
      --clr-biography-headbar: #{ $clr-biography-headbar };
      --clr-biography-headbar-contrast: #{ $clr-biography-headbar-contrast };
      --clr-biography-scrollbar-thumb: #{ $clr-biography-scrollbar-thumb };
@@ -74,29 +75,29 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
           background-color: var(--clr-biography-headbar);
           height: 10px;
 
-          &--pallete-1 {
+          &--palette-1 {
                flex-grow: 2;
                background-color: var(--clr-palettes-primary);
           }
 
-          &--pallete-2 {
+          &--palette-2 {
                flex-grow: 1;
                background-color: var(--clr-palettes-secondary);
           }
      }
 
      &__body {
-          --color-scrollbar-thumb: var(--clr-biography-scrollbar-thumb);
-          --color-scrollbar-track: var(--clr-biography-scrollbar-track);
+          --clr-scrollbar-thumb: var(--clr-biography-scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-biography-scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 275px;
           scrollbar-width: thin;
-          scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+          scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --color-scrollbar-thumb: #{ color.adjust($clr-biography-scrollbar-thumb, $lightness: 13%) };
+               --clr-scrollbar-thumb: #{ color.adjust($clr-biography-scrollbar-thumb, $lightness: 13%) };
           }
           
           &::-webkit-scrollbar {
@@ -104,11 +105,11 @@ $clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
           }
           
           &::-webkit-scrollbar-track {
-               background: var(--color-scrollbar-track);
+               background: var(--clr-scrollbar-track);
           }
           
           &::-webkit-scrollbar-thumb {
-               background: var(--color-scrollbar-thumb);
+               background: var(--clr-scrollbar-thumb);
                border-radius: 4px;
           }
 

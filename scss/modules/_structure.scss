@@ -4,13 +4,13 @@
 /* Structure & Adjustments Methods  */
 
 /// Shorthand for creating fancy headbars.
-/// @param {color} $primary   - The primary pallete.
-/// @param {color} $secondary - The secondary pallete.
-/// @param {color} $tertiary  - The tertiary pallete.
+/// @param {color} $primary   - The primary palette.
+/// @param {color} $secondary - The secondary palette.
+/// @param {color} $tertiary  - The tertiary palette.
 /// @param {list}  $gradients - The starting and ending gradient colors.
 /// @output Fancy headbars, amazing right?
 @mixin headbars($primary, $secondary, $tertiary, $gradients) {
-     $headbar-palletes: $primary, $secondary, $tertiary;
+     $headbar-palettes: $primary, $secondary, $tertiary;
      $headbar-gradient-start: list.nth($gradients, 1) 5%;
      $headbar-gradient-end: list.nth($gradients, 2) 95%;
 
@@ -37,9 +37,9 @@
           width: calc((15px + 20px) / 2);
           height: auto;
 
-          @for $pallete-index from 1 through 3 {
-               &--pallete-#{$pallete-index} {
-                    background-color: list.nth($headbar-palletes, $pallete-index);
+          @for $palette-index from 1 through 3 {
+               &--palette-#{$palette-index} {
+                    background-color: list.nth($headbar-palettes, $palette-index);
                }
           }
      }

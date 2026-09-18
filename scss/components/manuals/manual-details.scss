@@ -1,45 +1,59 @@
 @use '../../modules/built-in/math.scss' as ex-math;
+@use '../../modules/built-in/color.scss' as ex-color;
 @use '../../modules/fonts.scss' as font;
-@use '../../modules/palletes.scss' as plt;
+@use '../../modules/flavors.scss' as flv;
 @use '../../modules/structure.scss' as sct;
 @use 'sass:list';
+@use 'sass:map';
 @use 'sass:color';
 
-$color-palletes-primary: plt.$flavor-primary-color;
-$color-palletes-secondary: plt.$flavor-secondary-color;
-$color-palletes-tertiary: plt.$flavor-tertiary-color;
-$color-palletes-quaternary: plt.$flavor-quaternary-color;
-$color-palletes-primary-contrast: plt.color-contrast(plt.$flavor-primary-color);
-$color-palletes-secondary-contrast: plt.color-contrast(plt.$flavor-secondary-color);
-$color-palletes-tertiary-contrast: plt.color-contrast(plt.$flavor-tertiary-color);
-$color-palletes-quaternary-contrast: plt.color-contrast(plt.$flavor-quaternary-color);
+$clr-palettes-primary: map.get(flv.$palettes, 'primary');
+$clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
+$clr-palettes-tertiary: map.get(flv.$palettes, 'tertiary');
+$clr-palettes-quaternary: map.get(flv.$palettes, 'quaternary');
+$clr-palettes-primary-contrast: map.get(flv.$palettes-contrast, 'primary');
+$clr-palettes-secondary-contrast: map.get(flv.$palettes-contrast, 'secondary');
+$clr-palettes-tertiary-contrast: map.get(flv.$palettes-contrast, 'tertiary');
+$clr-palettes-quaternary-contrast: map.get(flv.$palettes-contrast, 'quaternary');
 
-$color-details-headbar-base: beige;
-$color-details-headbar-text-select: plt.color-contrast($color-details-headbar-base);
+$clr-coverage-headbar: beige;
+$clr-coverage-headbar-contrast: ex-color.contrast($clr-coverage-headbar);
 
-$color-details-psuedocode-title: plt.$flavor-quaternary-color;
-$color-details-psuedocode-red: plt.$flavor-code-red;
-$color-details-psuedocode-blue: plt.$flavor-code-blue;
-$color-details-psuedocode-green: plt.$flavor-code-green;
-$color-details-psuedocode-yellow: plt.$flavor-code-yellow;
+$clr-details-psuedocode-title: map.get(flv.$palettes, 'quaternary');
+$clr-details-psuedocode-red: map.get(flv.$syntax, 'red');
+$clr-details-psuedocode-blue: map.get(flv.$syntax, 'blue');
+$clr-details-psuedocode-green: map.get(flv.$syntax, 'green');
+$clr-details-psuedocode-yellow: map.get(flv.$syntax, 'yellow');
+$clr-details-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
+$clr-details-scrollbar-track: map.get(flv.$scrollbar, 'track');
 
-$color-details-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
-$color-details-scrollbar-track-base: plt.$flavor-scrollbar-track;
-
-$color-warning-headbar-base: color.adjust($color-palletes-tertiary, $hue: -10deg, $saturation: -20%);
-$color-warning-headbar-text-select: plt.color-contrast($color-warning-headbar-base);
-
-$color-warning-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
-$color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
-
+$clr-warning-headbar: color.adjust($clr-palettes-tertiary, $hue: -10deg, $saturation: -20%);
+$clr-warning-headbar-contrast: ex-color.contrast($clr-warning-headbar);
+$clr-warning-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
+$clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
 :root {
-     --color-details-scrollbar-thumb-base: #{ $color-details-scrollbar-thumb-base };
-     --color-details-scrollbar-track-base: #{ $color-details-scrollbar-track-base };
-     --color-warning-scrollbar-thumb-base: #{ $color-warning-scrollbar-thumb-base };
-     --color-warning-scrollbar-track-base: #{ $color-warning-scrollbar-track-base };
+     --clr-palettes-primary:    #{ $clr-palettes-primary };
+     --clr-palettes-secondary:  #{ $clr-palettes-secondary };
+     --clr-palettes-tertiary:   #{ $clr-palettes-tertiary };
+     --clr-palettes-quaternary: #{ $clr-palettes-quaternary };
+     --clr-palettes-primary-contrast:    #{ $clr-palettes-primary-contrast };
+     --clr-palettes-secondary-contrast:  #{ $clr-palettes-secondary-contrast };
+     --clr-palettes-tertiary-contrast:   #{ $clr-palettes-tertiary-contrast };
+     --clr-palettes-quaternary-contrast: #{ $clr-palettes-quaternary-contrast };
+
+     --clr-coverage-headbar: #{ $clr-coverage-headbar };
+     --clr-coverage-headbar-contrast: #{ $clr-coverage-headbar-contrast };
 }
 
 .blogs .coverage .details {
+     --clr-details-psuedocode-title:  #{ $clr-details-psuedocode-title };
+     --clr-details-psuedocode-red:    #{ $clr-details-psuedocode-red };
+     --clr-details-psuedocode-blue:   #{ $clr-details-psuedocode-blue };
+     --clr-details-psuedocode-green:  #{ $clr-details-psuedocode-green };
+     --clr-details-psuedocode-yellow: #{ $clr-details-psuedocode-yellow };
+     --clr-details-scrollbar-thumb: #{ $clr-details-scrollbar-thumb };
+     --clr-details-scrollbar-track: #{ $clr-details-scrollbar-track };
+
      &__headbar {
           display: grid;
           grid-template-columns: 25px 1fr;
@@ -55,7 +69,7 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: $color-details-headbar-base;
+          background-color: var(--clr-coverage-headbar);
      }
 
      &__headbar-title {
@@ -65,14 +79,14 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: $color-details-headbar-base;
-          border: 2px solid $color-details-headbar-base;
+          color: var(--clr-coverage-headbar);
+          border: 2px solid var(--clr-coverage-headbar);
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: $color-details-headbar-text-select;
-               background-color: $color-details-headbar-base;
+               color: var(--clr-coverage-headbar-contrast);
+               background-color: var(--clr-coverage-headbar);
           }
      }
 
@@ -85,17 +99,17 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
      }
 
      &__headbar-slabs {
-          background-color: $color-details-headbar-base;
+          background-color: var(--clr-coverage-headbar);
           height: 10px;
 
-          &--pallete-1 {
+          &--palette-1 {
                flex-grow: 7;
-               background-color: $color-palletes-primary;
+               background-color: var(--clr-palettes-primary);
           }
 
-          &--pallete-2 {
+          &--palette-2 {
                flex-grow: 4;
-               background-color: $color-palletes-quaternary;
+               background-color: var(--clr-palettes-quaternary);
           }
      }
 
@@ -128,12 +142,12 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           }
 
           code-title code-txt {
-               background-color: $color-details-psuedocode-title;
+               background-color: var(--clr-details-psuedocode-title);
                padding-inline: 5px;
           }
 
           code-title code-blocks {
-               background-color: $color-details-psuedocode-title;
+               background-color: var(--clr-details-psuedocode-title);
                width: 3px;
           }
 
@@ -141,35 +155,25 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
                padding-block: 1px;
           }
 
-          code-plt-red {
-               color: $color-details-psuedocode-red;
-          }
-
-          code-plt-blu {
-               color: $color-details-psuedocode-blue;
-          }
-
-          code-plt-ylw {
-               color: $color-details-psuedocode-yellow;
-          }
-
-          code-plt-grn {
-               color: $color-details-psuedocode-green;
+          @each $colors in map.keys(map.remove(flv.$syntax, 'purple', 'teal', 'grey', 'white')) {
+               code-syn-#{$colors} {
+                    color: var(--clr-details-psuedocode-#{$colors});
+               }
           }
      }
 
      &__body {
-          --color-scrollbar-thumb: var(--color-details-scrollbar-thumb-base);
-          --color-scrollbar-track: var(--color-details-scrollbar-track-base);
+          --clr-scrollbar-thumb: var(--clr-details-scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-details-scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 210px;
           scrollbar-width: thin;
-          scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+          scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --color-scrollbar-thumb: #{ color.adjust($color-details-scrollbar-thumb-base, $lightness: 13%) };
+               --clr-scrollbar-thumb: #{ color.adjust($clr-details-scrollbar-thumb, $lightness: 13%) };
           }
 
           &::-webkit-scrollbar {
@@ -177,11 +181,11 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           }
 
           &::-webkit-scrollbar-track {
-               background: var(--color-scrollbar-track);
+               background: var(--clr-scrollbar-track);
           }
 
           &::-webkit-scrollbar-thumb {
-               background: var(--color-scrollbar-thumb);
+               background: var(--clr-scrollbar-thumb);
                border-radius: 4px;
           }
 
@@ -193,8 +197,8 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: $color-palletes-primary-contrast;
-               background-color: $color-palletes-primary;
+               color: var(--clr-palettes-primary-contrast);
+               background-color: var(--clr-palettes-primary);
                padding: 3px 5px;
 
                &::before {
@@ -250,16 +254,16 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
                }
 
                &[data-category="casual"]::before {
-                    background-color: $color-palletes-primary;
+                    background-color: var(--clr-palettes-primary);
                }
                &[data-category="updates"]::before {
-                    background-color: $color-palletes-secondary;
+                    background-color: var(--clr-palettes-secondary);
                }
                &[data-category="technical"]::before {
-                    background-color: $color-palletes-tertiary;
+                    background-color: var(--clr-palettes-tertiary);
                }
                &[data-category="archaic"]::before {
-                    background-color: $color-palletes-quaternary;
+                    background-color: var(--clr-palettes-quaternary);
                }
           }
      }
@@ -279,8 +283,8 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-size: 1rem;
           font-weight: 750;
           font-stretch: semi-expanded;
-          color: $color-palletes-secondary-contrast;
-          background-color: $color-palletes-secondary;
+          color: var(--clr-palettes-secondary-contrast);
+          background-color: var(--clr-palettes-secondary);
           width: fit-content;
           padding: 2px 5px 2px 3px;
 
@@ -306,8 +310,8 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-weight: 650;
           font-stretch: semi-condensed;
           text-transform: uppercase;
-          color: $color-palletes-primary-contrast;
-          background-color: $color-palletes-primary;
+          color: var(--clr-palettes-primary-contrast);
+          background-color: var(--clr-palettes-primary);
           padding: 3px 5px;
 
           &::before {
@@ -354,8 +358,8 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-family: 'Noto Sans Tagalog', font.$standard-font;
           font-size: 1.35rem;
           -webkit-text-stroke-width: 1px;
-          color: $color-details-headbar-base;
-          border: 2px solid $color-details-headbar-base;
+          color: var(--clr-coverage-headbar);
+          border: 2px solid var(--clr-coverage-headbar);
           border-bottom-width: 15px;
           padding: 3px 5px;
      }
@@ -365,18 +369,14 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
           @for $chars from 1 through 4 {
                &:nth-child(#{$chars}) {
-                    @if ($chars % 2 == 0) {
-                         margin-bottom: 5px;
-                    } @else {
-                         margin-bottom: 0px;
-                    }
+                    margin-bottom: if(sass($chars % 2 == 0): 5px; else: 0px);
                }
           }
      }
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: $color-details-headbar-base;
+          background-color: var(--clr-coverage-headbar);
           height: 15px;
      }
 
@@ -389,17 +389,17 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
      }
 
      &__headbar-slabs {
-          background-color: $color-details-headbar-base;
+          background-color: var(--clr-coverage-headbar);
           height: 10px;
 
-          &--pallete-1 {
+          &--palette-1 {
                flex-grow: 3;
-               background-color: $color-palletes-secondary;
+               background-color: var(--clr-palettes-secondary);
           }
 
-          &--pallete-2 {
+          &--palette-2 {
                flex-grow: 4;
-               background-color: $color-palletes-primary;
+               background-color: var(--clr-palettes-primary);
           }
      }
 
@@ -412,7 +412,7 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
      &__batch-main {
           display: flex;
-          background-color: $color-palletes-tertiary;
+          background-color: var(--clr-palettes-tertiary);
           height: 1cm;
      }
 
@@ -421,14 +421,14 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-size: 0.75rem;
           font-weight: 800;
           text-align: start;
-          color: $color-palletes-tertiary-contrast;
+          color: var(--clr-palettes-tertiary-contrast);
           padding: 1px 3px;
           margin-top: auto;
           margin-left: auto;
      }
 
      &__batch-slabs {
-          background-color: $color-palletes-tertiary;
+          background-color: var(--clr-palettes-tertiary);
           height: 5px;
 
           &:last-child {
@@ -455,20 +455,23 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-style: italic;
           line-height: 0;
           writing-mode: vertical-lr;
-          color: $color-details-headbar-base;
+          color: var(--clr-coverage-headbar);
           padding-block: 3px;
      }
      
-     $palletes: (plt.$flavor-primary-color, plt.$flavor-secondary-color, plt.$flavor-quaternary-color);
      @for $blocks from 1 through 3 {
           &__blocks-#{$blocks} {
                grid-area: sticker-blocks-#{$blocks};
-               background-color: list.nth($palletes, $blocks);
+               background-color: list.nth(map.values(map.remove(flv.$palettes, 'tertiary')), $blocks);
           }
      }
 }
 
 .blogs .sundries .booklet .warning {
+     --clr-warning-headbar: #{ $clr-warning-headbar };
+     --clr-warning-headbar-contrast: #{ $clr-warning-headbar-contrast };
+     --clr-warning-scrollbar-thumb: #{ $clr-warning-scrollbar-thumb };
+     --clr-warning-scrollbar-track: #{ $clr-warning-scrollbar-track };
      display: flex;
      flex-direction: column;
      gap: 0px;
@@ -487,7 +490,7 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: $color-warning-headbar-base;
+          background-color: var(--clr-warning-headbar);
      }
 
      &__headbar-title {
@@ -497,35 +500,35 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: $color-warning-headbar-base;
-          border: 2px solid $color-warning-headbar-base;
+          color: var(--clr-warning-headbar);
+          border: 2px solid var(--clr-warning-headbar);
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: $color-warning-headbar-text-select;
-               background-color: $color-warning-headbar-base;
+               color: var(--clr-warning-headbar-contrast);
+               background-color: var(--clr-warning-headbar);
           }
      }
 
      &__headbar-slab {
           grid-area: headbar-slab;
-          background-color: $color-warning-headbar-base;
+          background-color: var(--clr-warning-headbar);
           height: 3px;
      }
 
      &__body {
-          --color-scrollbar-thumb: var(--color-warning-scrollbar-thumb-base);
-          --color-scrollbar-track: var(--color-warning-scrollbar-track-base);
+          --clr-scrollbar-thumb: var(--clr-warning-scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-warning-scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 195px;
           scrollbar-width: thin;
-          scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+          scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
           padding: 5px 5px 5px 0px;
      
           &:focus-visible {
-               --color-scrollbar-thumb: #{ color.adjust($color-details-scrollbar-thumb-base, $lightness: 13%) };
+               --clr-scrollbar-thumb: #{ color.adjust($clr-warning-scrollbar-thumb, $lightness: 13%) };
           }
      
           &::-webkit-scrollbar {
@@ -533,11 +536,11 @@ $color-warning-scrollbar-track-base: plt.$flavor-scrollbar-track;
           }
      
           &::-webkit-scrollbar-track {
-               background: var(--color-scrollbar-track);
+               background: var(--clr-scrollbar-track);
           }
      
           &::-webkit-scrollbar-thumb {
-               background: var(--color-scrollbar-thumb);
+               background: var(--clr-scrollbar-thumb);
                border-radius: 4px;
           }
      

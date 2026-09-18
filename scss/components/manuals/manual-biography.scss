@@ -1,26 +1,32 @@
 @use '../../modules/built-in/math.scss' as ex-math;
+@use '../../modules/built-in/color.scss' as ex-color;
 @use '../../modules/fonts.scss' as font;
-@use '../../modules/palletes.scss' as plt;
+@use '../../modules/flavors.scss' as flv;
 @use '../../modules/structure.scss' as sct;
+@use 'sass:map';
 @use 'sass:color';
 
-$color-palletes-primary: plt.$flavor-primary-color;
-$color-palletes-secondary: plt.$flavor-secondary-color;
-$color-palletes-primary-contrast: plt.color-contrast(plt.$flavor-primary-color);
-$color-palletes-secondary-contrast: plt.color-contrast(plt.$flavor-secondary-color);
+$clr-palettes-primary:   map.get(flv.$palettes, 'primary');
+$clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
+$clr-palettes-primary-contrast:   map.get(flv.$palettes-contrast, 'primary');
+$clr-palettes-secondary-contrast: map.get(flv.$palettes-contrast, 'secondary');
 
-$color-biography-headbar-base: beige;
-$color-biography-headbar-text-select: plt.color-contrast($color-biography-headbar-base);
-
-$color-biography-scrollbar-thumb-base: plt.$flavor-scrollbar-thumb;
-$color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
-
-:root {
-     --color-biography-scrollbar-thumb-base: #{ $color-biography-scrollbar-thumb-base };
-     --color-biography-scrollbar-track-base: #{ $color-biography-scrollbar-track-base };
-}
+$clr-biography-headbar: beige;
+$clr-biography-headbar-contrast: ex-color.contrast($clr-biography-headbar);
+$clr-biography-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
+$clr-biography-scrollbar-track: map.get(flv.$scrollbar, 'track');
 
 .about .profile .biography {
+     --clr-palettes-primary: #{ $clr-palettes-primary };
+     --clr-palettes-secondary: #{ $clr-palettes-secondary };
+     --clr-palettes-primary-contrast: #{ $clr-palettes-primary-contrast };
+     --clr-palettes-secondary-contrast: #{ $clr-palettes-secondary-contrast };
+
+     --clr-biography-headbar: #{ $clr-biography-headbar };
+     --clr-biography-headbar-contrast: #{ $clr-biography-headbar-contrast };
+     --clr-biography-scrollbar-thumb: #{ $clr-biography-scrollbar-thumb };
+     --clr-biography-scrollbar-track: #{ $clr-biography-scrollbar-track };
+
      &__headbar {
           display: grid;
           grid-template-columns: 40px 1fr;
@@ -35,7 +41,7 @@ $color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: $color-biography-headbar-base;
+          background-color: var(--clr-biography-headbar);
      }
 
      &__headbar-title {
@@ -45,14 +51,14 @@ $color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: $color-biography-headbar-base;
-          border: 2px solid $color-biography-headbar-base;
+          color: var(--clr-biography-headbar);
+          border: 2px solid var(--clr-biography-headbar);
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: $color-biography-headbar-text-select;
-               background-color: $color-biography-headbar-base;
+               color: var(--clr-biography-headbar-contrast);
+               background-color: var(--clr-biography-headbar);
           }
      }
 
@@ -65,23 +71,23 @@ $color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
      }
 
      &__headbar-slabs {
-          background-color: $color-biography-headbar-base;
+          background-color: var(--clr-biography-headbar);
           height: 10px;
 
           &--pallete-1 {
                flex-grow: 2;
-               background-color: $color-palletes-primary;
+               background-color: var(--clr-palettes-primary);
           }
 
           &--pallete-2 {
                flex-grow: 1;
-               background-color: $color-palletes-secondary;
+               background-color: var(--clr-palettes-secondary);
           }
      }
 
      &__body {
-          --color-scrollbar-thumb: var(--color-biography-scrollbar-thumb-base);
-          --color-scrollbar-track: var(--color-biography-scrollbar-track-base);
+          --color-scrollbar-thumb: var(--clr-biography-scrollbar-thumb);
+          --color-scrollbar-track: var(--clr-biography-scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 275px;
@@ -90,7 +96,7 @@ $color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --color-scrollbar-thumb: #{ color.adjust($color-biography-scrollbar-thumb-base, $lightness: 13%) };
+               --color-scrollbar-thumb: #{ color.adjust($clr-biography-scrollbar-thumb, $lightness: 13%) };
           }
           
           &::-webkit-scrollbar {
@@ -114,8 +120,8 @@ $color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: $color-palletes-primary-contrast;
-               background-color: $color-palletes-primary;
+               color: var(--clr-palettes-primary-contrast);
+               background-color: var(--clr-palettes-primary);
                padding: 3px 5px;
 
                &::before {
@@ -151,8 +157,8 @@ $color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-size: 1rem;
           font-weight: 750;
           font-stretch: semi-expanded;
-          color: $color-palletes-secondary-contrast;
-          background-color: $color-palletes-secondary;
+          color: var(--clr-palettes-secondary-contrast);
+          background-color: var(--clr-palettes-secondary);
           width: fit-content;
           padding: 2px 5px 2px 3px;
 
@@ -178,8 +184,8 @@ $color-biography-scrollbar-track-base: plt.$flavor-scrollbar-track;
           font-weight: 650;
           font-stretch: semi-condensed;
           text-transform: uppercase;
-          color: $color-palletes-primary-contrast;
-          background-color: $color-palletes-primary;
+          color: var(--clr-palettes-primary-contrast);
+          background-color: var(--clr-palettes-primary);
           padding: 3px 5px;
 
           &::before {

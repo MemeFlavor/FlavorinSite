@@ -2,31 +2,31 @@
 @use 'sass:map';
 @use 'sass:color';
 
-$palletes: (
+$palettes: (
      'primary':    hsl(240deg, 100%, 65%),
      'secondary':  hsl(89deg, 96%, 63%),
      'tertiary':   hsl(42deg, 100%, 53%),
      'quaternary': hsl(357deg, 94%, 60%)
 );
 
-$palletes-contrast: (
-     'primary':    ex-color.contrast(map.get($palletes, 'primary')),
-     'secondary':  ex-color.contrast(map.get($palletes, 'secondary')),
-     'tertiary':   ex-color.contrast(map.get($palletes, 'tertiary')),
-     'quaternary': ex-color.contrast(map.get($palletes, 'quaternary'))
+$palettes-contrast: (
+     'primary':    ex-color.contrast(map.get($palettes, 'primary')),
+     'secondary':  ex-color.contrast(map.get($palettes, 'secondary')),
+     'tertiary':   ex-color.contrast(map.get($palettes, 'tertiary')),
+     'quaternary': ex-color.contrast(map.get($palettes, 'quaternary'))
 );
 
-$palletes-shadow: (
-     'primary':    color.change(map.get($palletes, 'primary'), $alpha: 0.75),
-     'secondary':  color.change(map.get($palletes, 'secondary'), $alpha: 0.75),
-     'tertiary':   color.change(map.get($palletes, 'tertiary'), $alpha: 0.75),
-     'quaternary': color.change(map.get($palletes, 'quaternary'), $alpha: 0.75)
+$palettes-shadow: (
+     'primary':    color.change(map.get($palettes, 'primary'), $alpha: 0.75),
+     'secondary':  color.change(map.get($palettes, 'secondary'), $alpha: 0.75),
+     'tertiary':   color.change(map.get($palettes, 'tertiary'), $alpha: 0.75),
+     'quaternary': color.change(map.get($palettes, 'quaternary'), $alpha: 0.75)
 );
 
 $syntax: (
      'blue':   hsl(208deg, 100%, 78%),
      'red':    hsl(1deg, 100%, 79%),
-     'purple': hsl(270deg, 100%, 86%)
+     'purple': hsl(270deg, 100%, 86%),
      'green':  hsl(118deg, 100%, 78%),
      'teal':   hsl(168deg, 55%, 54%),
      'yellow': hsl(34deg, 100%, 65%),
@@ -41,4 +41,16 @@ $syntax-nest: (
      'level-4': hsl(2deg, 62%, 76%),
      'level-5': hsl(331deg, 80%, 80%),
      'level-6': hsl(271deg, 88%, 84%),
+);
+
+$components: (
+     'wallpaper': hsl(252deg, 14%, 21%),
+     'page':      hsl(0deg, 3%, 10%),
+     'bento':     hsl(0deg, 0%, 5%),
+     'gridline':  hsl(0deg, 0%, 0%, 0.5)
+);
+
+$scrollbar: (
+     'track': hsl(0deg, 0%, 0%, 0),
+     'thumb': hsl(254deg, 30%, 20%)
 );

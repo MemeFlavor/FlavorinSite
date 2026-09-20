@@ -112,13 +112,26 @@ $interests-root: (
      'gallery-debugmode': $interests-gallery-debugmode
 );
 
+$roots: (
+     'profile':   $profile-root,
+     'interests': $interests-root
+);
+
+:root {
+     @each $flavor-names, $flavor-values in $flavor-root {
+          --clr-#{$flavor-names}: #{ $flavor-values };
+     }
+
+     @each $root-names, $root-styles in $roots {
+          @each $styles-name, $styles-values in $root-styles {
+               --clr-#{$root-names}-#{$styles-name}: #{ $styles-values };
+          }
+     }
+}
+
 // ----------------------------------------------------
 // == MAIN ==
 // ----------------------------------------------------
-
-:root {
-     @include flv.generate($flavor-root);
-}
 
 body {
      display: grid;
@@ -172,7 +185,6 @@ body {
      }
 
      .about .profile {
-          @include flv.generate($profile-root);
           display: grid;
           grid-template-columns: 150px 1fr;
           grid-template-rows: 90px 350px 44px;
@@ -219,8 +231,8 @@ body {
                     font-size: 0.7rem;
                     font-weight: 900;
                     font-stretch: ultra-expanded;
-                    color: var(--clr-header-banner-domain--contrast);
-                    background-color: var(--clr-header-banner-domain);
+                    color: var(--clr-profile-header-banner-domain--contrast);
+                    background-color: var(--clr-profile-header-banner-domain);
                     width: fit-content;
                     height: fit-content;
                     position: relative;
@@ -228,7 +240,7 @@ body {
                     margin-left: 8px;
 
                     &::selection {
-                         color: var(--clr-header-banner-domain--selection);
+                         color: var(--clr-profile-header-banner-domain--selection);
                          background-color: transparent;
                     }
 
@@ -311,8 +323,8 @@ body {
                     padding-inline: 3px;
 
                     &:nth-last-child(1) {
-                         color: var(--clr-header-banner-year--contrast);
-                         background-color: var(--clr-header-banner-year);
+                         color: var(--clr-profile-header-banner-year--contrast);
+                         background-color: var(--clr-profile-header-banner-year);
                     }
                }
 
@@ -365,8 +377,8 @@ body {
                     font-stretch: semi-expanded;
                     text-align: center;
                     text-transform: uppercase;
-                    color: var(--clr-account-status-title--contrast);
-                    background-color: var(--clr-account-status-title);
+                    color: var(--clr-profile-account-status-title--contrast);
+                    background-color: var(--clr-profile-account-status-title);
                     border-radius: 3px 3px 0px 0px;
                     width: 100%;
                     padding: 1px 5px;
@@ -398,7 +410,7 @@ body {
                     display: flex;
                     flex-direction: column;
                     grid-area: account-triviapad;
-                    background-color: var(--clr-account-triviapad);
+                    background-color: var(--clr-profile-account-triviapad);
                     border-radius: $triviapad-border-radius $triviapad-border-radius 5px 5px;
                }
 
@@ -409,8 +421,8 @@ body {
                     font-stretch: semi-condensed;
                     text-align: center;
                     text-transform: uppercase;
-                    color: var(--clr-account-triviapad-title--contrast);
-                    background-color: var(--clr-account-triviapad-title);
+                    color: var(--clr-profile-account-triviapad-title--contrast);
+                    background-color: var(--clr-profile-account-triviapad-title);
                     border-radius: $triviapad-title-border-radius $triviapad-title-border-radius 0px 0px;
                     padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
                }
@@ -420,7 +432,7 @@ body {
                     font-size: 0.5rem;
                     font-weight: bolder;
                     text-align: start;
-                    color: var(--clr-account-triviapad--contrast);
+                    color: var(--clr-profile-account-triviapad--contrast);
                     padding: 2px 2px 5px 5px;
                     margin: 4px 4px inherit inherit;
                }
@@ -473,17 +485,17 @@ body {
 
                &__unseen-baybayin {
                     font-family: 'Noto Sans Tagalog', font.$standard-font;
-                    color: azure;
+                    color: var(--clr-profile-gallery-unseen-baybayin);
                     position: absolute;
 
                     &--small {
                          font-size: 0.875rem;
-                         text-shadow: 1px 1px 0px black;
+                         text-shadow: 1px 1px 0px var(--clr-profile-gallery-unseen-baybayin--contrast);
                     }
 
                     &--big {
                          font-size: 1.5625rem;
-                         text-shadow: 2px 2px 0px black;
+                         text-shadow: 2px 2px 0px var(--clr-profile-gallery-unseen-baybayin--contrast);
                          right: 3px;
                          bottom: 0;
                     }
@@ -570,7 +582,6 @@ body {
      }
 
      .about .interests {
-          @include flv.generate($interests-root);
           grid-area: about-interests;
 
           &__captionbar {
@@ -585,18 +596,18 @@ body {
                font-weight: 900;
                font-stretch: expanded;
                text-transform: capitalize;
-               background: var(--clr-captionbar);
+               background: var(--clr-interests-captionbar);
                background: linear-gradient(144deg,
-                    var(--clr-captionbar--grad-start) 5%,
-                    var(--clr-captionbar--grad-end) 95%
+                    var(--clr-interests-captionbar--grad-start) 5%,
+                    var(--clr-interests-captionbar--grad-end) 95%
                );
-               border: 2px solid var(--clr-captionbar--border);
+               border: 2px solid var(--clr-interests-captionbar--border);
                padding: 5px 10px;
                width: 100%;
           }
      
           &__captionblocks {
-               border: 2px solid var(--clr-captionbar--border);
+               border: 2px solid var(--clr-interests-captionbar--border);
                width: ex-math.midpoint(15px, 20px);
                height: auto;
      
@@ -628,18 +639,18 @@ body {
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: 1.15rem;
                font-weight: bolder;
-               text-shadow: 2px 2px 0px var(--clr-title--shadow);
+               text-shadow: 2px 2px 0px var(--clr-interests-title--shadow);
                background: linear-gradient(180deg,
-                    var(--clr-title) 1%,
-                    var(--clr-title--grad-point-1) 4%,
-                    var(--clr-title--grad-point-1) 5%,
-                    var(--clr-title) 10%,
-                    var(--clr-title) 30%,
-                    var(--clr-title--grad-point-2) 55%,
-                    var(--clr-title--grad-point-3) 85%,
-                    var(--clr-title--grad-point-4) 95%
+                    var(--clr-interests-title) 1%,
+                    var(--clr-interests-title--grad-point-1) 4%,
+                    var(--clr-interests-title--grad-point-1) 5%,
+                    var(--clr-interests-title) 10%,
+                    var(--clr-interests-title) 30%,
+                    var(--clr-interests-title--grad-point-2) 55%,
+                    var(--clr-interests-title--grad-point-3) 85%,
+                    var(--clr-interests-title--grad-point-4) 95%
                );
-               border: 2px solid var(--clr-title--border);
+               border: 2px solid var(--clr-interests-title--border);
                border-top-left-radius: 5px;
                border-bottom-left-radius: 5px;
                padding: 3px 8px;
@@ -658,8 +669,8 @@ body {
                font-family: 'Candy Beans', font.$standard-font;
                font-size: 0.85rem;
                line-height: 1.4;
-               background-color: var(--clr-catalog);
-               border: 2px solid var(--clr-catalog--border);
+               background-color: var(--clr-interests-catalog);
+               border: 2px solid var(--clr-interests-catalog--border);
 
                &:not(:lang(en)) {
                     line-height: normal;
@@ -667,8 +678,8 @@ body {
           }
 
           &__catalog-list {
-               --clr-scrollbar-thumb: var(--clr-catalog--scrollbar-thumb);
-               --clr-scrollbar-track: var(--clr-catalog--scrollbar-track);
+               --clr-scrollbar-thumb: var(--clr-interests-catalog--scrollbar-thumb);
+               --clr-scrollbar-track: var(--clr-interests-catalog--scrollbar-track);
                display: block;
                outline: none;
                overflow-y: scroll;

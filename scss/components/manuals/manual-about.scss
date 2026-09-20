@@ -38,70 +38,77 @@ $flavor-root: (
 );
 
 // LOCAL COLOR PALLETES //
-$autobiography-headbar: beige;
-$autobiography-heading-title: $flavor-palettes-secondary;
-$autobiography-heading-section: $flavor-palettes-primary;
-$autobiography-root: (
-     'base--scrollbar-thumb': $flavor-scrollbar-thumb,
-     'base--scrollbar-track': $flavor-scrollbar-track,
 
-     'headbar':           $autobiography-headbar,
-     'headbar--contrast': ex-color.contrast($autobiography-headbar),
-     'heading-title':             $autobiography-heading-title,
-     'heading-title--contrast':   ex-color.contrast($autobiography-heading-title),
-     'heading-section':           $autobiography-heading-section,
-     'heading-section--contrast': ex-color.contrast($autobiography-heading-section),
+$profile-autobiography-h3:              $flavor-palettes-primary;
+$profile-autobiography-headbar:         beige;
+$profile-autobiography-heading-title:   $flavor-palettes-secondary;
+$profile-root: (
+     'autobiography-h3':               $profile-autobiography-h3,
+     'autobiography-h3--contrast':     ex-color.contrast($profile-autobiography-h3),
+     'autobiography--scrollbar-thumb': $flavor-scrollbar-thumb,
+     'autobiography--scrollbar-track': $flavor-scrollbar-track,
+
+     'autobiography-headbar':                 $profile-autobiography-headbar,
+     'autobiography-headbar--contrast':       ex-color.contrast($profile-autobiography-headbar),
+     'autobiography-heading-title':           $profile-autobiography-heading-title,
+     'autobiography-heading-title--contrast': ex-color.contrast($profile-autobiography-heading-title)
 );
 
-$manual:                 beige;
-$manual-captionbar:      $flavor-palettes-secondary;
-$manual-heading:         black;
-$manual-root: (
-     'base':           $manual,
-     'base--contrast': ex-color.contrast($manual),
-     'base--border':   black,
+$information-manual:            beige;
+$information-manual-captionbar: $flavor-palettes-secondary;
+$information-manual-heading:    black;
 
-     'captionbar':             $manual-captionbar,
-     'captionbar--grad-start': color.scale($manual-captionbar, $lightness: -35%),
-     'captionbar--grad-end':   color.scale($manual-captionbar, $lightness: -65%),
-     'captionbar--blocks':     ($flavor-palettes-secondary, $flavor-palettes-primary, $flavor-palettes-quaternary),
-     'captionbar--border':     black,
+$information-manual-biography-category-type: $flavor-palettes-primary;
+$information-manual-fact-factpad:            $flavor-palettes-tertiary;
+$information-root: (
+     'manual':           $information-manual,
+     'manual--contrast': ex-color.contrast($information-manual),
+     'manual--border':   black,
 
-     'title':             hsl(240deg, 14%, 5%),
-     'heading':           $manual-heading,
-     'heading--contrast': ex-color.contrast($manual-heading),
+     'manual-captionbar':             $information-manual-captionbar,
+     'manual-captionbar--grad-start': color.scale($information-manual-captionbar, $lightness: -35%),
+     'manual-captionbar--grad-end':   color.scale($information-manual-captionbar, $lightness: -65%),
+     'manual-captionbar--blocks':     ($flavor-palettes-secondary, $flavor-palettes-primary, $flavor-palettes-quaternary),
+     'manual-captionbar--border':     black,
 
-     'navig':        black,
-     'navig--hover': color.scale($flavor-palettes-primary, $saturation: 5%),
-     'navig--focus': color.scale($flavor-palettes-quaternary, $saturation: 5%)
+     'manual-title':             hsl(240deg, 14%, 5%),
+     'manual-heading':           $information-manual-heading,
+     'manual-heading--contrast': ex-color.contrast($information-manual-heading),
+     'manual-navig':             black,
+     'manual-navig--hover':      color.scale($flavor-palettes-primary, $saturation: 5%),
+     'manual-navig--focus':      color.scale($flavor-palettes-quaternary, $saturation: 5%),
+
+     'manual-biography-category-type':           $information-manual-biography-category-type,
+     'manual-biography-category-type--contrast': ex-color.contrast($information-manual-biography-category-type),
+
+     'manual-fact--scrollbar-thumb':        color.scale($information-manual, $saturation: -25%, $lightness: -20%),
+     'manual-fact--scrollbar-track':        transparent,
+     'manual-fact-factpad-title':           $information-manual-fact-factpad,
+     'manual-fact-factpad-title--contrast': ex-color.contrast($information-manual-fact-factpad),
 );
 
-$manual-biography-category-type: $flavor-palettes-primary;
-$manual-biography-root: (
-     'category-type':           $manual-biography-category-type,
-     'category-type--contrast': ex-color.contrast($manual-biography-category-type),
+$roots: (
+     'profile': $profile-root,
+     'information': $information-root
 );
 
-$manual-fact-factpad: $flavor-palettes-tertiary;
-$manual-fact-root: (
-     'factpad-title':           $manual-fact-factpad,
-     'factpad-title--contrast': ex-color.contrast($manual-fact-factpad),
+:root {
+     @each $flavor-names, $flavor-values in $flavor-root {
+          --clr-#{$flavor-names}: #{ $flavor-values };
+     }
 
-     'list--scrollbar-thumb': color.scale($manual, $saturation: -25%, $lightness: -20%),
-     'list--scrollbar-track': transparent
-);
+     @each $root-names, $root-styles in $roots {
+          @each $styles-name, $styles-values in $root-styles {
+               --clr-#{$root-names}-#{$styles-name}: #{ $styles-values };
+          }
+     }
+}
 
 // ----------------------------------------------------
 // == MAIN ==
 // ----------------------------------------------------
 
-:root {
-     @include flv.generate($flavor-root);
-}
-
 .about .profile .autobiography {
-     @include flv.generate($autobiography-root);
-
      &__headbar {
           display: grid;
           grid-template-columns: 40px 1fr;
@@ -116,7 +123,7 @@ $manual-fact-root: (
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: var(--clr-headbar);
+          background-color: var(--clr-profile-autobiography-headbar);
      }
 
      &__headbar-title {
@@ -126,14 +133,14 @@ $manual-fact-root: (
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: var(--clr-headbar);
-          border: 2px solid var(--clr-headbar);
+          color: var(--clr-profile-autobiography-headbar);
+          border: 2px solid var(--clr-profile-autobiography-headbar);
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: var(--clr-headbar--contrast);
-               background-color: var(--clr-headbar);
+               color: var(--clr-profile-autobiography-headbar--contrast);
+               background-color: var(--clr-profile-autobiography-headbar);
           }
      }
 
@@ -146,7 +153,7 @@ $manual-fact-root: (
      }
 
      &__headbar-slabs {
-          background-color: var(--clr-headbar);
+          background-color: var(--clr-profile-autobiography-headbar);
           height: 10px;
 
           &--palette-1 {
@@ -161,8 +168,8 @@ $manual-fact-root: (
      }
 
      &__body {
-          --clr-scrollbar-thumb: var(--clr-base--scrollbar-thumb);
-          --clr-scrollbar-track: var(--clr-base--scrollbar-track);
+          --clr-scrollbar-thumb: var(--clr-profile-autobiography--scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-profile-autobiography--scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 275px;
@@ -171,7 +178,7 @@ $manual-fact-root: (
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --clr-scrollbar-thumb: #{ color.adjust(map.get($autobiography-root, 'base--scrollbar-thumb'), $lightness: 13%) };
+               --clr-scrollbar-thumb: #{ color.adjust(map.get($profile-root, 'autobiography--scrollbar-thumb'), $lightness: 13%) };
           }
           
           &::-webkit-scrollbar {
@@ -195,16 +202,16 @@ $manual-fact-root: (
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: var(--clr-palettes-primary--contrast);
-               background-color: var(--clr-palettes-primary);
+               color: var(--clr-profile-autobiography-h3--contrast);
+               background-color: var(--clr-profile-autobiography-h3);
                padding: 3px 5px;
-
+     
                &::before {
                     content: "\2605";
                     margin-right: 3px;
                }
           }
-
+     
           p {
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: ex-math.midpoint(0.75rem, 0.90rem);
@@ -232,8 +239,8 @@ $manual-fact-root: (
           font-size: 1rem;
           font-weight: 750;
           font-stretch: semi-expanded;
-          color: var(--clr-heading-title--contrast);
-          background-color: var(--clr-heading-title);
+          color: var(--clr-profile-autobiography-heading-title--contrast);
+          background-color: var(--clr-profile-autobiography-heading-title);
           width: fit-content;
           padding: 2px 5px 2px 3px;
 
@@ -250,41 +257,10 @@ $manual-fact-root: (
           font-stretch: semi-expanded;
           text-transform: uppercase;
      }
-
-     &__heading-section {
-          display: flex;
-          align-items: center;
-          font-family: 'Zalando Sans', font.$standard-font;
-          font-size: 0.8rem;
-          font-weight: 650;
-          font-stretch: semi-condensed;
-          text-transform: uppercase;
-          color: var(--clr-heading-section--contrast);
-          background-color: var(--clr-heading-section);
-          padding: 3px 5px;
-
-          &::before {
-               content: "\2605";
-               margin-right: 3px;
-          }
-     }
-
-     &__heading-desc {
-          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-          font-size: ex-math.midpoint(0.75rem, 0.80rem);
-          text-align: start;
-          text-wrap: pretty;
-          text-rendering: optimizeSpeed;
-          line-height: normal;
-          padding-inline: 3px;
-          margin-block: 10px;
-     }
 }
 
-$manual-content-height: 170px;
+$information-manual-content-height: 170px;
 .about .information .manual {
-     @include flv.generate($manual-root);
-
      &__captionbar {
           display: flex;
           flex-direction: row;
@@ -297,32 +273,32 @@ $manual-content-height: 170px;
           font-weight: 900;
           font-stretch: expanded;
           text-transform: capitalize;
-          background: var(--clr-captionbar);
+          background: var(--clr-information-manual-captionbar);
           background: linear-gradient(144deg,
-               var(--clr-captionbar--grad-start) 5%,
-               var(--clr-captionbar--grad-end) 95%
+               var(--clr-information-manual-captionbar--grad-start) 5%,
+               var(--clr-information-manual-captionbar--grad-end) 95%
           );
-          border: 2px solid var(--clr-captionbar--border);
+          border: 2px solid var(--clr-information-manual-captionbar--border);
           padding: 5px 10px;
           width: 100%;
      }
           
      &__captionblocks {
-          border: 2px solid var(--clr-captionbar--border);
+          border: 2px solid var(--clr-information-manual-captionbar--border);
           width: ex-math.midpoint(15px, 20px);
           height: auto;
           
           @for $blocks from 1 through 3 {
                &--palette-#{$blocks} {
-                    background-color: list.nth(map.get($manual-root, 'captionbar--blocks'), $blocks);
+                    background-color: list.nth(map.get($information-root, 'manual-captionbar--blocks'), $blocks);
                }
           }
      }
 
      &__body {
-          background: var(--clr-base) 50% -70px / 50% repeat-x local;
+          background: var(--clr-information-manual) 50% -70px / 50% repeat-x local;
           background-image: url(../../../images/decorations/manual/sidecover.png);
-          border: 2px solid var(--clr-base--border);
+          border: 2px solid var(--clr-information-manual--border);
           height: 100%;
           padding: 5px 10px;
      }
@@ -335,8 +311,8 @@ $manual-content-height: 170px;
           font-weight: 900;
           font-stretch: 120%;
           text-transform: uppercase;
-          color: var(--clr-title);
-          border: 2px solid var(--clr-title);
+          color: var(--clr-information-manual-title);
+          border: 2px solid var(--clr-information-manual-title);
           height: fit-content;
           padding: 0px 8px;
           margin-bottom: 0.65cm;
@@ -357,7 +333,7 @@ $manual-content-height: 170px;
           cursor: pointer;
           font-size: 1rem;
           outline: none;
-          background-color: var(--clr-navig);
+          background-color: var(--clr-information-manual-navig);
           border: none;
           border-radius: 360px;
           position: absolute;
@@ -366,11 +342,11 @@ $manual-content-height: 170px;
           height: 24px;
 
           &:hover {
-               background-color: var(--clr-navig--hover);
+               background-color: var(--clr-information-manual-navig--hover);
           }
 
           &:active, &:focus-visible {
-               background-color: var(--clr-navig--focus);
+               background-color: var(--clr-information-manual-navig--focus);
           }
 
           &::selection {
@@ -408,8 +384,8 @@ $manual-content-height: 170px;
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: var(--clr-heading--contrast);
-               background-color: var(--clr-heading);
+               color: var(--clr-information-manual-heading--contrast);
+               background-color: var(--clr-information-manual-heading);
                padding: 3px 5px;
 
                &::before {
@@ -426,14 +402,13 @@ $manual-content-height: 170px;
                text-wrap: pretty;
                text-rendering: optimizeSpeed;
                line-height: normal;
-               color: var(--clr-base--contrast);
+               color: var(--clr-information-manual--contrast);
                margin-block: 3px;
           }
      }
 }
 
 .about .information .manual .biography {
-     @include flv.generate($manual-biography-root);
      display: grid;
      grid-template-columns: auto 100px;
      grid-template-rows: auto auto;
@@ -462,11 +437,11 @@ $manual-content-height: 170px;
           outline: none;
           overflow-y: auto;
           scrollbar-width: none;
-          height: $manual-content-height;
+          height: $information-manual-content-height;
 
           &:focus-visible {
-               --clr-base: #{ color.scale($manual, $saturation: -20%, $lightness: -15%) };
-               background: var(--clr-base);
+               --clr-information-manual: #{ color.scale($information-manual, $saturation: -20%, $lightness: -15%) };
+               background: var(--clr-information-manual);
           }
      }
 
@@ -486,8 +461,8 @@ $manual-content-height: 170px;
           font-stretch: semi-condensed;
           text-transform: capitalize;
           text-align: center;
-          color: var(--clr-category-type--contrast);
-          background-color: var(--clr-category-type);
+          color: var(--clr-information-manual-biography-category-type--contrast);
+          background-color: var(--clr-information-manual-biography-category-type);
           padding: 3px 5px;
           margin: 0;
      }
@@ -500,7 +475,6 @@ $manual-content-height: 170px;
 }
 
 .about .information .manual .facts {
-     @include flv.generate($manual-fact-root);
      display: grid;
      grid-template-columns: 78px auto;
      grid-template-rows: auto;
@@ -519,8 +493,8 @@ $manual-content-height: 170px;
           font-stretch: semi-condensed;
           text-align: center;
           text-transform: uppercase;
-          color: var(--clr-factpad--contrast-title);
-          background-color: var(--clr-factpad-title);
+          color: var(--clr-information-manual-fact-factpad-title--contrast);
+          background-color: var(--clr-information-manual-fact-factpad-title);
           padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
      }
 
@@ -539,8 +513,8 @@ $manual-content-height: 170px;
      }
 
      &__list {
-          --clr-scrollbar-thumb: var(--clr-list--scrollbar-thumb);
-          --clr-scrollbar-track: var(--clr-list--scrollbar-track);
+          --clr-scrollbar-thumb: var(--clr-information-manual-fact--scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-information-manual-fact--scrollbar-track);
           display: flex;
           flex-direction: column;
           row-gap: 3px;
@@ -549,11 +523,11 @@ $manual-content-height: 170px;
           overflow: hidden auto;
           scrollbar-width: thin;
           scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
-          height: $manual-content-height;
+          height: $information-manual-content-height;
           padding-left: 15px;
 
           &:focus-visible {
-               --clr-scrollbar-thumb: #{ color.scale(map.get($manual-fact-root, 'list--scrollbar-thumb'), $saturation: -30%, $lightness: -25%) };
+               --clr-scrollbar-thumb: #{ color.scale(map.get($information-root, 'manual-fact--scrollbar-thumb'), $saturation: -30%, $lightness: -25%) };
           }
 
           &::-webkit-scrollbar {
@@ -576,6 +550,6 @@ $manual-content-height: 170px;
           font-weight: bolder;
           text-align: start;
           text-wrap: stable;
-          color: var(--clr-base--contrast);
+          color: var(--clr-information-manual--contrast);
      }
 }

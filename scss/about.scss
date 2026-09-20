@@ -1,7 +1,6 @@
 @use './modules/built-in/math.scss' as ex-math;
 @use './modules/built-in/color.scss' as ex-color;
 @use './modules/fonts.scss' as font;
-@use './modules/palletes.scss' as plt;
 @use './modules/flavors.scss' as flv;
 @use './modules/structure.scss' as sct;
 @use 'sass:list';
@@ -17,58 +16,108 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
-$clr-palettes-primary: map.get(flv.$palettes, 'primary');
-$clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
-$clr-palettes-secondary-shadow: map.get(flv.$palettes-shadow, 'secondary');
-$clr-palettes-tertiary: map.get(flv.$palettes, 'tertiary');
-$clr-palettes-quaternary: map.get(flv.$palettes, 'quaternary');
+// ----------------------------------------------------
+// == VARIABLES ==
+// ----------------------------------------------------
 
-$clr-components-wallpaper: map.get(flv.$components, 'wallpaper');
-$clr-components-page: map.get(flv.$components, 'page');
-$clr-components-bento: map.get(flv.$components, 'bento');
-$clr-components-gridline: map.get(flv.$components, 'gridline');
+// GLOBAL COLOR PALLETES //
+$flavor-palettes-primary:           map.get(flv.$palettes, 'primary');
+$flavor-palettes-secondary:         map.get(flv.$palettes, 'secondary');
+$flavor-palettes-tertiary:          map.get(flv.$palettes, 'tertiary');
+$flavor-palettes-quaternary:        map.get(flv.$palettes, 'quaternary');
 
-$clr-header-banner-domain: $clr-palettes-primary;
-$clr-header-banner-domain-contrast: ex-color.contrast($clr-header-banner-domain);
-$clr-header-banner-domain-selection: black;
-$clr-header-banner-year: $clr-palettes-secondary;
-$clr-header-banner-year-contrast: ex-color.contrast($clr-header-banner-year);
+$flavor-palettes-primary--contrast:    map.get(flv.$palettes-contrast, 'primary');
+$flavor-palettes-secondary--contrast:  map.get(flv.$palettes-contrast, 'secondary');
+$flavor-palettes-tertiary--contrast:   map.get(flv.$palettes-contrast, 'tertiary');
+$flavor-palettes-quaternary--contrast: map.get(flv.$palettes-contrast, 'quaternary');
 
-$clr-manual-captionbar: $clr-palettes-secondary;
-$clr-manual-captionbar-grad-start: color.scale($clr-manual-captionbar, $lightness: -35%);
-$clr-manual-captionbar-grad-end: color.scale($clr-manual-captionbar, $lightness: -65%);
-$clr-manual-captionbar-border: black;
-$clr-manual-captionbar-block: $clr-palettes-secondary, $clr-palettes-primary, $clr-palettes-quaternary;
+$flavor-palettes-secondary--shadow:   map.get(flv.$palettes-shadow, 'secondary');
+$flavor-palettes-quaternary--shadow:  map.get(flv.$palettes-shadow, 'quaternary');
 
-$clr-interests-captionbar: $clr-palettes-primary;
-$clr-interests-captionbar-grad-start: color.scale($clr-interests-captionbar, $lightness: -2%);
-$clr-interests-captionbar-grad-end: color.scale($clr-interests-captionbar, $saturation: -20%, $lightness: -20%);
-$clr-interests-captionbar-border: black;
-$clr-interests-captionbar-block: $clr-palettes-primary, $clr-palettes-secondary, $clr-palettes-quaternary;
-$clr-interests-title: hsl(240deg, 65%, 38%);
-$clr-interests-title-s35-l24: color.adjust($clr-interests-title, $saturation: 35%, $lightness: 24%);
-$clr-interests-title-ln2: color.adjust($clr-interests-title, $lightness: -2%);
-$clr-interests-title-l7: color.adjust($clr-interests-title, $lightness: 7%);
-$clr-interests-title-ln13: color.adjust($clr-interests-title, $lightness: -13%);
-$clr-interests-title-shadow: black;
-$clr-interests-title-border: color.adjust($clr-interests-title, $hue: -13, $saturation: 2%, $lightness: -28%);
-$clr-interests-catalog: hsl(255deg, 5%, 17%);
-$clr-interests-catalog-border: black;
-$clr-interests-catalog-list-scrollbar-thumb: color.scale($clr-interests-catalog, $saturation: -10%, $lightness: 20%);
-$clr-interests-catalog-list-scrollbar-track: hsl(0deg, 0%, 0%, 0.5);
+$flavor-components-wallpaper: map.get(flv.$components, 'wallpaper');
+$flavor-components-page:      map.get(flv.$components, 'page');
+$flavor-components-bento:     map.get(flv.$components, 'bento');
+$flavor-components-gridline:  map.get(flv.$components, 'gridline');
+$flavor-root: (
+     'palettes-primary':    $flavor-palettes-primary,
+     'palettes-secondary':  $flavor-palettes-secondary,
+     'palettes-tertiary':   $flavor-palettes-tertiary,
+     'palettes-quaternary': $flavor-palettes-quaternary,
 
-$clr-debugmode: hsl(230deg, 100%, 42%);
+     'palettes-primary--contrast':    $flavor-palettes-primary--contrast,
+     'palettes-secondary--contrast':  $flavor-palettes-secondary--contrast,
+     'palettes-tertiary--contrast':   $flavor-palettes-tertiary--contrast,
+     'palettes-quaternary--contrast': $flavor-palettes-quaternary--contrast,
+
+     'palettes-secondary--shadow':  $flavor-palettes-secondary--shadow,
+     'palettes-quaternary--shadow': $flavor-palettes-quaternary--shadow,
+
+     'components-wallpaper': $flavor-components-wallpaper,
+     'components-page':      $flavor-components-page,
+     'components-bento':     $flavor-components-bento,
+     'components-gridline':  $flavor-components-gridline
+);
+
+// LOCAL COLOR PALLETES //
+$profile-header-banner-domain:    $flavor-palettes-primary;
+$profile-header-banner-year:      $flavor-palettes-secondary;
+$profile-account-status-title:    $flavor-palettes-tertiary;
+$profile-account-triviapad:       beige;
+$profile-account-triviapad-title: $flavor-palettes-primary;
+$profile-gallery-unseen-baybayin: azure;
+$profile-root: (
+     'header-banner-domain':             $profile-header-banner-domain,
+     'header-banner-domain--contrast':   ex-color.contrast($profile-header-banner-domain),
+     'header-banner-domain--selection':  black,
+     'header-banner-year':               $profile-header-banner-year,
+     'header-banner-year--contrast':     ex-color.contrast($profile-header-banner-year),
+     
+     'account-status-title':              $profile-account-status-title,
+     'account-status-title--contrast':    ex-color.contrast($profile-account-status-title),
+     'account-triviapad':                 $profile-account-triviapad,
+     'account-triviapad--contrast':       ex-color.contrast($profile-account-triviapad),
+     'account-triviapad-title':           $profile-account-triviapad-title,
+     'account-triviapad-title--contrast': ex-color.contrast($profile-account-triviapad-title),
+     
+     'gallery-unseen-baybayin': $profile-gallery-unseen-baybayin,
+     'gallery-unseen-baybayin--contrast': ex-color.contrast($profile-gallery-unseen-baybayin),
+     'gallery-watchmen': black
+);
+
+$interests-captionbar:        $flavor-palettes-primary;
+$interests-interests-title:   hsl(240deg, 65%, 38%);
+$interests-catalog:           hsl(255deg, 5%, 17%);
+$interests-gallery-debugmode: hsl(230deg, 100%, 42%);
+$interests-root: (
+     'captionbar':             $interests-captionbar,
+     'captionbar--grad-start': color.scale($interests-captionbar, $lightness: -2%),
+     'captionbar--grad-end':   color.scale($interests-captionbar, $saturation: -20%, $lightness: -20%),
+     'captionbar--blocks':     ($flavor-palettes-primary, $flavor-palettes-secondary, $flavor-palettes-quaternary),
+     'captionbar--border':     black,
+
+     'title':               $interests-interests-title,
+     'title--grad-point-1': color.adjust($interests-interests-title, $saturation: 35%, $lightness: 24%),
+     'title--grad-point-2': color.adjust($interests-interests-title, $lightness: -2%),
+     'title--grad-point-3': color.adjust($interests-interests-title, $lightness: 7%),
+     'title--grad-point-4': color.adjust($interests-interests-title, $lightness: -13%),
+     'title--border':       color.adjust($interests-interests-title, $hue: -13, $saturation: 2%, $lightness: -28%),
+     'title--shadow':       black,
+     'title--selection':    black,
+
+     'catalog':                  hsl(255deg, 5%, 17%),
+     'catalog--border':          black,
+     'catalog--scrollbar-thumb': color.scale($interests-catalog, $saturation: -10%, $lightness: 20%),
+     'catalog--scrollbar-track': hsl(0deg, 0%, 0%, 0.5),
+
+     'gallery-debugmode': $interests-gallery-debugmode
+);
+
+// ----------------------------------------------------
+// == MAIN ==
+// ----------------------------------------------------
+
 :root {
-     --clr-palettes-primary: #{ $clr-palettes-primary };
-     --clr-palettes-secondary: #{ $clr-palettes-secondary };
-     --clr-palettes-secondary-shadow: #{ $clr-palettes-secondary-shadow };
-     --clr-palettes-tertiary: #{ $clr-palettes-tertiary };
-     --clr-palettes-quaternary: #{ $clr-palettes-quaternary };
-
-     --clr-components-wallpaper: #{ $clr-components-wallpaper };
-     --clr-components-page: #{ $clr-components-page };
-     --clr-components-bento: #{ $clr-components-bento };
-     --clr-components-gridline: #{ $clr-components-gridline };
+     @include flv.generate($flavor-root);
 }
 
 body {
@@ -105,7 +154,7 @@ body {
           grid-area: flavory-about;
           gap: 10px 15px;
           background-color: var(--clr-components-page);
-          box-shadow: 5px 5px 0px 0px var(--clr-palettes-secondary-shadow);
+          box-shadow: 5px 5px 0px 0px var(--clr-palettes-secondary--shadow);
           padding: 20px;
           @include sct.bentobox-grid(child-ignore);
           @include sct.bentobox-rendering;
@@ -123,6 +172,7 @@ body {
      }
 
      .about .profile {
+          @include flv.generate($profile-root);
           display: grid;
           grid-template-columns: 150px 1fr;
           grid-template-rows: 90px 350px 44px;
@@ -135,12 +185,6 @@ body {
           gap: 10px;
 
           .header {
-               --clr-header-banner-domain:           #{ $clr-header-banner-domain };
-               --clr-header-banner-domain-contrast:  #{ $clr-header-banner-domain-contrast };
-               --clr-header-banner-domain-selection: #{ $clr-header-banner-domain-selection };
-               --clr-header-banner-year:          #{ $clr-header-banner-year };
-               --clr-header-banner-year-contrast: #{ $clr-header-banner-year-contrast };
-               --ani-header-banner-title: none;
                display: grid;
                grid-template-columns: 1fr 90px;
                grid-template-rows: 90px;
@@ -165,7 +209,7 @@ body {
                     padding: 8px;
 
                     @media (prefers-reduced-transparency: reduce) {
-                         --clr-components-gridline: #{ color.change($clr-components-gridline, $alpha: 0.3) };
+                         --clr-components-gridline: #{ color.change($flavor-components-gridline, $alpha: 0.3) };
                     }
                }
 
@@ -175,7 +219,7 @@ body {
                     font-size: 0.7rem;
                     font-weight: 900;
                     font-stretch: ultra-expanded;
-                    color: var(--clr-header-banner-domain-contrast);
+                    color: var(--clr-header-banner-domain--contrast);
                     background-color: var(--clr-header-banner-domain);
                     width: fit-content;
                     height: fit-content;
@@ -184,7 +228,7 @@ body {
                     margin-left: 8px;
 
                     &::selection {
-                         color: var(--clr-header-banner-domain-selection);
+                         color: var(--clr-header-banner-domain--selection);
                          background-color: transparent;
                     }
 
@@ -200,6 +244,7 @@ body {
                }
 
                &__banner-title {
+                    --anim-header-banner-title: none;
                     display: grid;
                     align-self: flex-end;
                     grid-template-columns: auto 1fr;
@@ -207,17 +252,17 @@ body {
                     grid-area: banner-title;
 
                     &:hover {
-                         --ani-header-banner-title: bouncing 0.5s cubic-bezier(0.45, 0, 0.55, 1) infinite normal none;
+                         --anim-header-banner-title: bouncing 0.5s cubic-bezier(0.45, 0, 0.55, 1) infinite normal none;
                     }
 
                     @media (prefers-reduced-motion: reduce) {
-                         --ani-header-banner-title: none;
+                         --anim-header-banner-title: none;
                     }
                }
 
                &__banner-title bby-char {
                     display: inline-block;
-                    animation: var(--ani-header-banner-title);
+                    animation: var(--anim-header-banner-title);
 
                     @for $chars from 1 through 6 { // due to broswer support, I can't use sibling-index for shit
                          &:nth-child(#{$chars}) {
@@ -266,7 +311,7 @@ body {
                     padding-inline: 3px;
 
                     &:nth-last-child(1) {
-                         color: var(--clr-header-banner-year-contrast);
+                         color: var(--clr-header-banner-year--contrast);
                          background-color: var(--clr-header-banner-year);
                     }
                }
@@ -313,9 +358,6 @@ body {
                     grid-area: account-status;
                }
 
-               $status-title-base-color: plt.$flavor-tertiary-color;
-               $status-title-bg-color: $status-title-base-color;
-               $status-title-txt-color: plt.color-contrast($status-title-base-color);
                &__status-title {
                     font-family: 'Archivo', font.$standard-font;
                     font-size: 0.9rem;
@@ -323,8 +365,8 @@ body {
                     font-stretch: semi-expanded;
                     text-align: center;
                     text-transform: uppercase;
-                    color: $status-title-txt-color;
-                    background-color: $status-title-bg-color;
+                    color: var(--clr-account-status-title--contrast);
+                    background-color: var(--clr-account-status-title);
                     border-radius: 3px 3px 0px 0px;
                     width: 100%;
                     padding: 1px 5px;
@@ -350,22 +392,16 @@ body {
                     margin-block: auto;
                }
 
-               $triviapad-base-color: beige;
-               $triviapad-bg-color: $triviapad-base-color;
-               $triviapad-txt-color: plt.color-contrast($triviapad-base-color);
                $triviapad-border-radius: 10px;
                $triviapad-title-border-radius: calc($triviapad-border-radius / 2);
                &__triviapad {
                     display: flex;
                     flex-direction: column;
                     grid-area: account-triviapad;
-                    background-color: $triviapad-bg-color;
+                    background-color: var(--clr-account-triviapad);
                     border-radius: $triviapad-border-radius $triviapad-border-radius 5px 5px;
                }
 
-               $triviapad-title-base-color: plt.$flavor-primary-color;
-               $triviapad-title-bg-color: $triviapad-title-base-color;
-               $triviapad-title-txt-color: plt.color-contrast($triviapad-title-base-color);
                &__triviapad-title {
                     font-family: 'Archivo', font.$standard-font;
                     font-size: 0.95rem;
@@ -373,8 +409,8 @@ body {
                     font-stretch: semi-condensed;
                     text-align: center;
                     text-transform: uppercase;
-                    color: $triviapad-title-txt-color;
-                    background-color: $triviapad-title-bg-color;
+                    color: var(--clr-account-triviapad-title--contrast);
+                    background-color: var(--clr-account-triviapad-title);
                     border-radius: $triviapad-title-border-radius $triviapad-title-border-radius 0px 0px;
                     padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
                }
@@ -384,7 +420,7 @@ body {
                     font-size: 0.5rem;
                     font-weight: bolder;
                     text-align: start;
-                    color: $triviapad-txt-color;
+                    color: var(--clr-account-triviapad--contrast);
                     padding: 2px 2px 5px 5px;
                     margin: 4px 4px inherit inherit;
                }
@@ -409,7 +445,7 @@ body {
           .autobiography {
                grid-area: profile-autobiography;
                background-color: var(--clr-components-bento);
-               box-shadow: 3px 3px 0px 0px color.change(plt.$flavor-quaternary-color, $alpha: 0.75);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-quaternary--shadow);
                padding: 8px;
           }
 
@@ -474,48 +510,10 @@ body {
           gap: 10px;
 
           .manual {
-               --clr-manual-captionbar: #{ $clr-manual-captionbar };
-               --clr-manual-captionbar-grad-start: #{ $clr-manual-captionbar-grad-start };
-               --clr-manual-captionbar-grad-end:   #{ $clr-manual-captionbar-grad-end };
-               --clr-manual-captionbar-border:     #{ $clr-manual-captionbar-border };
                display: flex;
                flex-direction: column;
                row-gap: 5px;
                position: relative;
-
-               &__captionbar {
-                    display: flex;
-                    flex-direction: row;
-                    column-gap: 3px;
-               }
-          
-               &__captiontitle {
-                    font-family: 'Archivo';
-                    font-size: 1.1rem;
-                    font-weight: 900;
-                    font-stretch: expanded;
-                    text-transform: capitalize;
-                    background: var(--clr-manual-captionbar);
-                    background: linear-gradient(144deg,
-                         var(--clr-manual-captionbar-grad-start) 5%,
-                         var(--clr-manual-captionbar-grad-end) 95%
-                    );
-                    border: 2px solid var(--clr-manual-captionbar-border);
-                    padding: 5px 10px;
-                    width: 100%;
-               }
-          
-               &__captionblocks {
-                    border: 2px solid var(--clr-manual-captionbar-border);
-                    width: ex-math.midpoint(15px, 20px);
-                    height: auto;
-          
-                    @for $blocks from 1 through 3 {
-                         &--palette-#{$blocks} {
-                              background-color: list.nth($clr-manual-captionbar-block, $blocks);
-                         }
-                    }
-               }
           }
 
           .gallery {
@@ -530,13 +528,12 @@ body {
                @include sct.bentobox-grid;
 
                &__debugmode {
-                    --clr-debugmode: #{ $clr-debugmode };
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                     justify-content: center;
                     grid-area: gallery-debugmode;
-                    background: var(--clr-debugmode) center top / cover no-repeat scroll;
+                    background: var(--clr-information-gallery-debugmode) center top / cover no-repeat scroll;
                     background-image: url(../images/decorations/sprites/debugs/bg.gif);
                     image-rendering: pixelated;
                     animation: switch-a-roo 20s linear 0s infinite alternate both;
@@ -573,21 +570,7 @@ body {
      }
 
      .about .interests {
-          --clr-interests-captionbar:            #{ $clr-interests-captionbar };
-          --clr-interests-captionbar-grad-start: #{ $clr-interests-captionbar-grad-start };
-          --clr-interests-captionbar-grad-end:   #{ $clr-interests-captionbar-grad-end };
-          --clr-interests-captionbar-border:     #{ $clr-interests-captionbar-border };
-          --clr-interests-title:         #{ $clr-interests-title };
-          --clr-interests-title-s35-l24: #{ $clr-interests-title-s35-l24 };
-          --clr-interests-title-ln2:     #{ $clr-interests-title-ln2 };
-          --clr-interests-title-l7:      #{ $clr-interests-title-l7 };
-          --clr-interests-title-ln13:    #{ $clr-interests-title-ln13 };
-          --clr-interests-title-shadow:  #{ $clr-interests-title-shadow };
-          --clr-interests-title-border:  #{ $clr-interests-title-border };
-          --clr-interests-catalog:        #{ $clr-interests-catalog };
-          --clr-interests-catalog-border: #{ $clr-interests-catalog-border };
-          --clr-interests-catalog-list-scrollbar-thumb: #{ $clr-interests-catalog-list-scrollbar-thumb };
-          --clr-interests-catalog-list-scrollbar-track: #{ $clr-interests-catalog-list-scrollbar-track };
+          @include flv.generate($interests-root);
           grid-area: about-interests;
 
           &__captionbar {
@@ -602,24 +585,24 @@ body {
                font-weight: 900;
                font-stretch: expanded;
                text-transform: capitalize;
-               background: var(--clr-interests-captionbar);
+               background: var(--clr-captionbar);
                background: linear-gradient(144deg,
-                    var(--clr-interests-captionbar-grad-start) 5%,
-                    var(--clr-interests-captionbar-grad-end) 95%
+                    var(--clr-captionbar--grad-start) 5%,
+                    var(--clr-captionbar--grad-end) 95%
                );
-               border: 2px solid var(--clr-interests-captionbar-border);
+               border: 2px solid var(--clr-captionbar--border);
                padding: 5px 10px;
                width: 100%;
           }
      
           &__captionblocks {
-               border: 2px solid var(--clr-interests-captionbar-border);
+               border: 2px solid var(--clr-captionbar--border);
                width: ex-math.midpoint(15px, 20px);
                height: auto;
      
                @for $blocks from 1 through 3 {
                     &--palette-#{$blocks} {
-                         background-color: list.nth($clr-interests-captionbar-block, $blocks);
+                         background-color: list.nth(map.get($interests-root, 'captionbar--blocks'), $blocks);
                     }
                }
           }
@@ -645,18 +628,18 @@ body {
                font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
                font-size: 1.15rem;
                font-weight: bolder;
-               text-shadow: 2px 2px 0px var(--clr-interests-title-shadow);
+               text-shadow: 2px 2px 0px var(--clr-title--shadow);
                background: linear-gradient(180deg,
-                    var(--clr-interests-title) 1%,
-                    var(--clr-interests-title-s35-l24) 4%,
-                    var(--clr-interests-title-s35-l24) 5%,
-                    var(--clr-interests-title) 10%,
-                    var(--clr-interests-title) 30%,
-                    var(--clr-interests-title-ln2) 55%,
-                    var(--clr-interests-title-l7) 85%,
-                    var(--clr-interests-title-ln13) 95%
+                    var(--clr-title) 1%,
+                    var(--clr-title--grad-point-1) 4%,
+                    var(--clr-title--grad-point-1) 5%,
+                    var(--clr-title) 10%,
+                    var(--clr-title) 30%,
+                    var(--clr-title--grad-point-2) 55%,
+                    var(--clr-title--grad-point-3) 85%,
+                    var(--clr-title--grad-point-4) 95%
                );
-               border: 2px solid var(--clr-interests-title-border);
+               border: 2px solid var(--clr-title--border);
                border-top-left-radius: 5px;
                border-bottom-left-radius: 5px;
                padding: 3px 8px;
@@ -675,8 +658,8 @@ body {
                font-family: 'Candy Beans', font.$standard-font;
                font-size: 0.85rem;
                line-height: 1.4;
-               background-color: var(--clr-interests-catalog);
-               border: 2px solid var(--clr-interests-catalog-border);
+               background-color: var(--clr-catalog);
+               border: 2px solid var(--clr-catalog--border);
 
                &:not(:lang(en)) {
                     line-height: normal;
@@ -684,8 +667,8 @@ body {
           }
 
           &__catalog-list {
-               --clr-scrollbar-thumb: var(--clr-interests-catalog-list-scrollbar-thumb);
-               --clr-scrollbar-track: var(--clr-interests-catalog-list-scrollbar-track);
+               --clr-scrollbar-thumb: var(--clr-catalog--scrollbar-thumb);
+               --clr-scrollbar-track: var(--clr-catalog--scrollbar-track);
                display: block;
                outline: none;
                overflow-y: scroll;
@@ -695,7 +678,7 @@ body {
                padding: 5px 8px;
 
                &:focus-visible {
-                    --clr-scrollbar-thumb: #{ color.scale($clr-interests-catalog-list-scrollbar-thumb, $saturation: -10%, $lightness: 35%) };
+                    --clr-scrollbar-thumb: #{ color.scale(map.get($interests-root, 'catalog--scrollbar-thumb'), $saturation: -10%, $lightness: 35%) };
                }
           
                &::-webkit-scrollbar {

@@ -1,6 +1,11 @@
 @use './built-in/color.scss' as ex-color;
+@use 'sass:list';
 @use 'sass:map';
 @use 'sass:color';
+
+// ----------------------------------------------------
+// == CONSTANTS ==
+// ----------------------------------------------------
 
 $palettes: (
      'primary':    hsl(240deg, 100%, 65%),
@@ -54,3 +59,17 @@ $scrollbar: (
      'track': hsl(0deg, 0%, 0%, 0),
      'thumb': hsl(254deg, 30%, 20%)
 );
+
+// ----------------------------------------------------
+// == METHODS ==
+// ----------------------------------------------------
+
+/// Automatically generates CSS properties from the SCSS color palette roots.
+/// Must be declared locally within the selector, preventing unnecessary bloat.
+/// @param {maps} $roots - The local root style.
+/// @output Generates a bunch of CSS properties.
+@mixin generate($roots) {
+     @each $names, $values in $roots {
+          --clr-#{$names}: #{ $values };
+     }
+}

@@ -3,50 +3,104 @@
 @use '../../modules/fonts.scss' as font;
 @use '../../modules/flavors.scss' as flv;
 @use '../../modules/structure.scss' as sct;
+@use 'sass:list';
 @use 'sass:map';
 @use 'sass:color';
 
-$clr-palettes-primary:   map.get(flv.$palettes, 'primary');
-$clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
-$clr-palettes-quaternary: map.get(flv.$palettes, 'quaternary');
-$clr-palettes-primary-contrast:   map.get(flv.$palettes-contrast, 'primary');
-$clr-palettes-secondary-contrast: map.get(flv.$palettes-contrast, 'secondary');
-$clr-palettes-quaternary-contrast: map.get(flv.$palettes-contrast, 'quaternary');
+// ----------------------------------------------------
+// == VARIABLES ==
+// ----------------------------------------------------
 
-$clr-autobiography-headbar: beige;
-$clr-autobiography-headbar-contrast: ex-color.contrast($clr-autobiography-headbar);
-$clr-autobiography-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
-$clr-autobiography-scrollbar-track: map.get(flv.$scrollbar, 'track');
+// GLOBAL COLOR PALLETES //
+$flavor-palettes-primary:           map.get(flv.$palettes, 'primary');
+$flavor-palettes-secondary:         map.get(flv.$palettes, 'secondary');
+$flavor-palettes-tertiary:          map.get(flv.$palettes, 'tertiary');
+$flavor-palettes-quaternary:        map.get(flv.$palettes, 'quaternary');
 
-$clr-manual: beige;
-$clr-manual-contrast: ex-color.contrast($clr-manual);
-$clr-manual-title: hsl(240deg, 14%, 5%);
-$clr-manual-border: hsl(0deg, 0%, 0%);
-$clr-manual-navig: hsl(0deg, 0%, 0%);
-$clr-manual-navig-hover: color.scale($clr-palettes-primary, $saturation: 5%);
-$clr-manual-navig-focus: color.scale($clr-palettes-quaternary, $saturation: 5%);
-$clr-manual-heading: black;
-$clr-manual-heading-contrast: ex-color.contrast($clr-manual-heading);
+$flavor-palettes-primary--contrast:    map.get(flv.$palettes-contrast, 'primary');
+$flavor-palettes-secondary--contrast:  map.get(flv.$palettes-contrast, 'secondary');
+$flavor-palettes-quaternary--contrast: map.get(flv.$palettes-contrast, 'quaternary');
 
-$clr-biography-category-type: $clr-palettes-primary;
-$clr-biography-category-type-contrast: ex-color.contrast($clr-biography-category-type);
+$flavor-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
+$flavor-scrollbar-track: map.get(flv.$scrollbar, 'track');
+$flavor-root: (
+     'palettes-primary':    $flavor-palettes-primary,
+     'palettes-secondary':  $flavor-palettes-secondary,
+     'palettes-tertiary':   $flavor-palettes-tertiary,
+     'palettes-quaternary': $flavor-palettes-quaternary,
 
-$clr-fact-factpad: $clr-palettes-primary;
-$clr-fact-factpad-contrast: ex-color.contrast($clr-fact-factpad);
-$clr-fact-list-scrollbar-thumb: color.scale($clr-manual, $saturation: -25%, $lightness: -20%);
-$clr-fact-list-scrollbar-track: transparent;
+     'palettes-primary--contrast':    $flavor-palettes-primary--contrast,
+     'palettes-secondary--contrast':  $flavor-palettes-secondary--contrast,
+     'palettes-quaternary--contrast': $flavor-palettes-quaternary--contrast,
+
+     'scrollbar-thumb': $flavor-scrollbar-thumb,
+     'scrollbar-track': $flavor-scrollbar-track
+);
+
+// LOCAL COLOR PALLETES //
+$autobiography-headbar: beige;
+$autobiography-heading-title: $flavor-palettes-secondary;
+$autobiography-heading-section: $flavor-palettes-primary;
+$autobiography-root: (
+     'base--scrollbar-thumb': $flavor-scrollbar-thumb,
+     'base--scrollbar-track': $flavor-scrollbar-track,
+
+     'headbar':           $autobiography-headbar,
+     'headbar--contrast': ex-color.contrast($autobiography-headbar),
+     'heading-title':             $autobiography-heading-title,
+     'heading-title--contrast':   ex-color.contrast($autobiography-heading-title),
+     'heading-section':           $autobiography-heading-section,
+     'heading-section--contrast': ex-color.contrast($autobiography-heading-section),
+);
+
+$manual:                 beige;
+$manual-captionbar:      $flavor-palettes-secondary;
+$manual-heading:         black;
+$manual-root: (
+     'base':           $manual,
+     'base--contrast': ex-color.contrast($manual),
+     'base--border':   black,
+
+     'captionbar':             $manual-captionbar,
+     'captionbar--grad-start': color.scale($manual-captionbar, $lightness: -35%),
+     'captionbar--grad-end':   color.scale($manual-captionbar, $lightness: -65%),
+     'captionbar--blocks':     ($flavor-palettes-secondary, $flavor-palettes-primary, $flavor-palettes-quaternary),
+     'captionbar--border':     black,
+
+     'title':             hsl(240deg, 14%, 5%),
+     'heading':           $manual-heading,
+     'heading--contrast': ex-color.contrast($manual-heading),
+
+     'navig':        black,
+     'navig--hover': color.scale($flavor-palettes-primary, $saturation: 5%),
+     'navig--focus': color.scale($flavor-palettes-quaternary, $saturation: 5%)
+);
+
+$manual-biography-category-type: $flavor-palettes-primary;
+$manual-biography-root: (
+     'category-type':           $manual-biography-category-type,
+     'category-type--contrast': ex-color.contrast($manual-biography-category-type),
+);
+
+$manual-fact-factpad: $flavor-palettes-tertiary;
+$manual-fact-root: (
+     'factpad-title':           $manual-fact-factpad,
+     'factpad-title--contrast': ex-color.contrast($manual-fact-factpad),
+
+     'list--scrollbar-thumb': color.scale($manual, $saturation: -25%, $lightness: -20%),
+     'list--scrollbar-track': transparent
+);
+
+// ----------------------------------------------------
+// == MAIN ==
+// ----------------------------------------------------
+
 :root {
-     --clr-palettes-primary:   #{ $clr-palettes-primary };
-     --clr-palettes-secondary: #{ $clr-palettes-secondary };
-     --clr-palettes-primary-contrast:   #{ $clr-palettes-primary-contrast };
-     --clr-palettes-secondary-contrast: #{ $clr-palettes-secondary-contrast };
+     @include flv.generate($flavor-root);
 }
 
 .about .profile .autobiography {
-     --clr-autobiography-headbar:          #{ $clr-autobiography-headbar };
-     --clr-autobiography-headbar-contrast: #{ $clr-autobiography-headbar-contrast };
-     --clr-autobiography-scrollbar-thumb: #{ $clr-autobiography-scrollbar-thumb };
-     --clr-autobiography-scrollbar-track: #{ $clr-autobiography-scrollbar-track };
+     @include flv.generate($autobiography-root);
 
      &__headbar {
           display: grid;
@@ -62,7 +116,7 @@ $clr-fact-list-scrollbar-track: transparent;
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: var(--clr-autobiography-headbar);
+          background-color: var(--clr-headbar);
      }
 
      &__headbar-title {
@@ -72,14 +126,14 @@ $clr-fact-list-scrollbar-track: transparent;
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: var(--clr-autobiography-headbar);
-          border: 2px solid var(--clr-autobiography-headbar);
+          color: var(--clr-headbar);
+          border: 2px solid var(--clr-headbar);
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: var(--clr-autobiography-headbar-contrast);
-               background-color: var(--clr-autobiography-headbar);
+               color: var(--clr-headbar--contrast);
+               background-color: var(--clr-headbar);
           }
      }
 
@@ -92,7 +146,7 @@ $clr-fact-list-scrollbar-track: transparent;
      }
 
      &__headbar-slabs {
-          background-color: var(--clr-autobiography-headbar);
+          background-color: var(--clr-headbar);
           height: 10px;
 
           &--palette-1 {
@@ -107,8 +161,8 @@ $clr-fact-list-scrollbar-track: transparent;
      }
 
      &__body {
-          --clr-scrollbar-thumb: var(--clr-autobiography-scrollbar-thumb);
-          --clr-scrollbar-track: var(--clr-autobiography-scrollbar-track);
+          --clr-scrollbar-thumb: var(--clr-base--scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-base--scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 275px;
@@ -117,7 +171,7 @@ $clr-fact-list-scrollbar-track: transparent;
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --clr-scrollbar-thumb: #{ color.adjust($clr-autobiography-scrollbar-thumb, $lightness: 13%) };
+               --clr-scrollbar-thumb: #{ color.adjust(map.get($autobiography-root, 'base--scrollbar-thumb'), $lightness: 13%) };
           }
           
           &::-webkit-scrollbar {
@@ -141,7 +195,7 @@ $clr-fact-list-scrollbar-track: transparent;
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: var(--clr-palettes-primary-contrast);
+               color: var(--clr-palettes-primary--contrast);
                background-color: var(--clr-palettes-primary);
                padding: 3px 5px;
 
@@ -178,8 +232,8 @@ $clr-fact-list-scrollbar-track: transparent;
           font-size: 1rem;
           font-weight: 750;
           font-stretch: semi-expanded;
-          color: var(--clr-palettes-secondary-contrast);
-          background-color: var(--clr-palettes-secondary);
+          color: var(--clr-heading-title--contrast);
+          background-color: var(--clr-heading-title);
           width: fit-content;
           padding: 2px 5px 2px 3px;
 
@@ -205,8 +259,8 @@ $clr-fact-list-scrollbar-track: transparent;
           font-weight: 650;
           font-stretch: semi-condensed;
           text-transform: uppercase;
-          color: var(--clr-palettes-primary-contrast);
-          background-color: var(--clr-palettes-primary);
+          color: var(--clr-heading-section--contrast);
+          background-color: var(--clr-heading-section);
           padding: 3px 5px;
 
           &::before {
@@ -229,20 +283,46 @@ $clr-fact-list-scrollbar-track: transparent;
 
 $manual-content-height: 170px;
 .about .information .manual {
-     --clr-manual:          #{ $clr-manual };
-     --clr-manual-contrast: #{ $clr-manual-contrast };
-     --clr-manual-title:    #{ $clr-manual-title };
-     --clr-manual-border:   #{ $clr-manual-border };
-     --clr-manual-navig:       #{ $clr-manual-navig };
-     --clr-manual-navig-hover: #{ $clr-manual-navig-hover };
-     --clr-manual-navig-focus: #{ $clr-manual-navig-focus };
-     --clr-manual-heading:          #{ $clr-manual-heading };
-     --clr-manual-heading-contrast: #{ $clr-manual-heading-contrast };
+     @include flv.generate($manual-root);
+
+     &__captionbar {
+          display: flex;
+          flex-direction: row;
+          column-gap: 3px;
+     }
+          
+     &__captiontitle {
+          font-family: 'Archivo';
+          font-size: 1.1rem;
+          font-weight: 900;
+          font-stretch: expanded;
+          text-transform: capitalize;
+          background: var(--clr-captionbar);
+          background: linear-gradient(144deg,
+               var(--clr-captionbar--grad-start) 5%,
+               var(--clr-captionbar--grad-end) 95%
+          );
+          border: 2px solid var(--clr-captionbar--border);
+          padding: 5px 10px;
+          width: 100%;
+     }
+          
+     &__captionblocks {
+          border: 2px solid var(--clr-captionbar--border);
+          width: ex-math.midpoint(15px, 20px);
+          height: auto;
+          
+          @for $blocks from 1 through 3 {
+               &--palette-#{$blocks} {
+                    background-color: list.nth(map.get($manual-root, 'captionbar--blocks'), $blocks);
+               }
+          }
+     }
 
      &__body {
-          background: var(--clr-manual) 50% -70px / 50% repeat-x local;
+          background: var(--clr-base) 50% -70px / 50% repeat-x local;
           background-image: url(../../../images/decorations/manual/sidecover.png);
-          border: 2px solid var(--clr-manual-border);
+          border: 2px solid var(--clr-base--border);
           height: 100%;
           padding: 5px 10px;
      }
@@ -255,8 +335,8 @@ $manual-content-height: 170px;
           font-weight: 900;
           font-stretch: 120%;
           text-transform: uppercase;
-          color: var(--clr-manual-title);
-          border: 2px solid var(--clr-manual-title);
+          color: var(--clr-title);
+          border: 2px solid var(--clr-title);
           height: fit-content;
           padding: 0px 8px;
           margin-bottom: 0.65cm;
@@ -277,7 +357,7 @@ $manual-content-height: 170px;
           cursor: pointer;
           font-size: 1rem;
           outline: none;
-          background-color: var(--clr-manual-navig);
+          background-color: var(--clr-navig);
           border: none;
           border-radius: 360px;
           position: absolute;
@@ -286,11 +366,11 @@ $manual-content-height: 170px;
           height: 24px;
 
           &:hover {
-               background-color: var(--clr-manual-navig-hover);
+               background-color: var(--clr-navig--hover);
           }
 
           &:active, &:focus-visible {
-               background-color: var(--clr-manual-navig-focus);
+               background-color: var(--clr-navig--focus);
           }
 
           &::selection {
@@ -328,8 +408,8 @@ $manual-content-height: 170px;
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: var(--clr-manual-heading-contrast);
-               background-color: var(--clr-manual-heading);
+               color: var(--clr-heading--contrast);
+               background-color: var(--clr-heading);
                padding: 3px 5px;
 
                &::before {
@@ -346,160 +426,156 @@ $manual-content-height: 170px;
                text-wrap: pretty;
                text-rendering: optimizeSpeed;
                line-height: normal;
-               color: var(--clr-manual-contrast);
+               color: var(--clr-base--contrast);
                margin-block: 3px;
           }
      }
+}
 
-     .biography {
-          --clr-biography-category-type: #{ $clr-biography-category-type };
-          --clr-biography-category-type-contrast: #{ $clr-biography-category-type-contrast };
-          display: grid;
-          grid-template-columns: auto 100px;
-          grid-template-rows: auto auto;
-          grid-template-areas:
-               "biography-desc biography-category"
-               "biography-rewrite biography-category"
-          ;
-          gap: 10px;
-          margin-top: 3px;
-     
-          &__desc {
-               grid-area: biography-desc;
-          }
-     
-          &__rewrite {
-               -webkit-user-select: none;
-               user-select: none;
-               place-self: center;
-               grid-area: biography-rewrite;
-               image-rendering: pixelated;
-               margin-bottom: 8px;
-          }
-     
-          &__category {
-               grid-area: biography-category;
-               outline: none;
-               overflow-y: auto;
-               scrollbar-width: none;
-               height: $manual-content-height;
-     
-               &:focus-visible {
-                    --clr-manual: #{ color.scale($clr-manual, $saturation: -20%, $lightness: -15%) };
-                    background: var(--clr-manual);
-               }
-          }
-     
-          &__category-item {
-               margin-block: 5px;
-     
-               &:first-child {
-                    margin-top: 0px
-               }
-          }
-     
-          &__category-type {
-               display: block;
-               font-family: 'Zalando Sans', font.$standard-font;
-               font-size: 0.7rem;
-               font-weight: 650;
-               font-stretch: semi-condensed;
-               text-transform: capitalize;
-               text-align: center;
-               color: var(--clr-biography-category-type-contrast);
-               background-color: var(--clr-biography-category-type);
-               padding: 3px 5px;
-               margin: 0;
-          }
-     
-          &__category-info {
-               font-weight: bolder;
-               font-style: italic;
-               text-align: start;
+.about .information .manual .biography {
+     @include flv.generate($manual-biography-root);
+     display: grid;
+     grid-template-columns: auto 100px;
+     grid-template-rows: auto auto;
+     grid-template-areas:
+          "biography-desc biography-category"
+          "biography-rewrite biography-category"
+     ;
+     gap: 10px;
+     margin-top: 3px;
+
+     &__desc {
+          grid-area: biography-desc;
+     }
+
+     &__rewrite {
+          -webkit-user-select: none;
+          user-select: none;
+          place-self: center;
+          grid-area: biography-rewrite;
+          image-rendering: pixelated;
+          margin-bottom: 8px;
+     }
+
+     &__category {
+          grid-area: biography-category;
+          outline: none;
+          overflow-y: auto;
+          scrollbar-width: none;
+          height: $manual-content-height;
+
+          &:focus-visible {
+               --clr-base: #{ color.scale($manual, $saturation: -20%, $lightness: -15%) };
+               background: var(--clr-base);
           }
      }
 
-     .facts {
-          --clr-fact-factpad:          #{ $clr-fact-factpad };
-          --clr-fact-factpad-contrast: #{ $clr-fact-factpad-contrast };
-          --clr-fact-list-scrollbar-thumb: #{ $clr-fact-list-scrollbar-thumb };
-          --clr-fact-list-scrollbar-track: #{ $clr-fact-list-scrollbar-track };
-          display: grid;
-          grid-template-columns: 78px auto;
-          grid-template-rows: auto;
-          gap: 10px;
-          margin-top: 3px;
-     
-          &__factpad {
-               display: flex;
-               flex-direction: column;
-          }
-     
-          &__factpad-title {
-               font-family: 'Archivo', font.$standard-font;
-               font-size: 0.95rem;
-               font-weight: 800;
-               font-stretch: semi-condensed;
-               text-align: center;
-               text-transform: uppercase;
-               color: var(--clr-fact-factpad-contrast);
-               background-color: var(--clr-fact-factpad);
-               padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
-          }
-     
-          &__factpad-freedom {
-               -webkit-user-select: none;
-               user-select: none;
-               image-rendering: pixelated;
-          }
-     
-          &__factpad-desc {
-               font-family: 'MS Pixel Serif', font.$standard-font;
-               font-display: block;
-               font-size: 0.55rem;
-               font-weight: normal;
-               padding-inline: 3px;
-          }
-     
-          &__list {
-               --clr-scrollbar-thumb: var(--clr-fact-list-scrollbar-thumb);
-               --clr-scrollbar-track: var(--clr-fact-list-scrollbar-track);
-               display: flex;
-               flex-direction: column;
-               row-gap: 3px;
-               list-style-type: disc;
-               outline: none;
-               overflow: hidden auto;
-               scrollbar-width: thin;
-               scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
-               height: $manual-content-height;
-               padding-left: 15px;
+     &__category-item {
+          margin-block: 5px;
 
-               &:focus-visible {
-                    --clr-scrollbar-thumb: #{ color.scale($clr-fact-list-scrollbar-thumb, $saturation: -30%, $lightness: -25%) };
-               }
-          
-               &::-webkit-scrollbar {
-                    width: 6px;
-               }
-          
-               &::-webkit-scrollbar-track {
-                    background: var(--clr-scrollbar-track);
-               }
-          
-               &::-webkit-scrollbar-thumb {
-                    background: var(--clr-scrollbar-thumb);
-                    border-radius: 4px;
-               }
+          &:first-child {
+               margin-top: 0px
           }
-     
-          &__item {
-               font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-               font-size: ex-math.midpoint(0.65rem, 0.70rem);
-               font-weight: bolder;
-               text-align: start;
-               text-wrap: stable;
-               color: var(--clr-manual-contrast);
+     }
+
+     &__category-type {
+          display: block;
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 0.7rem;
+          font-weight: 650;
+          font-stretch: semi-condensed;
+          text-transform: capitalize;
+          text-align: center;
+          color: var(--clr-category-type--contrast);
+          background-color: var(--clr-category-type);
+          padding: 3px 5px;
+          margin: 0;
+     }
+
+     &__category-info {
+          font-weight: bolder;
+          font-style: italic;
+          text-align: start;
+     }
+}
+
+.about .information .manual .facts {
+     @include flv.generate($manual-fact-root);
+     display: grid;
+     grid-template-columns: 78px auto;
+     grid-template-rows: auto;
+     gap: 10px;
+     margin-top: 3px;
+
+     &__factpad {
+          display: flex;
+          flex-direction: column;
+     }
+
+     &__factpad-title {
+          font-family: 'Archivo', font.$standard-font;
+          font-size: 0.95rem;
+          font-weight: 800;
+          font-stretch: semi-condensed;
+          text-align: center;
+          text-transform: uppercase;
+          color: var(--clr-factpad--contrast-title);
+          background-color: var(--clr-factpad-title);
+          padding: ex-math.midpoint(3px, 4px, 2.5) 5px;
+     }
+
+     &__factpad-freedom {
+          -webkit-user-select: none;
+          user-select: none;
+          image-rendering: pixelated;
+     }
+
+     &__factpad-desc {
+          font-family: 'MS Pixel Serif', font.$standard-font;
+          font-display: block;
+          font-size: 0.55rem;
+          font-weight: normal;
+          padding-inline: 3px;
+     }
+
+     &__list {
+          --clr-scrollbar-thumb: var(--clr-list--scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-list--scrollbar-track);
+          display: flex;
+          flex-direction: column;
+          row-gap: 3px;
+          list-style-type: disc;
+          outline: none;
+          overflow: hidden auto;
+          scrollbar-width: thin;
+          scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
+          height: $manual-content-height;
+          padding-left: 15px;
+
+          &:focus-visible {
+               --clr-scrollbar-thumb: #{ color.scale(map.get($manual-fact-root, 'list--scrollbar-thumb'), $saturation: -30%, $lightness: -25%) };
           }
+
+          &::-webkit-scrollbar {
+               width: 6px;
+          }
+
+          &::-webkit-scrollbar-track {
+               background: var(--clr-scrollbar-track);
+          }
+
+          &::-webkit-scrollbar-thumb {
+               background: var(--clr-scrollbar-thumb);
+               border-radius: 4px;
+          }
+     }
+
+     &__item {
+          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+          font-size: ex-math.midpoint(0.65rem, 0.70rem);
+          font-weight: bolder;
+          text-align: start;
+          text-wrap: stable;
+          color: var(--clr-base--contrast);
      }
 }

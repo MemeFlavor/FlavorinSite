@@ -17,7 +17,7 @@
 @include font.font-face('Candy Beans', 500, normal, normal, 1, font.$font-source-static);
 
 // ----------------------------------------------------
-// == VARIABLES ==
+// == COLOR PALETTE ARCHITECTURE ==
 // ----------------------------------------------------
 
 // GLOBAL COLOR PALLETES //
@@ -92,7 +92,9 @@ $interests-root: (
      'captionbar':             $interests-captionbar,
      'captionbar--grad-start': color.scale($interests-captionbar, $lightness: -2%),
      'captionbar--grad-end':   color.scale($interests-captionbar, $saturation: -20%, $lightness: -20%),
-     'captionbar--blocks':     ($flavor-palettes-primary, $flavor-palettes-secondary, $flavor-palettes-quaternary),
+     'captionbar--blocks-1':   $flavor-palettes-primary,
+     'captionbar--blocks-2':   $flavor-palettes-secondary,
+     'captionbar--blocks-3':   $flavor-palettes-quaternary,
      'captionbar--border':     black,
 
      'title':               $interests-interests-title,
@@ -112,12 +114,8 @@ $interests-root: (
      'gallery-debugmode': $interests-gallery-debugmode
 );
 
-$roots: (
-     'profile':   $profile-root,
-     'interests': $interests-root
-);
-
 :root {
+     $roots: ('profile': $profile-root, 'interests': $interests-root);
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };
      }
@@ -611,9 +609,9 @@ body {
                width: ex-math.midpoint(15px, 20px);
                height: auto;
      
-               @for $blocks from 1 through 3 {
-                    &--palette-#{$blocks} {
-                         background-color: list.nth(map.get($interests-root, 'captionbar--blocks'), $blocks);
+               @for $block-index from 1 through 3 {
+                    &--palette-#{$block-index} {
+                         background-color: var(--clr-interests-captionbar--blocks-#{$block-index});
                     }
                }
           }

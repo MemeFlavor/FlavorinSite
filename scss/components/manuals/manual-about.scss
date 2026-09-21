@@ -8,7 +8,7 @@
 @use 'sass:color';
 
 // ----------------------------------------------------
-// == VARIABLES ==
+// == COLOR PALETTE ARCHITECTURE ==
 // ----------------------------------------------------
 
 // GLOBAL COLOR PALLETES //
@@ -38,7 +38,6 @@ $flavor-root: (
 );
 
 // LOCAL COLOR PALLETES //
-
 $profile-autobiography-h3:              $flavor-palettes-primary;
 $profile-autobiography-headbar:         beige;
 $profile-autobiography-heading-title:   $flavor-palettes-secondary;
@@ -68,7 +67,9 @@ $information-root: (
      'manual-captionbar':             $information-manual-captionbar,
      'manual-captionbar--grad-start': color.scale($information-manual-captionbar, $lightness: -35%),
      'manual-captionbar--grad-end':   color.scale($information-manual-captionbar, $lightness: -65%),
-     'manual-captionbar--blocks':     ($flavor-palettes-secondary, $flavor-palettes-primary, $flavor-palettes-quaternary),
+     'manual-captionbar--blocks-1':   $flavor-palettes-secondary,
+     'manual-captionbar--blocks-2':   $flavor-palettes-primary,
+     'manual-captionbar--blocks-3':   $flavor-palettes-quaternary,
      'manual-captionbar--border':     black,
 
      'manual-title':             hsl(240deg, 14%, 5%),
@@ -87,12 +88,8 @@ $information-root: (
      'manual-fact-factpad-title--contrast': ex-color.contrast($information-manual-fact-factpad),
 );
 
-$roots: (
-     'profile': $profile-root,
-     'information': $information-root
-);
-
 :root {
+     $roots: ('profile': $profile-root, 'information': $information-root);
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };
      }
@@ -288,9 +285,9 @@ $information-manual-content-height: 170px;
           width: ex-math.midpoint(15px, 20px);
           height: auto;
           
-          @for $blocks from 1 through 3 {
-               &--palette-#{$blocks} {
-                    background-color: list.nth(map.get($information-root, 'manual-captionbar--blocks'), $blocks);
+          @for $block-index from 1 through 3 {
+               &--palette-#{$block-index} {
+                    background-color: var(--clr-information-manual-captionbar--blocks-#{$block-index});
                }
           }
      }

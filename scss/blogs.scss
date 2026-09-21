@@ -17,42 +17,81 @@
 @include font.font-face('MS Pixel Serif', 500 700, normal, normal, 1, font.$font-source-static);
 @include font.font-face('Noto Sans Tagalog', 500, normal, normal, 1, font.$font-source-static);
 
-$clr-palettes-primary: map.get(flv.$palettes, 'primary');
-$clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
-$clr-palettes-tertiary: map.get(flv.$palettes, 'tertiary');
-$clr-palettes-quaternary: map.get(flv.$palettes, 'quaternary');
-$clr-palettes-primary-shadow: map.get(flv.$palettes-shadow, 'primary');
-$clr-palettes-secondary-shadow: map.get(flv.$palettes-shadow, 'secondary');
-$clr-palettes-tertiary-shadow: map.get(flv.$palettes-shadow, 'tertiary');
-$clr-palettes-quaternary-shadow: map.get(flv.$palettes-shadow, 'quaternary');
+// ----------------------------------------------------
+// == COLOR PALETTE ARCHITECTURE ==
+// ----------------------------------------------------
 
-$clr-components-wallpaper: map.get(flv.$components, 'wallpaper');
-$clr-components-page: map.get(flv.$components, 'page');
-$clr-components-bento: map.get(flv.$components, 'bento');
+// GLOBAL COLOR PALLETES //
+$flavor-palettes-primary:           map.get(flv.$palettes, 'primary');
+$flavor-palettes-secondary:         map.get(flv.$palettes, 'secondary');
+$flavor-palettes-tertiary:          map.get(flv.$palettes, 'tertiary');
+$flavor-palettes-quaternary:        map.get(flv.$palettes, 'quaternary');
 
-$clr-weblogs-captionbar: $clr-palettes-primary;
-$clr-weblogs-captionbar-grad-start: color.scale($clr-weblogs-captionbar, $lightness: -2%);
-$clr-weblogs-captionbar-grad-end: color.scale($clr-weblogs-captionbar, $saturation: -20%, $lightness: -20%);
-$clr-weblogs-captionbar-border: black;
-$clr-weblogs-captionbar-block: $clr-palettes-primary, $clr-palettes-secondary, $clr-palettes-quaternary;
+$flavor-palettes-primary--shadow:    map.get(flv.$palettes-shadow, 'primary');
+$flavor-palettes-secondary--shadow:  map.get(flv.$palettes-shadow, 'secondary');
+$flavor-palettes-tertiary--shadow:   map.get(flv.$palettes-shadow, 'tertiary');
+$flavor-palettes-quaternary--shadow: map.get(flv.$palettes-shadow, 'quaternary');
 
-$clr-bluescreen: hsl(240deg, 96%, 20%);
-$clr-bluescreen-contrast: ex-color.contrast($clr-bluescreen);
-$clr-bluescreen-title: silver;
+$flavor-components-wallpaper: map.get(flv.$components, 'wallpaper');
+$flavor-components-page:      map.get(flv.$components, 'page');
+$flavor-components-bento:     map.get(flv.$components, 'bento');
+$flavor-root: (
+     'palettes-primary':    $flavor-palettes-primary,
+     'palettes-secondary':  $flavor-palettes-secondary,
+     'palettes-tertiary':   $flavor-palettes-tertiary,
+     'palettes-quaternary': $flavor-palettes-quaternary,
+     
+     'palettes-primary--shadow':    $flavor-palettes-primary--shadow,
+     'palettes-secondary--shadow':  $flavor-palettes-secondary--shadow,
+     'palettes-tertiary--shadow':   $flavor-palettes-tertiary--shadow,
+     'palettes-quaternary--shadow': $flavor-palettes-quaternary--shadow,
+
+     'components-wallpaper': $flavor-components-wallpaper,
+     'components-page':      $flavor-components-page,
+     'components-bento':     $flavor-components-bento
+);
+
+// LOCAL COLOR PALLETES //
+$coverage-poster-message: ghostwhite;
+$coverage-root: (
+     'poster-message':         $coverage-poster-message,
+     'poster-message--shadow': ex-color.contrast($coverage-poster-message)
+);
+
+$weblogs-captionbar: $flavor-palettes-primary;
+$weblogs-root: (
+     'captionbar':             $weblogs-captionbar,
+     'captionbar--grad-start': color.scale($weblogs-captionbar, $lightness: -2%),
+     'captionbar--grad-end':   color.scale($weblogs-captionbar, $saturation: -20%, $lightness: -20%),
+     'captionbar--blocks-1':   $flavor-palettes-primary,
+     'captionbar--blocks-2':   $flavor-palettes-secondary,
+     'captionbar--blocks-3':   $flavor-palettes-quaternary,
+     'captionbar--border':     black,
+);
+
+$sundries-assemblage-bluescreen: hsl(240deg, 96%, 20%);
+$sundries-root: (
+     'assemblage-bluescreen':           $sundries-assemblage-bluescreen,
+     'assemblage-bluescreen--contrast': ex-color.contrast($sundries-assemblage-bluescreen),
+     'assemblage-bluescreen-title':     silver
+);
+
 :root {
-     --clr-palettes-primary:    #{ $clr-palettes-primary };
-     --clr-palettes-secondary:  #{ $clr-palettes-secondary };
-     --clr-palettes-tertiary:   #{ $clr-palettes-tertiary };
-     --clr-palettes-quaternary: #{ $clr-palettes-quaternary };
-     --clr-palettes-primary-shadow:    #{ $clr-palettes-primary-shadow };
-     --clr-palettes-secondary-shadow:  #{ $clr-palettes-secondary-shadow };
-     --clr-palettes-tertiary-shadow:   #{ $clr-palettes-tertiary-shadow };
-     --clr-palettes-quaternary-shadow: #{ $clr-palettes-quaternary-shadow };
-
-     --clr-components-wallpaper: #{ $clr-components-wallpaper };
-     --clr-components-page:      #{ $clr-components-page };
-     --clr-components-bento:     #{ $clr-components-bento };
+     $roots: ('coverage': $coverage-root, 'weblogs': $weblogs-root, 'sundries': $sundries-root);
+     @each $flavor-names, $flavor-values in $flavor-root {
+          --clr-#{$flavor-names}: #{ $flavor-values };
+     }
+     
+     @each $root-names, $root-styles in $roots {
+          @each $styles-name, $styles-values in $root-styles {
+               --clr-#{$root-names}-#{$styles-name}: #{ $styles-values };
+          }
+     }
 }
+
+// ----------------------------------------------------
+// == MAIN ==
+// ----------------------------------------------------
 
 body {
      display: grid;
@@ -88,7 +127,7 @@ body {
           grid-area: flavory-blogs;
           gap: 10px 15px;
           background-color: var(--clr-components-page);
-          box-shadow: 5px 5px 0px 0px var(--clr-palettes-quaternary-shadow);
+          box-shadow: 5px 5px 0px 0px var(--clr-palettes-quaternary--shadow);
           padding: 20px;
           @include sct.bentobox-grid;
           @include sct.bentobox-rendering;
@@ -120,7 +159,7 @@ body {
 
           .details {
                grid-area: coverage-details;
-               box-shadow: 3px 3px 0px 0px var(--clr-palettes-secondary-shadow);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-secondary--shadow);
                border-radius: 0px;
                padding: 8px;
           }
@@ -143,14 +182,14 @@ body {
           .details-extension .stylistic {
                grid-area: banner-stylistic;
                border-radius: 0px;
-               box-shadow: 3px 3px 0px 0px var(--clr-palettes-quaternary-shadow);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-quaternary--shadow);
                padding: 5px;
           }
 
           .details-extension .questioning {
                grid-area: banner-questioning;
                border-radius: 0px;
-               box-shadow: 3px 3px 0px 0px var(--clr-palettes-primary-shadow);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-primary--shadow);
                padding: 5px;
           }
 
@@ -166,8 +205,8 @@ body {
                     font-family: 'Noto Sans Tagalog', font.$standard-font;
                     font-size: 1rem;
                     font-display: block;
-                    text-shadow: 3px 2px 0px black;
-                    color: GhostWhite;
+                    text-shadow: 3px 2px 0px var(--clr-coverage-poster-message--shadow);
+                    color: var(--clr-coverage-poster-message);
                     position: absolute;
                     right: 5px;
                     bottom: 3px;
@@ -260,10 +299,6 @@ body {
      }
 
      .blogs .weblogs {
-          --clr-weblogs-captionbar:            #{ $clr-weblogs-captionbar };
-          --clr-weblogs-captionbar-grad-start: #{ $clr-weblogs-captionbar-grad-start };
-          --clr-weblogs-captionbar-grad-end:   #{ $clr-weblogs-captionbar-grad-end };
-          --clr-weblogs-captionbar-border:     #{ $clr-weblogs-captionbar-border };
           grid-area: blogs-weblogs;
           @include sct.bentobox-grid(parent-ignore);
 
@@ -281,22 +316,22 @@ body {
                text-transform: capitalize;
                background: var(--clr-weblogs-captionbar);
                background: linear-gradient(144deg, 
-                    var(--clr-weblogs-captionbar-grad-start) 5%, 
-                    var(--clr-weblogs-captionbar-grad-end) 95%
+                    var(--clr-weblogs-captionbar--grad-start) 5%, 
+                    var(--clr-weblogs-captionbar--grad-end) 95%
                );
-               border: 2px solid var(--clr-weblogs-captionbar-border);
+               border: 2px solid var(--clr-weblogs-captionbar--border);
                padding: 5px 10px;
                width: 100%;
           }
      
           &__captionblocks {
-               border: 2px solid var(--clr-weblogs-captionbar-border);
+               border: 2px solid var(--clr-weblogs-captionbar--border);
                width: ex-math.midpoint(15px, 20px);
                height: auto;
 
-               @for $blocks from 1 through 3 {
-                    &--palette-#{$blocks} {
-                         background-color: list.nth($clr-weblogs-captionbar-block, $blocks);
+               @for $block-index from 1 through 3 {
+                    &--palette-#{$block-index} {
+                         background-color: var(--clr-weblogs-captionbar--blocks-#{$block-index});
                     }
                }
           }
@@ -326,7 +361,7 @@ body {
           .booklet .warning {
                grid-area: booklet-warning;
                border-radius: 0px;
-               box-shadow: 3px 3px 0px 0px var(--clr-palettes-tertiary-shadow);
+               box-shadow: 3px 3px 0px 0px var(--clr-palettes-tertiary--shadow);
                padding: 5px;
           }
 
@@ -358,9 +393,6 @@ body {
           }
 
           .assemblage .bluescreen {
-               --clr-bluescreen:          #{ $clr-bluescreen };
-               --clr-bluescreen-contrast: #{ $clr-bluescreen-contrast };
-               --clr-bluescreen-title:    #{ $clr-bluescreen-title };
                -webkit-user-select: none;
                user-select: none;
                display: flex;
@@ -370,8 +402,8 @@ body {
                font-display: block;
                font-size: ex-math.midpoint(0.55rem, 0.60rem);
                text-align: justify;
-               color: var(--clr-bluescreen-contrast);
-               background-color: var(--clr-bluescreen);
+               color: var(--clr-sundries-assemblage-bluescreen--contrast);
+               background-color: var(--clr-sundries-assemblage-bluescreen);
                padding: 8px;
           
                h3 {
@@ -379,12 +411,12 @@ body {
                     font-size: 0.7rem;
                     font-weight: 700;
                     text-align: center;
-                    color: var(--clr-bluescreen);
+                    color: var(--clr-sundries-assemblage-bluescreen);
                     margin-bottom: 10px;
                }
           
-               h3 em {
-                    background-color: var(--clr-bluescreen-title);
+               h3 strong {
+                    background-color: var(--clr-sundries-assemblage-bluescreen-title);
                     padding: 1px 8px;
                }
           

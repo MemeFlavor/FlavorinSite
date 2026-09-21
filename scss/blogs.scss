@@ -77,11 +77,11 @@ $sundries-root: (
 );
 
 :root {
-     $roots: ('coverage': $coverage-root, 'weblogs': $weblogs-root, 'sundries': $sundries-root);
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };
      }
      
+     $roots: ('coverage': $coverage-root, 'weblogs': $weblogs-root, 'sundries': $sundries-root);
      @each $root-names, $root-styles in $roots {
           @each $styles-name, $styles-values in $root-styles {
                --clr-#{$root-names}-#{$styles-name}: #{ $styles-values };

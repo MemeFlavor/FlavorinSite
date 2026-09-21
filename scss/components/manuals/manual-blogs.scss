@@ -7,53 +7,111 @@
 @use 'sass:map';
 @use 'sass:color';
 
-$clr-palettes-primary: map.get(flv.$palettes, 'primary');
-$clr-palettes-secondary: map.get(flv.$palettes, 'secondary');
-$clr-palettes-tertiary: map.get(flv.$palettes, 'tertiary');
-$clr-palettes-quaternary: map.get(flv.$palettes, 'quaternary');
-$clr-palettes-primary-contrast: map.get(flv.$palettes-contrast, 'primary');
-$clr-palettes-secondary-contrast: map.get(flv.$palettes-contrast, 'secondary');
-$clr-palettes-tertiary-contrast: map.get(flv.$palettes-contrast, 'tertiary');
-$clr-palettes-quaternary-contrast: map.get(flv.$palettes-contrast, 'quaternary');
+// ----------------------------------------------------
+// == COLOR PALETTE ARCHITECTURE ==
+// ----------------------------------------------------
 
-$clr-coverage-headbar: beige;
-$clr-coverage-headbar-contrast: ex-color.contrast($clr-coverage-headbar);
+$flavor-palettes-primary:           map.get(flv.$palettes, 'primary');
+$flavor-palettes-secondary:         map.get(flv.$palettes, 'secondary');
+$flavor-palettes-tertiary:          map.get(flv.$palettes, 'tertiary');
+$flavor-palettes-quaternary:        map.get(flv.$palettes, 'quaternary');
 
-$clr-details-psuedocode-title: $clr-palettes-quaternary;
-$clr-details-psuedocode-red: map.get(flv.$syntax, 'red');
-$clr-details-psuedocode-blue: map.get(flv.$syntax, 'blue');
-$clr-details-psuedocode-green: map.get(flv.$syntax, 'green');
-$clr-details-psuedocode-yellow: map.get(flv.$syntax, 'yellow');
-$clr-details-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
-$clr-details-scrollbar-track: map.get(flv.$scrollbar, 'track');
+$flavor-palettes-primary--contrast:    map.get(flv.$palettes-contrast, 'primary');
+$flavor-palettes-secondary--contrast:  map.get(flv.$palettes-contrast, 'secondary');
+$flavor-palettes-tertiary--contrast:   map.get(flv.$palettes-contrast, 'tertiary');
+$flavor-palettes-quaternary--contrast: map.get(flv.$palettes-contrast, 'quaternary');
 
-$clr-warning-headbar: color.adjust($clr-palettes-tertiary, $hue: -10deg, $saturation: -20%);
-$clr-warning-headbar-contrast: ex-color.contrast($clr-warning-headbar);
-$clr-warning-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
-$clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
+$flavor-syntax-red:    map.get(flv.$syntax, 'red');
+$flavor-syntax-blue:   map.get(flv.$syntax, 'blue');
+$flavor-syntax-green:  map.get(flv.$syntax, 'green');
+$flavor-syntax-yellow: map.get(flv.$syntax, 'yellow');
+
+$flavor-scrollbar-thumb: map.get(flv.$scrollbar, 'thumb');
+$flavor-scrollbar-track: map.get(flv.$scrollbar, 'track');
+$flavor-root: (
+     'palettes-primary':    $flavor-palettes-primary,
+     'palettes-secondary':  $flavor-palettes-secondary,
+     'palettes-tertiary':   $flavor-palettes-tertiary,
+     'palettes-quaternary': $flavor-palettes-quaternary,
+
+     'palettes-primary--contrast':    $flavor-palettes-primary--contrast,
+     'palettes-secondary--contrast':  $flavor-palettes-secondary--contrast,
+     'palettes-tertiary--contrast':   $flavor-palettes-tertiary--contrast,
+     'palettes-quaternary--contrast': $flavor-palettes-quaternary--contrast,
+
+     'syntax-red':    $flavor-syntax-red,
+     'syntax-blue':   $flavor-syntax-blue,
+     'syntax-green':  $flavor-syntax-green,
+     'syntax-yellow': $flavor-syntax-yellow,
+
+     'scrollbar-thumb': $flavor-scrollbar-thumb,
+     'scrollbar-track': $flavor-scrollbar-track
+);
+
+$coverage-details-headbar:         beige;
+$coverage-details-heading-title:   $flavor-palettes-secondary;
+$coverage-details-heading-section: $flavor-palettes-primary;
+$coverage-details-h3:              $flavor-palettes-primary;
+
+$coverage-details-stylistic-batch: $flavor-palettes-tertiary;
+$coverage-root: (
+     'details--scrollbar-thumb':          $flavor-scrollbar-thumb,
+     'details--scrollbar-track':          $flavor-scrollbar-track,
+     'details-headbar':                   $coverage-details-headbar,
+     'details-headbar--contrast':         ex-color.contrast($coverage-details-headbar),
+     'details-headbar--slabs-1':          $flavor-palettes-primary,
+     'details-headbar--slabs-2':          $flavor-palettes-quaternary,
+     'details-heading-title':             $coverage-details-heading-title,
+     'details-heading-title--contrast':   ex-color.contrast($coverage-details-heading-title),
+     'details-heading-section':           $coverage-details-heading-title,
+     'details-heading-section--contrast': ex-color.contrast($coverage-details-heading-title),
+
+     'details-h3':                      $coverage-details-h3,
+     'details-h3--contrast':            ex-color.contrast($coverage-details-h3),
+     'details-ol-li--before':           black,
+     'details-ol-li--before-casual':    $flavor-palettes-primary,
+     'details-ol-li--before-updates':   $flavor-palettes-secondary,
+     'details-ol-li--before-technical': $flavor-palettes-tertiary,
+     'details-ol-li--before-archaic':   $flavor-palettes-quaternary,
+
+     'details-psuedocode-title':  $flavor-palettes-quaternary,
+     'details-psuedocode-red':    $flavor-syntax-red,
+     'details-psuedocode-blue':   $flavor-syntax-blue,
+     'details-psuedocode-green':  $flavor-syntax-green,
+     'details-psuedocode-yellow': $flavor-syntax-yellow,
+
+     'details-stylistic-headbar--slabs-1': $flavor-palettes-secondary,
+     'details-stylistic-headbar--slabs-2': $flavor-palettes-primary,
+     'details-stylistic-batch':            $coverage-details-stylistic-batch,
+     'details-stylistic-batch--contrast':  ex-color.contrast($coverage-details-stylistic-batch),
+);
+
+$sundries-warning-headbar: color.adjust($flavor-palettes-tertiary, $hue: -10deg, $saturation: -25%);
+$sundries-root: (
+     'warning--scrollbar-thumb':  $flavor-scrollbar-thumb,
+     'warning--scrollbar-track':  $flavor-scrollbar-track,
+     'warning-headbar':           $sundries-warning-headbar,
+     'warning-headbar--contrast': ex-color.contrast($sundries-warning-headbar),
+);
+
 :root {
-     --clr-palettes-primary:    #{ $clr-palettes-primary };
-     --clr-palettes-secondary:  #{ $clr-palettes-secondary };
-     --clr-palettes-tertiary:   #{ $clr-palettes-tertiary };
-     --clr-palettes-quaternary: #{ $clr-palettes-quaternary };
-     --clr-palettes-primary-contrast:    #{ $clr-palettes-primary-contrast };
-     --clr-palettes-secondary-contrast:  #{ $clr-palettes-secondary-contrast };
-     --clr-palettes-tertiary-contrast:   #{ $clr-palettes-tertiary-contrast };
-     --clr-palettes-quaternary-contrast: #{ $clr-palettes-quaternary-contrast };
-
-     --clr-coverage-headbar:          #{ $clr-coverage-headbar };
-     --clr-coverage-headbar-contrast: #{ $clr-coverage-headbar-contrast };
+     @each $flavor-names, $flavor-values in $flavor-root {
+          --clr-#{$flavor-names}: #{ $flavor-values };
+     }
+     
+     $roots: ('coverage': $coverage-root, 'sundries': $sundries-root);
+     @each $root-names, $root-styles in $roots {
+          @each $styles-name, $styles-values in $root-styles {
+               --clr-#{$root-names}-#{$styles-name}: #{ $styles-values };
+          }
+     }
 }
 
-.blogs .coverage .details {
-     --clr-details-psuedocode-title:  #{ $clr-details-psuedocode-title };
-     --clr-details-psuedocode-red:    #{ $clr-details-psuedocode-red };
-     --clr-details-psuedocode-blue:   #{ $clr-details-psuedocode-blue };
-     --clr-details-psuedocode-green:  #{ $clr-details-psuedocode-green };
-     --clr-details-psuedocode-yellow: #{ $clr-details-psuedocode-yellow };
-     --clr-details-scrollbar-thumb: #{ $clr-details-scrollbar-thumb };
-     --clr-details-scrollbar-track: #{ $clr-details-scrollbar-track };
+// ----------------------------------------------------
+// == MAIN ==
+// ----------------------------------------------------
 
+.blogs .coverage .details {
      &__headbar {
           display: grid;
           grid-template-columns: 25px 1fr;
@@ -69,7 +127,7 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: var(--clr-coverage-headbar);
+          background-color: var(--clr-coverage-details-headbar);
      }
 
      &__headbar-title {
@@ -79,14 +137,14 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: var(--clr-coverage-headbar);
-          border: 2px solid var(--clr-coverage-headbar);
+          color: var(--clr-coverage-details-headbar);
+          border: 2px solid var(--clr-coverage-details-headbar);
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: var(--clr-coverage-headbar-contrast);
-               background-color: var(--clr-coverage-headbar);
+               color: var(--clr-coverage-details-headbar--contrast);
+               background-color: var(--clr-coverage-details-headbar);
           }
      }
 
@@ -99,17 +157,17 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
      }
 
      &__headbar-slabs {
-          background-color: var(--clr-coverage-headbar);
+          background-color: var(--clr-coverage-details-headbar);
           height: 10px;
 
           &--palette-1 {
                flex-grow: 7;
-               background-color: var(--clr-palettes-primary);
+               background-color: var(--clr-coverage-details-headbar--slabs-1);
           }
 
           &--palette-2 {
                flex-grow: 4;
-               background-color: var(--clr-palettes-quaternary);
+               background-color: var(--clr-coverage-details-headbar--slabs-2);
           }
      }
 
@@ -142,12 +200,12 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
           }
 
           code-title code-txt {
-               background-color: var(--clr-details-psuedocode-title);
+               background-color: var(--clr-coverage-details-psuedocode-title);
                padding-inline: 5px;
           }
 
           code-title code-blocks {
-               background-color: var(--clr-details-psuedocode-title);
+               background-color: var(--clr-coverage-details-psuedocode-title);
                width: 3px;
           }
 
@@ -157,14 +215,77 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
 
           @each $colors in map.keys(map.remove(flv.$syntax, 'purple', 'teal', 'grey', 'white')) {
                code-syn-#{$colors} {
-                    color: var(--clr-details-psuedocode-#{$colors});
+                    color: var(--clr-coverage-details-psuedocode-#{$colors});
                }
           }
      }
 
+     &__heading {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 5px;
+     }
+
+     &__heading-title {
+          -webkit-user-select: all;
+          user-select: all;
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 1rem;
+          font-weight: 750;
+          font-stretch: semi-expanded;
+          color: var(--clr-coverage-details-heading-title--contrast);
+          background-color: var(--clr-coverage-details-heading-title);
+          width: fit-content;
+          padding: 2px 5px 2px 3px;
+
+          &::before {
+               content: '\279C';
+               margin-right: 2px;
+          }
+     }
+
+     &__heading-subtitle {
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 0.85rem;
+          font-weight: 750;
+          font-stretch: semi-expanded;
+          text-transform: uppercase;
+     }
+
+     &__heading-section {
+          display: flex;
+          align-items: center;
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 0.8rem;
+          font-weight: 650;
+          font-stretch: semi-condensed;
+          text-transform: uppercase;
+          color: var(--clr-coverage-details-heading-section--contrast);
+          background-color: var(--clr-coverage-details-heading-section);
+          padding: 3px 5px;
+
+          &::before {
+               content: "\2605";
+               margin-right: 3px;
+          }
+     }
+
+     &__heading-desc {
+          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
+          font-size: ex-math.midpoint(0.75rem, 0.80rem);
+          text-align: start;
+          text-wrap: pretty;
+          text-rendering: optimizeSpeed;
+          line-height: normal;
+          padding-inline: 3px;
+          margin-block: 10px;
+     }
+
      &__body {
-          --clr-scrollbar-thumb: var(--clr-details-scrollbar-thumb);
-          --clr-scrollbar-track: var(--clr-details-scrollbar-track);
+          --clr-scrollbar-thumb: var(--clr-coverage-details--scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-coverage-details--scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 210px;
@@ -173,7 +294,7 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
           padding: 5px 5px 5px 0px;
 
           &:focus-visible {
-               --clr-scrollbar-thumb: #{ color.adjust($clr-details-scrollbar-thumb, $lightness: 13%) };
+               --clr-scrollbar-thumb: #{ color.adjust(map.get($coverage-root, 'details--scrollbar-thumb'), $lightness: 13%) };
           }
 
           &::-webkit-scrollbar {
@@ -197,8 +318,8 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
                font-weight: 650;
                font-stretch: semi-condensed;
                text-transform: uppercase;
-               color: var(--clr-palettes-primary-contrast);
-               background-color: var(--clr-palettes-primary);
+               color: var(--clr-coverage-details-h3--contrast);
+               background-color: var(--clr-coverage-details-h3);
                padding: 3px 5px;
 
                &::before {
@@ -246,7 +367,7 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
                     font-weight: 600;
                     font-stretch: condensed;
                     text-align: center;
-                    color: black;
+                    color: var(--clr-coverage-details-ol-li--before);
                     border-radius: 360px;
                     width: 20px;
                     height: 20px;
@@ -254,81 +375,18 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
                }
 
                &[data-category="casual"]::before {
-                    background-color: var(--clr-palettes-primary);
+                    background-color: var(--clr-coverage-details-ol-li--before-casual);
                }
                &[data-category="updates"]::before {
-                    background-color: var(--clr-palettes-secondary);
+                    background-color: var(--clr-coverage-details-ol-li--before-updates);
                }
                &[data-category="technical"]::before {
-                    background-color: var(--clr-palettes-tertiary);
+                    background-color: var(--clr-coverage-details-ol-li--before-technical);
                }
                &[data-category="archaic"]::before {
-                    background-color: var(--clr-palettes-quaternary);
+                    background-color: var(--clr-coverage-details-ol-li--before-archaic);
                }
           }
-     }
-
-     &__heading {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 5px;
-     }
-
-     &__heading-title {
-          -webkit-user-select: all;
-          user-select: all;
-          font-family: 'Zalando Sans', font.$standard-font;
-          font-size: 1rem;
-          font-weight: 750;
-          font-stretch: semi-expanded;
-          color: var(--clr-palettes-secondary-contrast);
-          background-color: var(--clr-palettes-secondary);
-          width: fit-content;
-          padding: 2px 5px 2px 3px;
-
-          &::before {
-               content: '\279C';
-               margin-right: 2px;
-          }
-     }
-
-     &__heading-subtitle {
-          font-family: 'Zalando Sans', font.$standard-font;
-          font-size: 0.85rem;
-          font-weight: 750;
-          font-stretch: semi-expanded;
-          text-transform: uppercase;
-     }
-
-     &__heading-section {
-          display: flex;
-          align-items: center;
-          font-family: 'Zalando Sans', font.$standard-font;
-          font-size: 0.8rem;
-          font-weight: 650;
-          font-stretch: semi-condensed;
-          text-transform: uppercase;
-          color: var(--clr-palettes-primary-contrast);
-          background-color: var(--clr-palettes-primary);
-          padding: 3px 5px;
-
-          &::before {
-               content: "\2605";
-               margin-right: 3px;
-          }
-     }
-
-     &__heading-desc {
-          font-family: 'Trebuchet MS', font.$standard-fancy-font, font.$standard-font;
-          font-size: ex-math.midpoint(0.75rem, 0.80rem);
-          text-align: start;
-          text-wrap: pretty;
-          text-rendering: optimizeSpeed;
-          line-height: normal;
-          padding-inline: 3px;
-          margin-block: 10px;
      }
 }
 
@@ -358,8 +416,8 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
           font-family: 'Noto Sans Tagalog', font.$standard-font;
           font-size: 1.35rem;
           -webkit-text-stroke-width: 1px;
-          color: var(--clr-coverage-headbar);
-          border: 2px solid var(--clr-coverage-headbar);
+          color: var(--clr-coverage-details-headbar);
+          border: 2px solid var(--clr-coverage-details-headbar);
           border-bottom-width: 15px;
           padding: 3px 5px;
      }
@@ -367,16 +425,16 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
      &__headbar-title chars-bbyn {
           line-height: 1;
 
-          @for $chars from 1 through 4 {
-               &:nth-child(#{$chars}) {
-                    margin-bottom: if(sass($chars % 2 == 0): 5px; else: 0px);
+          @for $char-index from 1 through 4 {
+               &:nth-child(#{$char-index}) {
+                    margin-bottom: if(sass($char-index % 2 == 0): 5px; else: 0px);
                }
           }
      }
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: var(--clr-coverage-headbar);
+          background-color: var(--clr-coverage-details-headbar);
           height: 15px;
      }
 
@@ -389,17 +447,17 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
      }
 
      &__headbar-slabs {
-          background-color: var(--clr-coverage-headbar);
+          background-color: var(--clr-coverage-details-headbar);
           height: 10px;
 
           &--palette-1 {
                flex-grow: 3;
-               background-color: var(--clr-palettes-secondary);
+               background-color: var(--clr-coverage-details-stylistic-headbar--slabs-1);
           }
 
           &--palette-2 {
                flex-grow: 4;
-               background-color: var(--clr-palettes-primary);
+               background-color: var(--clr-coverage-details-stylistic-headbar--slabs-2);
           }
      }
 
@@ -412,7 +470,7 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
 
      &__batch-main {
           display: flex;
-          background-color: var(--clr-palettes-tertiary);
+          background-color: var(--clr-coverage-details-stylistic-batch);
           height: 1cm;
      }
 
@@ -421,14 +479,14 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
           font-size: 0.75rem;
           font-weight: 800;
           text-align: start;
-          color: var(--clr-palettes-tertiary-contrast);
+          color: var(--clr-coverage-details-stylistic-batch--contrast);
           padding: 1px 3px;
           margin-top: auto;
           margin-left: auto;
      }
 
      &__batch-slabs {
-          background-color: var(--clr-palettes-tertiary);
+          background-color: var(--clr-coverage-details-stylistic-batch);
           height: 5px;
 
           &:last-child {
@@ -468,10 +526,6 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
 }
 
 .blogs .sundries .booklet .warning {
-     --clr-warning-headbar: #{ $clr-warning-headbar };
-     --clr-warning-headbar-contrast: #{ $clr-warning-headbar-contrast };
-     --clr-warning-scrollbar-thumb: #{ $clr-warning-scrollbar-thumb };
-     --clr-warning-scrollbar-track: #{ $clr-warning-scrollbar-track };
      display: flex;
      flex-direction: column;
      gap: 0px;
@@ -490,7 +544,7 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
 
      &__headbar-blocks {
           grid-area: headbar-blocks;
-          background-color: var(--clr-warning-headbar);
+          background-color: var(--clr-sundries-warning-headbar);
      }
 
      &__headbar-title {
@@ -500,26 +554,26 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
           font-weight: 800;
           font-stretch: semi-expanded;
           text-transform: uppercase;
-          color: var(--clr-warning-headbar);
-          border: 2px solid var(--clr-warning-headbar);
+          color: var(--clr-sundries-warning-headbar);
+          border: 2px solid var(--clr-sundries-warning-headbar);
           border-left-width: 10px;
           padding: 3px 10px;
 
           &::selection {
-               color: var(--clr-warning-headbar-contrast);
-               background-color: var(--clr-warning-headbar);
+               color: var(--clr-sundries-warning-headbar--contrast);
+               background-color: var(--clr-sundries-warning-headbar);
           }
      }
 
      &__headbar-slab {
           grid-area: headbar-slab;
-          background-color: var(--clr-warning-headbar);
+          background-color: var(--clr-sundries-warning-headbar);
           height: 3px;
      }
 
      &__body {
-          --clr-scrollbar-thumb: var(--clr-warning-scrollbar-thumb);
-          --clr-scrollbar-track: var(--clr-warning-scrollbar-track);
+          --clr-scrollbar-thumb: var(--clr-sundries-warning--scrollbar-thumb);
+          --clr-scrollbar-track: var(--clr-sundries-warning--scrollbar-track);
           outline: none;
           overflow-y: auto;
           height: 195px;
@@ -528,7 +582,7 @@ $clr-warning-scrollbar-track: map.get(flv.$scrollbar, 'track');
           padding: 5px 5px 5px 0px;
      
           &:focus-visible {
-               --clr-scrollbar-thumb: #{ color.adjust($clr-warning-scrollbar-thumb, $lightness: 13%) };
+               --clr-scrollbar-thumb: #{ color.adjust(map.get($sundries-root, 'warning--scrollbar-thumb'), $lightness: 13%) };
           }
      
           &::-webkit-scrollbar {

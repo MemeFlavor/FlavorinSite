@@ -115,11 +115,11 @@ $interests-root: (
 );
 
 :root {
-     $roots: ('profile': $profile-root, 'interests': $interests-root);
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };
      }
-
+     
+     $roots: ('profile': $profile-root, 'interests': $interests-root);
      @each $root-names, $root-styles in $roots {
           @each $styles-name, $styles-values in $root-styles {
                --clr-#{$root-names}-#{$styles-name}: #{ $styles-values };

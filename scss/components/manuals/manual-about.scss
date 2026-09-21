@@ -89,11 +89,11 @@ $information-root: (
 );
 
 :root {
-     $roots: ('profile': $profile-root, 'information': $information-root);
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };
      }
-
+     
+     $roots: ('profile': $profile-root, 'information': $information-root);
      @each $root-names, $root-styles in $roots {
           @each $styles-name, $styles-values in $root-styles {
                --clr-#{$root-names}-#{$styles-name}: #{ $styles-values };
@@ -164,6 +164,40 @@ $information-root: (
           }
      }
 
+     &__heading {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 5px;
+     }
+
+     &__heading-title {
+          -webkit-user-select: all;
+          user-select: all;
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 1rem;
+          font-weight: 750;
+          font-stretch: semi-expanded;
+          color: var(--clr-profile-autobiography-heading-title--contrast);
+          background-color: var(--clr-profile-autobiography-heading-title);
+          width: fit-content;
+          padding: 2px 5px 2px 3px;
+
+          &::before {
+               content: '\2726';
+               margin-right: 3px;
+          }
+     }
+
+     &__heading-subtitle {
+          font-family: 'Zalando Sans', font.$standard-font;
+          font-size: 0.9rem;
+          font-weight: 750;
+          font-stretch: semi-expanded;
+          text-transform: uppercase;
+     }
+
      &__body {
           --clr-scrollbar-thumb: var(--clr-profile-autobiography--scrollbar-thumb);
           --clr-scrollbar-track: var(--clr-profile-autobiography--scrollbar-track);
@@ -219,40 +253,6 @@ $information-root: (
                padding-inline: 3px;
                margin-block: 10px;
           }
-     }
-
-     &__heading {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 5px;
-     }
-
-     &__heading-title {
-          -webkit-user-select: all;
-          user-select: all;
-          font-family: 'Zalando Sans', font.$standard-font;
-          font-size: 1rem;
-          font-weight: 750;
-          font-stretch: semi-expanded;
-          color: var(--clr-profile-autobiography-heading-title--contrast);
-          background-color: var(--clr-profile-autobiography-heading-title);
-          width: fit-content;
-          padding: 2px 5px 2px 3px;
-
-          &::before {
-               content: '\2726';
-               margin-right: 3px;
-          }
-     }
-
-     &__heading-subtitle {
-          font-family: 'Zalando Sans', font.$standard-font;
-          font-size: 0.9rem;
-          font-weight: 750;
-          font-stretch: semi-expanded;
-          text-transform: uppercase;
      }
 }
 

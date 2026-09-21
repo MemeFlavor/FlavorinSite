@@ -114,6 +114,7 @@ $interests-root: (
      'gallery-debugmode': $interests-gallery-debugmode
 );
 
+// ARCHITECTURE IMPLEMENTATION //
 :root {
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };

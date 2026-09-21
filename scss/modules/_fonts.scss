@@ -5,7 +5,11 @@
 @use 'sass:map';
 @use 'sass:meta';
 
-/* Helpers */
+// ----------------------------------------------------
+// == HELPERS ==
+// ----------------------------------------------------
+
+// CONSTANTS //
 
 /// List of every predefined weight keywords.
 /// @access private
@@ -36,6 +40,8 @@ $_widths: (
      extra-expanded: 150%,
      ultra-expanded: 200%
 );
+
+// FUNCTIONS //
 
 /// Creates a path for the font.
 /// @access private
@@ -109,7 +115,11 @@ $_widths: (
      @return ex-list.join(list.join($path-remove-last, $path-new-last, $separator: slash), '/');
 }
 
-/* Main */
+// ----------------------------------------------------
+// == MAIN ==
+// ----------------------------------------------------
+
+// CONSTANTS //
 
 /// Standard default font.
 /// @access public
@@ -140,6 +150,8 @@ $font-source-variable: (
      ('woff2', format('woff2-variations')), 
      ('woff2', format('woff2') tech('variations'))
 );
+
+// METHODS //
 
 /// Creates a list of properties based on its range, awesome helper function.
 /// @access public

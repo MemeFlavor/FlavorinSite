@@ -11,6 +11,7 @@
 // == COLOR PALETTE ARCHITECTURE ==
 // ----------------------------------------------------
 
+// GLOBAL COLOR PALLETES //
 $flavor-palettes-primary:           map.get(flv.$palettes, 'primary');
 $flavor-palettes-secondary:         map.get(flv.$palettes, 'secondary');
 $flavor-palettes-tertiary:          map.get(flv.$palettes, 'tertiary');
@@ -48,6 +49,7 @@ $flavor-root: (
      'scrollbar-track': $flavor-scrollbar-track
 );
 
+// LOCAL COLOR PALLETES //
 $coverage-details-headbar:         beige;
 $coverage-details-heading-title:   $flavor-palettes-secondary;
 $coverage-details-heading-section: $flavor-palettes-primary;
@@ -94,6 +96,7 @@ $sundries-root: (
      'warning-headbar--contrast': ex-color.contrast($sundries-warning-headbar),
 );
 
+// ARCHITECTURE IMPLEMENTATION //
 :root {
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };

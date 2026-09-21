@@ -88,6 +88,7 @@ $information-root: (
      'manual-fact-factpad-title--contrast': ex-color.contrast($information-manual-fact-factpad),
 );
 
+// ARCHITECTURE IMPLEMENTATION //
 :root {
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };

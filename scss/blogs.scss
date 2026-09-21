@@ -76,6 +76,7 @@ $sundries-root: (
      'assemblage-bluescreen-title':     silver
 );
 
+// ARCHITECTURE IMPLEMENTATION //
 :root {
      @each $flavor-names, $flavor-values in $flavor-root {
           --clr-#{$flavor-names}: #{ $flavor-values };
